@@ -10,6 +10,8 @@ add in apps/accounts/models.py >
 from django.contrib.auth.models import AbstractUser 
 
 add in apps/accounts/models.py >
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
@@ -24,4 +26,9 @@ production.py
 
 
 add in config/settings/base.py >
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+
+
