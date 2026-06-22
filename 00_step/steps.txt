@@ -5,3 +5,14 @@ django-admin startproject config .
 python manage.py startapp accounts
 mkdir apps
 mv accounts apps/
+
+add in apps/models.py > 
+from django.contrib.auth.models import AbstractUser 
+
+add in apps/models.py >
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
+
+
+
