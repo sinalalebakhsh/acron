@@ -1,1 +1,4 @@
 pipenv install django
+pipenv shell
+pipenv --venv
+django-admin startproject config .
