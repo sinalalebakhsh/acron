@@ -2,3 +2,6 @@ pipenv install django
 pipenv shell
 pipenv --venv
 django-admin startproject config .
+python manage.py startapp accounts
+mkdir apps
+mv accounts apps/
