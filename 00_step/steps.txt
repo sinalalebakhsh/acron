@@ -13,6 +13,15 @@ add in apps/accounts/models.py >
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
+create in config/
+settings folder
+
+create in config/settings
+__init__.py
+base.py
+development.py
+production.py
 
 
-
+add in config/settings/base.py >
+AUTH_USER_MODEL = "accounts.CustomUser"
