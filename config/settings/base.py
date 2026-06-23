@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party
-
+    'rest_framework',
+    
     # CREATE by me
     'apps.accounts',
     # a فعلا این موارد رو به حالت کامنت در بیار
