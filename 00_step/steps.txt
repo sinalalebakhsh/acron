@@ -43,3 +43,16 @@ exceptions.py
 mixins.py
 services.py
 
+
+rename config/settings.py to random name .txt
+
+add in config/settings/init.py
+from .development import *
+
+
+add in config/settings/development.py
+from .base import *
+
+
+install in terminal bash
+pipenv install mysqlclient
