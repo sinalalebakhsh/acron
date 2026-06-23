@@ -9,6 +9,16 @@ SECRET_KEY = 'django-insecure-1r%tnk@im4n@uk5zx!q*i@wkr69darorwnglm%sa!_1ou=8#_w
 
 ALLOWED_HOSTS = []
 
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
