@@ -53,6 +53,18 @@ from .development import *
 add in config/settings/development.py
 from .base import *
 
+add in config/settings/base.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'acron',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'PORT': '3306',
+    }
+}
+
 
 install in terminal bash
 pipenv install mysqlclient
