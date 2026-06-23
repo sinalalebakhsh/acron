@@ -18,6 +18,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third party
+
+    # CREATE by me
+    'apps.accounts',
+    # a فعلا این موارد رو به حالت کامنت در بیار
+    # 'apps.carts',
+    # 'apps.customers',
+    # 'apps.notifications',
+    # 'apps.orders',
+    # 'apps.payments',
+    # 'apps.products',
+    # 'apps.reviews',
 ]
 
 MIDDLEWARE = [
@@ -53,14 +66,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'acron',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'PORT': '3306',
-    }
+    'default': {}
 }
 
 
