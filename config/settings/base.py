@@ -30,6 +30,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ROOT_URLCONF = 'config.urls'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
