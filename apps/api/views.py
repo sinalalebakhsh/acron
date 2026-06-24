@@ -16,5 +16,10 @@ def me(request):
     })
 
 
-
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def secret_api(request):
+    return Response({
+        "message": "secret"
+    })
 
