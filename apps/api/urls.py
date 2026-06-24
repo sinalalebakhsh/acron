@@ -6,6 +6,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from .views import me
+
 
 def api_root(request):
     return HttpResponse("API is working 🚀")
@@ -14,7 +16,10 @@ def api_root(request):
 urlpatterns = [
     path('', api_root),
 
-    # 🔐 JWT endpoints
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # JWT
+    path('token/', TokenObtainPairView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
+
+    # 🔐 protected route
+    path('me/', me),
 ]
