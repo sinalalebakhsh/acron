@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from .views import me
+from . import views
 
 
 def api_root(request):
@@ -21,5 +21,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view()),
 
     # 🔐 protected route
-    path('me/', me),
+    path('me/', views.me),
+    path('secret/', views.secret_api),
+
 ]
