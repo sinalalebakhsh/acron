@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from django.http import HttpResponse
 
 from rest_framework_simplejwt.views import (
@@ -23,5 +23,7 @@ urlpatterns = [
     # 🔐 protected route
     path('me/', views.me),
     path('secret/', views.secret_api),
+
+    path('customers/', include('apps.customers.urls')),
 
 ]
