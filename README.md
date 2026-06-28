@@ -15,9 +15,11 @@ https://sinalalenakhsh.notion.site/Hadi-Haji-ACRON-Methodology-386da1eb8b9d80b7b
 * Can you be a reviewer for this project?
 
 #### In future:
+--------------------------------------------------<br>
 I will add build and development using API documentation (like Swagger).
 
 #### AI Helping to improve code details (not Original Structure and architecture):
+--------------------------------------------------<br>
 I don't use Vibe Coding to this project. 
 <br>
 This is the first problem of a programmer who doesn't know what she/he is doing.
