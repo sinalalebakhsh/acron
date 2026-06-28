@@ -10,7 +10,7 @@ from . import views
 
 
 def api_root(request):
-    return HttpResponse("API is working 🚀")
+    return HttpResponse("API ROOT is under development 🚀")
 
 
 urlpatterns = [
