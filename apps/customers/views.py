@@ -7,21 +7,15 @@ from .serializers import CustomerSerializer
 
 class CustomerMeView(APIView):
 
-    permission_classes = [
-        IsAuthenticated
-    ]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
 
-        serializer = CustomerSerializer(
-            request.user.customer
-        )
+        serializer = CustomerSerializer(request.user.customer)
 
-        return Response(
-            serializer.data
-        )
+        return Response(serializer.data)
 
 
 
- 
-    
+
+
