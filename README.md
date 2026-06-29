@@ -1,8 +1,8 @@
 # acron
-    Plant the acorn seed and it will grow.<br>
-    This acron is an Idea for helping Jonior and Senior to simplest,<br>
-    stepable development mood. for 80% progress structure and <br>
-    for 20% for creativity and artomize(randomise art!). 
+Plant the acorn seed and it will grow.<br>
+This acron is an Idea for helping Jonior and Senior to simplest,<br>
+stepable development mood. for 80% progress structure and <br>
+for 20% for creativity and artomize(randomise art!). 
 
 ## Documentation:
     https://sinalalenakhsh.notion.site/ACRON-387da1eb8b9d8005a372ce7394463792
