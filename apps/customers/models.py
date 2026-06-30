@@ -2,8 +2,7 @@ from django.db import models
 
 import uuid
 
-from config import settings
-
+from django.conf import settings
 
 
 # Create your models here.
