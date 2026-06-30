@@ -5,11 +5,11 @@ stepable development mood. for 80% progress structure and <br>
 for 20% for creativity and artomize(randomise art!). 
 
 ## Introduction:
-    https://sinalalenakhsh.notion.site/ACRON-387da1eb8b9d8005a372ce7394463792
+[Click here...](https://sinalalenakhsh.notion.site/ACRON-387da1eb8b9d8005a372ce7394463792)
 
 ## ACRON Methodology Documentation:
 
-[Part-0:Table of contents](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-0-Table-of-contents-38fda1eb8b9d8073a8cfebf21856e8f3?source=copy_link)
+[Part-0](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-0-Table-of-contents-38fda1eb8b9d8073a8cfebf21856e8f3?source=copy_link)
 
 [Part-1](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-1-386da1eb8b9d80b7b9c9d781ee65d5db?pvs=74)
 
