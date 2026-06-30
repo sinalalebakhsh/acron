@@ -15,7 +15,7 @@ class Customer(models.Model):
     )
 
     phone_number = models.CharField(
-        max_length=255,
+        max_length=20,
         blank=True
     )
 
