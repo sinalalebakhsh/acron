@@ -37,7 +37,13 @@ class CustomerSerializer(serializers.ModelSerializer):
             'user',
         ]
 
-
+    def validate_phone_number(self,value):
+        if value and len(value)<10:
+                raise serializers.ValidationError(
+                "Phone number is too short."
+                    )
+        
+        return value
 
 
 
