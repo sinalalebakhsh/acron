@@ -49,6 +49,6 @@ jobs:
     # ۴. اجرای تست‌ها با معرفی آدرس جدید فایل تنظیمات
     - name: Run Tests
       env:
-        DJANGO_SETTINGS_MODULE: acron.config.development
+        DJANGO_SETTINGS_MODULE: ./config.development
       run: |
         python manage.py test
