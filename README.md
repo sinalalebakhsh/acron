@@ -15,11 +15,11 @@ for 20% for creativity and artomize(randomise art!).
 * [Part-3](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-3-390da1eb8b9d8029b85ed7359b7497ec)
 
 ### Who Are You? 
-* Can you be a contributor to this project?
-* Can you invite yourself into this project?
-* Can you just visitor on this project ?
-* Can you investing on this future project?
-* Can you be a reviewer for this project?
+* Can you be a contributor to this project? Yes
+* Can you invite yourself into this project? Yes
+* Can you just visitor on this project ? Yes
+* Can you investing on this future project? Yes
+* Can you be a reviewer for this project? Yes
 
 #### In future:
 I will add build and development using API documentation (like Swagger).
