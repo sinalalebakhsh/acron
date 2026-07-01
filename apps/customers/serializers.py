@@ -1,3 +1,5 @@
+from datetime import date
+
 from rest_framework import serializers
 
 from .models import Customer
@@ -37,12 +39,21 @@ class CustomerSerializer(serializers.ModelSerializer):
             'user',
         ]
 
-    def validate_phone_number(self,value):
+    def validate_phone_number(self, value):
         if value and len(value)<10:
                 raise serializers.ValidationError(
                 "Phone number is too short."
                     )
         
+        return value
+
+    def validate_birth_date(self, value):
+
+        if value and value > date.today():
+            raise serializers.ValidationError(
+                "Birth date cannot be in future."
+            )
+
         return value
 
 
