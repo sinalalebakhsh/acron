@@ -1,0 +1,54 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # ۱. راه‌اندازی دیتابیس موقت MySQL روی سرور گیت‌هاب
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: '1234' # دقیقاً مطابق پسورد شما در development.py
+          MYSQL_DATABASE: 'acron'      # دقیقاً مطابق نام دیتابیس شما
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    strategy:
+      matrix:
+        # ۲. هماهنگی باrequirements: جنگو ۶ حداقل به پایتون ۳.۱۲ نیاز دارد
+        python-version: ["3.12", "3.13"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    # ۳. نصب ابزارهای لینوکسی مورد نیاز برای کامپایل کتابخانه mysqlclient
+    - name: Install Linux Dependencies for MySQL
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y default-libmysqlclient-dev pkg-config build-essential
+
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # ۴. اجرای تست‌ها با معرفی آدرس جدید فایل تنظیمات
+    - name: Run Tests
+      env:
+        DJANGO_SETTINGS_MODULE: config.development
+      run: |
+        python manage.py test
