@@ -31,9 +31,9 @@ This is the first problem of a programmer who doesn't know what she/he is doing.
 <br>
 For a programmer, artificial intelligence should be considered merely a tool, nothing more, nothing less.
 
-    * https://chatgpt.com
-    * https://chat.z.ai
-    * https://gemini.google.com/
-    * https://chat.deepseek.com/
+* [ChatGPT OpenAI](https://chatgpt.com)
+* [chat Z AI](https://chat.z.ai)
+* [Gemini](https://gemini.google.com/)
+* [Deep Seek](https://chat.deepseek.com/)
 
 With all the problems that were caused by the sanctions on the geography of Iran, <br> this project was helped by these artificial intelligences. <br>I hope that a friendly relationship will be established between Iranians and the world in the future.
