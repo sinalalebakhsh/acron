@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+        "openai.chatgpt",
+        "ms-vscode-remote.remote-containers",
+        "beardedbear.beardedicons",
+        "beardedbear.beardedtheme",
+        "ms-azuretools.vscode-containers",
+        "github.vscode-github-actions",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "pkief.material-icon-theme",
+        "oracle.mysql-shell-for-vs-code",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.vscode-python-envs",
+        "redhat.vscode-yaml"
+    ]
+}
