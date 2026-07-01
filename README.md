@@ -13,6 +13,7 @@ for 20% for creativity and artomize(randomise art!).
 
 [Part-1](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-1-386da1eb8b9d80b7b9c9d781ee65d5db?pvs=74)
 
+[Part-2](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-2-38fda1eb8b9d801aaf55c8c2629235bb)
 
 ### Who Are You? 
 * Can you be a contributor to this project?
