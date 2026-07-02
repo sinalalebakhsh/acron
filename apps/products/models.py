@@ -70,5 +70,62 @@ class Brand(models.Model):
         return self.name
 
 
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='products')
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2) 
+    # استفاده از 
+    # Decimal
+    # برای قیمت‌ها الزامی است
+    inventory = models.PositiveIntegerField(default=0) # موجودی کالا نباید منفی باشد
+    
+    # تصویر اصلی محصول (اجباری)
+    main_image = models.ImageField(upload_to='products/main/%Y/%m/')
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+# ۳. ساخت مدل گالری فرعی (تصاویر و ویدیوها)
+class ProductMedia(models.Model):
+    MEDIA_TYPES = (
+        ('image', 'Image'),
+        ('video', 'Video'),
+    )
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='media_gallery')
+    media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
+    
+    # استفاده از 
+    # FileField
+    #  چون هم عکس را قبول می‌کند و هم ویدیو را
+    file = models.FileField(upload_to='products/gallery/%Y/%m/', validators=[validate_media_file])
+
+    # متد 
+    # clean
+    #  برای محدود کردن تعداد کل مدیاهای یک محصول به حداکثر ۱۰ عدد
+    def clean(self):
+        super().clean()
+        # شمارش مدیاهای فعلی این محصول در دیتابیس (بدون احتساب رکوردی که الان دارد ذخیره می‌شود)
+        if self.product_id:
+            existing_media_count = ProductMedia.objects.filter(product=self.product).exclude(pk=self.pk).count()
+            if existing_media_count >= 10:
+                raise ValidationError("شما نمی‌توانید بیشتر از ۱۰ فایل فرعی (تصویر/ویدیو) برای یک محصول آپلود کنید.")
+
+    def save(self, *args, **kwargs):
+        # قبل از ذخیره نهایی در دیتابیس، حتماً متد 
+        # clean
+        #  را صدا می‌زنیم تا ولیدیشن‌ها اجرا شوند
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+
+
       
         
