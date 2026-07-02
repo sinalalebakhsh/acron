@@ -1,3 +1,5 @@
+import datetime
+
 from rest_framework.test import APITestCase
 from rest_framework import status
 
@@ -69,4 +71,58 @@ class CustomerMeApiTest(APITestCase):
             '09121234567'
         )
     
-    
+    def test_patch_invalid_phone_number(self):
+        # ۱. احراز هویت کاربر
+        self.client.force_authenticate(user=self.user)
+        
+        # ۲. ارسال درخواست ویرایش با شماره تلفن غلط (کمتر از 10 کاراکتر)
+        response = self.client.patch(
+            '/api/customers/me/',
+            {
+                'phone_number': '123' 
+            },
+            format='json'
+        )
+
+        # ۳. بررسی اینکه آیا سیستم خطای 400 داده است؟
+        # (Bad Request)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+
+        # ۴. بررسی اینکه آیا خطا دقیقاً مربوط به فیلد 
+        # phone_number
+        #  است؟
+        self.assertIn('phone_number', response.data)
+
+
+    def test_patch_future_birth_date(self):
+        self.client.force_authenticate(user=self.user)
+        
+        # ۱. ساخت یک تاریخ در آینده (مثلاً 10 روز بعد از امروز)
+        future_date = (datetime.date.today() + datetime.timedelta(days=10)).strftime('%Y-%m-%d')
+        
+        # ۲. ارسال تاریخ آینده به سرور
+        response = self.client.patch(
+            '/api/customers/me/',
+            {
+                'birth_date': future_date
+            },
+            format='json'
+        )
+
+        # ۳. بررسی اینکه آیا سیستم خطای 400 داده است؟
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+        
+        # ۴. بررسی اینکه آیا خطا مربوط به فیلد 
+        # birth_date
+        #  است؟
+        self.assertIn('birth_date', response.data)
+
+
+
+
