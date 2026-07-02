@@ -1,11 +1,13 @@
+import os
 import cv2
+import tempfile # این کتابخانه استاندارد پایتون باید اضافه شود
 
 from django.db import models
 from django.core.exceptions import ValidationError
 
 
 
-# ۱. ساخت ولیدیتور سفارشی برای فایل‌های فرعی (حجم و زمان ویدیو)
+
 def validate_media_file(file):
     # الف) بررسی حجم فایل (400 مگابایت به بایت)
     max_size_mb = 400
@@ -16,19 +18,56 @@ def validate_media_file(file):
     # ب) بررسی مدت زمان ویدیو (اگر فایل ویدیو بود)
     file_name = file.name.lower()
     if file_name.endswith(('.mp4', '.mkv', '.avi', '.mov')):
-        # باز کردن موقت فایل ویدیو با OpenCV برای خواندن فریم‌ها
-        video = cv2.VideoCapture(file.temporary_file_path())
         
-        # به دست آوردن تعداد کل فریم‌ها و نرخ فریم (FPS)
-        frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
-        fps = video.get(cv2.CAP_PROP_FPS)
+        # ۱. ساخت یک فایل موقت فیزیکی و امن روی سیستم‌عامل
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_video:
+            # ۲. خواندن فایل جنگو به صورت تکه‌تکه و نوشتن در فایل موقت
+            for chunk in file.chunks():
+                temp_video.write(chunk)
+            temp_video_path = temp_video.name
+
+        try:
+            # ۳. دادن آدرس فایل فیزیکی موقت به OpenCV
+            video = cv2.VideoCapture(temp_video_path)
+            
+            frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
+            fps = video.get(cv2.CAP_PROP_FPS)
+            
+            if fps > 0:
+                duration_seconds = frames / fps
+                if duration_seconds > 120:
+                    raise ValidationError("مدت زمان ویدیو نمی‌تواند بیشتر از ۲ دقیقه باشد.")
+        finally:
+            # ۴. پاکسازی (بسیار مهم): آزادسازی رم و حذف فایل موقت از روی هارد
+            if 'video' in locals():
+                video.release()
+            if os.path.exists(temp_video_path):
+                os.remove(temp_video_path)
+
+# # ۱. ساخت ولیدیتور سفارشی برای فایل‌های فرعی (حجم و زمان ویدیو)
+# def validate_media_file(file):
+#     # الف) بررسی حجم فایل (400 مگابایت به بایت)
+#     max_size_mb = 400
+#     max_size_bytes = max_size_mb * 1024 * 1024
+#     if file.size > max_size_bytes:
+#         raise ValidationError(f"حجم فایل نمی‌تواند بیشتر از {max_size_mb} مگابایت باشد.")
+
+#     # ب) بررسی مدت زمان ویدیو (اگر فایل ویدیو بود)
+#     file_name = file.name.lower()
+#     if file_name.endswith(('.mp4', '.mkv', '.avi', '.mov')):
+#         # باز کردن موقت فایل ویدیو با OpenCV برای خواندن فریم‌ها
+#         video = cv2.VideoCapture(file.temporary_file_path())
         
-        # محاسبه زمان به ثانیه (اگر fps صفر نباشد)
-        if fps > 0:
-            duration_seconds = frames / fps
-            if duration_seconds > 120: # 2 دقیقه = 120 ثانیه
-                raise ValidationError("مدت زمان ویدیو نمی‌تواند بیشتر از ۲ دقیقه باشد.")
-        video.release()
+#         # به دست آوردن تعداد کل فریم‌ها و نرخ فریم (FPS)
+#         frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
+#         fps = video.get(cv2.CAP_PROP_FPS)
+        
+#         # محاسبه زمان به ثانیه (اگر fps صفر نباشد)
+#         if fps > 0:
+#             duration_seconds = frames / fps
+#             if duration_seconds > 120: # 2 دقیقه = 120 ثانیه
+#                 raise ValidationError("مدت زمان ویدیو نمی‌تواند بیشتر از ۲ دقیقه باشد.")
+#         video.release()
 
 
 
