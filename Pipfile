@@ -9,6 +9,7 @@ mysqlclient = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
+opencv-python = "*"
 
 [dev-packages]
 
