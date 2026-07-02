@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Category, Brand
+from .models import Category, Brand, Product, ProductMedia # مدل‌های جدید اضافه شدند
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
