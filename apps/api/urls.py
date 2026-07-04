@@ -23,7 +23,13 @@ urlpatterns = [
     # 🔐 protected route
     path('me/', views.me),
     path('secret/', views.secret_api),
+    
+    #  customers
+    path('customers/', include('apps.customers.urls')), # مسیر مشتریان
 
-    path('customers/', include('apps.customers.urls')),
+    #  products
+    path('products/', include('apps.products.urls')), # مسیر محصولات اضافه شد!
+
+
 
 ]
