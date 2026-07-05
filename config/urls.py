@@ -18,10 +18,31 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('apps.api.urls')),
+
+
+
+    # ------------------- Swagger URLs ------------------- #
+    # ۱. تولید فایل خام 
+    # OpenAPI
+    #  (به فرمت YAML/JSON)
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    
+    # ۲. رابط کاربری گرافیکی 
+    # Swagger
+    #  (توسعه‌دهندگان بک‌اند و فرانت‌اند)
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    
+    # ۳. رابط کاربری 
+    # Redoc
+    #  (جایگزین Swagger، مناسب برای ارائه به مدیران)
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
 ]
 
 

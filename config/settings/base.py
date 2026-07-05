@@ -14,7 +14,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,7 +24,7 @@ INSTALLED_APPS = [
 
     # Third party
     'rest_framework',
-    # "debug_toolbar",
+    'drf_spectacular', # مستندسازی API
 
 
     # CREATE by me
@@ -42,7 +41,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,11 +131,41 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+     # تنظیمات قبلی شما (مثل Authentication و Pagination) اینجا می‌مانند...
+
+
+    
+    # اضافه کردن کلاس تولیدکننده مستندات
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
+
+
+
+# تنظیمات اختصاصی Swagger
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'ACRON Project API with Swagger',
+    'DESCRIPTION': 'مستندات جامع APIهای فروشگاه ACRON شامل بخش مشتریان و محصولات',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False, # برای تمیز ماندن خروجی نهایی
+    
+    # تنظیمات امنیتی برای تست 
+    # API
+    # ها داخل خود مرورگر
+    'SECURITY': [
+        {'jwtAuth': []}
+    ],
+    'SECURITY_DEFINITIONS': {
+        'jwtAuth': {
+            'type': 'http',
+            'scheme': 'bearer',
+            'bearerFormat': 'JWT',
+        }
+    }
 }
 
