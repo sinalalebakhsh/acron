@@ -30,8 +30,7 @@ INSTALLED_APPS = [
     # CREATE by me
     'apps.accounts',
     'apps.api',
-    # a فعلا این موارد رو به حالت کامنت در بیار
-    # 'apps.carts',
+    'apps.carts',
     'apps.customers',
     # 'apps.notifications',
     # 'apps.orders',
