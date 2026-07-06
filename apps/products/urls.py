@@ -1,16 +1,14 @@
-from django.urls import path
-
-from . import views
+from rest_framework.routers import DefaultRouter
 
 
-urlpatterns = [
-    path('', views.ProductListView.as_view(), name='product-list'),
+from .views import ProductViewSet
 
-    
-    # مسیر دریافت یک محصول بر اساس اسلاگ
-    path('<slug:slug>/', views.ProductDetailView.as_view(), name='product-detail'),
-]
-]
+# استفاده از روتر برای تولید خودکار 
+# URL
+# ها
+router = DefaultRouter()
+router.register('', ProductViewSet, basename='product')
 
+urlpatterns = router.urls
 
 
