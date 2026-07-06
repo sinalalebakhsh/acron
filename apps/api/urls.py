@@ -1,6 +1,7 @@
 from django.urls import include, path
 from django.http import HttpResponse
 
+
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -9,12 +10,10 @@ from rest_framework_simplejwt.views import (
 from . import views
 
 
-def api_root(request):
-    return HttpResponse("API ROOT is under development 🚀")
-
 
 urlpatterns = [
-    path('', api_root),
+    # 📌 مسیر اصلی که لیست تمام API ها را نشان می‌دهد
+    path('', views.api_root_view, name='api-root'),
 
     # JWT
     path('token/', TokenObtainPairView.as_view()),
@@ -22,7 +21,6 @@ urlpatterns = [
 
     # 🔐 protected route
     path('me/', views.me),
-    path('secret/', views.secret_api),
     
     #  customers
     path('customers/', include('apps.customers.urls')), # مسیر مشتریان
