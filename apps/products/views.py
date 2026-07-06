@@ -1,11 +1,21 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
 
-# from apps.customers import serializers
 
 from . import models
 from . import serializers  
 
+from drf_spectacular.utils import extend_schema, extend_schema_view # این خط اضافه شد
+
+
+# استفاده از دکوراتور برای شخصی‌سازی مستندات این View
+@extend_schema_view(
+    get=extend_schema(
+        summary="دریافت لیست محصولات فروشگاه",
+        description="این متد لیست تمامی محصولات را به همراه اطلاعات برند، دسته‌بندی و گالری تصاویر برمی‌گرداند. این مسیر کاملاً بهینه‌سازی شده (بدون مشکل N+1) است و نیازی به توکن احراز هویت ندارد.",
+        tags=['Products Catalog'], # دسته‌بندی API در سایدبار Swagger
+    )
+)
 class ProductListView(ListAPIView):
     """
     API
