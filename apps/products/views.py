@@ -1,5 +1,6 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework.generics import RetrieveAPIView
 
 
 from . import models
@@ -37,3 +38,24 @@ class ProductListView(ListAPIView):
 
 
 
+@extend_schema_view(
+    get=extend_schema(
+        summary="دریافت جزئیات یک محصول خاص",
+        description="این مسیر اطلاعات کامل یک محصول را بر اساس Slug آن برمی‌گرداند.",
+        tags=['Products Catalog'],
+    )
+)
+class ProductDetailView(RetrieveAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = serializers.ProductSerializer
+    
+    # استفاده از همان تکنیک بهینه‌سازی دیتابیس
+    queryset = models.Product.objects.select_related(
+        'category', 
+        'brand'
+    ).prefetch_related(
+        'media_gallery'
+    ).all()
+    
+    # جادوی جنگو: جستجو بر اساس فیلد slug به جای id پیش‌فرض
+    lookup_field = 'slug'
