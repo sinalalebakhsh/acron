@@ -12,8 +12,11 @@ from . import views
 
 
 urlpatterns = [
-    # 📌 مسیر اصلی که لیست تمام API ها را نشان می‌دهد
-    path('', views.api_root_view, name='api-root'),
+    # اضافه کردن مسیر سبد خرید به قلب 
+    # API
+    path('', include('apps.carts.urls')), 
+    # # 📌 مسیر اصلی که لیست تمام API ها را نشان می‌دهد
+    # path('', views.api_root_view, name='api-root'),
 
     # JWT
     path('token/', TokenObtainPairView.as_view()),
