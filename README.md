@@ -28,9 +28,10 @@ This is the first problem of a programmer who doesn't know what she/he is doing.
 <br>
 For a programmer, artificial intelligence should be considered merely a tool, nothing more, nothing less.
 
+* [Gemini](https://gemini.google.com/)
+* [Claude](https://claude.ai/)
 * [ChatGPT OpenAI](https://chatgpt.com)
 * [chat Z AI](https://chat.z.ai)
-* [Gemini](https://gemini.google.com/)
 * [Deep Seek](https://chat.deepseek.com/)
 * [converting](https://ocr.z.ai/)
 * [Design images](https://image.z.ai/)
