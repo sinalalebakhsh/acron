@@ -19,8 +19,15 @@
 ## 💻 راه‌اندازی محیط توسعه (Development Setup)
 برای اجرای پروژه روی سیستم خود و شروع توسعه، مراحل زیر را طی کنید:<br>
 
-1. **فورک و کلون کردن مخزن:** <br>
-   ```bash
-   git clone [https://github.com/sinalalebakhsh/acron.git](https://github.com/sinalalebakhsh/acron.git)
-   cd acron
+1. **Fork Or Clone:** 
+<br>
+
+```bash
+git clone [https://github.com/sinalalebakhsh/acron.git](https://github.com/sinalalebakhsh/acron.git)
+
+cd acron
+
+pipenv shell
+
+```
 
