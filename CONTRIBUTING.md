@@ -1,13 +1,17 @@
-# مشارکت در پروژه ACRON
 
+# Contributing to the ACRON
+
+Thank you very much for your interest in contributing to the development of ACRON! Your presence will greatly help the growth and improvement of this architecture.
 از اینکه قصد دارید در توسعه ACRON مشارکت کنید، بسیار سپاسگزاریم! حضور شما به رشد و بهبود این معماری کمک بزرگی می‌کند. 
 
+To make the participation process transparent and enjoyable for everyone, please read the following guide before you begin.
 برای اینکه فرآیند مشارکت برای همه شفاف و لذت‌بخش باشد، لطفاً پیش از شروع، راهنمای زیر را مطالعه کنید.
 
 ## 🐛 ثبت باگ (Bug Reports)
 اگر در پروژه به خطایی برخورد کردید، لطفاً پیش از ایجاد یک Issue جدید، بخش Issueها را بررسی کنید تا مطمئن شوید قبلاً ثبت نشده باشد. 
 برای ثبت باگ جدید، موارد زیر را در توضیحات خود ذکر کنید:
-* نسخه پایتون و جنگویی که استفاده می‌کنید.
+*   نسخه پایتون و جنگویی که استفاده می‌کنید.
+    The version of Python and Django you are using.
 * مراحل دقیق بازتولید (Reproduce) خطا.
 * رفتار مورد انتظار و رفتاری که در حال حاضر رخ می‌دهد.
 
