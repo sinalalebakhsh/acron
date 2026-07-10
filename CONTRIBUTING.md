@@ -43,3 +43,14 @@ To maintain code integrity, please note the following:
 * Variables, functions, and classes must be named meaningfully and readably.
 * If you add a new feature or change the logic of the APIs, please also update the docstrings.
 
+🔀 Steps to Submit a Pull Request (PR)
+
+Fork the project and clone it to your system.<br>
+
+Create a new branch for your changes. <br>
+
+The branch name should be descriptive of your work (e.g. fix-database-query or feature-add-swagger).<br>
+
+```
+git checkout -b feature-your-feature-name
+```
