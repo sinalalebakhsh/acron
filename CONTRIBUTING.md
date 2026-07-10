@@ -8,12 +8,19 @@ To make the participation process transparent and enjoyable for everyone, please
 برای اینکه فرآیند مشارکت برای همه شفاف و لذت‌بخش باشد، لطفاً پیش از شروع، راهنمای زیر را مطالعه کنید.
 
 ## 🐛 ثبت باگ (Bug Reports)
-اگر در پروژه به خطایی برخورد کردید، لطفاً پیش از ایجاد یک Issue جدید، بخش Issueها را بررسی کنید تا مطمئن شوید قبلاً ثبت نشده باشد. 
-برای ثبت باگ جدید، موارد زیر را در توضیحات خود ذکر کنید:
-*   نسخه پایتون و جنگویی که استفاده می‌کنید.<br>
-    The version of Python and Django you are using.
-* مراحل دقیق بازتولید (Reproduce) خطا.
-* رفتار مورد انتظار و رفتاری که در حال حاضر رخ می‌دهد.
+If you encounter an error in the project, please check the Issues section to make sure it has not already been filed before creating a new issue. <br>
+اگر در پروژه به خطایی برخورد کردید، لطفاً پیش از ایجاد یک Issue جدید، بخش Issueها را بررسی کنید تا مطمئن شوید قبلاً ثبت نشده باشد. <br>
+
+To file a new bug, include the following in your description:
+برای ثبت باگ جدید، موارد زیر را در توضیحات خود ذکر کنید:<br>
+*   The version of Python and Django you are using.<br>
+    نسخه پایتون و جنگویی که استفاده می‌کنید.
+    
+*   Detailed steps to reproduce the error.<br>
+    مراحل دقیق بازتولید (Reproduce) خطا.
+
+*   Expected behavior and behavior that is currently occurring.<br>
+    رفتار مورد انتظار و رفتاری که در حال حاضر رخ می‌دهد.
 
 ## 💡 پیشنهاد ویژگی‌های جدید (Feature Requests)
 ما همیشه از ایده‌های جدید استقبال می‌کنیم! برای پیشنهاد یک ویژگی:<br>
