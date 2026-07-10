@@ -2,34 +2,27 @@
 # Contributing to the ACRON
 
 Thank you very much for your interest in contributing to the development of ACRON! Your presence will greatly help the growth and improvement of this architecture.<br>
-از اینکه قصد دارید در توسعه ACRON مشارکت کنید، بسیار سپاسگزاریم! حضور شما به رشد و بهبود این معماری کمک بزرگی می‌کند. 
 
 To make the participation process transparent and enjoyable for everyone, please read the following guide before you begin.<br>
-برای اینکه فرآیند مشارکت برای همه شفاف و لذت‌بخش باشد، لطفاً پیش از شروع، راهنمای زیر را مطالعه کنید.
 
-## 🐛 ثبت باگ (Bug Reports)
+## 🐛(Bug Reports)
 If you encounter an error in the project, please check the Issues section to make sure it has not already been filed before creating a new issue. <br>
-اگر در پروژه به خطایی برخورد کردید، لطفاً پیش از ایجاد یک Issue جدید، بخش Issueها را بررسی کنید تا مطمئن شوید قبلاً ثبت نشده باشد. <br>
 
 To file a new bug, include the following in your description:
-برای ثبت باگ جدید، موارد زیر را در توضیحات خود ذکر کنید:<br>
-*   The version of Python and Django you are using.<br>
-    نسخه پایتون و جنگویی که استفاده می‌کنید.
+*   The version of Python and Django you are using.
     
-*   Detailed steps to reproduce the error.<br>
-    مراحل دقیق بازتولید (Reproduce) خطا.
+*   Detailed steps to reproduce the error.
 
 *   Expected behavior and behavior that is currently occurring.<br>
-    رفتار مورد انتظار و رفتاری که در حال حاضر رخ می‌دهد.
 
-## 💡 پیشنهاد ویژگی‌های جدید (Feature Requests)
-ما همیشه از ایده‌های جدید استقبال می‌کنیم! برای پیشنهاد یک ویژگی:<br>
-۱. یک Issue جدید با برچسب `enhancement` ایجاد کنید.<br>
-۲. به طور واضح توضیح دهید که این ویژگی چه مشکلی را حل می‌کند یا چه ارزش افزوده‌ای برای ACRON دارد.<br>
+## 💡 Feature Requests
+We always welcome new ideas! To suggest a feature:<br>
+1. Create a new Issue with the tag `enhancement`.<br>
+2. Clearly explain what problem this feature solves or what value it adds to ACRON.<br>
 
-## 💻 راه‌اندازی محیط توسعه (Development Setup)
+## 💻 Development Setup
 
-برای اجرای پروژه روی سیستم خود و شروع توسعه، مراحل زیر را طی کنید:<br>
+To run the project on your system and start development, follow these steps:<br>
 
 1. **Fork Or Clone:** 
 
@@ -41,11 +34,12 @@ cd acron
 pipenv shell
 
 ```
-📏 استانداردهای کدنویسی
 
-برای حفظ یکپارچگی کدها، لطفاً به موارد زیر دقت کنید:
+📏 Coding Standards
 
-* کدهای پایتون باید از استانداردهای PEP 8 پیروی کنند.
-* نام‌گذاری متغیرها، توابع و کلاس‌ها باید معنادار و خوانا باشد.
-* در صورت اضافه کردن یک ویژگی جدید یا تغییر منطق APIها، لطفاً داکیومنت‌ها (Docstrings) را نیز به‌روزرسانی کنید.
+To maintain code integrity, please note the following:
+
+* Python code must follow PEP 8 standards.
+* Variables, functions, and classes must be named meaningfully and readably.
+* If you add a new feature or change the logic of the APIs, please also update the docstrings.
 
