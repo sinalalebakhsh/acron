@@ -45,12 +45,30 @@ To maintain code integrity, please note the following:
 
 🔀 Steps to Submit a Pull Request (PR)
 
-Fork the project and clone it to your system.<br>
+1. Fork the project and clone it to your system.<br>
 
-Create a new branch for your changes. <br>
+2. Create a new branch for your changes. <br>
 
-The branch name should be descriptive of your work (e.g. fix-database-query or feature-add-swagger).<br>
+3. The branch name should be descriptive of your work (e.g. fix-database-query or feature-add-swagger).<br>
 
 ```
 git checkout -b feature-your-feature-name
 ```
+
+4. Apply your changes and make sure the project runs without errors.
+
+5. Write clear and readable commits.
+
+6. Push the changes to your forked repository.
+
+7. On GitHub, submit a Pull Request to the main (or develop, if available) branch.
+
+Your changes will be reviewed as soon as possible and feedback will be provided if any corrections are needed. <br>
+
+Thanks again for your support! <br>
+
+Sina Lalehbakhsh <br>
+2026, Friday, Tir 19, 1405 AP <br>
+
+
+
