@@ -1,13 +1,24 @@
+# import the necessary modules and classes
 from django.db import transaction
-
+# import the ValidationError exception from the Django REST framework,
+# which will be used to raise validation errors during the order creation process.
 from rest_framework.exceptions import ValidationError
-
+# import the Cart model from the carts app, which represents a shopping cart in the system.
 from apps.carts.models import Cart
-
+# import the Order and OrderItem models from the orders app, which represent an order and its items in the system.
 from apps.orders.models import Order, OrderItem
 
+# import the Product model from the products app, which represents a product in the system.
+# This import is necessary because the order creation process involves checking product inventory and freezing product prices.
+# why we need it?
+# because when we create an order from a cart, 
+# we need to check the inventory of each product in the cart 
+# and freeze its price at the time of order creation. 
+# Therefore, we need to import the Product model to access its inventory and price fields.
 class OrderService:
-    
+    """
+    This service takes a shopping cart and converts it into a finalized invoice (order).
+    """  
     @staticmethod
     @transaction.atomic
     def create_order_from_cart(cart_id, customer):
