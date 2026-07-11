@@ -1,4 +1,4 @@
-# acron
+# acron - a Progress Structure Tool Project - PSTP
 Plant the acorn seed and it will grow.<br>
 This acron is an Idea for helping Jonior and Senior to simplest,<br>
 stepable development mood. for 80% progress structure and <br>
