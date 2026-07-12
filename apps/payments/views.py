@@ -9,15 +9,25 @@ from rest_framework.response import Response
 # Importing decorators and permissions to manage access control for the viewset actions.
 from rest_framework.decorators import action
 
-
+# Why are we importing IsAuthenticated and AllowAny?
+# We import IsAuthenticated to ensure that only authenticated users can initiate payments,
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+# Why are we importing extend_schema?
+# We import extend_schema from drf_spectacular to provide detailed API documentation for the view
 from drf_spectacular.utils import extend_schema
 
+# Why are we importing serializers and services?
+# We import serializers to validate and serialize the incoming request data for initiating payments
 from .serializers import InitiatePaymentSerializer, MockBankCallbackSerializer
 
+# Why are we importing PaymentService?
+# We import PaymentService to handle the business logic related to payment processing,
 from .services import PaymentService
 
+# What is the purpose of the PaymentViewSet class?
+# The PaymentViewSet class 
+# is a Django viewset that provides endpoints for initiating payments and simulating bank callbacks.
 class PaymentViewSet(GenericViewSet):
     
     @extend_schema(request=InitiatePaymentSerializer, summary="درخواست تولید لینک پرداخت", tags=['Payments'])
