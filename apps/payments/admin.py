@@ -8,7 +8,7 @@ class PaymentAdmin(admin.ModelAdmin):
     search_fields = ['transaction_id', 'order__id']
     
     # تمام فیلدهای مالی را برای ادمین Read-Only می‌کنیم تا امنیت حفظ شود
-    readonly_fields = ['transaction_id', 'order', 'amount', 'status', 'gateway_url', 'created_at', 'updated_at']
+    readonly_fields = ['transaction_id', 'order', 'amount', 'status', 'created_at', 'updated_at']
 
     def has_add_permission(self, request):
         return False # ادمین نباید بتواند دستی تراکنش مالی خلق کند

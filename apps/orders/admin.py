@@ -5,7 +5,7 @@ class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0
     # فاکتور نهایی نباید توسط ادمین دستکاری شود تا جلوی فساد مالی گرفته شود
-    readonly_fields = ['product_name', 'quantity', 'unit_price']
+    readonly_fields = ['product', 'quantity', 'unit_price']
     can_delete = False
 
 @admin.register(Order)
