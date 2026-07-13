@@ -28,6 +28,8 @@ from apps.orders.services import OrderService
 # The Payment model is used to represent payment records in the database.
 from .models import Payment
 
+from apps.shipments.services import ShipmentService  # <--- اضافه کردن این ایمپورت
+
 
 # What is the PaymentService class?
 # The PaymentService class is a service class that encapsulates the business logic
@@ -115,6 +117,11 @@ class PaymentService:
             # تغییر وضعیت فاکتور اصلی به "تکمیل شده"
             payment.order.status = Order.OrderStatus.COMPLETED
             payment.order.save()
+            
+                        # === اتصال زنجیره معماری ===
+            # به محض موفقیت پرداخت، به صورت خودکار دستور خروج از انبار صادر می‌شود
+            ShipmentService.create_shipment(payment.order)
+
         else:
             # تغییر وضعیت پرداخت به ناموفق
             # دقت کنید: فاکتور را لغو نمی‌کنیم تا کاربر بتواند در فرصت ۱۵ دقیقه‌ای دوباره تلاش کند
@@ -122,7 +129,6 @@ class PaymentService:
             
         payment.save()
         return payment
-
 
 
 
