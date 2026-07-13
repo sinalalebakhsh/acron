@@ -1,0 +1,1087 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-3</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="390da1eb-8b9d-8029-b85e-d7359b7497ec" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-3</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><h1 id="390da1eb-8b9d-8033-831a-e205fb6cd900" class="" dir="auto">فاز 3: Customer Domain</h1><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-807c-a02e-c3009459d8bc" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-80c3-a4cb-ed8c8cb24340" class="" dir="auto">در Part-2 ، فاز 3 تا قدم 22 پیش رفت</p></div></aside><p id="390da1eb-8b9d-80aa-b9af-ee98da5bd8cb" class="" dir="auto">این قسمت برای گیت هاب است و اختیاری می باشد برای همین داخل قدم ها نیاوردم:</p><p id="390da1eb-8b9d-8049-b366-d0dda857f6e6" class="" dir="auto">این کد رو داخل ترمینال بزن و سپس داخل گیت هاب push : </p><p id="390da1eb-8b9d-807a-bb7c-d9ced882a81d" class="" dir="auto">اگر از pipenv استفاده میکنی:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="390da1eb-8b9d-80ea-8ce0-e4cf914e4e0e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pipenv requirements &gt; requirements.tx</code></pre><p id="390da1eb-8b9d-80d6-93e9-ce063932a514" class="" dir="auto">اگر از pip venv استفاده میکنی:</p><pre id="390da1eb-8b9d-8030-ad30-d22a7f97eb16" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pip freeze &gt; requirements.txt</code></pre><p id="390da1eb-8b9d-80d3-8acd-e0a500d9d785" class="" dir="auto">نتیجه چیزی شبیه به این خواهد بود:</p><pre id="390da1eb-8b9d-8094-9d2c-c17dc446b920" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">-i https://pypi.org/simple
+asgiref==3.11.1; python_version &gt;= &#x27;3.9&#x27;
+django==6.0.6; python_version &gt;= &#x27;3.12&#x27;
+djangorestframework==3.17.1; python_version &gt;= &#x27;3.10&#x27;
+djangorestframework-simplejwt==5.5.1; python_version &gt;= &#x27;3.9&#x27;
+mysqlclient==2.2.8; python_version &gt;= &#x27;3.10&#x27;
+pyjwt==2.13.0; python_version &gt;= &#x27;3.9&#x27;
+sqlparse==0.5.5; python_version &gt;= &#x27;3.8&#x27;
+tzdata==2026.2; python_version &gt;= &#x27;2&#x27;</code></pre><p id="390da1eb-8b9d-808d-8131-d6d7d1ccf0c3" class="" dir="auto">این فایل رو داخل گیت هاب بساز:</p><pre id="390da1eb-8b9d-800f-a5a4-d2e389e362f4" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">project/.github/workflows/django.yml</code></pre><pre id="390da1eb-8b9d-805d-962f-e67b72b1c728" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">name: Django CI
+
+on:
+  push:
+    branches: [ &quot;main&quot; ]
+  pull_request:
+    branches: [ &quot;main&quot; ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # ۱. راه‌اندازی دیتابیس موقت MySQL روی سرور گیت‌هاب
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: &#x27;1234&#x27; # دقیقاً مطابق پسورد شما در development.py
+          MYSQL_DATABASE: &#x27;acron&#x27;      # دقیقاً مطابق نام دیتابیس شما
+        ports:
+          - 3306:3306
+        options: --health-cmd=&quot;mysqladmin ping&quot; --health-interval=10s --health-timeout=5s --health-retries=3
+
+    strategy:
+      matrix:
+        # ۲. هماهنگی باrequirements: جنگو ۶ حداقل به پایتون ۳.۱۲ نیاز دارد
+        python-version: [&quot;3.12&quot;, &quot;3.13&quot;]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: &#x27;pip&#x27;
+
+    # ۳. نصب ابزارهای لینوکسی مورد نیاز برای کامپایل کتابخانه mysqlclient
+    - name: Install Linux Dependencies for MySQL
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y default-libmysqlclient-dev pkg-config build-essential
+
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # ۴. اجرای تست‌ها با معرفی آدرس جدید فایل تنظیمات
+    - name: Run Tests
+      env:
+        DJANGO_SETTINGS_MODULE: config.settings.development
+      run: |
+        python manage.py test</code></pre><p id="390da1eb-8b9d-80e7-a13f-fb8f8196114a" class="" dir="auto">جزییات موفق شدن یا شکست خوردن این قسمت رو بعدا انجام میدهیم نگران نباشید که</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8093-aa38-d6c816f204f6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-80fb-9b07-ef7883cf082e" class="" dir="auto">تست CustomerModelTest</p></div></aside><blockquote id="390da1eb-8b9d-8075-8fe1-d81946f1c18f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">23- این فایل ها برای معماری تست نویسی ساخته شود:<p id="390da1eb-8b9d-803e-9571-dfccb4df9354" class="" dir="auto">apps/<br/>├── customers/<br/>│   ├── tests/<br/>│   │   ├── <strong>init</strong>.py<br/>│   │   ├── test_models.py<br/>│   │   ├── test_signals.py<br/>│   │   ├── test_serializers.py<br/>│   │   └── test_api.py</p></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80ac-ba3e-c9178325f9c2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8074-ab05-e54e1f1063c7" class="" dir="auto"><strong>CustomerModelTest</strong></p></div></aside><blockquote id="390da1eb-8b9d-8083-9fe2-e6769477019d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">24- فایل زیر را بساز<p id="390da1eb-8b9d-80aa-9e24-d182ead47762" class="" dir="auto">apps/customers/tests/test_models.py</p></blockquote><blockquote id="390da1eb-8b9d-80e3-af10-e087c6090471" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">25- داخل فایلی که ساختی این رو بنویس<pre id="390da1eb-8b9d-8062-b620-fd093cf0293b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/customers/tests/test_models.py
+from django.test import TestCase
+
+from apps.accounts.models import CustomUser
+from apps.customers.models import Customer
+
+
+class CustomerModelTest(TestCase):
+
+    def setUp(self):
+        self.user = CustomUser.objects.create_user(
+            username=&#x27;sina&#x27;,
+            email=&#x27;sina@test.com&#x27;,
+            password=&#x27;12345678&#x27;
+        )
+
+    def test_customer_created_by_signal(self):
+        self.assertTrue(
+            Customer.objects.filter(
+                user=self.user
+            ).exists()
+        )
+
+    def test_customer_has_uuid(self):
+        customer = self.user.customer
+
+        self.assertIsNotNone(
+            customer.uuid
+        )
+
+    def test_customer_str(self):
+        customer = self.user.customer
+
+        self.assertEqual(
+            str(customer),
+            self.user.username
+        )</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-804b-91d7-c7283c751192" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8003-b217-c422b5f41e35" class="" dir="auto">CustomerSignalTest</p></div></aside><blockquote id="390da1eb-8b9d-80c4-bac0-e77281d7b60f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">26- فایل زیر را بساز<p id="390da1eb-8b9d-802d-80fc-fbc219d79c76" class="" dir="auto">apps/customers/tests/test_signals.py</p></blockquote><blockquote id="390da1eb-8b9d-80d0-8d4b-c6202ddef88b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">27- داخل فایلی که ساختی این رو بنویس<pre id="390da1eb-8b9d-80a2-aaf2-f4df47c4f554" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.test import TestCase
+
+from apps.accounts.models import CustomUser
+from apps.customers.models import Customer
+
+
+class CustomerSignalTest(TestCase):
+
+    def test_signal_creates_customer(self):
+
+        user = CustomUser.objects.create_user(
+            username=&#x27;signal_user&#x27;,
+            email=&#x27;signal@test.com&#x27;,
+            password=&#x27;12345678&#x27;
+        )
+
+        self.assertTrue(
+            Customer.objects.filter(
+                user=user
+            ).exists()
+        )
+
+    def test_only_one_customer_created(self):
+
+        user = CustomUser.objects.create_user(
+            username=&#x27;signal_user2&#x27;,
+            email=&#x27;signal2@test.com&#x27;,
+            password=&#x27;12345678&#x27;
+        )
+
+        self.assertEqual(
+            Customer.objects.filter(
+                user=user
+            ).count(),
+            1
+        )</code></pre></blockquote><p id="390da1eb-8b9d-800e-ae3f-dd83692ae248" class="" dir="auto">اجرای تست و نتیجه ی تست در ترمینال باید شبیه به زیر باشد:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="390da1eb-8b9d-80a1-ad80-c20679929dbe" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py test apps/customers/tests/
+Found 5 test(s).
+Creating test database for alias &#x27;default&#x27;...
+System check identified no issues (0 silenced).
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 19.088s
+
+OK
+Destroying test database for alias &#x27;default&#x27;...
+</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80be-a6c0-ff9f892f7dee" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8024-ac34-d369deb3233a" class="" dir="auto">CustomerSerializerTest</p></div></aside><blockquote id="390da1eb-8b9d-805d-9b24-f6f546e3afac" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">28- فایل زیر را بساز<p id="390da1eb-8b9d-80a3-9872-c65eab89921d" class="" dir="auto">apps/customers/tests/test_serializers.py</p></blockquote><blockquote id="390da1eb-8b9d-800e-89d0-c7439ff3ff9c" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">29- داخل فایلی که ساختی این رو بنویس<pre id="390da1eb-8b9d-80dd-b99d-ecfda79517e4" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.test import TestCase
+
+from apps.accounts.models import CustomUser
+from apps.customers.serializers import CustomerSerializer
+
+
+class CustomerSerializerTest(TestCase):
+
+    def setUp(self):
+        self.user = CustomUser.objects.create_user(
+            username=&#x27;serializer_user&#x27;,
+            email=&#x27;serializer@test.com&#x27;,
+            password=&#x27;12345678&#x27;
+        )
+
+        self.customer = self.user.customer
+
+    def test_serializer_contains_expected_fields(self):
+
+        serializer = CustomerSerializer(
+            self.customer
+        )
+
+        data = serializer.data
+
+        self.assertIn(&#x27;id&#x27;, data)
+        self.assertIn(&#x27;uuid&#x27;, data)
+        self.assertIn(&#x27;phone_number&#x27;, data)
+        self.assertIn(&#x27;birth_date&#x27;, data)
+        self.assertIn(&#x27;user&#x27;, data)
+
+    def test_nested_user_serializer(self):
+
+        serializer = CustomerSerializer(
+            self.customer
+        )
+
+        user_data = serializer.data[&#x27;user&#x27;]
+
+        self.assertEqual(
+            user_data[&#x27;username&#x27;],
+            self.user.username
+        )
+
+        self.assertEqual(
+            user_data[&#x27;email&#x27;],
+            self.user.email
+        )</code></pre></blockquote><p id="390da1eb-8b9d-803f-b0c7-c60f96a5f84e" class="" dir="auto">اجرای تست و نتیجه ی تست در ترمینال باید شبیه به زیر باشد:</p><pre id="390da1eb-8b9d-803a-baa6-f5c52d30e9fc" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py test apps/customers/tests/
+Found 7 test(s).
+Creating test database for alias &#x27;default&#x27;...
+System check identified no issues (0 silenced).
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 26.793s
+
+OK
+Destroying test database for alias &#x27;default&#x27;...
+</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80ea-b3fa-c55db5ff23f5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8018-9193-f13c087bfa77" class="" dir="auto">CustomerMeApiTest</p></div></aside><blockquote id="390da1eb-8b9d-8023-931e-fa736910bfce" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">30- فایل زیر را بساز<p id="390da1eb-8b9d-8043-acd0-d8210fc1f503" class="" dir="auto">apps/customers/tests/test_api.py</p></blockquote><blockquote id="390da1eb-8b9d-8094-b7c0-e6153a1fb79b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">31- داخل فایلی که ساختی این رو بنویس<pre id="390da1eb-8b9d-8023-9d53-ce9c3c2b6248" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.test import APITestCase
+from rest_framework import status
+
+from apps.accounts.models import CustomUser
+
+
+class CustomerMeApiTest(APITestCase):
+
+    def setUp(self):
+
+        self.user = CustomUser.objects.create_user(
+            username=&#x27;api_user&#x27;,
+            email=&#x27;api@test.com&#x27;,
+            password=&#x27;12345678&#x27;
+        )
+
+    def test_authentication_required(self):
+
+        response = self.client.get(
+            &#x27;/api/customers/me/&#x27;
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
+        )
+
+    def test_get_customer_profile(self):
+
+        self.client.force_authenticate(
+            user=self.user
+        )
+
+        response = self.client.get(
+            &#x27;/api/customers/me/&#x27;
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data[&#x27;user&#x27;][&#x27;username&#x27;],
+            self.user.username
+        )
+
+    def test_patch_customer_profile(self):
+
+        self.client.force_authenticate(
+            user=self.user
+        )
+
+        response = self.client.patch(
+            &#x27;/api/customers/me/&#x27;,
+            {
+                &#x27;phone_number&#x27;: &#x27;09121234567&#x27;
+            },
+            format=&#x27;json&#x27;
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data[&#x27;phone_number&#x27;],
+            &#x27;09121234567&#x27;
+        )</code></pre></blockquote><p id="390da1eb-8b9d-8055-a8f0-f93e2af63882" class="" dir="auto">اجرای تست و نتیجه ی تست در ترمینال باید شبیه به زیر باشد:</p><pre id="390da1eb-8b9d-8039-8568-d3e0548f7d25" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py test apps/customers/tests/
+Found 10 test(s).
+Creating test database for alias &#x27;default&#x27;...
+System check identified no issues (0 silenced).
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 46.933s
+
+OK</code></pre><p id="390da1eb-8b9d-8025-a613-e41307f92b22" class="" dir="auto">اجرای تست‌ها</p><p id="390da1eb-8b9d-80fa-adcd-d2de43085150" class="" dir="auto">اجرای فقط تست‌های Customer در ترمینال در دایرکتوری پروژه + pipenv فعال باشه:</p><pre id="390da1eb-8b9d-803e-972e-e7140a08db98" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py test apps/customers/tests/
+Found 10 test(s).
+Creating test database for alias &#x27;default&#x27;...
+System check identified no issues (0 silenced).
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 46.933s
+
+OK</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80da-ad9a-caee536b4449" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-806a-8a5a-d1682ac91f0e" class="" dir="auto">توجه کن</p></div></aside><p id="390da1eb-8b9d-80d8-a95a-f177ef7e0408" class="" dir="auto">الان تست‌های بالا حدود 80٪ دامنه Customer را پوشش می‌دهند:</p><table id="390da1eb-8b9d-8053-981c-d2813ef1f5b8" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="390da1eb-8b9d-8000-a2e4-d9f6bfffd79d" dir="ltr"><th id=";q{R" class="simple-table-header-color simple-table-header" style="width:353.5px">بخش</th><th id="CZQz" class="simple-table-header-color simple-table-header" style="width:353.5px">پوشش</th></tr></thead><tbody><tr id="390da1eb-8b9d-802d-a6c9-dab455680e33" dir="ltr"><td id=";q{R" class="" style="width:353.5px">Model</td><td id="CZQz" class="" style="width:353.5px">✅</td></tr><tr id="390da1eb-8b9d-807e-aaaf-cf250f6a02f7" dir="ltr"><td id=";q{R" class="" style="width:353.5px">Signal</td><td id="CZQz" class="" style="width:353.5px">✅</td></tr><tr id="390da1eb-8b9d-80d0-869e-c81568711746" dir="ltr"><td id=";q{R" class="" style="width:353.5px">Serializer</td><td id="CZQz" class="" style="width:353.5px">✅</td></tr><tr id="390da1eb-8b9d-8005-a854-c68127e355ca" dir="ltr"><td id=";q{R" class="" style="width:353.5px">GET API</td><td id="CZQz" class="" style="width:353.5px">✅</td></tr><tr id="390da1eb-8b9d-80a0-8cab-c8cfff780374" dir="ltr"><td id=";q{R" class="" style="width:353.5px">PATCH API</td><td id="CZQz" class="" style="width:353.5px">✅</td></tr><tr id="390da1eb-8b9d-809e-b9c7-eca85d37f50b" dir="ltr"><td id=";q{R" class="" style="width:353.5px">Authentication</td><td id="CZQz" class="" style="width:353.5px">✅</td></tr><tr id="390da1eb-8b9d-80f2-bd73-fded2543a398" dir="ltr"><td id=";q{R" class="" style="width:353.5px">Validation</td><td id="CZQz" class="" style="width:353.5px">❌ هنوز تست نشده</td></tr></tbody></table><p id="390da1eb-8b9d-80d5-911d-fa8f370d636b" class="" dir="auto">هر خط را توضیح می‌دهم:</p><ul id="390da1eb-8b9d-800e-b8a2-de1cd60f16fb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چرا نوشته شده؟</li></ul><ul id="390da1eb-8b9d-8025-ab86-df55c0a48232" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چه کاری انجام می‌دهد؟</li></ul><ul id="390da1eb-8b9d-80b7-9225-edc3f3602fd9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Django پشت صحنه چه می‌کند؟</li></ul><ul id="390da1eb-8b9d-8020-b8bf-defd16c911c6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">اگر حذفش کنیم چه اتفاقی می‌افتد؟</li></ul><ul id="390da1eb-8b9d-8011-a557-fa7cc68eb2a3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چرا این روش را انتخاب کردیم؟</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-807d-a0ad-c18a85f7cda6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-80fd-8dd1-de204d09974c" class="" dir="auto">اول: Test چیست؟</p></div></aside><p id="390da1eb-8b9d-80b1-8af4-fd9169e0484e" class="" dir="auto">فرض کن این کد را داری:</p><pre id="390da1eb-8b9d-80ef-8a5c-cbde735da56e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">customer=Customer.objects.create(...)</code></pre><p id="390da1eb-8b9d-800b-9946-cacc38a26ca3" class="" dir="auto">از کجا مطمئن هستی که درست کار می‌کند؟</p><p id="390da1eb-8b9d-80a5-8972-d22f84a9f548" class="" dir="auto">راه سنتی:</p><pre id="390da1eb-8b9d-80d3-8ddb-f7a56e628b4c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">pythonmanage.pyshell</code></pre><p id="390da1eb-8b9d-80af-ab89-ea318f72ef7c" class="" dir="auto">بعد دستی تست می‌کنی.</p><p id="390da1eb-8b9d-8059-8514-eaba5e64a966" class="" dir="auto">اما راه حرفه‌ای:</p><pre id="390da1eb-8b9d-807e-907c-fe3dd6c9b990" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">pythonmanage.pytest</code></pre><p id="390da1eb-8b9d-8029-97b3-d46625165534" class="" dir="auto">خود جنگو تمام تست‌ها را اجرا می‌کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8021-9233-f74d46a6a614" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8069-b697-d948df56e0e6" class="" dir="auto">اولین تست</p></div></aside><p id="390da1eb-8b9d-80f8-b33d-c1017fa89bf8" class="" dir="auto">مثلاً:</p><pre id="390da1eb-8b9d-807a-b766-ca1b80b12c13" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">fromdjango.testimportTestCase</code></pre><p id="390da1eb-8b9d-8094-9b95-cc15bbcffbb1" class="" dir="auto">سؤال:</p><p id="390da1eb-8b9d-8012-a7fc-d0a70c6b7b9d" class="" dir="auto">TestCase چیست؟ پاسخ: یک کلاس مخصوص Django برای تست است.</p><p id="390da1eb-8b9d-809b-8d53-d5913f5bb78d" class="" dir="auto">مثلاً:</p><pre id="390da1eb-8b9d-8017-9228-c863731fd1ed" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">classCustomerModelTest(TestCase):
+pass</code></pre><p id="390da1eb-8b9d-80a2-9315-fb19fa850d8b" class="" dir="auto">یعنی:</p><pre id="390da1eb-8b9d-80c0-bfe3-dc94240b691f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">این کلاس شامل تست‌های Customer است</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8087-b182-cd61e5ebf012" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-80a6-b839-c0536ed3e383" class="" dir="auto">متد setUp</p></div></aside><p id="390da1eb-8b9d-8091-9e94-f772ed368bc7" class="" dir="auto">مثلاً:</p><pre id="390da1eb-8b9d-8094-81af-ce635d87db81" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">defsetUp(self):</code></pre><p id="390da1eb-8b9d-801b-b5ea-f9f767617575" class="" dir="auto">این متد قبل از هر تست اجرا می‌شود.</p><p id="390da1eb-8b9d-806c-ab9f-f8ccc27e3e3e" class="" dir="auto">فرض کن ۵ تست داری:</p><pre id="390da1eb-8b9d-8086-9142-dba1c1d9ff6b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">test_a()
+test_b()
+test_c()
+test_d()
+test_e()</code></pre><p id="390da1eb-8b9d-80d7-a7a5-eb8fc924b1c4" class="" dir="auto">قبل از هر کدام:</p><pre id="390da1eb-8b9d-8036-96d0-f38feccefe27" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">setUp()</code></pre><p id="390da1eb-8b9d-807d-b4b3-ecfcbd032dad" class="" dir="auto">اجرا می‌شود.</p><p id="390da1eb-8b9d-80ba-8fdb-c23ea7bcb98c" class="" dir="auto">مثال:</p><pre id="390da1eb-8b9d-80b0-8068-c70fad2410da" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">def setUp(self):
+
+    self.user = CustomUser.objects.create_user(
+        username=&#x27;sina&#x27;,
+        email=&#x27;sina@test.com&#x27;,
+        password=&#x27;12345678&#x27;
+    )</code></pre><p id="390da1eb-8b9d-8046-a492-d335698cd753" class="" dir="auto">پشت صحنه:</p><pre id="390da1eb-8b9d-8072-b4fb-c37219d1b0d6" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">قبل از هر تست
+
+یک User جدید بساز</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80d9-b7c4-c226dad7e621" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8060-9445-c55de2165c51" class="" dir="auto">self چیست؟</p></div></aside><p id="390da1eb-8b9d-806d-bdbb-c935954c7550" class="" dir="auto">این سؤال خیلی مهم است.</p><p id="390da1eb-8b9d-80a8-807d-c62f9bb151e3" class="" dir="auto">وقتی می‌نویسی:</p><pre id="390da1eb-8b9d-801b-9fd6-ec1f1d567b5f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">self.user</code></pre><p id="390da1eb-8b9d-804e-9928-e7a5a452fae0" class="" dir="auto">یعنی:</p><pre id="390da1eb-8b9d-80fe-991f-ee231430a3a8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">این متغیر متعلق به همین کلاس است</code></pre><p id="390da1eb-8b9d-80f2-899e-cbcbefa9896b" class="" dir="auto">بعداً در هر تست می‌توانی استفاده کنی:</p><pre id="390da1eb-8b9d-8014-94d9-ced0af7d54b8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">self.user</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8048-9c55-c943e8da636c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8065-bec3-c1282bc1a8c5" class="" dir="auto">تست اول</p></div></aside><pre id="390da1eb-8b9d-802a-9bd9-e4f4147568c9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">deftest_customer_created_by_signal(self):</code></pre><p id="390da1eb-8b9d-8054-acac-e6c1f21be09c" class="" dir="auto">چرا اسمش با test شروع شده؟</p><p id="390da1eb-8b9d-8016-8ded-def120a35d4e" class="" dir="auto">چون Django فقط متدهایی را اجرا می‌کند که با:</p><pre id="390da1eb-8b9d-809d-be2d-d3ef3f68999f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">test_</code></pre><p id="390da1eb-8b9d-80ec-bc74-f5f4c96cb8fb" class="" dir="auto">شروع شوند.</p><p id="390da1eb-8b9d-80cf-89f5-f95bce2fa703" class="" dir="auto">اگر بنویسی:</p><pre id="390da1eb-8b9d-8065-a60e-cf55fbcc39ae" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">defcustomer_created(self):</code></pre><p id="390da1eb-8b9d-8072-8fca-d80faed058c2" class="" dir="auto">اصلاً اجرا نمی‌شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-802a-bdb8-d6421ed22150" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8076-a94f-fd948c84d4e0" class="" dir="auto">assert چیست؟</p></div></aside><p id="390da1eb-8b9d-80fd-ae35-c9b5f1e06c0b" class="" dir="auto">مثلاً:</p><pre id="390da1eb-8b9d-8071-90a9-d9196a47d5ea" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">self.assertTrue(
+    Customer.objects.filter(
+        user=self.user
+    ).exists()
+)</code></pre><p id="390da1eb-8b9d-80de-8822-c75a30712f34" class="" dir="auto">قسمت اول:</p><pre id="390da1eb-8b9d-80f8-8c0b-e55daf4ef059" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Customer.objects.filter(
+    user=self.user
+)</code></pre><p id="390da1eb-8b9d-806e-870b-c5315902f5e4" class="" dir="auto">یعنی:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" integrity="sha512-sijCOJblSCXYYmXdwvqV0tak8QJW5iy2yLB1wAbbLc3OOIueqymizRFWUS/mwKctnzPKpNdPJV3aK1zlDMJmXQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="390da1eb-8b9d-805e-aaa9-ce1448ad0143" class="code code-wrap" data-notion-code-syntax="sql"><code class="language-sql" style="white-space:pre-wrap;word-break:break-all">SELECT*
+FROM customers_customer
+WHERE user_id= self.user.id</code></pre><p id="390da1eb-8b9d-80fc-844e-e293ded43ab7" class="" dir="auto">سپس:</p><pre id="390da1eb-8b9d-8035-bc74-c9f70e6818fb" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">.exists()</code></pre><p id="390da1eb-8b9d-80a2-ace5-c3f662b104f3" class="" dir="auto">یعنی: </p><p id="390da1eb-8b9d-8059-a5c5-cbb2bb6c4924" class="" dir="auto">آیا حداقل یک رکورد پیدا شد؟</p><p id="390da1eb-8b9d-8059-baac-d46ce4d2a0e8" class="" dir="auto">خروجی:</p><pre id="390da1eb-8b9d-80e6-b045-d2deb4fa058e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">True</code></pre><p id="390da1eb-8b9d-80bd-8a18-fec837fcd0c9" class="" dir="auto">یا</p><pre id="390da1eb-8b9d-801f-9d2c-fa5fad76f385" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">False</code></pre><p id="390da1eb-8b9d-8099-908c-ef5f896fe571" class="" dir="auto">حالا:</p><pre id="390da1eb-8b9d-80d7-9954-c159c3689c6b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">assertTrue(...)</code></pre><p id="390da1eb-8b9d-8024-b436-d7f387768135" class="" dir="auto">یعنی:</p><p id="390da1eb-8b9d-8069-9f73-fdf5790faebe" class="" dir="auto">من انتظار دارم نتیجه True باشد</p><p id="390da1eb-8b9d-802d-81d4-f7b910e9fafb" class="" dir="auto">اگر:</p><pre id="390da1eb-8b9d-8003-bfa6-d706879fdf34" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">True</code></pre><p id="390da1eb-8b9d-80c3-a223-ed328f5d05a8" class="" dir="auto">باشد:</p><p id="390da1eb-8b9d-809f-bc0a-d8a405db0177" class="" dir="auto">تست پاس می‌شود.</p><p id="390da1eb-8b9d-80f7-acdf-e4397c4267bd" class="" dir="auto">اگر:</p><pre id="390da1eb-8b9d-8045-b55f-ddb711bbfc19" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">False</code></pre><p id="390da1eb-8b9d-80e8-9c2e-fb021448588d" class="" dir="auto">باشد:</p><p id="390da1eb-8b9d-8065-9133-e4c92f28d39d" class="" dir="auto">تست Fail می‌شود.</p><p id="390da1eb-8b9d-80d5-a278-dbf62950ab6e" class="" dir="auto">چرا این تست مهم است؟</p><p id="390da1eb-8b9d-8086-97c5-de0d231bdb82" class="" dir="auto">چون می‌خواهیم مطمئن شویم Signal کار می‌کند.</p><p id="390da1eb-8b9d-800d-92a5-e69e4690db66" class="" dir="auto">جریان:</p><pre id="390da1eb-8b9d-80b8-9567-fbba5750bdde" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">User Created
+    ↓
+Signal
+    ↓
+Customer Created</code></pre><p id="390da1eb-8b9d-80e2-9439-e22a45d184f8" class="" dir="auto">اگر سیگنال خراب شود:</p><pre id="390da1eb-8b9d-8075-b0b8-f36b5506b845" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">False</code></pre><p id="390da1eb-8b9d-80d5-82e6-f9b6bc3b8dba" class="" dir="auto">می‌گیریم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-806c-a417-c60d76669073" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8019-95c3-c2f03a4f5ce0" class="" dir="auto">تست UUID</p></div></aside><p id="390da1eb-8b9d-802c-8ce6-ed3a20a27abc" class="" dir="auto">کد:</p><pre id="390da1eb-8b9d-8044-87d1-dbd144935f51" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">customer=self.user.customer</code></pre><p id="390da1eb-8b9d-8007-a46b-cbb405cbd40b" class="" dir="auto">پشت صحنه:</p><pre id="390da1eb-8b9d-8069-bb5d-f3c5bb9171b0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Customer.objects.get(
+		user=self.user
+	)</code></pre><p id="390da1eb-8b9d-803f-9988-c1364e49500f" class="" dir="auto">اجرا می‌شود.</p><p id="390da1eb-8b9d-80f4-9015-d99f613f2b34" class="" dir="auto">به خاطر:</p><pre id="390da1eb-8b9d-80da-9f9a-ca08fc0000f8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">related_name=&#x27;customer&#x27;</code></pre><p id="390da1eb-8b9d-80cd-b171-fc66e33be591" class="" dir="auto">سپس:</p><pre id="390da1eb-8b9d-8019-a8fd-c79cf1127b3d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">self.assertIsNotNone(
+	customer.uuid
+	)</code></pre><p id="390da1eb-8b9d-80ae-8df3-cb9ac729e5de" class="" dir="auto">یعنی:</p><pre id="390da1eb-8b9d-80c8-a7a0-def50a3f47d1" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">بررسی کن uuid خالی نباشد</code></pre><p id="390da1eb-8b9d-804b-b1cd-cc8cb04a7790" class="" dir="auto">اگر:</p><pre id="390da1eb-8b9d-802c-8943-d5df07b3c454" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">customer.uuid</code></pre><p id="390da1eb-8b9d-80af-b1f3-c2ce1a112d15" class="" dir="auto">برابر باشد با:</p><pre id="390da1eb-8b9d-80ea-80af-ebf78841f806" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">None</code></pre><p id="390da1eb-8b9d-80fc-bec3-dc896ae5df07" class="" dir="auto">تست Fail می‌شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8031-980a-e2c6b7380d1b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-804d-87a9-dc595b8fedb6" class="" dir="auto">تست <strong>str</strong></p></div></aside><pre id="390da1eb-8b9d-80a0-9539-e3ae30b12a9c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">self.assertEqual(
+    str(customer),
+    self.user.username
+)</code></pre><p id="390da1eb-8b9d-8095-baa5-f5f340dce858" class="" dir="auto">یعنی:</p><pre id="390da1eb-8b9d-804f-96ad-fdcc21875598" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">خروجی str(customer)
+باید برابر username باشد</code></pre><p id="390da1eb-8b9d-804e-832b-c68b53eb0309" class="" dir="auto">چرا؟</p><p id="390da1eb-8b9d-8081-a869-de44994b3340" class="" dir="auto">چون در مدل نوشتیم:</p><pre id="390da1eb-8b9d-8020-9847-e5660b989357" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">def__str__(self):
+		returnself.user.username</code></pre><hr id="390da1eb-8b9d-8070-a5d8-d20525d58ea5" dir="auto"/><pre id="390da1eb-8b9d-808a-ad0f-e8a931e1ef61" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Customer.objects.filter(
+    user=self.user
+).exists()</code></pre><p id="390da1eb-8b9d-80b7-8483-c9ccf5446809" class="" dir="auto">آیا Customer ای وجود دارد که<br/>فیلد user آن برابر self.user باشد؟</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80ef-b48b-fd70d9db5a6e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="390da1eb-8b9d-801f-bf5d-d102639c992a" class="" dir="auto">پایان Part-3</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

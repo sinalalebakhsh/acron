@@ -1,0 +1,1199 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-4</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="390da1eb-8b9d-8065-b570-d372ffd41e8d" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-4</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><h1 id="390da1eb-8b9d-80bd-a984-e8ba8a81cc6d" class="" dir="auto">فاز 3: Customer Domain</h1><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8063-84da-edc6560fc9cf" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-804e-8b8d-d59debc2c08e" class="" dir="auto">در Part-3 ، فاز 3 تا قدم 31 پیش رفت</p></div></aside><blockquote id="390da1eb-8b9d-80b0-9bd4-c27a51a57854" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">32- فایل <code>apps/customers/tests/test_api.py</code> را باز کنید و در بالای فایل، ماژول <code>datetime</code> را اضافه کنید:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="390da1eb-8b9d-8084-8b62-c4a8acd99062" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.test import APITestCase
+from rest_framework import status
+import datetime # این خط اضافه شود
+
+from apps.accounts.models import CustomUser</code></pre></blockquote><blockquote id="390da1eb-8b9d-80f3-9881-ed6be34fd8c2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>33- این دو متد جدید را به انتهای کلاس </strong><code><strong>CustomerMeApiTest</strong></code><strong> اضافه کنید:</strong><pre id="390da1eb-8b9d-80cd-a05b-c7fadd0857e8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">def test_patch_invalid_phone_number(self):
+        # ۱. احراز هویت کاربر
+        self.client.force_authenticate(user=self.user)
+        
+        # ۲. ارسال درخواست ویرایش با شماره تلفن غلط (کمتر از 10 کاراکتر)
+        response = self.client.patch(
+            &#x27;/api/customers/me/&#x27;,
+            {
+                &#x27;phone_number&#x27;: &#x27;123&#x27; 
+            },
+            format=&#x27;json&#x27;
+        )
+
+        # ۳. بررسی اینکه آیا سیستم خطای 400 (Bad Request) داده است؟
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+
+        # ۴. بررسی اینکه آیا خطا دقیقاً مربوط به فیلد phone_number است؟
+        self.assertIn(&#x27;phone_number&#x27;, response.data)
+
+
+    def test_patch_future_birth_date(self):
+        self.client.force_authenticate(user=self.user)
+        
+        # ۱. ساخت یک تاریخ در آینده (مثلاً 10 روز بعد از امروز)
+        future_date = (datetime.date.today() + datetime.timedelta(days=10)).strftime(&#x27;%Y-%m-%d&#x27;)
+        
+        # ۲. ارسال تاریخ آینده به سرور
+        response = self.client.patch(
+            &#x27;/api/customers/me/&#x27;,
+            {
+                &#x27;birth_date&#x27;: future_date
+            },
+            format=&#x27;json&#x27;
+        )
+
+        # ۳. بررسی اینکه آیا سیستم خطای 400 داده است؟
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+        
+        # ۴. بررسی اینکه آیا خطا مربوط به فیلد birth_date است؟
+        self.assertIn(&#x27;birth_date&#x27;, response.data)</code></pre></blockquote><p id="390da1eb-8b9d-8040-9240-cfab87ce734d" class="" dir="auto">نتیجه شبیه به این خواهد بود:</p><pre id="390da1eb-8b9d-80ec-9c9d-f45b4e6a3149" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py test apps/customers/tests/
+Found 12 test(s).
+Creating test database for alias &#x27;default&#x27;...
+System check identified no issues (0 silenced).
+............
+----------------------------------------------------------------------
+Ran 12 tests in 63.191s
+
+OK
+Destroying test database for alias &#x27;default&#x27;...</code></pre><p id="390da1eb-8b9d-8008-8edc-e0a179004476" class="" dir="auto"><strong>کالبدشکافی سریع کد (چرا اینطور نوشتیم؟):</strong></p><ul id="390da1eb-8b9d-8079-9c3a-fd2a8cf8219d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>status.HTTP_400_BAD_REQUEST</strong></code><strong>:</strong> در معماری REST، وقتی کلاینت (فرانت‌اند یا موبایل) دیتای نامعتبری می‌فرستد، سرور باید کد 400 را برگرداند. متد <code>.is_valid()</code> در DRF این کار را به صورت خودکار انجام می‌دهد.</li></ul><ul id="390da1eb-8b9d-8061-b0f1-f23de1c2141c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>self.assertIn(&#x27;phone_number&#x27;, response.data)</strong></code><strong>:</strong> ما فقط نمی‌خواهیم بدانیم که سیستم خطا داده است، بلکه می‌خواهیم مطمئن شویم سیستم دقیقاً فهمیده است که مشکل از <em>کدام فیلد</em> است. خروجی خطای DRF در این حالت شبیه این است: <code>{&quot;phone_number&quot;: [&quot;Phone number is too short.&quot;]}</code>. دستور <code>assertIn</code> چک می‌کند که کلید <code>phone_number</code> داخل پاسخ سرور وجود داشته باشد.</li></ul><h1 id="390da1eb-8b9d-80ff-a471-ec43ce2ccff5" class="" dir="auto">فاز 4: Product Domain</h1><p id="390da1eb-8b9d-8045-a5c8-faf2c006b729" class="" dir="auto">نحوه آپلود ، تغییر(جابه جایی) ، حذف تصویر توسط ادمین برای محصولات سایت </p><p id="390da1eb-8b9d-8041-ac36-f9fb33bec09c" class="" dir="auto">نحوه آپلود ، تغییر(جابه جایی) ، حذف تصویر  توسط کاربران برای پروفایل ، محصولات شخصی ، ارسال تصویر در چت شخصی بین کاربران.</p><p id="390da1eb-8b9d-80c5-9678-c5b9465c5d2d" class="" dir="auto"><a href="https://pillow.readthedocs.io/en/stable/handbook/tutorial.html#identify-image-files">https://pillow.readthedocs.io/en/stable/handbook/tutorial.html#identify-image-files</a></p><p id="390da1eb-8b9d-80e2-ae75-ccb015d3c94d" class="" dir="auto"><a href="https://www.geeksforgeeks.org/python/imagefield-django-models/">https://www.geeksforgeeks.org/python/imagefield-django-models/</a></p><p id="390da1eb-8b9d-8071-beb9-ed8525b0f3fd" class="" dir="auto">مدل‌ها:</p><ul id="390da1eb-8b9d-80a8-8456-e31a399d40a5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Category</li></ul><ul id="390da1eb-8b9d-80eb-8575-e788c346f1a5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Brand</li></ul><ul id="390da1eb-8b9d-80b9-a0dc-c3ab2e53709f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Product</li></ul><ul id="390da1eb-8b9d-8036-84ba-d7c1c3c8d0d0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ProductImage</li></ul><ul id="390da1eb-8b9d-8060-ba87-d7b39b9b18fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Comment</li></ul><ul id="390da1eb-8b9d-8048-9fbe-fca3e275c3de" class="bulleted-list" dir="auto"><li style="list-style-type:disc"></li></ul><ul id="390da1eb-8b9d-8033-a147-e1123a452514" class="bulleted-list" dir="auto"><li style="list-style-type:disc">UUID</li></ul><ul id="390da1eb-8b9d-80e2-8132-c118cb132296" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Slug</li></ul><ul id="390da1eb-8b9d-8000-a328-cf17f1ebf119" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Inventory</li></ul><ul id="390da1eb-8b9d-8062-a3dc-e533201da3eb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Optimization</li></ul><ul id="390da1eb-8b9d-8052-8967-cf199c38c9ab" class="bulleted-list" dir="auto"><li style="list-style-type:disc">select_related</li></ul><ul id="390da1eb-8b9d-80ac-88de-fff24caaf85a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">prefetch_related</li></ul><ul id="390da1eb-8b9d-80a2-9721-e68711d26e14" class="bulleted-list" dir="auto"><li style="list-style-type:disc">N+1 Problem</li></ul><p id="390da1eb-8b9d-808f-a4d1-f01f9317b1a4" class="" dir="auto">مدل‌هایی که باید طراحی کنیم:</p><ul id="390da1eb-8b9d-8068-9c01-c82fea021c8e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>Category</code> (دسته‌بندی‌ها)</li></ul><ul id="390da1eb-8b9d-804e-893c-fe6f3f92d9f8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>Brand</code> (برندها)</li></ul><ul id="390da1eb-8b9d-8099-9937-f9088e2aa64f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>Product</code> (محصولات)</li></ul><ul id="390da1eb-8b9d-80c4-8333-e042240a8a52" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>ProductImage</code> (گالری تصاویر)</li></ul><p id="390da1eb-8b9d-8026-b123-ea7dfa7614dd" class="" dir="auto">مفاهیم کلیدی که با آن‌ها درگیر می‌شویم:</p><ul id="390da1eb-8b9d-804a-99cd-f45302bcd7aa" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Slug:</strong> برای ایجاد URLهای زیبا (SEO Friendly).</li></ul><ul id="390da1eb-8b9d-8066-87a1-d5ee892774f5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>تصاویر:</strong> آپلود و مدیریت فایل‌های مدیا (Pillow).</li></ul><ul id="390da1eb-8b9d-8021-bd94-e91ba40dae72" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Inventory (موجودی):</strong> مدیریت موجودی کالا.</li></ul><ul id="390da1eb-8b9d-8066-a287-f3774455baeb" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Optimization (بهینه‌سازی دیتابیس):</strong> جلوگیری از مشکل N+1 (ارسال ده‌ها کوئری اضافی به دیتابیس).</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8006-af70-eb99b0e844c4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-80ab-9763-dff864d79914" class="" dir="auto">تصمیمات معماری برای Category (دسته‌بندی) و Brand (برند)</p></div></aside><p id="390da1eb-8b9d-80f2-97bb-e6734de7402f" class="" dir="auto"><strong>۱. مفهوم Slug (اسلاگ) چیست و چرا واجب است؟</strong><br/>در فازهای قبلی (مثل Customer) ما با ID یا UUID کار می‌کردیم. مثلاً <code>api/customers/1/</code>.<br/>اما برای محصولات و دسته‌بندی‌ها، URL باید برای موتورهای جستجو (SEO) و انسان‌ها خوانا باشد.<br/>به جای: <code>acron.com/category/12/</code><br/>ما این را می‌خواهیم: <code>acron.com/category/smart-phones/</code><br/>به کلمه <code>smart-phones</code> می‌گویند <strong>Slug</strong>. ما در تمام مدل‌های این فاز به فیلد Slug نیاز داریم.</p><p id="390da1eb-8b9d-80b3-8897-feb4e5ea07ad" class="" dir="auto"><strong>۲. دسته‌بندی‌های تو در تو (Nested Categories)</strong><br/>در یک فروشگاه واقعی، ما &quot;کالای دیجیتال&quot; داریم، زیرمجموعه آن &quot;موبایل&quot; است و زیرمجموعه آن &quot;گوشی اپل&quot;.<br/>برای پیاده‌سازی این ساختار درختی، مدل <code>Category</code> باید بتواند به <strong>خودش</strong> اشاره کند (Self-referential ForeignKey).</p><p id="390da1eb-8b9d-80e8-9f49-fce57aaad4fe" class="" dir="auto"><strong>۳. نیاز به تصاویر</strong><br/>چون دسته‌بندی‌ها، برندها و محصولات نیاز به عکس دارند، جنگو برای فیلد تصویر (<code>ImageField</code>) به یک کتابخانه پردازش تصویر در پایتون به نام <code>Pillow</code> نیاز دارد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80e5-a2c0-c2f1d486f839" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8026-85a7-d735011c63df" class="" dir="auto">شروع کدنویسی فاز ۴</p></div></aside><blockquote id="390da1eb-8b9d-80f7-ac09-f230f49ff115" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>35- نصب کتابخانه مدیریت تصاویر (Pillow):</strong><br/>در ترمینال (در حالی که محیط مجازی فعال است) دستور زیر را وارد کنید:<pre id="390da1eb-8b9d-8081-96cf-cd3fc0c29eaf" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pipenv install pillow</code></pre></blockquote><p id="390da1eb-8b9d-808a-a551-eb113d547982" class="" dir="auto"><em>چرا این کار را کردیم؟</em> </p><p id="390da1eb-8b9d-80ad-891a-fff28adc9a71" class="" dir="auto">جنگو بدون این کتابخانه اجازه استفاده از <code>models.ImageField</code> را نمی‌دهد و خطا پرتاب می‌کند، زیرا برای اعتبارسنجی اینکه آیا فایل آپلود شده واقعاً یک عکس است یا یک فایل مخرب، به موتور پردازشی <code>Pillow</code> متکی است.</p><blockquote id="390da1eb-8b9d-80b1-9672-cc0acf81dba6" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>36- فعال‌سازی اپلیکیشن در </strong><code><strong>base.py</strong></code><strong>:</strong><br/>فایل <code>config/settings/base.py</code> را باز کنید و اپلیکیشن <code>products</code> را از کامنت خارج کنید:<pre id="390da1eb-8b9d-8032-9861-fb2a5ad4375f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">INSTALLED_APPS = [
+    # ...
+    &#x27;apps.accounts&#x27;,
+    &#x27;apps.customers&#x27;,
+    &#x27;apps.products&#x27;, # این خط از کامنت خارج شود
+]</code></pre></blockquote><blockquote id="390da1eb-8b9d-80ba-b98c-fc6810645ebb" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>37- </strong>ساخت مدل‌های <code>Category</code> و <code>Brand</code>:<p id="390da1eb-8b9d-806d-8a54-f2a4429762e6" class="" dir="auto">فایل apps/products/models.py</p><p id="390da1eb-8b9d-80b2-93e6-e98a08719cdc" class="" dir="auto">را باز کنید و کدهای زیر را بادقت بنویسید (خط به خط را در ادامه کالبدشکافی می‌کنیم):</p><pre id="390da1eb-8b9d-80ae-b6e3-f3bd7220f383" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import models
+
+class Category(models.Model):
+    # دسته‌بندی والد (برای ساختار درختی)
+    parent = models.ForeignKey(
+        &#x27;self&#x27;, 
+        on_delete=models.PROTECT, 
+        null=True, 
+        blank=True, 
+        related_name=&#x27;children&#x27;
+    )
+    
+    name = models.CharField(max_length=255)
+    
+    # اسلاگ برای URLهای سئو-محور
+    slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
+    
+    description = models.TextField(blank=True)
+    
+    # تصویر دسته‌بندی
+    image = models.ImageField(upload_to=&#x27;categories/%Y/%m/&#x27;, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = &#x27;Categories&#x27;
+
+    def __str__(self):
+        return self.name
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
+    image = models.ImageField(upload_to=&#x27;brands/%Y/%m/&#x27;, blank=True, null=True)
+
+    def __str__(self):
+        return self.name</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8078-bb8e-eaf3bd27a98c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-808e-a201-f992fbc704a0" class="" dir="auto">کالبدشکافی دقیق کدها (بدون Vibe Coding)</p></div></aside><ul id="390da1eb-8b9d-8054-8d08-c4a4d52f1380" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>parent = models.ForeignKey(&#x27;self&#x27;, ...)</strong></code><strong>:</strong><br/>کلمه <code>&#x27;self&#x27;</code> به جنگو می‌گوید که این دسته‌بندی به یک دسته‌بندی دیگر در <strong>همین جدول</strong> متصل است. <code>null=True, blank=True</code> یعنی اگر دسته‌بندی والد نداشت (مثل خود &quot;کالای دیجیتال&quot; که بالاترین سطح است)، می‌تواند خالی بماند.</li></ul><ul id="390da1eb-8b9d-804d-88ac-e214a18b7e84" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>on_delete=models.PROTECT</strong></code><strong> در parent:</strong><br/>چرا CASCADE نگذاشتیم؟ اگر CASCADE بود، ادمین با حذف کردن دسته‌بندی &quot;کالای دیجیتال&quot;، اشتباهاً تمام زیرمجموعه‌های آن (موبایل، لپ‌تاپ و...) را هم پودر می‌کرد! <code>PROTECT</code> باعث می‌شود جنگو بگوید: &quot;تا زمانی که این دسته، زیرمجموعه دارد، اجازه حذف آن را ندارید.&quot;</li></ul><ul id="390da1eb-8b9d-804f-bdb0-c10aa8091182" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>related_name=&#x27;children&#x27;</strong></code><strong>:</strong><br/>این یعنی اگر من یک دسته والد باشم (مثلاً موبایل)، با دستور <code>category.children.all()</code> می‌توانم تمام زیرمجموعه‌هایم (سامسونگ، اپل، شیائومی) را استخراج کنم.</li></ul><ul id="390da1eb-8b9d-800d-a67b-cb0b32d2b5f2" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>allow_unicode=True</strong></code><strong> در SlugField:</strong><br/>بسیار مهم برای سایت‌های ایرانی! به صورت پیش‌فرض، SlugField فقط حروف انگلیسی را قبول می‌کند. وقتی این پارامتر را می‌دهیم، می‌توانیم اسلاگ فارسی داشته باشیم (مثلاً: <code>acron.com/category/گوشی-موبایل/</code>).</li></ul><ul id="390da1eb-8b9d-80f8-83bc-c3feacf75ee5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>upload_to=&#x27;categories/%Y/%m/&#x27;</strong></code><strong>:</strong><br/>وقتی عکسی آپلود می‌شود، جنگو همه را در یک پوشه نمی‌ریزد. این پارامتر به جنگو می‌گوید بر اساس سال (<code>%Y</code>) و ماه (<code>%m</code>) پوشه‌بندی کند (مثلاً <code>categories/2026/07/</code>). این کار باعث می‌شود در آینده که هزاران عکس داشتید، سرور لینوکس شما در پیدا کردن فایل‌ها کُند نشود.</li></ul><ul id="390da1eb-8b9d-80cd-a655-d86abf1bf7f6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>verbose_name_plural = &#x27;Categories&#x27;</strong></code><strong>:</strong><br/>جنگو به صورت پیش‌فرض یک <code>s</code> به انتهای نام مدل‌ها در پنل ادمین اضافه می‌کند. اگر این خط را ننویسیم، در پنل ادمین می‌نویسد <code>Categorys</code> که از نظر املای انگلیسی غلط است. با این خط آن را اصلاح کردیم.</li></ul><hr id="391da1eb-8b9d-8024-9f31-c78bb904b01a" dir="auto"/><p id="390da1eb-8b9d-80a8-b01f-cbea581667e6" class="" dir="auto">حالا که کدهای مدل <code>Category</code> و <code>Brand</code> را نوشتیم، دیتابیس ما هنوز از وجود این جداول بی‌خبر است. </p><p id="391da1eb-8b9d-80f9-98a2-fba7f8276581" class="" dir="auto">قدم بعدی ما دو بخش دارد: </p><p id="391da1eb-8b9d-80d6-86e1-c6ea066e88fe" class="" dir="auto">ابتدا این تغییرات را به دیتابیس MySQL تزریق می‌کنیم و سپس آن‌ها را به پنل ادمین جنگو متصل می‌کنیم تا بتوانیم اولین دسته‌بندی‌ها و برندها را بسازیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80ec-bbc0-ccf97a08dc0f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80d1-a74c-f94b3b7c23fc" class="" dir="auto">قدم اول: انتقال مدل‌ها به دیتابیس (Migration Lifecycle)</p></div></aside><p id="391da1eb-8b9d-80ba-b3b4-c6d59941d7e5" class="" dir="auto">زمانی که ما یک مدل پایتونی می‌نویسیم، دیتابیس (MySQL) مستقیماً آن را نمی‌فهمد. ما باید از سیستم اسمارتِ Migration در جنگو استفاده کنیم تا این کدهای پایتون را به دستورات SQL (مثل <code>CREATE TABLE</code>) تبدیل کند.</p><blockquote id="391da1eb-8b9d-8059-a59c-e68ca9931ef9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>38- اجرای کامندهای ساخت و اعمال ترنزکشن‌ها در ترمینال:</strong><p id="391da1eb-8b9d-8066-921a-e39b89be82a3" class="" dir="auto">ابتدا مطمئن شوید در محیط مجازی (<code>pipenv shell</code>) هستید، سپس دستور زیر را بزنید:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="391da1eb-8b9d-80fe-a12c-e34fe85fc13d" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations products</code></pre></blockquote><p id="391da1eb-8b9d-80a3-b549-fc00093fca24" class="" dir="auto">نتیجه شبیه زیر در ترمینال خواهد بود</p><pre id="391da1eb-8b9d-8035-81b6-d87cc15bd961" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations products
+Migrations for &#x27;products&#x27;:
+  apps\products\migrations\0001_initial.py
+    + Create model Brand
+    + Create model Category</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80d8-ab63-e6df0d280766" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8077-9b67-c5697afa069a" class="" dir="auto"><strong>پشت صحنه چه رخ داد؟</strong> </p></div></aside><p id="391da1eb-8b9d-8080-bd32-deb7d671aadc" class="" dir="auto">جنگو مدل‌های اپلیکیشن <code>products</code> را بررسی کرد و یک فایل جدید به نام <code>0001_initial.py</code> در پوشه <code>apps/products/migrations/</code> ساخت. </p><p id="391da1eb-8b9d-8062-9478-f7a6aefc36c2" class="" dir="auto">این فایل صرفاً یک «نقشه ساخت» یا Blueprint به زبان پایتون است و هنوز تاثیری روی دیتابیس نگذاشته است.</p><blockquote id="391da1eb-8b9d-8040-b9cd-d3c55d332082" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">39- حالا برای اعمال واقعی این نقشه روی MySQL، دستور زیر را اجرا کنید:<pre id="391da1eb-8b9d-803f-bb9e-fe947ffd1be6" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py migrate</code></pre></blockquote><p id="391da1eb-8b9d-807e-b0c3-c76ced21308a" class="" dir="auto">نتیجه شبیه زیر خواهد بود:</p><pre id="391da1eb-8b9d-8068-9719-c607e626de17" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: accounts, admin, auth, contenttypes, customers, products, sessions
+Running migrations:
+  Applying products.0001_initial... OK</code></pre><p id="391da1eb-8b9d-8086-98e4-d569ba39d22d" class="" dir="auto"><strong>پشت صحنه چه رخ داد؟</strong> جنگو نقشه پایتونی را خواند، آن را به دستورات SQL تبدیل کرد و جداول <code>products_category</code> و <code>products_brand</code> را در دیتابیس <code>acron</code> ایجاد کرد. اگر خروجی <code>Applying products.0001_initial... OK</code> را دیدید، یعنی همه چیز با موفقیت انجام شده است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8042-86bb-fee766087b04" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8098-82b1-de14c632a534" class="" dir="auto">این قسمت اختیاری است و مخصوص تست های خودکار گیت هاب است</p></div></aside><blockquote id="391da1eb-8b9d-80a5-af6b-deea91c3ab13" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"> 40- مجددا داخل ترمینال این دستور رو بزن و داخل گیت هاب ارسال کن<pre id="391da1eb-8b9d-804f-8ded-d5ee44619f0d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pipenv requirements &gt; requirements.txt</code></pre><p id="391da1eb-8b9d-8096-a988-d16292042ad9" class="" dir="auto">نتیجه تا اینجا شبیه زیر خواهد بود: requirements.txt</p><pre id="391da1eb-8b9d-80f5-9561-ffa7e0738f99" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">-i https://pypi.org/simple
+asgiref==3.11.1; python_version &gt;= &#x27;3.9&#x27;
+django==6.0.6; python_version &gt;= &#x27;3.12&#x27;
+djangorestframework==3.17.1; python_version &gt;= &#x27;3.10&#x27;
+djangorestframework-simplejwt==5.5.1; python_version &gt;= &#x27;3.9&#x27;
+mysqlclient==2.2.8; python_version &gt;= &#x27;3.10&#x27;
+pillow==12.3.0; python_version &gt;= &#x27;3.10&#x27;
+pyjwt==2.13.0; python_version &gt;= &#x27;3.9&#x27;
+sqlparse==0.5.5; python_version &gt;= &#x27;3.8&#x27;
+tzdata==2026.2; python_version &gt;= &#x27;2&#x27;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8094-8e4e-d73bf6d38856" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8011-83a1-ee20291ce0f5" class="" dir="auto">قدم دوم: مدیریت در پنل ادمین و جادوی خودکارسازی اسلاگ (Slug)</p></div></aside><p id="391da1eb-8b9d-809f-8343-e604e56b74b7" class="" dir="auto">اگر الان به پنل ادمین جنگو (<code>/admin/</code>) بروید، اثری از دسته‌بندی‌ها و برندها نمی‌بینید. <br/>باید آن‌ها را ریجستر (ثبت) کنیم. <br/>اما می‌خواهیم یک کار حرفه‌ای انجام دهیم؛ <br/>ادمین سایت نباید مجبور باشد خودش دستی اسلاگ بنویسد! <br/>ما کاری می‌کنیم که وقتی ادمین نام دسته‌بندی را تایپ می‌کند، جنگو به صورت خودکار اسلاگ آن را بسازد.</p><blockquote id="391da1eb-8b9d-804a-a429-c4788688827f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"> 41- <strong>فایل </strong><code><strong>apps/products/admin.py</strong></code><strong> را باز کنید و کدهای زیر را بنویسید:</strong><p id="391da1eb-8b9d-802c-af14-e171ae33a975" class="" dir="auto">Python</p><pre id="391da1eb-8b9d-80b5-b51d-d36a855211c8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from .models import Category, Brand
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    # ۱. مشخص کردن ستون‌هایی که در لیست ادمین نمایش داده می‌شوند
+    list_display = [&#x27;name&#x27;, &#x27;slug&#x27;, &#x27;parent&#x27;]
+
+    # ۲. جادوی پر شدن خودکار اسلاگ بر اساس نام
+    prepopulated_fields = {&#x27;slug&#x27;: (&#x27;name&#x27;,)}
+
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = [&#x27;name&#x27;, &#x27;slug&#x27;]
+    prepopulated_fields = {&#x27;slug&#x27;: (&#x27;name&#x27;,)}</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80e0-9cac-c0526e3112bf" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-805d-9b04-c6b076d69a7f" class="" dir="auto">کالبدشکافی دقیق کدهای ادمین (بدون Vibe Coding)</p></div></aside><ul id="391da1eb-8b9d-805a-b1aa-e9bc4334ce38" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>@admin.register(Category)</strong></code>:<br/>این یک دکوراتور (Decorator) پایتونی است. به زبان ساده به جنگو می‌گوید: «کلاس <code>CategoryAdmin</code> را به عنوان تنظیمات مدیریتیِ مدل <code>Category</code> در نظر بگیر و آن را در ادمین ثبت کن.»</li></ul><ul id="391da1eb-8b9d-80b1-b675-df604c778a9d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>list_display</strong></code>:<br/>به صورت پیش‌فرض، جنگو در لیست مدل‌ها فقط خروجی متد <code>__str__</code> را نشان می‌دهد. با این آپشن، ما یک جدول منظم می‌سازیم که ستون‌های نام، اسلاگ و والد را مجزا نمایش دهد تا پنل ادمین خواناتر شود.</li></ul><ul id="391da1eb-8b9d-80c7-a2e4-d952433d2b08" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>prepopulated_fields = {&#x27;slug&#x27;: (&#x27;name&#x27;,)}</strong></code>:<br/>این مهم‌ترین بخش است! این تاپل به جنگو دستور می‌دهد که در صفحه ساختِ دسته‌بندی یا برند، یک جاوااسکریپت (JS) پشت صحنه اجرا کند. وقتی ادمین در فیلد <code>name</code> می‌نویسد &quot;کالای دیجیتال&quot;، جنگو به صورت خودکار و زنده فیلد <code>slug</code> را با متن &quot;کالای-دیجیتال&quot; پر می‌کند. از آنجا که ما در مدل قبلی <code>allow_unicode=True</code> گذاشته بودیم، این قابلیت به شکل بی‌نظیری با کلمات فارسی هم کار خواهد کرد.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8093-96f2-dec7cfc69217" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80d6-8cd5-d36510f923dd" class="" dir="auto">تست و مشاهده نتیجه</p></div></aside><p id="391da1eb-8b9d-802d-a9f7-ec8ae17dfb60" class="" dir="auto">حالا سرور پروژه را روشن کنید:</p><pre id="391da1eb-8b9d-80f3-a1e8-d2f61c514e3f" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><p id="391da1eb-8b9d-8023-948a-e68f09818972" class="" dir="auto">به آدرس <code>http://127.0.0.1:8000/admin/</code> بروید و با سوپریوزری که در فاز ۱ ساختید وارد شوید.<br/>وارد بخش <strong>Categories</strong> شوید و روی <strong>Add Category</strong> کلیک کنید.</p><p id="391da1eb-8b9d-807d-b9e0-c9e171ca06a4" class="" dir="auto">تلاش کنید یک دسته‌بندی فارسی (مثلاً: لپ تاپ و تبلت) بسازید و ببینید چطور فیلد اسلاگ به صورت خودکار پر می‌شود. <br/>یک بار هم یک دسته‌بندی والد بسازید و در دکمه بعدی، دسته‌بندی جدیدی بسازید و والد آن را روی دسته‌بندی قبلی تنظیم کنید تا ساختار درختی را به چشم ببینید.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8000-aefa-fe2ccd777b1d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8057-a33f-cb928ea9c1dd" class="" dir="auto"><strong>ساخت Product Model</strong></p></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80ab-b046-ca4a0cd9c066" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80cd-8d6d-e334e8842c1c" class="" dir="auto">بررسی و تصمیمات معماری (Architecture Design)</p></div></aside><ol type="1" id="391da1eb-8b9d-801b-befd-d45a513b3d99" class="numbered-list" start="1" dir="auto"><li><strong>تصویر اصلی محصول:</strong> چون هر محصول <strong>دقیقاً یک</strong> تصویر اصلی دارد، منطقی‌ترین کار این است که فیلد <code>main_image</code> را مستقیماً داخل خود مدل <code>Product</code> قرار دهیم.</li></ol><ol type="1" id="391da1eb-8b9d-805e-a858-ce11845cd73e" class="numbered-list" start="2" dir="auto"><li> <strong>۱۰ تصویر/ویدیوی فرعی (گالری مالتی‌مدیا):</strong> از آنجایی که تعداد این فایل‌ها متغیر است (بین ۰ تا ۱۰ عدد) و هر فایل می‌تواند تصویر یا ویدیو باشد، نباید ۱۰ فیلد مجزا در مدل محصول بسازیم (این یک اشتباه رایج و ضد الگو است). راهکار اصولی، ایجاد یک مدل مجزا به نام <code>ProductMedia</code> است که با یک رابطه یک‌به‌چند (<code>ForeignKey</code>) به محصول متصل می‌شود.</li></ol><ol type="1" id="391da1eb-8b9d-8092-a835-ed6c49f8ca57" class="numbered-list" start="3" dir="auto"><li> <strong>تشخیص طول زمان ویدیو:</strong> برای اینکه بفهمیم ویدیو چند ثانیه است، پایتون به صورت پیش‌فرض ابزاری ندارد. ما باید یک کتابخانه سبک برای پردازش ویدیو به نام <code>opencv-python</code> نصب کنیم تا بتواند متا‌دیتای ویدیو را بخواند و مدت زمان آن را به ثانیه به ما بدهد.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80eb-b439-e1b01d5f20da" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8079-be4a-c10cdee12488" class="" dir="auto">قدم اول: نصب ابزار پردازش ویدیو</p></div></aside><blockquote id="391da1eb-8b9d-80d9-aef7-e957b46c8fbe" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">42- در ترمینال خود دستور زیر را وارد کنید تا کتابخانه مورد نیاز برای سنجش زمان ویدیو نصب شود:<pre id="391da1eb-8b9d-8059-b641-cf98a43f160e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">pipenv install opencv-python</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80ec-870e-db4c3fcf2ee7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8029-ae56-cf886c470d64" class="" dir="auto">قدم دوم: نوشتن ولیدیتورها و مدل‌ها</p></div></aside><blockquote id="391da1eb-8b9d-805f-a882-fb48d31d1b30" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">43- فایل <code>apps/products/models.py</code> را باز کنید. <br/>کدهای زیر را جایگزین کنید تا قدم به قدم آن‌ها را کالبدشکافی کنیم:<pre id="391da1eb-8b9d-804b-b3d7-f5839a5bc380" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">import cv2
+from django.db import models
+from django.core.exceptions import ValidationError
+
+# ۱. ساخت ولیدیتور سفارشی برای فایل‌های فرعی (حجم و زمان ویدیو)
+def validate_media_file(file):
+    # الف) بررسی حجم فایل (400 مگابایت به بایت)
+    max_size_mb = 400
+    max_size_bytes = max_size_mb * 1024 * 1024
+    if file.size &gt; max_size_bytes:
+        raise ValidationError(f&quot;حجم فایل نمی‌تواند بیشتر از {max_size_mb} مگابایت باشد.&quot;)
+
+    # ب) بررسی مدت زمان ویدیو (اگر فایل ویدیو بود)
+    file_name = file.name.lower()
+    if file_name.endswith((&#x27;.mp4&#x27;, &#x27;.mkv&#x27;, &#x27;.avi&#x27;, &#x27;.mov&#x27;)):
+        # باز کردن موقت فایل ویدیو با OpenCV برای خواندن فریم‌ها
+        video = cv2.VideoCapture(file.temporary_file_path())
+        
+        # به دست آوردن تعداد کل فریم‌ها و نرخ فریم (FPS)
+        frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
+        fps = video.get(cv2.CAP_PROP_FPS)
+        
+        # محاسبه زمان به ثانیه (اگر fps صفر نباشد)
+        if fps &gt; 0:
+            duration_seconds = frames / fps
+            if duration_seconds &gt; 120: # 2 دقیقه = 120 ثانیه
+                raise ValidationError(&quot;مدت زمان ویدیو نمی‌تواند بیشتر از ۲ دقیقه باشد.&quot;)
+        video.release()
+
+
+class Category(models.Model):
+    # کدهای قبلی دسته‌بندی بدون تغییر اینجا بمانند
+    parent = models.ForeignKey(&#x27;self&#x27;, on_delete=models.PROTECT, null=True, blank=True, related_name=&#x27;children&#x27;)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to=&#x27;categories/%Y/%m/&#x27;, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = &#x27;Categories&#x27;
+
+    def __str__(self):
+        return self.name
+
+
+class Brand(models.Model):
+    # کدهای قبلی برند بدون تغییر اینجا بمانند
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
+    image = models.ImageField(upload_to=&#x27;brands/%Y/%m/&#x27;, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+# ۲. ساخت مدل اصلی محصول (Product)
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name=&#x27;products&#x27;)
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name=&#x27;products&#x27;)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2) # استفاده از Decimal برای قیمت‌ها الزامی است
+    inventory = models.PositiveIntegerField(default=0) # موجودی کالا نباید منفی باشد
+    
+    # تصویر اصلی محصول (اجباری)
+    main_image = models.ImageField(upload_to=&#x27;products/main/%Y/%m/&#x27;)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+# ۳. ساخت مدل گالری فرعی (تصاویر و ویدیوها)
+class ProductMedia(models.Model):
+    MEDIA_TYPES = (
+        (&#x27;image&#x27;, &#x27;Image&#x27;),
+        (&#x27;video&#x27;, &#x27;Video&#x27;),
+    )
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=&#x27;media_gallery&#x27;)
+    media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
+    
+    # استفاده از FileField چون هم عکس را قبول می‌کند و هم ویدیو را
+    file = models.FileField(upload_to=&#x27;products/gallery/%Y/%m/&#x27;, validators=[validate_media_file])
+
+    # متد clean برای محدود کردن تعداد کل مدیاهای یک محصول به حداکثر ۱۰ عدد
+    def clean(self):
+        super().clean()
+        # شمارش مدیاهای فعلی این محصول در دیتابیس (بدون احتساب رکوردی که الان دارد ذخیره می‌شود)
+        if self.product_id:
+            existing_media_count = ProductMedia.objects.filter(product=self.product).exclude(pk=self.pk).count()
+            if existing_media_count &gt;= 10:
+                raise ValidationError(&quot;شما نمی‌توانید بیشتر از ۱۰ فایل فرعی (تصویر/ویدیو) برای یک محصول آپلود کنید.&quot;)
+
+    def save(self, *args, **kwargs):
+        # قبل از ذخیره نهایی در دیتابیس، حتماً متد clean را صدا می‌زنیم تا ولیدیشن‌ها اجرا شوند
+        self.full_clean()
+        super().save(*args, **kwargs)</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-805f-a4b7-fc8be098c1ba" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-807e-9892-ec5e44b1e837" class="" dir="auto">کالبدشکافی خط به خط کدهای جدید (بدون Vibe Coding)</p></div></aside><ul id="391da1eb-8b9d-80f4-97e0-c4ccb6f2c777" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>تابع </strong><code><strong>validate_media_file</strong></code><strong>:</strong><br/>جنگو به ما اجازه می‌دهد توابعی بنویسیم که فایل ورودی را قبل از ذخیره شدن بازرسی کنند.<ul id="391da1eb-8b9d-8086-b2f8-d34451952e2f" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><code>file.size</code> حجم فایل را به بایت برمی‌گرداند. با ضرب کردن <code>400 * 1024 * 1024</code> آن را به بایت تبدیل کردیم تا با حجم واقعی فایل مقایسه شود.</li></ul><ul id="391da1eb-8b9d-80a3-9b8f-d51c6b5c6a30" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><code>file.temporary_file_path()</code>: وقتی فایلی در جنگو آپلود می‌شود و حجمش زیاد است، جنگو آن را در پوشه موقت سیستم‌عامل (مثل <code>/tmp</code>) ذخیره می‌کند. ما با این متد، آدرس فیزیکی فایل را به کتابخانه <code>cv2</code> (OpenCV) می‌دهیم.</li></ul><ul id="391da1eb-8b9d-8053-a431-d4c1d9b23f0e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">فرمول <code>frames / fps</code>: ویدیوها مجموعه‌ای از تصاویر پشت سر هم (فریم) هستند. اگر تعداد کل فریم‌ها را بر تعداد فریم در ثانیه (FPS) تقسیم کنیم، مدت زمان دقیق ویدیو به ثانیه به دست می‌آید. ما چک کردیم که این عدد بزرگتر از ۱۲۰ ثانیه (۲ دقیقه) نباشد.</li></ul></li></ul><ul id="391da1eb-8b9d-80b6-b6ae-d3b8a9aa33fa" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>فیلد </strong><code><strong>price = models.DecimalField(...)</strong></code><strong>:</strong><br/>توسعه‌دهندگان تازه‌کار برای قیمت از <code>FloatField</code> استفاده می‌کنند که اشتباه است. فلوت‌ها در محاسبات ریاضی دیتابیس دچار خطای گردکردن اعشار (Rounding Errors) می‌شوند. برای سیستم‌های مالی و فروشگاهی، همیشه باید از <code>DecimalField</code> استفاده کرد.</li></ul><ul id="391da1eb-8b9d-804e-b37b-f4c41496bf98" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>مدل </strong><code><strong>ProductMedia</strong></code><strong> و فیلد </strong><code><strong>file</strong></code><strong>:</strong><br/>چون قرار است هم عکس آپلود شود هم ویدیو، نمی‌توانستیم از <code>ImageField</code> استفاده کنیم، زیرا اِمیج‌فیلد ساختار ویدیو را بلاک می‌کند. بنابراین از <code>models.FileField</code> استفاده کردیم و آرگومان <code>validators=[validate_media_file]</code> را به آن پاس دادیم تا قوانین حجم و زمان روی آن اعمال شود.</li></ul><ul id="391da1eb-8b9d-806a-be4d-c95ca9dcc0db" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متد </strong><code><strong>clean</strong></code><strong> در </strong><code><strong>ProductMedia</strong></code><strong>:</strong><br/>این یک متد داخلی جنگو است که برای اعتبارسنجی‌های چند فیلدی یا منطقی استفاده می‌شود. ما با دستور <code>ProductMedia.objects.filter(product=self.product).count()</code> بررسی می‌کنیم که این محصول در حال حاضر چند عکس یا ویدیوی فرعی دارد. اگر تعداد ۱۰ یا بیشتر بود، با پرتاب <code>ValidationError</code> جلوی ذخیره‌سازی را می‌گیریم. دستور <code>.exclude(pk=self.pk)</code> برای این است که اگر ادمین خواست یک عکسِ از قبل آپلود شده را ویرایش کند، خودش را جزو آن ۱۰ تا حساب نکند و خطا ندهد.</li></ul><ul id="391da1eb-8b9d-8067-b30f-e6fbc0aa972d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متد </strong><code><strong>save</strong></code><strong> و دستور </strong><code><strong>self.full_clean()</strong></code><strong>:</strong><br/>در جنگو، وقتی رکوردی از طریق پنل ادمین ثبت می‌شود، متد <code>clean</code> خودبه‌خود اجرا می‌شود. اما اگر بعداً کدی بنویسیم که از طریق API (مثلاً DRF) دیتا ذخیره کند، جنگو متد <code>clean</code> مدل را به صورت خودکار اجرا نمی‌کند! برای حل این گپ امنیتی، متد <code>save</code> را اورراید کردیم و داخلش <code>self.full_clean()</code> را صدا زدیم تا مطمئن شویم تحت هر شرایطی (چه ادمین، چه API) این ولیدیشن‌ها اجرا می‌شوند.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8085-b96d-ec693072c8ef" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80a3-abc9-c04d2617045b" class="" dir="auto">چرا از OneToOneField استفاده نکردیم؟</p></div></aside><p id="391da1eb-8b9d-80eb-97fb-e8ec69365f27" class="" dir="auto">بیایید این چالش را کاملاً کالبدشکافی کنیم تا تفاوت عمیق بین <code>OneToOneField</code> و <code>ForeignKey</code> را متوجه شوید و ببینید چرا استفاده از <code>OneToOneField</code> در اینجا باعث <strong>خراب شدن سیستم گالری</strong> می‌شد.<strong><br/></strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8056-9ba9-c5aff84da2a5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80db-b151-f1198c98981a" class="" dir="auto"><strong>تفاوت ساختاری در دیتابیس (SQL چیست؟)</strong><br/></p></div></aside><p id="391da1eb-8b9d-8060-8e43-ed70a27fadab" class="" dir="auto">وقتی ما در جنگو مدل می‌نویسیم، این مدل‌ها به جداول دیتابیس تبدیل می‌شوند. تفاوت این دو فیلد در سطح دیتابیس به این صورت است:</p><ol type="1" id="391da1eb-8b9d-8006-9b4b-c0437b6a6387" class="numbered-list" start="1" dir="auto"><li><strong>اگر از </strong><code><strong>OneToOneField</strong></code><strong> استفاده می‌کردیم (رابطه یک‌به‌یک):<br/></strong>در دیتابیس، جنگو ستون <code>product_id</code> را در جدول مِدیا می‌سازد و روی آن یک قفل به نام <code><strong>UNIQUE</strong></code><strong> (یکتا)</strong> می‌گذارد.<br/>معنی یکتا بودن چیست؟ <br/>یعنی در کل جدول مدیا، فقط و فقط <strong>یک ردیف</strong> می‌تواند وجود داشته باشد که آی‌دی آن محصول (مثلاً محصول شماره ۵) در آن ثبت شده باشد.<br/><br/><strong>نتیجه عملی:</strong> <br/>شما برای لپ‌تاپ ایسوس (آی‌دی ۵) یک عکس فرعی آپلود می‌کنید. رکورد با موفقیت ذخیره می‌شود. حالا می‌خواهید عکس فرعی دوم یا یک ویدیو برای همان لپ‌تاپ آپلود کنید؛ دیتابیس MySQL فوراً خطا می‌دهد: <code>Duplicate entry &#x27;5&#x27; for key &#x27;product_id&#x27;</code>!<br/><br/><strong>خلاصه:</strong> <br/>با <code>OneToOneField</code> هر محصول فقط و فقط می‌توانست <strong>یک دانه</strong> فایل فرعی داشته باشد، نه ۱۰ تا!<strong><br/></strong></li></ol><ol type="1" id="391da1eb-8b9d-80c9-a37e-cbdb6214a76e" class="numbered-list" start="2" dir="auto"><li><strong>چرا از </strong><code><strong>ForeignKey</strong></code><strong> استفاده کردیم (رابطه چند‌به‌یک):</strong><br/>رابطه چند‌به‌یک (Many-to-One) یعنی <strong>چندین</strong> ردیف در جدول مدیا می‌توانند به <strong>یک</strong> محصول اشاره کنند. در این حالت ستون <code>product_id</code> در جدول مدیا دیگر <code>UNIQUE</code> نیست.</li></ol><p id="391da1eb-8b9d-8008-84b0-d24e2f4fa8a5" class="" dir="auto">به این جدول فرضی دیتابیس (جدول <code>ProductMedia</code>) نگاه کنید:</p><table id="391da1eb-8b9d-8022-8453-e8d3686f97da" class="simple-table" dir="ltr"><tbody><tr id="391da1eb-8b9d-806c-9820-cb9e26357111" dir="ltr"><td id="gh:E" class="" style="width:176.75px"><strong>id</strong></td><td id="Y&gt;NB" class="" style="width:176.75px"><strong>product_id (Foreign Key)</strong></td><td id="&gt;GWP" class="" style="width:176.75px"><strong>media_type</strong></td><td id="LhGm" class="" style="width:176.75px"><strong>file_path</strong></td></tr><tr id="391da1eb-8b9d-8027-b3e5-d59f03664f58" dir="ltr"><td id="gh:E" class="" style="width:176.75px">1</td><td id="Y&gt;NB" class="" style="width:176.75px"><strong>5</strong> (لپ‌تاپ ایسوس)</td><td id="&gt;GWP" class="" style="width:176.75px">image</td><td id="LhGm" class="" style="width:176.75px">gallery/pic1.jpg</td></tr><tr id="391da1eb-8b9d-8088-8a39-f3bb4b8d2cb1" dir="ltr"><td id="gh:E" class="" style="width:176.75px">2</td><td id="Y&gt;NB" class="" style="width:176.75px"><strong>5</strong> (لپ‌تاپ ایسوس)</td><td id="&gt;GWP" class="" style="width:176.75px">video</td><td id="LhGm" class="" style="width:176.75px">gallery/vid1.mp4</td></tr><tr id="391da1eb-8b9d-80e4-93b8-fcf8e2f6cfa2" dir="ltr"><td id="gh:E" class="" style="width:176.75px">3</td><td id="Y&gt;NB" class="" style="width:176.75px"><strong>5</strong> (لپ‌تاپ ایسوس)</td><td id="&gt;GWP" class="" style="width:176.75px">image</td><td id="LhGm" class="" style="width:176.75px">gallery/pic2.jpg</td></tr><tr id="391da1eb-8b9d-805b-8697-effef3378dec" dir="ltr"><td id="gh:E" class="" style="width:176.75px">4</td><td id="Y&gt;NB" class="" style="width:176.75px"><strong>8</strong> (گوشی آیفون)</td><td id="&gt;GWP" class="" style="width:176.75px">image</td><td id="LhGm" class="" style="width:176.75px">gallery/iphone.jpg</td></tr></tbody></table><p id="391da1eb-8b9d-8021-a6ff-fa78e768d21c" class="" dir="auto">همانطور که می‌بینید، محصول شماره ۵ توانسته ۳ ردیف مختلف (دو عکس و یک ویدیو) در گالری داشته باشد. این دقیقاً همان چیزی است که ما می‌خواهیم؛ </p><p id="391da1eb-8b9d-8090-a1a9-f12c6536a568" class="" dir="auto">یعنی یک محصول بتواند یک <strong>گالری</strong> (مجموعه‌ای از فایل‌ها) داشته باشد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80c9-9e16-e81b36b2f399" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-804e-848c-e76957b0e351" class="" dir="auto"><strong>پس چطور محدودیت &quot;حداکثر ۱۰ فایل&quot; را اعمال کردیم؟</strong><br/></p></div></aside><p id="391da1eb-8b9d-8015-b3ab-f9db039c8468" class="" dir="auto">اگر دیتابیس به لطف <code>ForeignKey</code> اجازه می‌دهد که بی‌نهایت عکس برای یک محصول ثبت شود، پس چطور جلوی ادمین را بگیریم که ۱۰۰ تا عکس آپلود نکند؟<br/>اینجا کدهای پایتون و جنگو به کمک ما می‌آیند. </p><p id="391da1eb-8b9d-807b-be1f-f98c0a7bed49" class="" dir="auto">ما این محدودیت را در سطح <strong>Business Logic (منطق کسب‌وکار)</strong> اعمال کردیم، نه در سطح ساختار سخت‌گیرانه دیتابیس.</p><pre id="391da1eb-8b9d-8064-a0be-d7dbf96453c0" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">existing_media_count = ProductMedia.objects.filter(product=self.product).count()
+if existing_media_count &gt;= 10:
+    raise ValidationError(&quot;شما نمی‌توانید بیشتر از ۱۰ فایل فرعی آپلود کنید.&quot;)</code></pre><p id="391da1eb-8b9d-8099-af94-d15a8db3b49c" class="" dir="auto"><strong>کالبدشکافی منطق بالا:</strong><br/>هر بار که ادمین می‌خواهد عکس جدیدی آپلود کند، این کد ابتدا در دیتابیس جستجو می‌کند (<code>filter</code>) و می‌شمارد (<code>count</code>) که این محصول تا الان چندتا عکس دارد.<br/>اگر تعداد آن‌ها ۹ تا بود، اجازه می‌دهد عکس دهم ذخیره شود. اما اگر تعداد ۱۰ تا بود، پایتون ترمز را می‌کشد و با پرتاب <code>ValidationError</code> اجازه نمی‌دهد درخواست به دیتابیس برسد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80c5-a219-fcfccc4ecd5f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80ce-8a63-caa0c36208e2" class="" dir="auto">خلاصه و جمع‌بندی:</p></div></aside><ul id="391da1eb-8b9d-80a8-938f-c063d5b56207" class="bulleted-list" dir="auto"><li style="list-style-type:disc">برای چیزهایی که <strong>دقیقاً یکی</strong> هستند (مثل تصویر اصلی محصول)، فیلد را مستقیم در خود محصول می‌گذاریم (که عملاً حکم یک‌به‌یک دارد).</li></ul><ul id="391da1eb-8b9d-8084-9181-c128fecab9c9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">برای چیزهایی که <strong>لیست یا گالری</strong> هستند (مثل تصاویر فرعی)، از <code>ForeignKey</code> استفاده می‌کنیم تا اجازه ثبت چند ردیف داده شود.</li></ul><ul id="391da1eb-8b9d-803e-a896-eb424916dd63" class="bulleted-list" dir="auto"><li style="list-style-type:disc">برای اعمال محدودیت روی تعداد لیست، از متدهای معتبرسازی مثل <code>clean</code> در جنگو استفاده می‌کنیم.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8029-a993-f6bed22a5903" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8001-b6b5-ef773db2d8fa" class="" dir="auto">حالا که این منطق قدرتمند را پیاده کردیم، باید تغییرات را به دیتابیس اعلام کنیم. </p></div></aside><blockquote id="390da1eb-8b9d-80eb-835b-f2da830108b1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">44- در ترمینال دستورات زیر را اجرا کنید<pre id="391da1eb-8b9d-809a-a648-dd4162ec4045" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations
+python manage.py migrate</code></pre></blockquote><p id="391da1eb-8b9d-802f-bd54-c69d940a5f5c" class="" dir="auto">نتیجه شبیه زیر است:</p><pre id="391da1eb-8b9d-8008-8b93-ea0cb3c8acc4" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations products
+Migrations for &#x27;products&#x27;:
+  apps\products\migrations\0002_product_productmedia.py
+    + Create model Product
+    + Create model ProductMedia
+    
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: accounts, admin, auth, contenttypes, customers, products, sessions
+Running migrations:
+  Applying products.0002_product_productmedia... OK</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80c9-b834-c84e7d1e79fe" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-803e-9383-e9d5f3321f1e" class="" dir="auto">متصل کردن این ساختار به پنل ادمین</p></div></aside><p id="391da1eb-8b9d-800e-86b5-c63aecfc26a1" class="" dir="auto">در حالت عادی، اگر بخواهیم برای یک محصول عکس فرعی آپلود کنیم، ادمین باید ابتدا به بخش <code>ProductMedia</code> برود، محصول را انتخاب کند، عکس را آپلود کند و ذخیره کند. این کار برای ۱۰ عکس یعنی ۱۰ بار رفت‌وآمد بین صفحات مختلف که اصلاً با معیارهای یک سیستم حرفه‌ای سازگار نیست.</p><p id="391da1eb-8b9d-8047-9b8d-e93dbb83111c" class="" dir="auto">جنگو برای این حل این مشکل قابلیتی به نام <strong>Inline Admin</strong> دارد. با این قابلیت، گالری تصاویر دقیقاً در زیر صفحه ساخت خود محصول باز می‌شود تا ادمین همه‌چیز را در یک صفحه مدیریت کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8081-b7c4-fd49cce8920a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-802a-aaef-ca8d513ca61b" class="" dir="auto">پیاده‌سازی مدیریت یکپارچه محصول و گالری</p></div></aside><blockquote id="391da1eb-8b9d-805a-9b72-eff58d9a18eb" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">45-  فایل <code>apps/products/admin.py</code> را باز کنید و کدهای زیر را به انتهای آن اضافه کنید:<pre id="391da1eb-8b9d-80a7-a81d-d1d325d2ebfd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from .models import Category, Brand, Product, ProductMedia # مدل‌های جدید اضافه شدند
+
+# کدهای قبلی مربوط به CategoryAdmin و BrandAdmin بدون تغییر اینجا بمانند...
+
+# ۱. ساخت کلاس اینلاین برای گالری فرعی
+class ProductMediaInline(admin.TabularInline):
+    model = ProductMedia
+    extra = 1          # تعداد ردیف‌های خالی که به صورت پیش‌فرض نمایش داده می‌شود
+    max_num = 10       # قفل کردن فرانت‌اند ادمین روی حداکثر ۱۰ فایل فرعی
+
+
+# ۲. ساخت کلاس مدیریت اصلی محصول
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    # الف) ستون‌های نمایشی در جدول لیست محصولات
+    list_display = [&#x27;name&#x27;, &#x27;brand&#x27;, &#x27;category&#x27;, &#x27;price&#x27;, &#x27;inventory&#x27;, &#x27;created_at&#x27;]
+    
+    # ب) باکس فیلتر در سمت راست پنل ادمین
+    list_filter = [&#x27;category&#x27;, &#x27;brand&#x27;, &#x27;created_at&#x27;]
+    
+    # ج) باکس جستجوی پیشرفته
+    search_fields = [&#x27;name&#x27;, &#x27;description&#x27;]
+    
+    # د) پر شدن خودکار اسلاگ محصول بر اساس نام آن
+    prepopulated_fields = {&#x27;slug&#x27;: (&#x27;name&#x27;,)}
+    
+    # هـ) تزریق گالری فرعی به انتهای صفحه محصول
+    inlines = [ProductMediaInline]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80ae-8bda-df80fc829b92" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-801a-ab15-d32480482ecc" class="" dir="auto">کالبدشکافی خط به خط کدهای ادمین (بدون Vibe Coding)</p></div></aside><ul id="391da1eb-8b9d-80ed-9444-f0811aa2c3ef" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>class ProductMediaInline(admin.TabularInline)</strong></code><strong>:</strong><br/>ما در جنگو دو نوع اینلاین داریم: <code>TabularInline</code> (جدولی) و <code>StackedInline</code> (پشته‌ای). مدل جدولی فیلدها را در یک ردیف افقی و بسیار فشرده نشان می‌دهد که برای آپلود عکس و ویدیو عالی است و صفحه را بیش از حد طولانی نمی‌کند.</li></ul><ul id="391da1eb-8b9d-80d9-8fd6-c938d0400160" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>model = ProductMedia</strong></code><strong>:</strong><br/>به جنگو می‌گوییم این ردیف‌های درون‌برنامه‌ای، قرار است داده‌های جدول <code>ProductMedia</code> را پر کنند. جنگو خودش به صورت هوشمند از روی رابطه <code>ForeignKey</code> می‌فهمد که این مِدیاها چطور به محصول متصل می‌شوند.</li></ul><ul id="391da1eb-8b9d-8059-a426-f58697ae439b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>extra = 1</strong></code><strong>:</strong><br/>وقتی ادمین صفحه محصول را باز می‌کند، جنگو به طور پیش‌فرض ۱ ردیف خالی برای آپلود فایل جدید به او نشان می‌دهد. ادمین می‌تواند با دکمه Add another ردیف‌های بیشتری باز کند.</li></ul><ul id="391da1eb-8b9d-8002-bc69-c68bc238ab27" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>max_num = 10</strong></code><strong>:</strong><br/>این یک لایه امنیتی در فرانت‌اند پنل ادمین است. با این دستور، جنگو بعد از اینکه ادمین ۱۰ فایل فرعی را آپلود کرد، دکمه Add another را مخفی می‌کند تا ادمین اصلاً نتواند دکمه اضافه کردن را کلیک کند (یادتان هست که در مرحله قبل، لایه امنیتی بک‌اند را هم با متد <code>clean</code> در مدل قفل کرده بودیم؟ حالا سیستم از هر دو طرف کاملاً امن است).</li></ul><ul id="391da1eb-8b9d-8002-acf8-c28f39ff24a6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>list_filter = [...]</strong></code><strong>:</strong><br/>در پروژه‌های بزرگ با هزاران محصول، ادمین باید بتواند سریعاً محصولات را فیلتر کند. این دستور یک سایدبار هوشمند در سمت راست ادمین می‌سازد تا محصولات بر اساس برند یا دسته‌بندی خاص جداسازی شوند.</li></ul><ul id="391da1eb-8b9d-80da-8450-fe13a2b00c21" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>search_fields = [...]</strong></code><strong>:</strong><br/>این فیلد یک باکس سرچ به بالای صفحه اضافه می‌کند. وقتی ادمین متنی را سرچ می‌کند، جنگو پشت صحنه یک کوئری SQL با دستور <code>LIKE</code> روی فیلدهای <code>name</code> و <code>description</code> می‌زند تا کالا را پیدا کند.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8088-8230-c865475a4e04" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8027-8173-ce430ac68025" class="" dir="auto">تست سناریوهای واقعی در پنل ادمین</p></div></aside><p id="391da1eb-8b9d-808e-ab24-ee8be1229f84" class="" dir="auto">حالا سرور پروژه را روشن کنید (<code>python manage.py runserver</code>) و به صفحه ادمین محصول بروید: <code>http://127.0.0.1:8000/admin/products/product/add/</code></p><p id="391da1eb-8b9d-8016-9011-dd0b92ae3a94" class="" dir="auto"><strong>سه سناریوی زیر را برای چالش کشیدن کدهایتان تست کنید:</strong></p><ol type="1" id="391da1eb-8b9d-8003-97c4-e1ea36e8606c" class="numbered-list" start="1" dir="auto"><li><strong>تست اسلاگ و تصویر اصلی:</strong> نام یک محصول را بنویسید (مثلاً: گوشی سامسونگ S24). ببینید چطور اسلاگ فارسی پر می‌شود. یک تصویر اصلی برای آن آپلود کنید.</li></ol><ol type="1" id="391da1eb-8b9d-80ea-b3ab-c514f5b1e7c5" class="numbered-list" start="2" dir="auto"><li><strong>تست گالری فرعی:</strong> در پایین صفحه، بخش گالری را می‌بینید. سعی کنید چند تصویر فرعی و یک ویدیوی کوتاه آپلود کنید و دکمه Save را بزنید. همه‌چیز باید بدون مشکل ذخیره شود.</li></ol><ol type="1" id="391da1eb-8b9d-8033-833c-c69bbb35d545" class="numbered-list" start="3" dir="auto"><li><strong>تست ولیدیتور (بسیار مهم):</strong> یک ویدیوی طولانی (بالای ۲ دقیقه) یا یک فایل حجیم انتخاب کنید و سعی کنید محصول را ذخیره کنید. دیتابیس نباید رکورد را ثبت کند و جنگو باید دقیقاً بالای همان ردیف گالری، ارور فارسی که در متد <code>validate_media_file</code> نوشتیم را به ادمین نمایش دهد.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80a9-8588-ee8379a197de" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80e8-b5f0-fc28d2664e57" class="" dir="auto">ارور  <code>&#x27;FieldFile&#x27; object has no attribute &#x27;temporary_file_path&#x27;<br/></code><strong>AttributeError        at /admin/products/product/1….</strong></p></div></aside><p id="391da1eb-8b9d-8085-8f57-e6d7ce750764" class="" dir="auto">چرا این خطا (AttributeError) رخ داد؟</p><p id="391da1eb-8b9d-801b-adda-d37f0f78f432" class="" dir="auto">شما سعی کردید از متد <code>temporary_file_path()</code> استفاده کنید تا آدرس فایل ویدیو را به OpenCV بدهید. اما جنگو در مدیریت فایل‌های آپلودی رفتار دوگانه‌ای دارد:</p><ol type="1" id="391da1eb-8b9d-80dd-843e-d3ee2b030ed2" class="numbered-list" start="1" dir="auto"><li><strong>فایل‌های کوچک (زیر ۲.۵ مگابایت):</strong> جنگو برای سرعت بیشتر، این فایل‌ها را اصلاً روی هارد دیسک ذخیره نمی‌کند! بلکه آن‌ها را مستقیماً در حافظه رم (RAM) با کلاسی به نام <code>InMemoryUploadedFile</code> نگه می‌دارد. چون فایلی روی هارد نیست، طبیعتاً آدرس فیزیکی (Path) هم ندارد و متد <code>temporary_file_path</code> کار نمی‌کند.</li></ol><ol type="1" id="391da1eb-8b9d-80f9-a88d-f974fe7af731" class="numbered-list" start="2" dir="auto"><li><strong>فایل‌های بزرگ (بالای ۲.۵ مگابایت):</strong> جنگو این فایل‌ها را در پوشه موقت سیستم‌عامل با کلاسی به نام <code>TemporaryUploadedFile</code> ذخیره می‌کند. این فایل‌ها آدرس فیزیکی دارند.</li></ol><ol type="1" id="391da1eb-8b9d-8037-952c-f24684537bfb" class="numbered-list" start="3" dir="auto"><li><strong>فایل‌های از قبل ذخیره شده:</strong> اگر بخواهید محصولی را ویرایش کنید که از قبل ویدیویی دارد، جنگو یک شیء از نوع <code>FieldFile</code> به ولیدیتور می‌فرستد که آن هم متد <code>temporary_file_path</code> را ندارد.</li></ol><p id="391da1eb-8b9d-80d9-864e-da092a322bd5" class="" dir="auto">از آنجا که کتابخانه <code>cv2</code> (OpenCV) فقط و فقط یک <strong>آدرس فایل فیزیکی روی هارد</strong> را می‌خواند و حافظه رم را نمی‌فهمد، سیستم کرش کرد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8093-8145-f0220e9ad3de" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8081-8997-e2e6e1bd0feb" class="" dir="auto">راه حل معماری اصولی (استفاده از tempfile)</p></div></aside><p id="391da1eb-8b9d-80bd-b44a-c1bfd7283f9d" class="" dir="auto">برای حل این مشکل بدون اینکه به تنظیمات پایه جنگو دست بزنیم، باید یک فایل موقت فیزیکی روی سرور بسازیم، فایلِ جنگو (چه در رم باشد چه روی هارد) را تکه‌تکه (Chunk) داخل آن بنویسیم، آدرس آن را به OpenCV بدهیم و در نهایت آن فایل موقت را حذف کنیم.</p><blockquote id="391da1eb-8b9d-8072-99f6-d7af89ad2e38" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">46- فایل <code>apps/products/models.py</code> را باز کنید و تابع <code>validate_media_file</code> را به شکل زیر اصلاح کنید:<pre id="391da1eb-8b9d-800b-8cc7-d88c54ee020c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import cv2
+import os
+import tempfile # این کتابخانه استاندارد پایتون باید اضافه شود
+from django.db import models
+from django.core.exceptions import ValidationError
+
+def validate_media_file(file):
+    # الف) بررسی حجم فایل (400 مگابایت به بایت)
+    max_size_mb = 400
+    max_size_bytes = max_size_mb * 1024 * 1024
+    if file.size &gt; max_size_bytes:
+        raise ValidationError(f&quot;حجم فایل نمی‌تواند بیشتر از {max_size_mb} مگابایت باشد.&quot;)
+
+    # ب) بررسی مدت زمان ویدیو (اگر فایل ویدیو بود)
+    file_name = file.name.lower()
+    if file_name.endswith((&#x27;.mp4&#x27;, &#x27;.mkv&#x27;, &#x27;.avi&#x27;, &#x27;.mov&#x27;)):
+        
+        # ۱. ساخت یک فایل موقت فیزیکی و امن روی سیستم‌عامل
+        with tempfile.NamedTemporaryFile(delete=False, suffix=&#x27;.mp4&#x27;) as temp_video:
+            # ۲. خواندن فایل جنگو به صورت تکه‌تکه و نوشتن در فایل موقت
+            for chunk in file.chunks():
+                temp_video.write(chunk)
+            temp_video_path = temp_video.name
+
+        try:
+            # ۳. دادن آدرس فایل فیزیکی موقت به OpenCV
+            video = cv2.VideoCapture(temp_video_path)
+            
+            frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
+            fps = video.get(cv2.CAP_PROP_FPS)
+            
+            if fps &gt; 0:
+                duration_seconds = frames / fps
+                if duration_seconds &gt; 120:
+                    raise ValidationError(&quot;مدت زمان ویدیو نمی‌تواند بیشتر از ۲ دقیقه باشد.&quot;)
+        finally:
+            # ۴. پاکسازی (بسیار مهم): آزادسازی رم و حذف فایل موقت از روی هارد
+            if &#x27;video&#x27; in locals():
+                video.release()
+            if os.path.exists(temp_video_path):
+                os.remove(temp_video_path)</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80a2-9245-d6306a06668f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-80c7-8346-c84df12dfde1" class="" dir="auto">کالبدشکافی کدهای جدید</p></div></aside><ul id="391da1eb-8b9d-8059-a9b8-eabc3eedefef" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>tempfile.NamedTemporaryFile</strong></code><strong>:</strong> این ابزار درونی پایتون است. یک فایل فیزیکی کاملاً امن و یکتا روی هارد دیسک سرور می‌سازد. ما <code>delete=False</code> گذاشتیم تا فایل فوراً بسته نشود و بتوانیم آدرس آن (<code>temp_video.name</code>) را به OpenCV بدهیم.</li></ul><ul id="391da1eb-8b9d-8031-af18-fd5546ba74d0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>file.chunks()</strong></code><strong>:</strong> ما کل فایل را یک‌جا در رم بارگذاری نمی‌کنیم (چون ممکن است ۴۰۰ مگابایت رم سرور را اشغال کند). با <code>chunks</code>، پایتون فایل را در بسته‌های کوچک (معمولاً ۶۴ کیلوبایتی) می‌خواند و در فایل موقت می‌نویسد. این کار برای جلوگیری از پر شدن حافظه (Memory Overflow) در پروداکشن الزامی است.</li></ul><ul id="391da1eb-8b9d-809f-a293-fb58c569d487" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>بلاک </strong><code><strong>try...finally</strong></code><strong>:</strong> مهم‌ترین قانون در مدیریت فایل‌ها! اگر ویدیوی کاربر خراب باشد و OpenCV کرش کند، یا اگر خطای زمانِ بیش از ۲ دقیقه پرتاب شود (<code>raise ValidationError</code>)، اجرای کد متوقف می‌شود. بلاک <code>finally</code> تضمین می‌کند که <strong>تحت هر شرایطی</strong>، حتی اگر سرور خطا داد، فایل موقتی که ساختیم از روی هارد پاک شود تا هارد سرور به مرور زمان پر از ویدیوهای موقت نشود.</li></ul><hr id="391da1eb-8b9d-8075-96cf-e88e70bdbc53" dir="auto"/><h3 id="391da1eb-8b9d-8035-ae51-dce0ebac0c69" class="" dir="auto">چرا الان زمان مناسبی برای Swagger نیست؟</h3><ul id="391da1eb-8b9d-80a9-a831-d61a7f83377d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>۱. کمبود نقطه‌های پایانی (Endpoints):</strong> در حال حاضر، ما در کل پروژه فقط یک API واقعی داریم (همان <code>GET/PATCH /api/customers/me/</code> در فاز ۳). اگر الان ابزارهای OpenAPI (مثل <code>drf-spectacular</code> که استاندارد مدرن DRF است) را نصب کنیم، خروجی Swagger ما بسیار خالی و خسته‌کننده خواهد بود و نمی‌توانیم قدرت واقعی آن را ببینیم.</li></ul><ul id="391da1eb-8b9d-80ad-ad2f-f4452f526889" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>۲. از دست دادن تمرکز (Context Switching):</strong> ما الان دقیقاً در قلب <strong>Product Domain (فاز ۴)</strong> هستیم. مدل‌ها را معماری کردیم، ولیدیتورهای پیچیده نوشتیم و ادمین را یکپارچه کردیم. اگر الان وارد تنظیمات زیرساختی (Infrastructure) مثل Swagger بشویم، تمرکزمان از روی منطق کسب‌وکار به هم می‌خورد.</li></ul><ul id="391da1eb-8b9d-8031-a8fc-f78af5b69c6e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>۳. غول مرحله آخر محصولات (مشکل N+1):</strong> ما هنوز Serializerها و Viewهای مربوط به محصولات را ننوشته‌ایم. در بخش نمایش محصولات، یک چالش وحشتناک به نام مشکل N+1 Query وجود دارد (وقتی یک کالا ۱۰ عکس دارد، دیتابیس برای هر عکس یک کوئری جداگانه می‌زند و سرور به شدت کُند می‌شود). حل این مشکل اولویت بسیار بالاتری نسبت به مستندسازی دارد.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-8039-a747-dd746b7835a3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-803e-aa7b-f14479696701" class="" dir="auto">در نقطه‌ای هستیم که مفاهیم پیشرفته‌ی جنگو و DRF خودشان را نشان می‌دهند.</p></div></aside><p id="391da1eb-8b9d-806a-9df7-c53ea1028bf2" class="" dir="auto"><br/>در این مرحله، هدف ما این است که دیتای محصول را به همراه <strong>برند</strong>، <strong>دسته‌بندی</strong> و <strong>گالری تصاویرش</strong> به یک JSON تمیز تبدیل کنیم. <br/>اما یک قانون مهم داریم: سریالایزر <code>Product</code> به سریالایزرهای دیگر وابسته است. <br/>یعنی قبل از اینکه بتوانیم محصول را JSON کنیم، باید به DRF یاد بدهیم که چطور یک &quot;برند&quot; یا &quot;مدیا&quot; را JSON کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="391da1eb-8b9d-80a1-be6f-ef4a4020ac0d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8099-9802-fcd3a8291dda" class="" dir="auto">قدم اول: ساخت Serializerهای پایه و Product Serializer</p></div></aside><blockquote id="391da1eb-8b9d-802e-a3dc-e4ce04425196" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">47-  در مسیر <code>apps/products/</code> یک فایل جدید به نام <code>serializers.py</code> بسازید و کدهای زیر را بادقت وارد کنید:<pre id="391da1eb-8b9d-8028-a4c4-d21594ebf36e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework import serializers
+from .models import Category, Brand, Product, ProductMedia
+
+# ۱. سریالایزر دسته‌بندی
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [&#x27;id&#x27;, &#x27;name&#x27;, &#x27;slug&#x27;]
+
+# ۲. سریالایزر برند
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = [&#x27;id&#x27;, &#x27;name&#x27;, &#x27;slug&#x27;, &#x27;image&#x27;]
+
+# ۳. سریالایزر گالری مدیا
+class ProductMediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductMedia
+        fields = [&#x27;id&#x27;, &#x27;media_type&#x27;, &#x27;file&#x27;]
+
+# ۴. سریالایزر اصلی محصول (Master Serializer)
+class ProductSerializer(serializers.ModelSerializer):
+    # الف) Nested Serializers برای فیلدهای کلید خارجی (ForeignKey)
+    category = CategorySerializer(read_only=True)
+    brand = BrandSerializer(read_only=True)
+    
+    # ب) Nested Serializer برای رابطه معکوس (گالری)
+    media_gallery = ProductMediaSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Product
+        fields = [
+            &#x27;id&#x27;, 
+            &#x27;name&#x27;, 
+            &#x27;slug&#x27;, 
+            &#x27;description&#x27;, 
+            &#x27;price&#x27;, 
+            &#x27;inventory&#x27;, 
+            &#x27;main_image&#x27;,
+            &#x27;category&#x27;, 
+            &#x27;brand&#x27;, 
+            &#x27;media_gallery&#x27;, # اضافه کردن گالری به خروجی نهایی
+            &#x27;created_at&#x27;
+        ]
+        </code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="392da1eb-8b9d-807b-a042-f8e09ee6fbda" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="392da1eb-8b9d-80ea-9978-ee9f0ee1c138" class="" dir="auto">کالبدشکافی خط به خط Serializerها (بدون Vibe Coding)</p></div></aside><ul id="392da1eb-8b9d-8079-8d7e-f8cf40f6187e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا ۳ سریالایزر اول را ساختیم؟</strong><br/>اگر در <code>ProductSerializer</code> فقط می‌نوشتیم <code>fields = [&#x27;category&#x27;, &#x27;brand&#x27;]</code>، خروجی API فقط ID آن‌ها را برمی‌گرداند (مثلاً <code>&quot;brand&quot;: 2</code>). اما در یک فروشگاه واقعی، فرانت‌اند به نام و اسلاگ برند هم نیاز دارد تا آن را نمایش دهد. با پاس دادن <code>CategorySerializer</code> و <code>BrandSerializer</code> به متغیرهای <code>category</code> و <code>brand</code>، ما به DRF می‌گوییم: &quot;به جای ID، کل آبجکت برند را به صورت تو در تو (Nested) برگردان&quot;.</li></ul><ul id="392da1eb-8b9d-8076-80f9-e95daff1f64f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>media_gallery = ProductMediaSerializer(many=True, ...)</strong></code><strong>:</strong><ul id="392da1eb-8b9d-80c7-be37-e57ed174eb78" class="bulleted-list" dir="auto"><li style="list-style-type:circle">کلمه <code>media_gallery</code>: یادتان هست در فایل <code>models.py</code> وقتی <code>ProductMedia</code> را می‌ساختیم، نوشتیم <code>related_name=&#x27;media_gallery&#x27;</code>؟ اینجا دقیقاً باید از همان نام استفاده کنیم تا DRF بفهمد باید برود و فایل‌های فرعی این محصول را پیدا کند.</li></ul><ul id="392da1eb-8b9d-8027-b6ee-c53abd603628" class="bulleted-list" dir="auto"><li style="list-style-type:circle">پارامتر <code>many=True</code>: این <strong>حیاتی‌ترین</strong> کلمه در این خط است. چون گالری یک رابطه &quot;چند به یک&quot; است (یک محصول، ۱۰ عکس)، DRF باید بداند که با یک لیست (List) از داده‌ها طرف است، نه یک آبجکت تکی. اگر <code>many=True</code> را نگذارید، سیستم کرش می‌کند.</li></ul></li></ul><h3 id="392da1eb-8b9d-80c2-8a7e-ec430565d783" class="" dir="auto">قدم دوم: غول مرحله آخر (مشکل N+1 در Views)</h3><p id="392da1eb-8b9d-80de-9b0d-cdc0bd8fd280" class="" dir="auto">حالا که سریالایزر آماده است، باید View آن را بسازیم تا محصولات را به کاربر نمایش دهد (مثلاً در صفحه اصلی فروشگاه). اما اینجا یک تله بزرگ وجود دارد که برنامه‌نویسان تازه‌کار در آن می‌افتند: <strong>مشکل N+1 Query</strong>.</p><p id="392da1eb-8b9d-8029-9088-ce8a7f1fb5ac" class="" dir="auto"><strong>مشکل N+1 چیست؟</strong><br/>فرض کنید ۱۰ محصول در دیتابیس داریم. اگر در View فقط بنویسیم <code>Product.objects.all()</code>، جنگو ۱ کوئری می‌زند تا ۱۰ محصول را بیاورد.<br/>سپس سریالایزر برای محصول اول می‌گوید: &quot;من عکس‌های گالری‌ات را می‌خواهم!&quot; -&gt; جنگو ۱ کوئری دیگر می‌زند.<br/>محصول دوم: &quot;عکس‌های من؟&quot; -&gt; ۱ کوئری دیگر.<br/>برای ۱۰ محصول، دیتابیس ۱۱ بار (۱ + ۱۰) درگیر می‌شود. حالا فرض کنید دیجی‌کالا در یک صفحه ۱۰۰ محصول با برند و دسته‌بندی و گالری لود کند... سرور با ۳۰۱ کوئری نابود می‌شود!</p><p id="392da1eb-8b9d-8041-8bc7-c4188e6605c7" class="" dir="auto"><strong>راه‌حل معماری دیتابیس در جنگو:</strong></p><ul id="392da1eb-8b9d-80a8-bbf7-c671b3108f59" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>select_related</code>: برای روابط <code>ForeignKey</code> (مثل برند و دسته) استفاده می‌شود. جنگو در سطح دیتابیس یک <code>SQL JOIN</code> می‌زند و همه را در <strong>همان ۱ کوئری اول</strong> می‌آورد.</li></ul><ul id="392da1eb-8b9d-80e4-a6bf-ee9f95e36bbe" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>prefetch_related</code>: برای روابط معکوس و لیست‌ها (مثل گالری تصاویر) استفاده می‌شود. جنگو تمام گالری‌های مرتبط را فقط با <strong>۱ کوئری اضافه</strong> (با دستور <code>IN</code> در SQL) می‌آورد و در رم پایتون آن‌ها را به هم می‌چسباند.</li></ul><blockquote id="391da1eb-8b9d-80cd-abb9-f64f7afa7a54" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">48- در مسیر <code>apps/products/</code> فایل <code>views.py</code> را باز کنید (یا بسازید) و کدهای بهینه‌شده زیر را بنویسید:<br/><br/><pre id="393da1eb-8b9d-80c5-b768-cc69cc294d4d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny
+from .models import Product
+from .serializers import ProductSerializer
+
+class ProductListView(ListAPIView):
+    &quot;&quot;&quot;
+    API دریافت لیست تمام محصولات فروشگاه
+    آزاد برای تمام کاربران (بدون نیاز به لاگین)
+    &quot;&quot;&quot;
+    permission_classes = [AllowAny] # همه می‌توانند محصولات را ببینند
+    serializer_class = ProductSerializer
+    
+    # QuerySet کاملاً بهینه‌سازی شده برای جلوگیری از مشکل N+1
+    queryset = Product.objects.select_related(
+        &#x27;category&#x27;, 
+        &#x27;brand&#x27;
+    ).prefetch_related(
+        &#x27;media_gallery&#x27;
+    ).all()</code></pre></blockquote><h3 id="393da1eb-8b9d-805e-9643-e9c41c3d0a70" class="" dir="auto">کالبدشکافی View</h3><ul id="393da1eb-8b9d-801a-8c1c-d29afad24c94" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>ListAPIView</strong></code><strong>:</strong> به جای اینکه خودمان به صورت دستی مثل فاز ۳ متد <code>get</code> بنویسیم و <code>Response</code> برگردانیم، از Generic View های آماده DRF استفاده کردیم. این کلاس به صورت خودکار کوئری‌ست را می‌گیرد، آن را به سریالایزر می‌دهد و در صورت تنظیم بودن Pagination (که در تنظیمات پایه انجام دادیم)، خروجی را صفحه‌بندی می‌کند.</li></ul><ul id="393da1eb-8b9d-808f-be2b-f06efd65a5c8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>AllowAny</strong></code><strong>:</strong> برعکس پروفایل مشتری (<code>IsAuthenticated</code>)، کاتالوگ محصولات باید برای عموم مردم و موتورهای جستجو (گوگل) باز باشد تا سئو سایت کار کند.</li></ul><ul id="393da1eb-8b9d-8044-ba1f-fe2edf26fee3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>بهینه‌سازی Query:</strong> با ترکیب <code>select_related</code> و <code>prefetch_related</code>، ما تعداد کوئری‌های دیتابیس را برای لود کردن ۱۰۰ محصول از <strong>۳۰۱ کوئری به فقط ۲ کوئری</strong> کاهش دادیم! این یعنی کد شما در سطح یک برنامه نویس سنیور و آماده برای ترافیک پروداکشن است.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="393da1eb-8b9d-8069-9701-f2738a7c7831" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="391da1eb-8b9d-8095-9a0c-fa72a36e8a99" class="" dir="auto">قدم نهایی: اتصال به URL</p></div></aside><blockquote id="393da1eb-8b9d-8051-a112-c9385a317ac1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">49- در مسیر <code>apps/products/</code> یک فایل به نام <code>urls.py</code> بسازید و مسیر زیر را تعریف کنید:<pre id="393da1eb-8b9d-805c-9336-d44cbfad6e24" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path
+from .views import ProductListView
+
+urlpatterns = [
+    path(&#x27;&#x27;, ProductListView.as_view(), name=&#x27;product-list&#x27;),
+]</code></pre></blockquote><blockquote id="393da1eb-8b9d-8018-aebb-e1f4880ba42e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">50- <strong>این URL را به روت اصلی API در فایل </strong><code><strong>apps/api/urls.py</strong></code><strong> متصل کنید:</strong><p id="393da1eb-8b9d-800c-b16e-fb29c4632a46" class="" dir="auto">فایل <code>apps/api/urls.py</code> را باز کنید و مسیر <code>products/</code> را به آن اضافه کنید:</p><pre id="393da1eb-8b9d-8093-a9e1-f0ea93fbef7b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path
+from .views import ProductListView
+
+urlpatterns = [
+    path(&#x27;&#x27;, ProductListView.as_view(), name=&#x27;product-list&#x27;),
+]</code></pre></blockquote><p id="393da1eb-8b9d-80a1-92ec-e5fe44956a3a" class="" dir="auto">حالا می‌توانید در Postman (بدون نیاز به توکن)، به آدرس <code>GET http://127.0.0.1:8000/api/products/</code> درخواست بزنید و محصولاتی که در پنل ادمین ساخته‌اید را با یک JSON بسیار زیبا، کامل (شامل برند و گالری) و دیتابیسی کاملاً بهینه‌شده مشاهده کنید.</p><table id="393da1eb-8b9d-80f0-a31a-e8b7f6f096ef" class="simple-table" dir="ltr"><tbody><tr id="393da1eb-8b9d-807f-89f6-feba109e421d" dir="ltr"><td id="\?:j" class="" style="width:235.66666666666666px"><strong>ویژگی</strong></td><td id="Wo~W" class="" style="width:235.66666666666666px"><strong>select_related</strong></td><td id="[}HC" class="" style="width:235.66666666666666px"><strong>prefetch_related</strong></td></tr><tr id="393da1eb-8b9d-80f2-9e26-ebbed7bc1380" dir="ltr"><td id="\?:j" class="" style="width:235.66666666666666px"><strong>نوع رابطه مناسب</strong></td><td id="Wo~W" class="" style="width:235.66666666666666px">ForeignKey, OneToOne</td><td id="[}HC" class="" style="width:235.66666666666666px">ManyToMany, Reverse ForeignKey</td></tr><tr id="393da1eb-8b9d-8020-91dc-db26e6860af0" dir="ltr"><td id="\?:j" class="" style="width:235.66666666666666px"><strong>کارکرد در دیتابیس</strong></td><td id="Wo~W" class="" style="width:235.66666666666666px">از طریق <code>SQL JOIN</code></td><td id="[}HC" class="" style="width:235.66666666666666px">از طریق چند کوئری مجزا و فیلتر با <code>IN</code></td></tr><tr id="393da1eb-8b9d-8028-b565-c76c30dbf932" dir="ltr"><td id="\?:j" class="" style="width:235.66666666666666px"><strong>تعداد کوئری‌ها</strong></td><td id="Wo~W" class="" style="width:235.66666666666666px">همیشه <strong>۱ کوئری</strong></td><td id="[}HC" class="" style="width:235.66666666666666px"><strong>بیش از ۱ کوئری</strong> (معمولاً ۲ کوئری)</td></tr><tr id="393da1eb-8b9d-80f8-af15-c1f92cd6c168" dir="ltr"><td id="\?:j" class="" style="width:235.66666666666666px"><strong>محل پردازش اتصال</strong></td><td id="Wo~W" class="" style="width:235.66666666666666px">داخل خود دیتابیس (SQL)</td><td id="[}HC" class="" style="width:235.66666666666666px">داخل حافظه پایتون (Django ORM)</td></tr></tbody></table><blockquote id="393da1eb-8b9d-806e-9e17-c05efcda28c5" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>51- داخل ترمینال این رو بنویس تا پکیچ django debug toolbar نصب بشه<br/><pre id="393da1eb-8b9d-8098-85a0-e11871ae34e7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pipenv install django-debug-toolbar</code></pre></blockquote><blockquote id="393da1eb-8b9d-80cd-abcd-cbe99cbd4360" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>51- داخل ترمینال این رو بنویس تا پکیچ django debug toolbar نصب بشه<br/><pre id="393da1eb-8b9d-8034-9c02-ff14734a1049" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pipenv install django-debug-toolbar</code></pre></blockquote><blockquote id="393da1eb-8b9d-80f5-a2be-f5cd07ac3dd0" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>52- داخل فایل <a href="http://base.py">base.py</a> چک کن باشه<br/><pre id="393da1eb-8b9d-8008-a4e0-c3188d316151" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Check for Prerequisites
+INSTALLED_APPS = [
+    # ...
+    &quot;django.contrib.staticfiles&quot;,
+    # ...
+]
+STATIC_URL = &quot;static/&quot;</code></pre></blockquote><blockquote id="393da1eb-8b9d-8073-b638-e10ac551b70c" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>53- داخل فایل <a href="http://base.py">base.py</a> اضافه کن<br/><pre id="393da1eb-8b9d-8039-9284-d4cca98b6a57" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">INTERNAL_IPS = [
+    # ...
+    &quot;127.0.0.1&quot;,
+    # ...
+]
+
+INSTALLED_APPS = [
+    # ...
+    &quot;debug_toolbar&quot;,
+    # ...
+]
+
+MIDDLEWARE = [
+    # ...
+    &quot;debug_toolbar.middleware.DebugToolbarMiddleware&quot;,
+    # ...
+]
+
+
+</code></pre></blockquote><blockquote id="393da1eb-8b9d-80e3-a571-d474a8c943fe" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>54- داخل فایل config/urls.py اضافه کن<br/><pre id="393da1eb-8b9d-8062-8c40-eb05f5830879" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import include, path
+from debug_toolbar.toolbar import debug_toolbar_urls
+
+urlpatterns = [
+    # ... the rest of your URLconf goes here ...
+] + debug_toolbar_urls()</code></pre></blockquote><blockquote id="393da1eb-8b9d-8004-95ba-f75ae767a079" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>55- داخل فایل requirements.txt اضافه ش کن  و داخل گیت هاب push کن<br/><pre id="393da1eb-8b9d-8007-bd4b-d52ae32961fd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">pipenv requirements &gt; requirements.txt</code></pre></blockquote><blockquote id="393da1eb-8b9d-800f-b1d1-c0594f8cebfd" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><br/>56- برای تست کردن اپلیکیشن debug toolbar رو disable کن<br/><strong>Disable the toolbar when running tests (optional)</strong><br/><pre id="393da1eb-8b9d-808e-89cd-fd394f002686" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">TESTING = &quot;test&quot; in sys.argv or &quot;PYTEST_VERSION&quot; in os.environ
+
+if not TESTING:
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        &quot;debug_toolbar&quot;,
+    ]
+    MIDDLEWARE = [
+        &quot;debug_toolbar.middleware.DebugToolbarMiddleware&quot;,
+        *MIDDLEWARE,
+    ]</code></pre><p id="393da1eb-8b9d-8097-8ff2-fc94244e728e" class="" dir="auto">You should also modify your URLconf file:</p><pre id="393da1eb-8b9d-80e6-9e3e-df4f91652e7e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.conf import settings
+
+if not settings.TESTING:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+
+    urlpatterns = [
+        *urlpatterns,
+    ] + debug_toolbar_urls()</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8067-9177-d0f2739e0f2d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="390da1eb-8b9d-80cf-8637-cd3028f49fd9" class="" dir="auto">پایان Part-4</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,935 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-5</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="390da1eb-8b9d-80d1-a809-d7536e73c092" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-5</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><h1 id="390da1eb-8b9d-80a7-97cb-e2bb81af5d2b" class="" dir="auto">فاز 4: Products Domain</h1><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-80e0-91cd-cbb91cf2638b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="390da1eb-8b9d-8051-ac36-fd2a8e28cdbe" class="" dir="auto">در Part-4 ، فاز 4 تا قدم 56 پیش رفت</p></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="393da1eb-8b9d-8072-8558-e4017eeb4f6b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="393da1eb-8b9d-8041-801b-cfd6a4168e7e" class="" dir="auto">مستندسازی نیمه خودکار با استفاده از Swagger</p></div></aside><p id="394da1eb-8b9d-8008-8bd5-dc324434340f" class="" dir="auto">در دنیای Django REST Framework، ما دو انتخاب معروف برای Swagger داریم: <code>drf-yasg</code> (قدیمی و مبتنی بر OpenAPI 2.0) و <code>drf-spectacular</code> (مدرن، قدرتمند و مبتنی بر OpenAPI 3.0).<br/><br/>ما قطعاً مسیر حرفه‌ای‌تر یعنی <code><strong>drf-spectacular</strong></code> را انتخاب می‌کنیم.<br/></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-80df-b7b9-cb4deeaa34e5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="394da1eb-8b9d-80a4-b041-e17446899e24" class="" dir="auto">قدم اول: نصب و تنظیمات پایه</p></div></aside><blockquote id="394da1eb-8b9d-80a5-baf2-cca01b48798c" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>57- نصب پکیج </strong><code><strong>drf-spectacular</strong></code><strong> در محیط مجازی:</strong><br/>در ترمینال خود دستور زیر را وارد کنید:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="394da1eb-8b9d-8034-8244-f3cb00c56597" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">pipenv install drf-spectacular</code></pre></blockquote><blockquote id="394da1eb-8b9d-8088-af58-db733d600d2e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>58- اضافه کردن به requirements.txt</strong><br/>در ترمینال خود دستور زیر را وارد کنید:<pre id="394da1eb-8b9d-80ab-b79f-faea82a30184" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">pipenv requirements &gt; requirements.txt</code></pre></blockquote><blockquote id="394da1eb-8b9d-803f-ad54-f329bbc70179" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>59- معرفی به جنگو و DRF:</strong><br/>فایل <code>config/settings/base.py</code> را باز کنید. ما باید سه تغییر در این فایل ایجاد کنیم:<p id="394da1eb-8b9d-8081-bbc7-deae3af1901a" class="" dir="auto">ابتدا پکیج را به اپلیکیشن‌های نصب‌شده اضافه کنید:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="394da1eb-8b9d-803d-a7bd-c321b4ed9033" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">INSTALLED_APPS = [
+    # ...
+    &#x27;drf_spectacular&#x27;, # مستندسازی API
+    
+    &#x27;apps.accounts&#x27;,
+    &#x27;apps.customers&#x27;,
+    &#x27;apps.products&#x27;,
+]</code></pre></blockquote><blockquote id="394da1eb-8b9d-808b-a185-faf023d27f54" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>60- سپس به DRF بگویید که برای تولید شِمای (Schema) مستندات، از کلاسِ این پکیج استفاده کند:</strong><pre id="394da1eb-8b9d-8091-b58c-fdf07470c38e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">REST_FRAMEWORK = {
+    # تنظیمات قبلی شما (مثل Authentication و Pagination) اینجا می‌مانند...
+    
+    # اضافه کردن کلاس تولیدکننده مستندات
+    &#x27;DEFAULT_SCHEMA_CLASS&#x27;: &#x27;drf_spectacular.openapi.AutoSchema&#x27;,
+}</code></pre></blockquote><blockquote id="394da1eb-8b9d-8091-9151-dd6f35de5366" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>61- </strong>در نهایت، تنظیمات ظاهری و هویتی Swagger را به انتهای فایل <code>base.py</code> اضافه کنید:<br/><br/><pre id="394da1eb-8b9d-80eb-b0c1-fc164477f046" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># تنظیمات اختصاصی Swagger
+SPECTACULAR_SETTINGS = {
+    &#x27;TITLE&#x27;: &#x27;ACRON Project API&#x27;,
+    &#x27;DESCRIPTION&#x27;: &#x27;مستندات جامع APIهای فروشگاه آکرون شامل بخش مشتریان و محصولات&#x27;,
+    &#x27;VERSION&#x27;: &#x27;1.0.0&#x27;,
+    &#x27;SERVE_INCLUDE_SCHEMA&#x27;: False, # برای تمیز ماندن خروجی نهایی
+    
+    # تنظیمات امنیتی برای تست APIها داخل خود مرورگر
+    &#x27;SECURITY&#x27;: [
+        {&#x27;jwtAuth&#x27;: []}
+    ],
+    &#x27;SECURITY_DEFINITIONS&#x27;: {
+        &#x27;jwtAuth&#x27;: {
+            &#x27;type&#x27;: &#x27;http&#x27;,
+            &#x27;scheme&#x27;: &#x27;bearer&#x27;,
+            &#x27;bearerFormat&#x27;: &#x27;JWT&#x27;,
+        }
+    }
+}</code></pre></blockquote><h3 id="394da1eb-8b9d-809b-b873-f0806c92cc31" class="" dir="auto">کالبدشکافی تنظیمات (بدون Vibe Coding)</h3><ul id="394da1eb-8b9d-8029-b7dc-c622ec8364d9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>DEFAULT_SCHEMA_CLASS</strong></code><strong> را تغییر دادیم؟</strong> DRF به صورت پیش‌فرض یک سیستم تولید شمای ساده دارد که خیلی امکانات جالبی ندارد. با این خط، ما &quot;مغز&quot; تحلیلگر DRF را با &quot;مغز&quot; قدرتمند <code>drf-spectacular</code> جایگزین می‌کنیم تا بتواند روابط پیچیده (مثل گالری تصاویر و JWT) را بفهمد.</li></ul><ul id="394da1eb-8b9d-80a3-953a-d7a724c3f11b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>بخش </strong><code><strong>SECURITY_DEFINITIONS</strong></code><strong> چیست؟</strong> یکی از جذاب‌ترین امکانات Swagger این است که دکمه‌ای به نام <code>Try it out</code> دارد. اما APIهای پروفایل مشتری ما (مثل <code>GET /api/customers/me/</code>) قفل هستند و توکن می‌خواهند. این تنظیمات به Swagger UI می‌فهماند که پروژه ما از <code>Bearer Token</code> استفاده می‌کند. با این کار، یک دکمه 🔒 (Authorize) بالای صفحه Swagger ظاهر می‌شود که می‌توانید توکن خود را آنجا قرار دهید و مستقیماً از داخل مرورگر APIها را تست کنید.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-80f3-a223-c1089597d6f0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="394da1eb-8b9d-80b0-bfb8-dcf1ad7cb941" class="" dir="auto">قدم دوم: مسیردهی (Routing) URLها</p></div></aside><p id="394da1eb-8b9d-8098-8fc7-ee714ba75d15" class="" dir="auto">حالا باید URLهایی بسازیم که فرانت‌اند بتواند از طریق آن‌ها فایل مستندات و رابط کاربری Swagger را ببیند.</p><blockquote id="394da1eb-8b9d-80ef-a21b-e0ffe82014a3" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto"><strong>62- فایل اصلی </strong><code><strong>config/urls.py</strong></code><strong> را باز کنید و کدهای زیر را اضافه کنید:</strong><pre id="394da1eb-8b9d-8052-90a5-f28809bddae6" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from django.urls import path, include
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
+urlpatterns = [
+    path(&#x27;admin/&#x27;, admin.site.urls),
+    path(&#x27;api/&#x27;, include(&#x27;apps.api.urls&#x27;)),
+    
+    # ------------------- Swagger URLs ------------------- #
+    # ۱. تولید فایل خام OpenAPI (به فرمت YAML/JSON)
+    path(&#x27;api/schema/&#x27;, SpectacularAPIView.as_view(), name=&#x27;schema&#x27;),
+    
+    # ۲. رابط کاربری گرافیکی Swagger (توسعه‌دهندگان بک‌اند و فرانت‌اند)
+    path(&#x27;api/docs/&#x27;, SpectacularSwaggerView.as_view(url_name=&#x27;schema&#x27;), name=&#x27;swagger-ui&#x27;),
+    
+    # ۳. رابط کاربری Redoc (جایگزین Swagger، مناسب برای ارائه به مدیران)
+    path(&#x27;api/redoc/&#x27;, SpectacularRedocView.as_view(url_name=&#x27;schema&#x27;), name=&#x27;redoc&#x27;),
+]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-8070-8818-cfdb82866f82" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="394da1eb-8b9d-80df-bef0-cec1d27df30c" class="" dir="auto">کالبدشکافی URLهای مستندات</p></div></aside><ul id="394da1eb-8b9d-80f1-b93b-f5941b231510" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>SpectacularAPIView</strong></code><strong> (</strong><code><strong>/api/schema/</strong></code><strong>):</strong> این مسیر هیچ گرافیکی ندارد. وقتی این URL را صدا می‌زنید، پکیج تمام Viewها، Serializerها و Modelهای شما را می‌خواند و یک فایل متنی ماشین‌خوان (معمولاً YAML) تولید می‌کند. این فایل &quot;نقشه راه&quot; API شماست.</li></ul><ul id="394da1eb-8b9d-80c1-8a30-e2e2eaf53afd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>SpectacularSwaggerView</strong></code><strong> (</strong><code><strong>/api/docs/</strong></code><strong>):</strong> این همان رابط کاربری جذابی است که توسعه‌دهندگان دوستش دارند. این صفحه در واقع فایل خام مرحله قبل را می‌خواند (<code>url_name=&#x27;schema&#x27;</code>) و آن را به دکمه‌ها و فرم‌های تعاملی تبدیل می‌کند.</li></ul><ul id="394da1eb-8b9d-8010-ba1c-c6ea19e90aea" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>SpectacularRedocView</strong></code><strong> (</strong><code><strong>/api/redoc/</strong></code><strong>):</strong> ابزار Redoc گرافیک متفاوت و کلاسیک‌تری نسبت به Swagger دارد (بدون قابلیت تست تعاملی). بسیاری از شرکت‌های بزرگ مستندات عمومی خود را با Redoc منتشر می‌کنند، چون خواندن آن مانند یک کتاب مرتب است.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-8000-846a-e2ca11110b74" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h3 id="394da1eb-8b9d-803d-b91f-c81a57ccbe55" class="" dir="auto">اجرای نهایی و تست</h3></div></aside><p id="394da1eb-8b9d-8024-9c5f-faa6eb7a2ce0" class="" dir="auto">حالا سرور پروژه را روشن کنید:</p><pre id="394da1eb-8b9d-80cd-b7f6-c25948f3e8a2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><p id="394da1eb-8b9d-8077-9f0d-c7464844c19a" class="" dir="auto">مرورگر خود را باز کنید و به آدرس زیر بروید:<br/><code>http://127.0.0.1:8000/api/docs/</code></p><p id="394da1eb-8b9d-8078-bed7-d3b807c98624" class="" dir="auto">شما باید یک صفحه زیبا با عنوان &quot;ACRON Project API&quot; ببینید که تمام Endpointهای مربوط به JWT (دریافت و رفرش توکن)، Customers (مشاهده و ویرایش پروفایل) و Products (لیست محصولات) در آن به دقت دسته‌بندی شده‌اند.</p><blockquote id="394da1eb-8b9d-80cb-bf8f-ca1e9c91c3b8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">62- لطفاً این صفحه را بررسی کنید و ببینید آیا فیلدهای محصولات و تصاویر فرعی به درستی در مستندات نمایش داده شده‌اند؟</blockquote><p id="394da1eb-8b9d-8040-a73f-d1002513faf0" class="" dir="auto">رسیدیم به بخش جذاب مستندسازی حرفه‌ای! دکوراتور <code>@extend_schema</code> دقیقاً همان ابزاری است که تفاوت یک API ساده را با یک API تجاری و استاندارد (مثل APIهای شرکت‌های بزرگ) مشخص می‌کند.</p><p id="394da1eb-8b9d-8088-af22-fb409bec8014" class="" dir="auto">گاهی اوقات <code>drf-spectacular</code> با تمام هوشمندی‌اش نمی‌تواند هدف دقیق یک API را حدس بزند. مثلاً نمی‌داند که این API قرار است چه ارورهای خاصی برگرداند یا توضیح انسانیِ آن برای تیم فرانت‌اند چیست. اینجاست که <code>@extend_schema</code> وارد عمل می‌شود و کنترل کامل Swagger را به دست شما می‌سپارد.</p><h3 id="394da1eb-8b9d-80ff-b9d4-e80817dc649e" class="" dir="auto">معرفی و پیاده‌سازی <code>@extend_schema</code></h3><p id="394da1eb-8b9d-8047-8c14-e04eb5a0ad6c" class="" dir="auto">بیایید این جادو را روی همان <code>ProductListView</code> که در مرحله قبل ساختیم پیاده کنیم تا خروجی Swagger آن را از یک حالت رباتی به یک حالت کاملاً خوانا و حرفه‌ای تبدیل کنیم.</p><blockquote id="394da1eb-8b9d-80b9-bf56-f7042e524c75" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">63-  فایل <code>apps/products/views.py</code> را باز کنید و آن را به شکل زیر تغییر دهید:<br/><pre id="394da1eb-8b9d-806e-9427-fd9f38e141cb" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from drf_spectacular.utils import extend_schema, extend_schema_view # این خط اضافه شد
+
+
+# استفاده از دکوراتور برای شخصی‌سازی مستندات این View
+@extend_schema_view(
+    get=extend_schema(
+        summary=&quot;دریافت لیست محصولات فروشگاه&quot;,
+        description=&quot;این متد لیست تمامی محصولات را به همراه اطلاعات برند، دسته‌بندی و گالری تصاویر برمی‌گرداند. این مسیر کاملاً بهینه‌سازی شده (بدون مشکل N+1) است و نیازی به توکن احراز هویت ندارد.&quot;,
+        tags=[&#x27;Products Catalog&#x27;], # دسته‌بندی API در سایدبار Swagger
+    )
+)
+</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-80a0-b9ca-d80160d9649b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="394da1eb-8b9d-80b8-a47a-f00da9d3778a" class="" dir="auto">کالبدشکافی کد (بدون Vibe Coding)</p></div></aside><ul id="394da1eb-8b9d-8077-b435-c9d31b6b474c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>@extend_schema_view</strong></code><strong>:</strong> چون ما از کلاس‌های Generic (مثل <code>ListAPIView</code>) استفاده می‌کنیم، متد <code>get</code> به صورت مخفی در پس‌زمینه وجود دارد. این دکوراتور به ما اجازه می‌دهد به متدهای مخفیِ کلاس دسترسی پیدا کنیم و به جنگو بگوییم: &quot;تنظیماتی که می‌گویم را فقط روی متد <code>get</code> این کلاس اعمال کن.&quot;</li></ul><ul id="394da1eb-8b9d-80ef-9805-e7ef3e11cbe0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>summary</strong></code><strong>:</strong> یک عنوان کوتاه و جذاب که در لیست کشویی Swagger با فونت درشت روبروی مسیر API نوشته می‌شود.</li></ul><ul id="394da1eb-8b9d-80f8-81cd-c3734c1dfcfb" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>description</strong></code><strong>:</strong> توضیحات تکمیلی که وقتی فرانت‌اند کار روی API کلیک می‌کند، آن را می‌خواند تا دقیقاً بفهمد این مسیر چه دیتایی به او می‌دهد.</li></ul><ul id="394da1eb-8b9d-8039-8fe1-e1233e7479da" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>tags</strong></code><strong>:</strong> در Swagger، تمام APIها به صورت پیش‌فرض در یک گروه قرار می‌گیرند که شلوغ می‌شود. با تگ‌گذاری، یک پوشه (گروه) جدید به نام <code>Products Catalog</code> در صفحه ساخته می‌شود و این API با نظم خاصی زیرمجموعه آن قرار می‌گیرد.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-800e-9e93-c01b7bc546b2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="394da1eb-8b9d-80d9-8381-e18052e6f60a" class="" dir="auto">آیا به آموزش بیشتر Swagger در این مرحله نیاز داریم؟</p></div></aside><p id="394da1eb-8b9d-8092-b4bf-d380d34d2c73" class="" dir="auto"><strong>پاسخ کوتاه: فعلاً خیر.</strong> شما اکنون ابزار اصلی (<code>drf-spectacular</code>) و ابزار شخصی‌سازی (<code>@extend_schema</code>) را در اختیار دارید. این ترکیب برای ۹۵٪ نیازهای مستندسازی یک پروژه در این سطح کافی است. </p><p id="394da1eb-8b9d-8039-970b-d00dc20792ab" class="" dir="auto">درگیر شدن بیشتر با جزئیات Swagger (مثل تعریف دستی پارامترهای Query یا Override کردن کامپوننت‌های امنیتی) در این لحظه، باعث می‌شود از هدف اصلی باز بمانید. مستندسازی باید همگام با توسعه پیش برود، نه اینکه مانع آن شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="394da1eb-8b9d-8045-8150-e812afe94e44" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="394da1eb-8b9d-806d-ad4b-f071b4708799" class="" dir="auto">بازگشت به مسیر توسعه: تکمیل فاز ۴ (Product Domain)</p></div></aside><p id="394da1eb-8b9d-80eb-92d4-d0bc3f6f86c2" class="" dir="auto">در فاز ۴، ما لیست محصولات (<code>ProductListView</code>) را ساختیم. اما در هر فروشگاهی، وقتی روی یک محصول کلیک می‌کنید، وارد <strong>صفحه جزئیات آن محصول (Product Detail)</strong> می‌شوید.</p><p id="394da1eb-8b9d-8033-a65e-d593c785a4a2" class="" dir="auto">در اینجا به جای استفاده از <code>id</code> محصول (مثل <code>/api/products/1/</code>)، باید از <code>slug</code> استفاده کنیم (مثل <code>/api/products/samsung-galaxy-s24/</code>) تا URLها برای سئو (SEO) بهینه باشند.</p><blockquote id="394da1eb-8b9d-801c-9ebc-f79f59fedd64" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">64- فایل <code>apps/products/views.py</code> را باز کنید و ویوی جزئیات را به انتهای آن اضافه کنید:<pre id="394da1eb-8b9d-8085-9bfd-d663087f0a0c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.generics import RetrieveAPIView
+
+@extend_schema_view(
+    get=extend_schema(
+        summary=&quot;دریافت جزئیات یک محصول خاص&quot;,
+        description=&quot;این مسیر اطلاعات کامل یک محصول را بر اساس Slug آن برمی‌گرداند.&quot;,
+        tags=[&#x27;Products Catalog&#x27;],
+    )
+)
+class ProductDetailView(RetrieveAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = ProductSerializer
+    
+    # استفاده از همان تکنیک بهینه‌سازی دیتابیس
+    queryset = Product.objects.select_related(
+        &#x27;category&#x27;, 
+        &#x27;brand&#x27;
+    ).prefetch_related(
+        &#x27;media_gallery&#x27;
+    ).all()
+    
+    # جادوی جنگو: جستجو بر اساس فیلد slug به جای id پیش‌فرض
+    lookup_field = &#x27;slug&#x27;</code></pre></blockquote><blockquote id="394da1eb-8b9d-808a-b5e7-cae686a8480d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">65-  فایل <code>apps/products/urls.py</code> را باز کنید و مسیر جدید را اضافه کنید:<pre id="394da1eb-8b9d-8045-8c83-d99015786d1f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path
+from .views import ProductListView, ProductDetailView
+
+urlpatterns = [
+    path(&#x27;&#x27;, ProductListView.as_view(), name=&#x27;product-list&#x27;),
+    
+    # مسیر دریافت یک محصول بر اساس اسلاگ
+    path(&#x27;&lt;slug:slug&gt;/&#x27;, ProductDetailView.as_view(), name=&#x27;product-detail&#x27;),
+]</code></pre></blockquote><h3 id="395da1eb-8b9d-80b5-8ac1-ef0b4ebd5cc1" class="" dir="auto">کالبدشکافی معماری این بخش</h3><ul id="395da1eb-8b9d-8063-b30e-e49bc2db706a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>RetrieveAPIView</strong></code><strong>:</strong> این کلاس آماده DRF، مخصوص برگرداندن <strong>فقط یک رکورد</strong> از دیتابیس است.</li></ul><ul id="395da1eb-8b9d-804f-89d6-ec5dc6e50eea" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>lookup_field = &#x27;slug&#x27;</strong></code><strong>:</strong> به صورت پیش‌فرض، DRF در URLها دنبال <code>pk</code> (Primary Key یا همان ID) می‌گردد. با نوشتن این یک خط کد، به DRF دستور می‌دهیم که: &quot;از این به بعد، محصول را از طریق فیلد <code>slug</code> در دیتابیس پیدا کن، نه <code>id</code>.&quot;</li></ul><ul id="395da1eb-8b9d-806f-8816-ea75d9545930" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>&lt;slug:slug&gt;/</strong></code><strong> در URL:</strong> بخش اول (<code>slug:</code>) به جنگو می‌گوید که این پارامتر می‌تواند شامل حروف، اعداد، خط تیره و آندرلاین باشد. بخش دوم (<code>slug</code>) نام متغیری است که به <code>lookup_field</code> در View پاس داده می‌شود.</li></ul><p id="395da1eb-8b9d-8033-8360-ec4b6df7b7ff" class="" dir="auto">اکنون فاز ۴ (Product Domain) به یک پایداری بسیار عالی رسیده است. هم مدل‌های بهینه داریم، هم ادمین قدرتمند، هم APIهای بدون مشکل N+1 و هم مستندات تمیز.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-80a4-be94-cd95c543e5e9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-80a0-9b99-e8a442cdd817" class="" dir="auto"> یکی از مهم‌ترین اصول مهندسی نرم‌افزار یعنی <strong>DRY (Don&#x27;t Repeat Yourself)</strong> یا &quot;خودت را تکرار نکن&quot; </p></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-80da-bbfd-df6cc3138049" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-800f-b6b2-ee7428275caf" class="" dir="auto">ریفکتور فاز ۴: استفاده از ViewSet برای جلوگیری از تکرار</p></div></aside><blockquote id="395da1eb-8b9d-8028-b96e-e582292d47dd" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">66-  فایل <code>apps/products/views.py</code> را باز کنید و کل کدهای قبلی (مربوط به محصولات) را با این کد جایگزین کنید:<pre id="395da1eb-8b9d-8023-a8a9-c7f52ca2ce52" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.permissions import AllowAny
+from drf_spectacular.utils import extend_schema, extend_schema_view
+from .models import Product
+from .serializers import ProductSerializer
+
+# تعریف Swagger فقط یک‌بار در بالای ViewSet
+@extend_schema_view(
+    list=extend_schema(
+        summary=&quot;دریافت لیست محصولات&quot;,
+        description=&quot;لیست تمامی محصولات به همراه برند، دسته‌بندی و گالری تصاویر.&quot;,
+        tags=[&#x27;Products Catalog&#x27;],
+    ),
+    retrieve=extend_schema(
+        summary=&quot;دریافت جزئیات محصول&quot;,
+        description=&quot;اطلاعات کامل یک محصول بر اساس Slug.&quot;,
+        tags=[&#x27;Products Catalog&#x27;],
+    )
+)
+class ProductViewSet(ReadOnlyModelViewSet):
+    permission_classes = [AllowAny]
+    serializer_class = ProductSerializer
+    lookup_field = &#x27;slug&#x27;
+    
+    queryset = Product.objects.select_related(
+        &#x27;category&#x27;, 
+        &#x27;brand&#x27;
+    ).prefetch_related(
+        &#x27;media_gallery&#x27;
+    ).all()</code></pre></blockquote><p id="395da1eb-8b9d-8051-be94-cb607089f78a" class="" dir="auto"><strong>چیستی و چرایی این تغییر:</strong></p><ul id="395da1eb-8b9d-80c5-b5b1-e182e4c6445a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>ReadOnlyModelViewSet</strong></code><strong> چیست؟</strong> این کلاس جادویی ترکیبی از <code>ListAPIView</code> (برای نمایش همه) و <code>RetrieveAPIView</code> (برای نمایش یکی) است. چون محصولات قرار نیست توسط کاربران عادی ساخته (<code>POST</code>) یا پاک (<code>DELETE</code>) شوند، از نسخه <code>ReadOnly</code> استفاده کردیم تا امنیت حفظ شود.</li></ul><ul id="395da1eb-8b9d-805d-be06-f416e1698636" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>@extend_schema_view</strong></code><strong> تغییر کرد؟</strong> به جای اینکه دکوراتور را روی دو کلاس مختلف بنویسیم، آن را یک‌بار بالای ViewSet نوشتیم. کلمه <code>list</code> به متدِ نمایش همه، و کلمه <code>retrieve</code> به متدِ نمایش جزئیات اشاره می‌کند.</li></ul><blockquote id="395da1eb-8b9d-8062-859a-f15aca75cd45" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">67-  چون از ViewSet استفاده کردیم، فایل <code>apps/products/urls.py</code> هم باید تغییر کند. آن را باز کنید و با این کد جایگزین کنید:<pre id="395da1eb-8b9d-806a-bf10-f9d5050f95e9" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.routers import DefaultRouter
+from .views import ProductViewSet
+
+# استفاده از روتر برای تولید خودکار URLها
+router = DefaultRouter()
+router.register(&#x27;&#x27;, ProductViewSet, basename=&#x27;product&#x27;)
+
+urlpatterns = router.urls</code></pre></blockquote><p id="395da1eb-8b9d-8055-b6e9-cec1d72a9011" class="" dir="auto"><strong>چرایی این تغییر:</strong></p><ul id="395da1eb-8b9d-80dd-9a04-f6210d00c9bb" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>DefaultRouter</strong></code><strong> چیست؟</strong> روترها ابزارهای هوشمندی هستند که وقتی یک <code>ViewSet</code> به آن‌ها می‌دهید، خودشان می‌فهمند که باید مسیر <code>/</code> را برای لیست محصولات و مسیر <code>/&lt;slug:slug&gt;/</code> را برای جزئیات محصول بسازند. این یعنی کدهای <code>urls.py</code> به شدت خلوت و تمیز می‌شوند.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-800a-a6ee-d842800fc96e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-8081-8a3d-e75288f3282d" class="" dir="auto">این قسمت اختیاری هست</p></div></aside><p id="395da1eb-8b9d-80e2-90ee-d4152827b034" class="" dir="auto">برای ایجاد یک نقطه ورود (API Root) که تمام مسیرها را به صورت لینک‌های قابل کلیک در مرورگر نمایش دهد، Django REST Framework (DRF) یک قابلیت عالی به نام Browsable API دارد.</p><p id="395da1eb-8b9d-805f-b6ca-f3aea5357bf2" class="" dir="auto">برای پیاده‌سازی این ویژگی، بهترین روش استفاده از یک <code>api_view</code> است. شما درخواست کردید که از Serializer هم استفاده شود؛ اگرچه برای مسیرهای ثابت (Static URLs) معمولاً نیازی به سریالایزر نیست و دیکشنری‌های ساده پایتون کفایت می‌کنند، اما من کد را طوری تنظیم می‌کنم که هم از سریالایزر عبور کند (برای حفظ ساختار یکپارچه) و هم دسترسی آن برای همه آزاد (Public) باشد.</p><p id="395da1eb-8b9d-807a-b717-fdc290ff0006" class="" dir="auto">در ادامه مراحل تغییرات در دو فایل <code>urls.py</code> و <code>views.py</code> آورده شده است.</p><h3 id="395da1eb-8b9d-80c9-8729-f0224e4c8553" class="" dir="auto">ویرایش فایل <code>urls.py</code></h3><p id="395da1eb-8b9d-800a-b98a-ef2a82f3dfd6" class="" dir="auto">ابتدا باید برای مسیرهای خود پارامتر <code>name</code> تعریف کنید تا بتوانیم در صورت نیاز به آن‌ها ارجاع دهیم و مسیر اصلی (root) را به یک view متصل کنیم.</p><pre id="395da1eb-8b9d-809b-b0b3-c54165ef4394" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import include, path
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from . import views
+
+urlpatterns = [
+    # 📌 مسیر اصلی که لیست تمام API ها را نشان می‌دهد
+    path(&#x27;&#x27;, views.api_root_view, name=&#x27;api-root&#x27;),
+
+     #....
+]</code></pre><h3 id="395da1eb-8b9d-800d-9e0c-f43efb691cbc" class="" dir="auto">. اضافه کردن ویو و سریالایزر در <code>views.py</code></h3><p id="395da1eb-8b9d-80d5-bd93-e0290c907525" class="" dir="auto">حالا در فایل <code>project/apps/api/views.py</code>، یک سریالایزر ساده برای تعیین ساختار خروجی می‌سازیم و سپس ویوی <code>api_root_view</code> را با دسترسی آزاد (<code>AllowAny</code>) ایجاد می‌کنیم.</p><p id="395da1eb-8b9d-805d-8208-cea80136d30f" class="" dir="auto">برای اینکه لینک‌ها در مرورگر به صورت کامل (Absolute URI) و قابل کلیک نمایش داده شوند، از متد <code>request.build_absolute_uri()</code> استفاده می‌کنیم. این روش بسیار امن است زیرا به نام‌گذاری (namespacing) داخل فایل‌های <code>include</code> شده وابستگی ندارد.</p><pre id="395da1eb-8b9d-80a5-9341-fdde3bac0307" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.permissions import AllowAny
+from rest_framework import serializers as rest_serializers
+
+# --- View ---
+@api_view([&#x27;GET&#x27;])
+@permission_classes([AllowAny]) # 🔓 دسترسی آزاد برای همه کاربران
+def api_root_view(request):
+    &quot;&quot;&quot;
+    نقطه ورود API که مسیرهای موجود را لیست می‌کند.
+    &quot;&quot;&quot;
+    # ساخت دیتای خام شامل لینک‌های قابل کلیک
+    raw_data = {
+        &quot;authentication&quot;: {
+            &quot;token&quot;: request.build_absolute_uri(&#x27;token/&#x27;),
+            &quot;token_refresh&quot;: request.build_absolute_uri(&#x27;token/refresh/&#x27;),
+        },
+        &quot;user_management&quot;: {
+            &quot;me&quot;: request.build_absolute_uri(&#x27;me/&#x27;),
+        },
+        &quot;resources&quot;: {
+            &quot;customers&quot;: request.build_absolute_uri(&#x27;customers/&#x27;),
+            &quot;products&quot;: request.build_absolute_uri(&#x27;products/&#x27;),
+        }
+    }
+    
+    # عبور دادن دیتا از سریالایزر (طبق درخواست شما)
+    serializer = APIDirectorySerializer(data=raw_data)
+    serializer.is_valid(raise_exception=True)
+    
+    # بازگرداندن پاسخ که توسط DRF به صورت گرافیکی رندر می‌شود
+    return Response(serializer.validated_data)
+
+</code></pre><h3 id="395da1eb-8b9d-8044-8dba-e8a23b2572d0" class="" dir="auto">مزایای این روش:</h3><ul id="395da1eb-8b9d-8056-879e-d8ce3167702d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>رابط کاربری DRF:</strong> وقتی این مسیر <code>http://your-domain/api/</code> را در مرورگر باز کنید، پنل زیبای Django REST Framework به شما یک فایل JSON قالب‌بندی شده به همراه لینک‌های آبی‌رنگ و قابل کلیک برای هر بخش (احراز هویت، محصولات و...) نمایش می‌دهد.</li></ul><ul id="395da1eb-8b9d-800b-b4f8-de63afbdb043" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>توسعه‌پذیری:</strong> دسته‌بندی لینک‌ها در دیکشنری (مثل <code>resources</code> و <code>authentication</code>) به تیم فرانت‌اند کمک می‌کند ساختار API را بهتر درک کنند.</li></ul><p id="395da1eb-8b9d-80f0-8676-d16dd99e353f" class="" dir="auto">دلیل اینکه در مرورگر صفحه سفید می‌بینید، به احتمال خیلی زیاد به <strong>سمت کلاینت (مرورگر)</strong> برمی‌گردد. در پروژه‌های جنگو، این اتفاق معمولاً به چند دلیل مشخص رخ می‌دهد:</p><h3 id="395da1eb-8b9d-8030-90b2-d23b636df8f5" class="" dir="auto">۱. تداخل Django Debug Toolbar با DRF (محتمل‌ترین دلیل)</h3><p id="395da1eb-8b9d-80b6-af9b-e26662c1bb14" class="" dir="auto">در لاگ‌های شما مشخص است که <code>debug_toolbar</code> در حال لود شدن است (<code>GET /static/debug_toolbar/...</code>). گاهی اوقات اسکریپت‌ها و استایل‌های Debug Toolbar با رابط کاربری DRF تداخل پیدا می‌کنند (مخصوصاً بر سر نسخه jQuery) و باعث می‌شوند رندر صفحه در مرورگر متوقف شود و یک صفحه سفید ببینید.</p><ul id="395da1eb-8b9d-8025-8631-eb505aa490d3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>راه‌حل تست:</strong> برای چند لحظه در فایل <code>settings.py</code>، میدل‌ور (Middleware) مربوط به <code>debug_toolbar</code> را کامنت کنید و سرور را ری‌استارت کنید. اگر صفحه DRF نمایش داده شد، مشکل از همین تداخل است.</li></ul><h3 id="395da1eb-8b9d-8046-8d3c-fd399c3bd9b6" class="" dir="auto">۲. افزونه‌های مرورگر (AdBlockers یا JSON Viewers)</h3><p id="395da1eb-8b9d-8061-b620-e745dacbc9e5" class="" dir="auto">بسیاری از مسدودکننده‌های تبلیغات (مثل uBlock Origin یا AdBlock) وقتی کلمه <code>api</code> را در URL می‌بینند، به صورت پیش‌فرض درخواست‌ها را بلاک کرده یا تگ‌های صفحه را پنهان می‌کنند. همچنین اگر افزونه‌ای برای زیباسازی JSON (JSON Formatter) نصب کرده باشید، ممکن است سعی کند صفحه HTMLِ تولید شده توسط DRF را به عنوان JSON پارس کند و در نتیجه کرش کند و صفحه سفید شود.</p><ul id="395da1eb-8b9d-806c-bf38-cebd6d71e543" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>راه‌حل تست:</strong> مسیر را در حالت ناشناس مرورگر (Incognito/Private Window) باز کنید.</li></ul><h3 id="395da1eb-8b9d-80e0-b675-d0ee93bf6dee" class="" dir="auto">۳. بررسی دیتای خام با پارامتر format</h3><p id="395da1eb-8b9d-80c9-aa94-d7c6f9beb9b5" class="" dir="auto">برای اینکه خیالتان راحت شود که دیتای سریالایزر به درستی در حال ارسال است و مشکل فقط از قالب گرافیکی DRF است، به انتهای URL خود در مرورگر این عبارت را اضافه کنید:<br/><code>http://127.0.0.1:8000/api/?format=json</code><br/>با این کار DRF متوجه می‌شود که شما صفحه HTML را نمی‌خواهید و فقط دیتای خالص JSON را به شما برمی‌گرداند. اگر با این کار دیتا را دیدید، کدهای <code>views.py</code> شما کاملاً بی‌نقص هستند.</p><h3 id="395da1eb-8b9d-806b-bcfc-cc7c9a438a81" class="" dir="auto">۴. کنسول مرورگر (Developer Tools)</h3><p id="395da1eb-8b9d-8080-970f-fefc226e54fa" class="" dir="auto">کلید <code>F12</code> را در مرورگر بزنید و به تب <strong>Console</strong> بروید. اگر صفحه به دلیل خطاهای جاوااسکریپتی (مثل لود نشدن صحیح یک فایل یا تداخل متغیرها) سفید شده باشد، خطاها را با رنگ قرمز در اینجا خواهید دید.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="390da1eb-8b9d-8087-81b4-e2dbc68244a0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="390da1eb-8b9d-8068-9338-d22bc07b3ed3" class="" dir="auto">پایان Part-5</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

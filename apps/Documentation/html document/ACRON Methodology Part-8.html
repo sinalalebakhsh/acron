@@ -1,0 +1,956 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-8</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="399da1eb-8b9d-80fc-95b4-da6179551f44" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-8</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="399da1eb-8b9d-8004-96d1-e815ba7db113" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="399da1eb-8b9d-8043-b9e5-c320db93786e" class="" dir="auto">در Part-7 ، فاز 6 تمام شد تعداد قدم ها 14 قدم</p></div></aside><h1 id="399da1eb-8b9d-80f9-a43a-c2585990c472" class="" dir="auto">فاز 7: Payment Domain</h1><hr id="399da1eb-8b9d-8052-bdf6-c623960028bd" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="399da1eb-8b9d-805e-b88d-ff02d4cc0c95" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="399da1eb-8b9d-804f-859a-e66a71c8cf2a" class="" dir="auto">ما لایه‌ی پرداخت را طوری طراحی می‌کنیم که هسته‌ی سیستم اصلاً نداند پول چگونه جابجا می‌شود! هسته فقط یک پیام می‌فرستد: <em>&quot;من X تومان پول می‌خواهم&quot;</em>. </p><p id="39ada1eb-8b9d-80c7-960c-f02f2630f199" class="" dir="auto">امروز یک <strong>درگاه شبیه‌ساز (Mock Gateway)</strong> جواب این پیام را می‌دهد، و فردا توسعه‌دهندگان دیگر می‌توانند بدون دست زدن به کدهای شما، ماژول‌های زرین‌پال، استرایپ (Stripe) یا پی‌پال را به آن متصل کنند.</p></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39ada1eb-8b9d-80fd-9c22-e7d0110e11f9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="39ada1eb-8b9d-8052-bb42-c8009a5ce41d" class="" dir="auto">قدم اول: ایجاد موجودیت تراکنش (دیتابیس)</p></div></aside><blockquote id="399da1eb-8b9d-8075-889a-d4d2bc161173" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1- ابتدا باید اپلیکیشن جدیدی برای پرداخت‌ها داشته باشیم. (مطمئن شوید که <code>apps.payments</code> را به <code>INSTALLED_APPS</code> در فایل تنظیمات اضافه کنید).<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="399da1eb-8b9d-8010-bcb0-f0987153835f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Application definition
+
+INSTALLED_APPS = [
+		....
+    # CREATE by me
+		....
+    &#x27;apps.payments&#x27;,
+		....
+]
+</code></pre></blockquote><blockquote id="39ada1eb-8b9d-801d-af18-e5390f14f1b7" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2- در مسیر <code>apps/payments/</code> فایل <code>models.py</code> را بسازید:<pre id="39ada1eb-8b9d-804d-b138-c23dfb1978dc" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import models
+import uuid
+from apps.orders.models import Order
+
+class Payment(models.Model):
+    class PaymentStatus(models.TextChoices):
+        PENDING = &#x27;P&#x27;, &#x27;در انتظار پرداخت&#x27;
+        SUCCESS = &#x27;S&#x27;, &#x27;موفق&#x27;
+        FAILED = &#x27;F&#x27;, &#x27;ناموفق&#x27;
+
+    # هر فاکتور فقط یک رکورد پرداخت فعال دارد
+    order = models.OneToOneField(Order, on_delete=models.PROTECT, related_name=&#x27;payment&#x27;)
+    amount = models.DecimalField(max_digits=12, decimal_places=0, verbose_name=&quot;مبلغ تراکنش&quot;)
+    
+    # کد رهگیری یکتای سیستم ما (به جای کد مرچنت بانک)
+    transaction_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    
+    status = models.CharField(max_length=1, choices=PaymentStatus.choices, default=PaymentStatus.PENDING)
+    
+    # ثبت زمان‌های دقیق برای پیگیری‌های مالی
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f&quot;Payment {self.transaction_id} - {self.status}&quot;</code></pre></blockquote><blockquote id="39ada1eb-8b9d-8006-af00-d41237599c16" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3- <em>(پس از این کار، اجرای </em><em><code>makemigrations</code></em><em> و </em><em><code>migrate</code></em><em> فراموش نشود). </em><pre id="39ada1eb-8b9d-80f1-9ec9-ed5806b7fa1f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations payments
+Migrations for &#x27;payments&#x27;:
+  apps\payments\migrations\0001_initial.py
+    + Create model Payment
+
+$ python manage.py migrate payments
+Operations to perform:
+  Apply all migrations: payments
+Running migrations:
+  Applying payments.0001_initial... OK
+</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39ada1eb-8b9d-80c3-9d8a-f03a59b46d53" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="39ada1eb-8b9d-80e8-bcb0-d71aa7a62dfd" class="" dir="auto">قدم دوم: لایه سرویس (هسته‌ی مرکزی و درگاه شبیه‌ساز)</p></div></aside><p id="39ada1eb-8b9d-808a-9f21-d58d69f331e5" class="" dir="auto">این فایل جذاب‌ترین بخش کار است. ما دو عملیات اصلی داریم: ساخت لینک پرداخت، و تایید پرداخت. اینجا دقیقاً همان منطقِ انقضای ۱۵ دقیقه‌ای که قبلاً نوشتیم را به کار می‌گیریم.</p><blockquote id="39ada1eb-8b9d-807c-9728-ce9370f24579" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">4- در مسیر <code>apps/payments/</code> فایل <code>services.py</code> را بسازید و کدهای زیر را داخل آن کپی کنید:<pre id="39ada1eb-8b9d-80b6-a380-c4d2ca218c79" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import transaction
+from rest_framework.exceptions import ValidationError
+from apps.orders.models import Order
+from apps.orders.services import OrderService
+from .models import Payment
+
+class PaymentService:
+    
+    @staticmethod
+    @transaction.atomic
+    def initiate_payment(order_id, user):
+        &quot;&quot;&quot;
+        درخواست پرداخت: فاکتور را چک می‌کند و لینک درگاه را می‌سازد.
+        &quot;&quot;&quot;
+        # ۱. بررسی امنیتی و زمانی فاکتور (همان متدی که قبلا نوشتیم)
+        order = OrderService.validate_order_for_payment(order_id)
+        
+        # ۲. بررسی اینکه فاکتور متعلق به همین شخص باشد
+        if order.customer.user != user:
+            raise ValidationError(&quot;شما اجازه دسترسی به این فاکتور را ندارید.&quot;)
+
+        # ۳. محاسبه جمع کل فاکتور
+        total_amount = sum(item.quantity * item.unit_price for item in order.items.all())
+
+        # ۴. ساخت یا به‌روزرسانی رکورد پرداخت در دیتابیس
+        payment, created = Payment.objects.get_or_create(
+            order=order,
+            defaults={&#x27;amount&#x27;: total_amount}
+        )
+
+        # اگر از قبل پرداختی موفق داشته، ارور بده
+        if not created and payment.status == Payment.PaymentStatus.SUCCESS:
+            raise ValidationError(&quot;این سفارش قبلاً با موفقیت پرداخت شده است.&quot;)
+
+        # ۵. ساخت لینک درگاه شبیه‌ساز (Mock Gateway)
+        # در پروژه‌های دیگر که از هسته شما استفاده می‌کنند، در این خط به API زرین‌پال متصل می‌شوند
+        mock_gateway_url = f&quot;http://127.0.0.1:8000/api/payments/mock-bank/?transaction_id={payment.transaction_id}&quot;
+        
+        return mock_gateway_url, payment.transaction_id
+
+    @staticmethod
+    @transaction.atomic
+    def verify_mock_payment(transaction_id, is_successful):
+        &quot;&quot;&quot;
+        شبیه‌سازی بازگشت از بانک (Callback): تایید یا رد تراکنش.
+        &quot;&quot;&quot;
+        try:
+            payment = Payment.objects.select_related(&#x27;order&#x27;).get(transaction_id=transaction_id)
+        except Payment.DoesNotExist:
+            raise ValidationError(&quot;تراکنش در سیستم یافت نشد.&quot;)
+
+        if payment.status != Payment.PaymentStatus.PENDING:
+            raise ValidationError(&quot;وضعیت این تراکنش قبلاً مشخص شده است.&quot;)
+
+        # اگر درگاه شبیه‌ساز پیام موفقیت فرستاد:
+        if is_successful:
+            # تغییر وضعیت پرداخت به موفق
+            payment.status = Payment.PaymentStatus.SUCCESS
+            
+            # تغییر وضعیت فاکتور اصلی به &quot;تکمیل شده&quot;
+            payment.order.status = Order.OrderStatus.COMPLETED
+            payment.order.save()
+        else:
+            # تغییر وضعیت پرداخت به ناموفق
+            # دقت کنید: فاکتور را لغو نمی‌کنیم تا کاربر بتواند در فرصت ۱۵ دقیقه‌ای دوباره تلاش کند
+            payment.status = Payment.PaymentStatus.FAILED
+            
+        payment.save()
+        return payment</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39ada1eb-8b9d-809f-b2a9-d6592ea459a4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="39ada1eb-8b9d-807f-baef-e794bce2562b" class="" dir="auto">قدم سوم: ساخت API دروازه‌ها (Views &amp; Serializers)</p></div></aside><p id="39ada1eb-8b9d-8064-8dbf-f3af1f451462" class="" dir="auto">حالا باید این هسته را از طریق اینترنت در دسترس قرار دهیم.</p><blockquote id="39ada1eb-8b9d-80ce-8e2c-db3936a33faf" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">5-  در مسیر <code>apps/payments/</code> فایل <code>serializers.py</code> را بسازید ، و فایل زیر را داخلش کپی کنید:<pre id="39ada1eb-8b9d-80d3-a2d5-f4fe1fa1ef43" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework import serializers
+
+class InitiatePaymentSerializer(serializers.Serializer):
+    # این خط اصلاح شد تا با دیتابیس سفارشات هماهنگ شود
+    order_id = serializers.UUIDField()
+
+class MockBankCallbackSerializer(serializers.Serializer):
+    transaction_id = serializers.UUIDField()
+    is_successful = serializers.BooleanField(default=True, help_text=&quot;تیک بزنید تا پرداخت موفق شبیه‌سازی شود&quot;)</code></pre></blockquote><h3 id="39bda1eb-8b9d-800d-a05c-f31a146bc7d5" class="" dir="auto">کالبدشکافی فایل <code>serializers.py</code> (دروازه‌بانان داده)</h3><p id="39bda1eb-8b9d-803d-98d5-db49f4a0ac22" class="" dir="auto">در پروژه ACRON، سریالایزرها فقط وظیفه تبدیل اطلاعات دیتابیس به JSON را ندارند؛ آن‌ها <strong>قراردادهای API (API Contracts)</strong> هستند که مشخص می‌کنند کلاینت دقیقاً چه چیزی باید بفرستد.</p><ul id="39bda1eb-8b9d-808f-92d3-e9ecef8eb217" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>Serializer</strong></code><strong> و نه </strong><code><strong>ModelSerializer</strong></code><strong>؟ (خلاقیت معماری):<br/></strong>یک خطای مرسوم بین جنگوکاران این است که برای هر کاری از ModelSerializer استفاده می‌کنند! ما اینجا قرار نیست مستقیماً رکوردی در جدول Payment بسازیم یا ویرایش کنیم. ما فقط می‌خواهیم کاربر <strong>شماره فاکتور (</strong><code><strong>order_id</strong></code><strong>) </strong>را بفرستد تا آن را به لایه سرویس بسپاریم. استفاده از Serializer  ساده یعنی  <strong>جداسازی کامل لایه API از ساختار دیتابیس</strong>. فردا اگر نام فیلد در دیتابیس تغییر کند، قرارداد ما با فرانت‌اند یا موبایل دست‌نخورده  باقی می‌ماند! </li></ul><ul id="39bda1eb-8b9d-8036-84f6-d72dda261706" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>UUIDField</strong></code><strong>؟</strong> تضمین می‌کند که کلاینت حتماً یک کد ۳۶ کاراکتری استاندارد UUID بفرستد. اگر کسی رشته‌ای مثل <code>&quot;123&quot;</code> بفرستد، سریالایزر قبل از اینکه درخواست حتی به لایه سرویس یا دیتابیس برسد، آن را با ارور ۴۰۰ بلاک می‌کند (حفاظت از منابع سرور).</li></ul><ul id="39bda1eb-8b9d-80f6-9222-fcb30c407951" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>خلاقیت در </strong><code><strong>help_text</strong></code><strong> و </strong><code><strong>default=True</strong></code><strong>:</strong> وقتی از ابزاری مثل Swagger (داکیومنت‌ساز API) استفاده می‌کنیم، این فیلد <code>help_text</code> مستقیماً تبدیل به یک راهنما در پنل تسترها می‌شود! برنامه‌نویس فرانت‌اند بدون اینکه از شما سوال بپرسد، متوجه می‌شود که با تیک زدن این گزینه می‌تواند سناریوی پرداخت موفق یا ناموفق را شبیه‌سازی کند.</li></ul><blockquote id="39ada1eb-8b9d-80f5-822d-c600ac6518fd" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6- در مسیر <code>apps/payments/</code> فایل <code>views.py</code> را بسازید:<pre id="39ada1eb-8b9d-80f4-8ee2-cf1252b708c2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.viewsets import GenericViewSet
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from drf_spectacular.utils import extend_schema
+from .serializers import InitiatePaymentSerializer, MockBankCallbackSerializer
+from .services import PaymentService
+
+class PaymentViewSet(GenericViewSet):
+    
+    @extend_schema(request=InitiatePaymentSerializer, summary=&quot;درخواست تولید لینک پرداخت&quot;, tags=[&#x27;Payments&#x27;])
+    @action(detail=False, methods=[&#x27;post&#x27;], permission_classes=[IsAuthenticated])
+    def initiate(self, request):
+        serializer = InitiatePaymentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        order_id = serializer.validated_data[&#x27;order_id&#x27;]
+        
+        # ارسال به هسته مرکزی پرداخت
+        url, trx_id = PaymentService.initiate_payment(order_id, request.user)
+        
+        return Response({
+            &quot;message&quot;: &quot;لینک پرداخت با موفقیت تولید شد.&quot;,
+            &quot;gateway_url&quot;: url,
+            &quot;transaction_id&quot;: trx_id
+        })
+
+    @extend_schema(request=MockBankCallbackSerializer, summary=&quot;شبیه‌ساز درگاه بانک (تست)&quot;, tags=[&#x27;Payments&#x27;])
+    @action(detail=False, methods=[&#x27;post&#x27;], permission_classes=[AllowAny])
+    def mock_verify(self, request):
+        &quot;&quot;&quot;
+        این ویو نقش بانک را بازی می‌کند. 
+        در دنیای واقعی، بانک پس از پرداخت کاربر، اطلاعات را به یک URL مشابه این می‌فرستد.
+        &quot;&quot;&quot;
+        serializer = MockBankCallbackSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        trx_id = serializer.validated_data[&#x27;transaction_id&#x27;]
+        is_successful = serializer.validated_data[&#x27;is_successful&#x27;]
+        
+        payment = PaymentService.verify_mock_payment(trx_id, is_successful)
+        
+        return Response({
+            &quot;payment_status&quot;: payment.get_status_display(),
+            &quot;order_status&quot;: payment.order.get_status_display()
+        })</code></pre></blockquote><h3 id="39bda1eb-8b9d-8018-a708-c419de3bae7e" class="" dir="auto">کالبدشکافی فایل <code>views.py</code> (کنترلرها و هدایت‌کنندگان جریان)</h3><p id="39bda1eb-8b9d-801d-8aaa-c8c6967a499a" class="" dir="auto">این فایل نشان‌دهنده هنر <strong>«لاغر نگه داشتن ویوها» (Thin Views &amp; Fat Services)</strong> است. ویو هیچ منطق تجاری یا مالی‌ای ندارد و فقط ترافیک HTTP را مدیریت می‌کند.</p><ul id="39bda1eb-8b9d-807b-8b06-fb68c72f5f27" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا؟</strong> وارد کردن ابزارهای مورد نیاز. توجه کنید که ما لاگین بودن (<code>IsAuthenticated</code>) و آزاد بودن (<code>AllowAny</code>) را همزمان ایمپورت کردیم، چون در پرداخت اینترنتی به هر دو نیاز داریم!</li></ul><ul id="39bda1eb-8b9d-801b-aedb-e2af2e758f3c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>خلاقیت بزرگ معماری (چرا </strong><code><strong>GenericViewSet</strong></code><strong>؟):</strong><br/>چرا از <code>ModelViewSet</code> که کار را راحت می‌کند استفاده نکردیم؟ چون <code>ModelViewSet</code> به صورت خودکار مسیرهای ساخت (CREATE)، حذف (DELETE) و ویرایش (UPDATE) را باز می‌کند! <strong>شما هرگز نباید به کاربر اجازه دهید با یک درخواست PUT یا DELETE ساده، تاریخچه تراکنش‌های مالی را تغییر دهد یا حذف کند!</strong><br/>ارث‌بری از <code>GenericViewSet</code> یک بوم کاملاً خالی به ما می‌دهد که فقط با اکشن‌هایی که خودمان تعریف می‌کنیم (مثل <code>initiate</code> و <code>mock_verify</code>) کار می‌کند. این یعنی <strong>حداکثر امنیت مالی</strong>.</li></ul><ul id="39bda1eb-8b9d-80cc-8fb3-c530d7f6af5c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>@extend_schema</strong></code><strong>:</strong> به موتور Swagger می‌گوید که این مسیر چه شکلی است تا داکیومنت شیک و خودکار بسازد.</li></ul><ul id="39bda1eb-8b9d-80d6-8759-ee4a163f33e0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>@action(detail=False, ...)</strong></code><strong>:</strong> در DRF، وقتی <code>detail=False</code> است، یعنی این متد روی کل مجموعه کار می‌کند و به آی‌دی در URL نیاز ندارد (مسیر می‌شود: <code>/api/payments/initiate/</code>).</li></ul><ul id="39bda1eb-8b9d-806c-ac4e-ff6a69028509" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>permission_classes=[IsAuthenticated]</strong></code><strong>:</strong> <strong>قفل اول:</strong> فقط کاربری که توکن معتبر (لاگین) دارد می‌تواند درخواست پرداخت بدهد.</li></ul><ul id="39bda1eb-8b9d-8094-91c0-e4b720b862fa" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>raise_exception=True</strong></code><strong>؟</strong> یک الگوی تمیز (Clean Code). به جای اینکه بنویسیم <code>if serializer.is_valid():</code> و بعد ارورها را دستی برگردانیم، این پارامتر به DRF می‌گوید: <em>&quot;اگر داده‌ها معتبر نبودند، خودت در همین خط کار را متوقف کن و یک ارور ۴۰۰ با جزئیات به کلاینت بفرست&quot;</em>.</li></ul><ul id="39bda1eb-8b9d-80e4-867b-f367e0063831" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>validated_data</strong></code><strong>؟</strong> ما هرگز از <code>request.data[&#x27;order_id&#x27;]</code> مستقیم استفاده نمی‌کنیم! داده‌ها حتماً باید از فیلتر امنیتی سریالایزر عبور کنند تا مطمئن شویم یک عدد واقعی هستند، نه کدهای مخرب یا SQL Injection.</li></ul><pre id="39bda1eb-8b9d-80e6-84ee-c98aa179ce9e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">        url, trx_id = PaymentService.initiate_payment(order_id, request.user)</code></pre><ul id="39bda1eb-8b9d-8051-9326-f5ed31f1daa9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>پاس دادن کار به مغز متفکر:</strong> ویو اصلاً نمی‌داند پرداخت چطور کار می‌کند! فقط آی‌دی فاکتور و کاربر فعلی (<code>request.user</code>) را به لایه سرویس می‌دهد و یک لینک درگاه (<code>url</code>) و کد پیگیری (<code>trx_id</code>) تحویل می‌گیرد.</li></ul><pre id="39bda1eb-8b9d-8010-b944-d36c97aa3458" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">return Response({
+            &quot;message&quot;: &quot;لینک پرداخت با موفقیت تولید شد.&quot;,
+            &quot;gateway_url&quot;: url,
+            &quot;transaction_id&quot;: trx_id
+        })</code></pre><ul id="39bda1eb-8b9d-80b8-8479-c1a768b1dab0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا خروجی به این شکل است؟</strong> برنامه‌نویس فرانت‌اند با دریافت این خروجی، کاربر را به <code>gateway_url</code> ریدایرکت (Redirect) می‌کند و <code>transaction_id</code> را هم در حافظه مرورگر نگه می‌دارد تا وضعیتش را پیگیری کند.</li></ul><pre id="39bda1eb-8b9d-806a-b907-e9cb3e1f4889" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">@extend_schema(request=MockBankCallbackSerializer, summary=&quot;شبیه‌ساز درگاه بانک (تست)&quot;, tags=[&#x27;Payments&#x27;])
+    @action(detail=False, methods=[&#x27;post&#x27;], permission_classes=[AllowAny])
+    def mock_verify(self, request):</code></pre><ul id="39bda1eb-8b9d-80b7-8091-e7194f65a566" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>permission_classes=[AllowAny]</strong></code><strong>؟ (یک نکته حیاتی و بسیار مهم در سیستم‌های واقعی):</strong><br/>این اکشن نقش بازگشت از بانک (<strong>Callback یا Webhook</strong>) را بازی می‌کند. در دنیای واقعی، وقتی کاربر در سایت زرین‌پال یا بانک ملت پول را پرداخت می‌کند، <strong>سرورِ بانک</strong> به این آدرس یک درخواست می‌فرستد تا بگوید پرداخت انجام شد.<br/>سرور بانک که در سایت شما لاگین نیست! بانک توکن JWT کاربر شما را ندارد! اگر اینجا از <code>IsAuthenticated</code> استفاده کنید، سرور بانک با خطای &quot;401 Unauthorized&quot; مواجه می‌شود، پرداخت تایید نمی‌شود و پول به حساب مشتری برمی‌گردد! به همین دلیل، مسیرهای Callback بانک همیشه باید Public (<code>AllowAny</code>) باشند و امنیت آن‌ها از طریق چک کردن امضای دیجیتال یا همان <code>transaction_id</code> یکتا در دیتابیس تامین می‌شود.</li></ul><pre id="39bda1eb-8b9d-80c3-a40f-c0a6f538a5d1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">serializer = MockBankCallbackSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        trx_id = serializer.validated_data[&#x27;transaction_id&#x27;]
+        is_successful = serializer.validated_data[&#x27;is_successful&#x27;]
+        
+        payment = PaymentService.verify_mock_payment(trx_id, is_successful)</code></pre><ul id="39bda1eb-8b9d-80ba-aba6-dfdc60c6daad" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا؟</strong> دریافت کد پیگیری و وضعیت پرداخت از شبیه‌ساز بانک، اعتبارسنجی آن، و ارسال به لایه سرویس برای تغییر وضعیت فاکتور.</li></ul><pre id="39bda1eb-8b9d-802d-bd8e-c2a92236c1ed" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">return Response({
+            &quot;payment_status&quot;: payment.get_status_display(),
+            &quot;order_status&quot;: payment.order.get_status_display()
+        })</code></pre><ul id="39bda1eb-8b9d-807b-a5bc-d1c266dab7de" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>خلاقیت در استفاده از </strong><code><strong>get_status_display()</strong></code><strong>:</strong> در دیتابیس، وضعیت‌ها به صورت حروف تک‌کاراکتری مثل <code>&#x27;S&#x27;</code> (برای Success) یا <code>&#x27;C&#x27;</code> (برای Completed) ذخیره می‌شوند تا سرعت دیتابیس بالا باشد. اما اگر <code>&#x27;S&#x27;</code> را به فرانت‌اند بفرستیم، خوانا نیست. متد جادویی <code>get_status_display()</code> در جنگو، معادل انسانی و فارسی آن (مثلاً &quot;موفق&quot; یا &quot;تکمیل شده&quot;) که در تاپل <code>TextChoices</code> مدل تعریف کرده بودیم را برمی‌گرداند. این یعنی احترام به توسعه‌دهندگانی که از API ما استفاده می‌کنند.</li></ul><blockquote id="39ada1eb-8b9d-8091-9f1f-c34023611a03" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7- <strong> تنظیم URLها:</strong> فایل <code>apps/payments/urls.py</code> را ایجاد کنید و سپس آن را در <code>api/urls.py</code> مرکزی ثبت کنید:<pre id="39ada1eb-8b9d-802f-b588-d38f89a19a2c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import PaymentViewSet
+
+router = DefaultRouter()
+router.register(&#x27;payments&#x27;, PaymentViewSet, basename=&#x27;payments&#x27;)
+
+urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><p id="39bda1eb-8b9d-8024-82cd-f5b384c2e75e" class="" dir="auto">کالبدشکافی فایل <code>urls.py</code> (مسیریابی سیستم)</p><ul id="39bda1eb-8b9d-80af-b808-e5b938f56522" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>basename=&#x27;payments&#x27;</strong></code><strong> اجباری است؟ (نکته فنی):</strong><br/>وقتی شما از <code>ModelViewSet</code> استفاده می‌کنید، DRF به متد <code>queryset = Payment.objects.all()</code> در بالای کلاس نگاه می‌کند و اسم مسیرها را به صورت خودکار حدس می‌زند. اما چون ما از <code>GenericViewSet</code> استفاده کردیم و هیچ <code>queryset</code> ثابت و پیش‌فرضی در ویو نگذاشتیم (چون نمی‌خواستیم کسی لیست پرداخت‌ها را ببیند)، DRF گیج می‌شود! با دادن پارامتر <code>basename=&#x27;payments&#x27;</code> به او می‌گوییم: <em>&quot;نام داخلی این مسیرها را </em><em><code>payments-initiate</code></em><em> و </em><em><code>payments-mock-verify</code></em><em> بگذار&quot;</em>.</li></ul><pre id="39bda1eb-8b9d-8077-98c8-fa8e81a17557" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre><ul id="39bda1eb-8b9d-809c-b53b-c1c2d037ee28" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا؟</strong> اتصال مسیرهای تولید شده توسط روتر DRF به سیستم اصلی URLهای اپلیکیشن. وقتی این فایل در روتر مرکزی (<code>api/urls.py</code>) ثبت می‌شود، کل سیستم پرداخت با دو آدرس تمیز و ایزوله در دسترس سیستم‌عامل گونه‌ی شما قرار می‌گیرد!</li></ul><aside class="block-color-purple callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="purple" style="white-space:pre-wrap;display:flex" id="39bda1eb-8b9d-8029-b883-fa66f16dc898" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h3 id="39bda1eb-8b9d-80c7-9f03-e1d378065006" class="" dir="auto"><br/>این معماری به شما اجازه می‌دهد فردا بدون اینکه حتی یک خط از کدهای <code>views.py</code> یا <code>serializers.py</code> را تغییر دهید، فقط در فایل <code>services.py</code> به جای درگاه شبیه‌ساز، کد زرین‌پال یا استرایپ را قرار دهید. سیستم از بیرون دقیقاً به همین شکلی که الان هست کار خواهد کرد!<br/><br/></h3></div></aside><hr id="39bda1eb-8b9d-8076-8cd5-ef680e816a36" dir="auto"/><aside class="block-color-orange callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="orange" style="white-space:pre-wrap;display:flex" id="39ada1eb-8b9d-80fd-9886-de5fbf6e4542" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="39ada1eb-8b9d-80ed-ab75-e9a28d35d1e2" class="" dir="auto">تست بصری در مرورگر</p></div></aside><blockquote id="39ada1eb-8b9d-8035-8f4a-f465ccaf9560" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto">1- تست بصری سیستم مالی در Swagger (از صفر تا صد خرید)<p id="39ada1eb-8b9d-8095-b68d-e0b306230562" class="" dir="auto">اکنون پازل کامل شده است. سرور را ران کنید و این جریان را در Swagger انجام دهید:</p><ol type="1" id="39ada1eb-8b9d-8020-9449-e91d3ebfa942" class="numbered-list" start="1" dir="auto"><li><strong>لاگین:</strong> توکن خود را در هدر قرار دهید.</li></ol><ol type="1" id="39ada1eb-8b9d-8040-9c94-e70ac3047fa8" class="numbered-list" start="2" dir="auto"><li><strong>ساخت فاکتور:</strong> طبق روال قبل، یک سبد خرید را با <code>POST /api/orders/</code> به فاکتور تبدیل کنید و <code>id</code> آن فاکتور را کپی کنید.</li></ol><ol type="1" id="39ada1eb-8b9d-808c-ba33-eedd7e394357" class="numbered-list" start="3" dir="auto"><li><strong>درخواست پرداخت:</strong> به مسیر <code>POST /api/payments/initiate/</code> بروید. <code>order_id</code> فاکتور را وارد کنید.<ul id="39ada1eb-8b9d-80b2-8475-cc9dade84ceb" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>خروجی:</strong> سیستم به شما یک <code>transaction_id</code> طولانی (UUID) و یک <code>gateway_url</code> می‌دهد.</li></ul></li></ol><ol type="1" id="39ada1eb-8b9d-8043-9059-cdeae6c4eb98" class="numbered-list" start="4" dir="auto"><li><strong>شبیه‌سازی بانک:</strong> به مسیر <code>POST /api/payments/mock_verify/</code> بروید (این بخش نیاز به لاگین ندارد، چون بانک به سیستم ما لاگین نیست!).<ul id="39ada1eb-8b9d-8086-b140-fbe00ac55908" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>transaction_id</code> که گرفتید را در بدنه قرار دهید.</li></ul><ul id="39ada1eb-8b9d-808e-89f6-c474d98bd4e8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">مقدار <code>is_successful</code> را <code>true</code> بگذارید و <code>Execute</code> کنید.</li></ul></li></ol><ol type="1" id="39ada1eb-8b9d-8053-ae46-d1141a10b97d" class="numbered-list" start="5" dir="auto"><li><strong>بررسی نهایی:</strong> اگر به پنل ادمین یا مسیر <code>GET /api/orders/</code> بروید، می‌بینید که وضعیت فاکتور از &quot;در انتظار پرداخت&quot; به شکل خودکار به &quot;تکمیل شده&quot; (Completed) تغییر کرده است و فرآیند خرید با یک شبیه‌ساز کاملاً ایزوله به پایان رسیده است.</li></ol></blockquote><p id="39cda1eb-8b9d-8064-9d88-fa1566326c61" class="" dir="auto">اکنون وقت تکمیل آخرین قطعه از پازل فیزیکی تجارت الکترونیک است: <strong>دامنه ارسال و مرسولات (Shipment &amp; Fulfillment Domain)</strong>.</p><p id="39cda1eb-8b9d-804d-a766-f9e986bc9ca8" class="" dir="auto">وقتی پرداخت در مرحله قبل با موفقیت انجام شد و وضعیت سفارش به <code>COMPLETED</code> تغییر کرد، وظیفه سیستم مالی به پایان می‌رسد؛ اما کار انبار و لجستیک تازه شروع شده است! ما نیاز به سیستمی داریم که به محض تایید پرداخت، به صورت خودکار یک «مرسوله» برای سفارش بسازد تا انباردار بتواند کالا را بسته‌بندی کرده، تحویل پست دهد و کد رهگیری پستی را در سیستم ثبت کند.</p><p id="39cda1eb-8b9d-80e7-bb91-f420cce063c0" class="" dir="auto">این همان دیتابیسی است که وقتی در مرحله بعدی سرور MCP (دستیار هوش مصنوعی) را ساختیم و کاربر در چت پرسید: <em>&quot;سفارش من کجاست؟&quot;</em>، هوش مصنوعی با خواندن این جدول به او جواب می‌دهد: <em>&quot;سفارش شما تحویل اداره پست شده و کد مرسوله شما X است&quot;</em>.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="399da1eb-8b9d-80c6-8b39-d203b0ab5ac5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="399da1eb-8b9d-80c0-bead-dd322ae7bc42" class="" dir="auto">پایان فاز 7</h1></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39cda1eb-8b9d-80e4-b0d5-dd356e194774" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="39cda1eb-8b9d-8040-8ede-e864d596c43a" class="" dir="auto">پایان Part-8</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

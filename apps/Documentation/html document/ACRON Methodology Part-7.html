@@ -1,0 +1,1145 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-7</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="397da1eb-8b9d-80a4-8ae4-d3d71d491885" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-7</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="397da1eb-8b9d-8077-8d3d-d1d8591d6d1f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="397da1eb-8b9d-809b-aa85-ebfb1d07a9e6" class="" dir="auto">در Part-6 ، فاز 5 تمام شد تعداد قدم ها 9 قدم</p></div></aside><h1 id="397da1eb-8b9d-80ca-9e26-c6409414a837" class="" dir="auto">فاز 6: Order Domain</h1><hr id="397da1eb-8b9d-8062-a917-f03025a4e1d5" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="397da1eb-8b9d-80b0-ba79-c2de63a7f19d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="397da1eb-8b9d-80cc-8a7b-cde3e72f9cbf" class="" dir="auto"><strong>فعال‌سازی و طراحی مدل‌های سفارش</strong></p></div></aside><p id="397da1eb-8b9d-807f-b1f4-e66953e0683b" class="" dir="auto">کالبدشکافی معماری سفارشات (تفاوت Cart و Order چیست؟)</p><p id="397da1eb-8b9d-809e-9c28-effd580b528c" class="" dir="auto">قبل از کدنویسی، باید یک مفهوم حیاتی در سیستم‌های مالی و فروشگاهی را درک کنیم: <strong>«تغییرپذیری در برابر تغییرناپذیری» (Mutable vs. Immutable)</strong>.</p><ul id="397da1eb-8b9d-80d5-882c-e41c9f57e7b3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>سبد خرید (Cart):</strong> یک موجودیت موقت و <strong>تغییرپذیر</strong> است. کاربر می‌تواند امروز یک لپ‌تاپ به سبدش اضافه کند، فردا قیمت لپ‌تاپ در سایت تغییر کند و وقتی کاربر به سبدش نگاه می‌کند، قیمت جدید را می‌بیند.</li></ul><ul id="397da1eb-8b9d-80cf-8506-c5433bb18593" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>سفارش (Order):</strong> یک <strong>اسنپ‌شات (عکسِ لحظه‌ای)</strong> از تاریخ است و کاملاً <strong>تغییرناپذیر</strong> است. وقتی کاربر دکمه پرداخت را می‌زند و سفارش ثبت می‌شود، قیمت آن کالا در آن ثانیه، باید برای همیشه در دیتابیس ثبت (فریز) شود. اگر یک سال بعد قیمت لپ‌تاپ ۳ برابر شد، فاکتور کاربر (Order) نباید تغییر کند؛ او باید دقیقاً همان مبلغی را ببیند که در زمان خرید پرداخت کرده است.</li></ul><p id="397da1eb-8b9d-8012-9a67-f53be3e2e0d4" class="" dir="auto"><br/>به همین دلیل است که ما نمی‌توانیم فقط به جدول <code>Product</code> متصل بمانیم، بلکه باید فیلدی به نام <code>unit_price</code> (قیمت واحد) را در جدول <code>OrderItem</code> کپی و ذخیره کنیم.</p><blockquote id="397da1eb-8b9d-807d-b00d-f60d0e955485" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1- فایل <code>config/settings/base.py</code> را باز کنید و اپلیکیشن <code>orders</code> را از کامنت خارج کنید:<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="397da1eb-8b9d-8020-939e-f2cf6241e1d8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">INSTALLED_APPS = [
+    # ...
+    &#x27;apps.carts&#x27;,
+    &#x27;apps.orders&#x27;, # این خط از کامنت خارج شود
+]</code></pre></blockquote><blockquote id="397da1eb-8b9d-8061-8c69-f0a75e25bfcc" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2-  فایل <code>apps/orders/models.py</code> را باز کنید و کدهای مهندسی‌شده‌ی زیر را بنویسید:<pre id="397da1eb-8b9d-801c-85a1-da4974d69f76" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import uuid
+from django.db import models
+from apps.customers.models import Customer
+from apps.products.models import Product
+
+class Order(models.Model):
+    # ۱. تعریف وضعیت‌های مختلف یک سفارش با استفاده از TextChoices
+    class OrderStatus(models.TextChoices):
+        PENDING = &#x27;P&#x27;, &#x27;در انتظار پرداخت&#x27;
+        COMPLETED = &#x27;C&#x27;, &#x27;پرداخت موفق&#x27;
+        CANCELED = &#x27;X&#x27;, &#x27;لغو شده&#x27;
+
+    # ۲. شناسه یکتا و غیرقابل حدس برای پیگیری سفارش
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    # ۳. ارتباط با مشتری (سفارش برخلاف سبد خرید، حتماً صاحب دارد)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name=&#x27;orders&#x27;)
+    
+    # ۴. وضعیت فعلی سفارش
+    status = models.CharField(
+        max_length=1, 
+        choices=OrderStatus.choices, 
+        default=OrderStatus.PENDING
+    )
+    
+    # ۵. زمان ثبت سفارش
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f&quot;Order {self.id} - {self.customer.user.username}&quot;
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.PROTECT, related_name=&#x27;items&#x27;)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name=&#x27;order_items&#x27;)
+    quantity = models.PositiveSmallIntegerField()
+    
+    # ۶. مهم‌ترین فیلد این فاز: فریز کردن قیمت!
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f&quot;{self.product.name} (x{self.quantity})&quot;</code></pre></blockquote><p id="397da1eb-8b9d-80a8-86f7-e61d0af265ce" class="" dir="auto">آموزش عمیق کدهای مدل سفارش (چرایی انتخاب‌ها)</p><ol type="1" id="397da1eb-8b9d-8033-b765-f328a98b4fba" class="numbered-list" start="1" dir="auto"><li>چرا از <code>models.TextChoices</code> استفاده کردیم؟<br/>در گذشته برنامه‌نویسان جنگو یک لیست ساده (تاپل) برای گزینه‌ها می‌نوشتند. اما کلاس <code>TextChoices</code> (که در نسخه‌های جدیدتر جنگو معرفی شد) بسیار شیء‌گراتر و تمیزتر است. این کار به ما اجازه می‌دهد در هر جای کد به جای اینکه بنویسیم <code>if status == &#x27;P&#x27;</code>, به صورت حرفه‌ای بنویسیم <code>if status == Order.OrderStatus.PENDING</code>. این کار جلوی خطاهای تایپی (Typo) را می‌گیرد و کد را به شدت خوانا می‌کند.</li></ol><ol type="1" id="397da1eb-8b9d-80e9-a6b5-fb55dac95d3c" class="numbered-list" start="2" dir="auto"><li>تفاوت <code>on_delete=models.PROTECT</code> با CASCADE در اینجا چیست؟<br/>در سبد خرید (<code>Cart</code>) ما از <code>CASCADE</code> استفاده کردیم، چون اگر کالا از فروشگاه پاک می‌شد، اشکالی نداشت از سبدِ پرداخت‌نشده‌ی کاربر هم غیب شود.<br/>اما در اینجا از <code>PROTECT</code> استفاده کردیم. فاکتور و سفارش، سند قانونی و مالی یک کسب‌وکار هستند. اگر ادمین تصمیم گرفت &quot;گوشی آیفون ۱۳&quot; را از دیتابیس پاک کند، دیتابیس باید ارور بدهد و بگوید: <em>&quot;شما حق ندارید این کالا را پاک کنید، چون در ۳ فاکتورِ گذشته فروخته شده است!&quot;</em> قانون طلایی سیستم‌های مالی: هیچ‌چیزِ مرتبط با تراکنش‌های گذشته نباید به سادگی قابل پاک شدن (CASCADE) باشد.</li></ol><ol type="1" id="397da1eb-8b9d-80ca-a86e-f3265045c887" class="numbered-list" start="3" dir="auto"><li>فیلد <code>unit_price</code> در <code>OrderItem</code>:<br/>همان‌طور که در ابتدای صحبت‌ها توضیح دادم، این فیلد برای ثبت اسنپ‌شات قیمت است. بعداً در مرحله <code>Service Layer</code> (فاز ۸)، ما کدی می‌نویسیم که محتویات <code>CartItem</code> را می‌خواند و داخل <code>OrderItem</code> کپی می‌کند و در همان لحظه، قیمت فعلی کالا (<code>product.price</code>) را داخل <code>unit_price</code> ذخیره می‌کند.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="397da1eb-8b9d-8067-ae0c-ea801d44a132" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="397da1eb-8b9d-80b1-b527-d89f0efde055" class="" dir="auto"><strong>انتقال تغییرات به دیتابیس</strong></p></div></aside><p id="397da1eb-8b9d-8020-85bf-fd3a34b492e6" class="" dir="auto">حالا که معماری قدرتمند فاکتورها را چیدیم، باید آن را روی MySQL اعمال کنیم.</p><blockquote id="397da1eb-8b9d-804a-b393-de900f07ccea" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2- در ترمینال بنویس:<pre id="397da1eb-8b9d-8061-a08d-c727de0eb80b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations orders
+python manage.py migrate</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="397da1eb-8b9d-8086-af54-ff071dca06c2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h3 id="397da1eb-8b9d-80f5-9b6a-d560faa7b3ca" class="" dir="auto"><br/>ایستگاه منطقیِ بعدی ما، <strong>مفهوم Service Layer (لایه سرویس)</strong> است که در متدولوژی acron (فاز ۸) به آن اشاره شده. <br/><br/>لایه سرویس جایی است که ما منطق تبدیلِ &quot;سبد خرید&quot; به &quot;سفارش&quot; را می‌نویسیم. (تبدیل رکوردهای موقت به رکوردهای دائمی).<br/><br/></h3></div></aside><p id="397da1eb-8b9d-806b-a4d8-e1277de87e55" class="" dir="auto">
+</p><p id="397da1eb-8b9d-80d7-b294-ec7b189f35e3" class="" dir="auto">پنل مدیریت برای بخش سفارشات (فاکتورها) یکی از حساس‌ترین بخش‌های هر فروشگاه اینترنتی است. در اینجا، ما باید کاملاً با ذهنیت یک سیستم مالی کدنویسی کنیم: <strong>فاکتورها اسناد قانونی هستند و نباید به راحتی قابل دستکاری باشند.</strong></p><p id="397da1eb-8b9d-802f-aaf7-e7f9bfce783c" class="" dir="auto">بیایید ابتدا این امنیت را در پنل ادمین پیاده کنیم و سپس وارد مفهوم شگفت‌انگیز لایه سرویس (Service Layer) بشویم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="397da1eb-8b9d-8018-81e8-cdb74955af99" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="397da1eb-8b9d-8054-b94e-dffd996d38bb" class="" dir="auto"><strong>قدم اول: پیاده‌سازی پنل مدیریت سفارشات (ایمن و غیرقابل تغییر)</strong></p></div></aside><blockquote id="397da1eb-8b9d-804b-b5ba-ff16e8cf81e1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3- فایل <code>apps/orders/admin.py</code> را باز کنید و کدهای زیر را بادقت وارد کنید:<pre id="397da1eb-8b9d-8074-917b-f4865631c5fe" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from .models import Order, OrderItem
+
+# ۱. اینلاین برای آیتم‌های داخل فاکتور
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0 # ما نمی‌خواهیم ادمین دستی آیتم جدیدی به فاکتور اضافه کند
+    
+    # قفل کردن فیلدها: ادمین نباید بتواند قیمت یا تعداد کالای فروخته شده را عوض کند!
+    readonly_fields = [&#x27;product&#x27;, &#x27;quantity&#x27;, &#x27;unit_price&#x27;]
+    
+    # جلوگیری از حذف کردن یک آیتم از وسط فاکتور ثبت شده
+    can_delete = False
+
+# ۲. مدیریت اصلی فاکتورها
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = [&#x27;id&#x27;, &#x27;customer&#x27;, &#x27;status&#x27;, &#x27;created_at&#x27;]
+    list_filter = [&#x27;status&#x27;, &#x27;created_at&#x27;]
+    
+    # جستجو در روابط عمیق دیتابیس
+    search_fields = [&#x27;id&#x27;, &#x27;customer__user__username&#x27;, &#x27;customer__phone_number&#x27;]
+    
+    # قفل کردن فیلدهای اصلی فاکتور
+    readonly_fields = [&#x27;id&#x27;, &#x27;customer&#x27;, &#x27;created_at&#x27;]
+    
+    inlines = [OrderItemInline]
+    
+    # جلوگیری از ساخت فاکتور دستی توسط ادمین (فاکتور فقط باید از طریق خرید کاربر ساخته شود)
+    def has_add_permission(self, request):
+        return False</code></pre></blockquote><h3 id="397da1eb-8b9d-80bf-aa74-e54199dda699" class="" dir="auto">کالبدشکافی خط به خط کدهای ادمین (چیستی و چرایی)</h3><ul id="397da1eb-8b9d-8031-bce0-c654269c1b28" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>extra = 0</code> و <code>can_delete = False</code>: برخلاف گالری تصاویر (که ادمین باید می‌توانست عکس اضافه و کم کند)، در فاکتور مالی ادمین به هیچ وجه نباید بتواند آیتمی را به فاکتوری که پرداخت شده اضافه کند یا از آن حذف کند. این دو دستور، دکمه‌های Add و Delete را در فرانت‌اند پنل ادمین مخفی می‌کنند.</li></ul><ul id="397da1eb-8b9d-809d-8317-d454fc21f564" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>readonly_fields</code>: ما فیلدهای حیاتی مثل <code>unit_price</code> (قیمت فریز شده) و <code>quantity</code> را فقط-خواندنی کردیم. این یعنی ادمین در صفحه جزئیات سفارش فقط می‌تواند اطلاعات را ببیند، اما فیلدها خاکستری هستند و قابل ویرایش نیستند. تنها چیزی که ادمین حق دارد عوض کند، فیلد <code>status</code> (وضعیت سفارش) است (مثلاً تغییر از &quot;در انتظار&quot; به &quot;موفق&quot;).</li></ul><ul id="397da1eb-8b9d-808a-87c7-c214d6c586af" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>customer__user__username</code>: این یکی از جادوهای جنگو (ORM) است. علامت <code>__</code> (دو آندرلاین) به دیتابیس می‌گوید: &quot;از جدول <code>Order</code> برو به جدول <code>Customer</code>، از آنجا برو به جدول <code>CustomUser</code> و در فیلد <code>username</code> جستجو کن.&quot; این باعث می‌شود ادمین بتواند با تایپ کردن نام کاربری یک شخص، تمام فاکتورهای او را پیدا کند.</li></ul><ul id="397da1eb-8b9d-80e1-8244-c45a6598ba95" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>has_add_permission</code>: ما با اورراید کردن این متد و برگرداندن <code>False</code>، دکمه &quot;Add Order&quot; را به طور کامل از پنل ادمین حذف کردیم! چرایی: فاکتور باید نتیجه یک تراکنش سیستمی باشد، نه اینکه ادمین بنشیند و دستی فاکتور بسازد.</li></ul><hr id="398da1eb-8b9d-80d7-bfa1-f47726830120" dir="auto"/><h3 id="398da1eb-8b9d-8060-8695-dc126a87268c" class="" dir="auto">ورود به دنیای لایه سرویس (Service Layer)</h3><p id="398da1eb-8b9d-8036-8aa5-e395e6f6256c" class="" dir="auto">اکنون که دیتابیس و پنل ادمین ما آماده است، می‌خواهیم API پرداخت و ثبت نهایی سفارش را بنویسیم. در پروژه‌های مبتدی، برنامه‌نویس تمام کدهای تبدیل سبد خرید به سفارش را مستقیماً داخل <code>views.py</code> می‌نویسد (الگوی ضد‌معماری به نام Fat Views).</p><p id="398da1eb-8b9d-80e7-9535-f63eacd25656" class="" dir="auto">اما در پروژه های بزرگ تر شبیه acron ، ما از <strong>معماری سه‌لایه (Three-Tier Architecture)</strong> استفاده می‌کنیم.</p><h4 id="398da1eb-8b9d-807e-9d14-e156c0837ede" class="" dir="auto">چرا به لایه سرویس نیاز داریم؟</h4><p id="398da1eb-8b9d-80c8-8fd4-ed52c6be504a" class="" dir="auto">فرض کنید کاربر روی دکمه &quot;تکمیل خرید&quot; کلیک می‌کند. چه اتفاقاتی باید بیفتد؟</p><ol type="1" id="398da1eb-8b9d-8095-a38a-e427485a3fb5" class="numbered-list" start="1" dir="auto"><li>پیدا کردن سبد خرید کاربر.</li></ol><ol type="1" id="398da1eb-8b9d-801e-8679-ec1ec93ef0da" class="numbered-list" start="2" dir="auto"><li>بررسی اینکه آیا کالاها هنوز در انبار موجودی دارند (<code>inventory</code> &gt; 0)؟</li></ol><ol type="1" id="398da1eb-8b9d-803e-a410-ec64e97a7a02" class="numbered-list" start="3" dir="auto"><li>اگر موجودی نبود، خطا بدهد.</li></ol><ol type="1" id="398da1eb-8b9d-80c7-82ee-dd0278bdf91b" class="numbered-list" start="4" dir="auto"><li>اگر موجودی بود، یک رکورد جدید در جدول <code>Order</code> بسازد.</li></ol><ol type="1" id="398da1eb-8b9d-8002-bf0a-c1776c960646" class="numbered-list" start="5" dir="auto"><li>روی تک‌تک <code>CartItem</code>ها حلقه بزند و آن‌ها را به <code>OrderItem</code> تبدیل کند.</li></ol><ol type="1" id="398da1eb-8b9d-8004-86c0-f3811f77e058" class="numbered-list" start="6" dir="auto"><li>قیمت فعلی کالا را در <code>unit_price</code> فریز (کپی) کند.</li></ol><ol type="1" id="398da1eb-8b9d-80e5-a1de-d5fdda65fb19" class="numbered-list" start="7" dir="auto"><li>موجودی انبار (<code>inventory</code>) را کاهش دهد.</li></ol><ol type="1" id="398da1eb-8b9d-8092-8aa3-c270324c9d38" class="numbered-list" start="8" dir="auto"><li>سبد خرید (<code>Cart</code>) را برای همیشه پاک کند.</li></ol><p id="398da1eb-8b9d-80f7-bc05-c3b3b186cb5a" class="" dir="auto">اگر تمام این ۸ مرحله پیچیده را در <code>views.py</code> بنویسیم، کد ما غیرقابل خواندن، غیرقابل تست و به شدت کثیف می‌شود. لایه سرویس (Service Layer) دقیقاً برای همین به وجود آمده است: </p><p id="398da1eb-8b9d-804b-ad48-dfdeeb85ac4d" class="" dir="auto"><strong>جدا کردن «منطق پردازشی کسب‌وکار» از «منطق دریافت درخواست HTTP».</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-8083-8d51-db95abaaf917" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-806d-abe7-c3868f18a42c" class="" dir="auto">قدم بعدی: ساخت اسکلت‌بندی لایه سرویس</p></div></aside><blockquote id="398da1eb-8b9d-8066-a58b-cf716c5793a2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">4- در مسیر <code>apps/orders/</code> یک فایل جدید به نام <code>services.py</code> بسازید.<br/><br/>این فایل قرار است &quot;مغز متفکر&quot; بخش فروش ما باشد. ما یک کلاس و یک متد درون آن تعریف می‌کنیم که هیچ ارتباطی با <code>request</code>، <code>response</code>، یا <code>JSON</code> ندارد؛ بلکه فقط با دیتابیس و منطق خالص پایتون کار می‌کند.<pre id="398da1eb-8b9d-8037-99d0-e9e8d674cb43" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import transaction
+from rest_framework.exceptions import ValidationError
+from apps.carts.models import Cart
+from apps.orders.models import Order, OrderItem
+
+class OrderService:
+    
+    @staticmethod
+    @transaction.atomic
+    def create_order_from_cart(cart_id, customer):
+        &quot;&quot;&quot;
+        این سرویس یک سبد خرید را می‌گیرد و آن را به یک فاکتور قطعی تبدیل می‌کند.
+        &quot;&quot;&quot;
+        # ۱. پیدا کردن سبد خرید به همراه آیتم‌ها و محصولاتش (برای جلوگیری از N+1)
+        try:
+            cart = Cart.objects.prefetch_related(&#x27;items__product&#x27;).get(id=cart_id)
+        except Cart.DoesNotExist:
+            raise ValidationError(&quot;سبد خرید یافت نشد یا قبلاً پرداخت شده است.&quot;)
+
+        # ۲. اگر سبد خرید خالی بود، اجازه ساخت فاکتور نده!
+        if cart.items.count() == 0:
+            raise ValidationError(&quot;سبد خرید شما خالی است.&quot;)
+
+        # ۳. ساخت فاکتور اولیه (Header)
+        order = Order.objects.create(customer=customer)
+
+        # ۴. تبدیل تک‌تک آیتم‌های سبد به آیتم‌های فاکتور
+        order_items_to_create = []
+        for cart_item in cart.items.all():
+            product = cart_item.product
+            
+            # بررسی موجودی انبار در لحظه آخر
+            if product.inventory &lt; cart_item.quantity:
+                raise ValidationError(f&quot;موجودی محصول &#x27;{product.name}&#x27; کافی نیست.&quot;)
+
+            # کسر از موجودی انبار
+            product.inventory -= cart_item.quantity
+            product.save()
+
+            # آماده‌سازی آیتم فاکتور (دقت کنید قیمت همین الان فریز می‌شود)
+            order_items_to_create.append(
+                OrderItem(
+                    order=order,
+                    product=product,
+                    quantity=cart_item.quantity,
+                    unit_price=product.price  # فریز کردن قیمت!
+                )
+            )
+
+        # ۵. ذخیره یکجای تمام آیتم‌ها در دیتابیس (بسیار بهینه‌تر از ذخیره تک‌تک)
+        OrderItem.objects.bulk_create(order_items_to_create)
+
+        # ۶. حذف سبد خرید (چون تبدیل به فاکتور شد)
+        cart.delete()
+
+        return order</code></pre></blockquote><h3 id="398da1eb-8b9d-8047-9e20-cbc00812f141" class="" dir="auto">کالبدشکافی لایه سرویس و دکوراتور <code>@transaction.atomic</code></h3><p id="398da1eb-8b9d-8092-9036-e4bd15b4b177" class="" dir="auto">یکی از حیاتی‌ترین خطوط این کد، دکوراتور <code>@transaction.atomic</code> است.<br/>تصور کنید مراحل ۱ تا ۴ به خوبی پیش رفت، اما ناگهان در مرحله ۵ برق سرور رفت یا دیتابیس کِرَش کرد! چه می‌شود؟<br/>از انبار کالا کسر شده، فاکتور ناقص ساخته شده، اما سبد خرید پاک نشده است! این یک فاجعه مالی است.</p><p id="398da1eb-8b9d-80e1-b4cc-da42e4544594" class="" dir="auto">دکوراتور <code>@transaction.atomic</code> یک سپر محافظتی دور کل این تابع می‌کشد. این سپر به دیتابیس می‌گوید: <strong>&quot;یا تمام این مراحل را تا آخر خط بی‌نقص انجام بده، یا اگر در هر خطی ارور رخ داد، تمام تغییراتی که تا آن لحظه دادی را برگردان (Rollback) و انگار هیچ اتفاقی نیفتاده است.&quot;</strong> این اصل در علوم کامپیوتر به نام ACID شناخته می‌شود و در سیستم‌های فروشگاهی از نان شب واجب‌تر است.</p><p id="398da1eb-8b9d-8058-9502-cfc5103d62fe" class="" dir="auto"><a href="https://fa.wikipedia.org/wiki/%D8%A7%D8%B3%DB%8C%D8%AF_(%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87_%D8%AF%D8%A7%D8%AF%D9%87)#1._%D8%AA%D8%AC%D8%B2%DB%8C%D9%87%E2%80%8C%D9%86%D8%A7%D9%BE%D8%B0%DB%8C%D8%B1%DB%8C_(Atomicity)">https://fa.wikipedia.org/wiki/%D8%A7%D8%B3%DB%8C%D8%AF_(%D9%BE%D8%A7%DB%8C%DA%AF%D8%A7%D9%87_%D8%AF%D8%A7%D8%AF%D9%87)#1._%D8%AA%D8%AC%D8%B2%DB%8C%D9%87%E2%80%8C%D9%86%D8%A7%D9%BE%D8%B0%DB%8C%D8%B1%DB%8C_(Atomicity)</a></p><figure id="398da1eb-8b9d-80cd-a7cd-e9d464bbfe81" class="image" data-notion-image="image.png" dir="ltr"><a href="image.png"><img style="width:710px" src="image.png"/></a></figure><p id="398da1eb-8b9d-80b8-9536-df849278ff3d" class="" dir="auto">ما اکنون پیچیده‌ترین بخش تجاری (Business Logic) پروژه را به تمیزترین شکل ممکن در یک سرویس ایزوله کردیم. این سرویس اکنون آماده است تا توسط API View فراخوانی شود.</p><h3 id="398da1eb-8b9d-80f8-9655-ddff474a6e11" class="" dir="auto">. آیا ایمپورت مستقیم از یک App به App دیگر کار درستی است؟</h3><p id="398da1eb-8b9d-80b1-97ed-ce2eea49101a" class="" dir="auto">در دنیای استاندارد جنگو و معماری یکپارچه (Monolith)، <strong>بله، این کار کاملاً رایج و پذیرفته شده است</strong>.<br/>نکته طلایی این است که ما این ایمپورت را <strong>داخل لایه سرویس (</strong><code><strong>services.py</strong></code><strong>)</strong> انجام دادیم، نه داخل <code>models.py</code>. اگر <code>models.py</code> اپلیکیشن سفارشات را به <code>models.py</code> سبد خرید متصل می‌کردیم، خطر رخ دادن خطای وحشتناک «ایمپورت حلقوی» (Circular Import) به شدت بالا می‌رفت. با انتقال این منطق به لایه سرویس، ما این خطر را خنثی کردیم.</p><h3 id="398da1eb-8b9d-8023-8cba-db7454655055" class="" dir="auto">۲. آیا این کار باعث پیچیدگی غیرقابل فهم می‌شود (Tight Coupling)؟</h3><p id="398da1eb-8b9d-8014-9751-e8c81c84da07" class="" dir="auto">پاسخ صریح: <strong>در مقیاس‌های بسیار بزرگ، بله.</strong><br/>در مهندسی نرم‌افزار به این حالت <strong>Tight Coupling (وابستگی شدید)</strong> می‌گویند. با این کد، اپلیکیشن <code>orders</code> اکنون به اپلیکیشن <code>carts</code> زنجیر شده است. اگر فردا بخواهید پروژه را به معماری میکروسرویس (Microservices) تبدیل کنید و سبد خرید را روی یک سرور و سفارشات را روی سروری دیگر بگذارید، این ایمپورت مستقیم باعث شکستن سیستم می‌شود. اما در یک پروژه Monolithic، این میزان از وابستگی در لایه سرویس کاملاً قابل مدیریت است.</p><h3 id="398da1eb-8b9d-80c6-be8e-d352e4a5db67" class="" dir="auto">۳. آیا راه بهتری هم وجود دارد؟</h3><p id="398da1eb-8b9d-8055-a144-ec02bac013af" class="" dir="auto">بله، برای کاهش این وابستگی راه‌حل‌های پیشرفته‌تری وجود دارد که نیازمند معماری‌های پیچیده‌تر است:</p><ul id="398da1eb-8b9d-80c1-8dd9-c339c2176b7d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>معماری رویدادمحور (Event-Driven Architecture):</strong> در این الگو، اپلیکیشن <code>carts</code> و <code>orders</code> اصلاً یکدیگر را نمی‌شناسند. وقتی کاربر روی &quot;تکمیل خرید&quot; کلیک می‌کند، سرویس سبد خرید یک سیگنال (Event) در کل سیستم پخش می‌کند: <em>&quot;یک سبد خرید با موفقیت بسته شد!&quot;</em>. سپس سرویس سفارشات که در حال گوش دادن به رویدادهاست، این پیام را می‌گیرد و فاکتور را می‌سازد. (در جنگو این کار با Django Signals یا ابزارهایی مثل Celery/RabbitMQ انجام می‌شود).</li></ul><ul id="398da1eb-8b9d-8078-80a2-c0d18ea370ff" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>تزریق وابستگی (Dependency Injection):</strong> استفاده از اینترفیس‌ها به جای مدل‌های مستقیم، که البته در پایتون و جنگو کمتر از زبان‌هایی مثل جاوا مرسوم است.</li></ul><p id="398da1eb-8b9d-8023-a446-c3b0e7cc4d23" class="" dir="auto"><strong>نکته واقع‌گرایانه:</strong> به عنوان یک برنامه‌نویس بک‌اند، همیشه باید مراقب تله <strong>Over-engineering (مهندسی بیش از حد)</strong> باشید. برای فاز فعلی، همین معماری سه‌لایه (استفاده از <code>services.py</code>) یک تعادل عالی بین تمیزی کد و سرعت توسعه است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-802a-90bf-cbcb1278d068" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h3 id="398da1eb-8b9d-8077-9348-d41f1131d3da" class="" dir="auto">. نقش <code>core/services.py</code> در نقشه توسعه چیست؟</h3></div></aside><p id="398da1eb-8b9d-8002-aed7-d0d999416425" class="" dir="auto">در معماری نرم‌افزار، اپلیکیشن <code>core</code> به عنوان <strong>قلب تپنده و زیرساخت مشترک (Shared Infrastructure)</strong> سیستم عمل می‌کند.</p><p id="398da1eb-8b9d-802b-89ec-da8a296508b1" class="" dir="auto">وقتی سرویسی می‌نویسیم که فقط مربوط به سبد خرید است، جایش در <code>apps.carts.services</code> است. اما سرویس‌هایی در پروژه‌های واقعی وجود دارند که به هیچ Domain خاصی تعلق ندارند و همه اپلیکیشن‌ها به آن‌ها نیاز پیدا می‌کنند. اینجا دقیقاً نقطه استفاده از <code>core/services.py</code> است.</p><p id="398da1eb-8b9d-8037-84e6-fe6f91970191" class="" dir="auto"><strong>مثال‌های کاربردی برای </strong><code><strong>core/services.py</strong></code><strong> در آینده پروژه:</strong></p><ul id="398da1eb-8b9d-80ef-b2fc-c6717796729e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>سرویس ارسال پیامک (SMS Service):</strong> فردا می‌خواهید وقتی فاکتور ساخته شد، به کاربر پیامک برود. از طرفی وقتی در پروفایلش ثبت‌نام کرد هم پیامک برود. منطق اتصال به API کاوه‌نگار یا ملی‌پیامک در <code>core</code> نوشته می‌شود تا همه جا قابل فراخوانی باشد.</li></ul><ul id="398da1eb-8b9d-80d1-9839-ecda92bd93b4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>سرویس ایمیل (Email Notification):</strong> برای ارسال رسید فاکتور یا فراموشی رمز عبور.</li></ul><ul id="398da1eb-8b9d-805e-a25c-defa9b5236fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>تولید فایل PDF:</strong> متدی که یک دیکشنری پایتونی می‌گیرد و یک فایل PDF فاکتور یا گزارش خروجی می‌دهد.</li></ul><ul id="398da1eb-8b9d-805e-b232-fd3c4f06393a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>ذخیره‌سازی ابری (Cloud Storage):</strong> اگر بخواهید در آینده تصاویر را به جای هارد سرور روی S3 آمازون یا آروان‌کلاد آپلود کنید.</li></ul><p id="398da1eb-8b9d-80b0-95a6-ff9d3f0572a5" class="" dir="auto">با قرار دادن این سرویس‌های عمومی در <code>core</code>، شما از قانون <strong>DRY (Don&#x27;t Repeat Yourself)</strong> در بالاترین سطح معماری پیروی می‌کنید.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-80ad-b32d-e79de128b31b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8038-a9a8-fc2e6a91427b" class="" dir="auto">کجای کار هستیم؟</p></div></aside><p id="398da1eb-8b9d-807c-a074-cbf3ce8f0e90" class="" dir="auto">ما دیتابیس سفارشات (<code>models.py</code>) و مغز متفکر سیستم (<code>services.py</code>) را ساخته‌ایم. اما کلاینت (فرانت‌اند یا موبایل) چطور باید با این مغز متفکر صحبت کند؟ ما هنوز هیچ «دروازه»ای برای آن نساخته‌ایم.</p><p id="398da1eb-8b9d-80fd-80a0-cdecc0763f56" class="" dir="auto">بنابراین، <strong>مرحله بعدی ما ساخت لایه API (Serializer و View) برای سفارشات است</strong> تا فرآیند تبدیل سبد خرید به فاکتور را به اینترنت متصل کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-8058-9c3b-d3fce9e671c9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8082-8512-d48b10eba521" class="" dir="auto">قدم اول: ساخت Serializerهای سفارش</p></div></aside><p id="398da1eb-8b9d-80fa-ada3-cfd2217756ec" class="" dir="auto">در اینجا ما به دو سریالایزر نیاز داریم: یکی برای <strong>نمایش</strong> فاکتور به کاربر (خروجی)، و دیگری برای <strong>دریافت</strong> درخواست ثبت سفارش (ورودی).</p><blockquote id="398da1eb-8b9d-80e1-931c-db4a92cad496" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">5-  در مسیر <code>apps/orders/</code> یک فایل جدید به نام <code>serializers.py</code> بسازید<pre id="398da1eb-8b9d-8016-bcda-ec06757e2f99" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework import serializers
+from .models import Order, OrderItem
+from apps.carts.models import Cart
+from .services import OrderService
+
+# ۱. سریالایزر نمایش آیتم‌های فاکتور
+class OrderItemSerializer(serializers.ModelSerializer):
+    # برای نمایش نام محصول به جای فقط آی‌دی آن
+    product_name = serializers.CharField(source=&#x27;product.name&#x27;, read_only=True)
+    
+    class Meta:
+        model = OrderItem
+        fields = [&#x27;id&#x27;, &#x27;product_name&#x27;, &#x27;quantity&#x27;, &#x27;unit_price&#x27;]
+
+
+# ۲. سریالایزر نمایش کل فاکتور
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = Order
+        fields = [&#x27;id&#x27;, &#x27;status&#x27;, &#x27;created_at&#x27;, &#x27;items&#x27;]
+
+
+# ۳. سریالایزر عملیاتی: فقط برای دریافت آی‌دی سبد خرید و ساخت فاکتور
+class CreateOrderSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+
+    def validate_cart_id(self, cart_id):
+        # بررسی اینکه آیا این سبد خرید اصلاً وجود دارد؟
+        if not Cart.objects.filter(id=cart_id).exists():
+            raise serializers.ValidationError(&quot;سبد خرید نامعتبر است یا قبلا پرداخت شده است.&quot;)
+        return cart_id
+
+    def save(self, **kwargs):
+        cart_id = self.validated_data[&#x27;cart_id&#x27;]
+        
+        # استخراج مشتری از ریکوئست (کاربر باید لاگین باشد)
+        # ما request را از طریق context از سمت View به اینجا پاس می‌دهیم
+        customer = self.context[&#x27;request&#x27;].user.customer
+        
+        # فراخوانی لایه سرویس که در مرحله قبل ساختیم!
+        order = OrderService.create_order_from_cart(cart_id=cart_id, customer=customer)
+        
+        return order</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-80d1-9639-dd65b1f28f84" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8071-9919-ebbb3b3134b4" class="" dir="auto">قدم دوم: ساخت Controller یا View</p></div></aside><p id="398da1eb-8b9d-8035-8984-c6540cb43f5f" class="" dir="auto">حالا باید یک ViewSet بسازیم که درخواست‌های HTTP را مدیریت کند. در اینجا برخلاف سبد خرید، <strong>کاربر حتماً باید لاگین کرده باشد</strong> تا بتواند سفارش ثبت کند.</p><blockquote id="398da1eb-8b9d-8044-8a0b-cf33931ee6e3" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6-  فایل <code>apps/orders/views.py</code> را باز کرده و کدهای زیر را وارد کنید:<pre id="398da1eb-8b9d-80e8-aade-d08d7695ea12" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin
+from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import extend_schema_view, extend_schema
+from .models import Order
+from .serializers import OrderSerializer, CreateOrderSerializer
+
+@extend_schema_view(
+    create=extend_schema(summary=&quot;تبدیل سبد خرید به سفارش (فاکتور)&quot;, tags=[&#x27;Orders&#x27;]),
+    list=extend_schema(summary=&quot;لیست سفارشات کاربر&quot;, tags=[&#x27;Orders&#x27;]),
+    retrieve=extend_schema(summary=&quot;جزئیات یک سفارش&quot;, tags=[&#x27;Orders&#x27;]),
+)
+class OrderViewSet(CreateModelMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet):
+    &quot;&quot;&quot;
+    ویوست مدیریت سفارشات مشتری.
+    دقت کنید که متدهای آپدیت و حذف مسدود شده‌اند، زیرا فاکتور قابل تغییر نیست.
+    &quot;&quot;&quot;
+    # فقط کاربران لاگین شده حق دسترسی دارند
+    permission_classes = [IsAuthenticated]
+
+    # هر کاربر فقط باید فاکتورهای خودش را ببیند، نه دیگران را!
+    def get_queryset(self):
+        user = self.request.user
+        
+        # جلوگیری از خطای کاربرانی که هنوز پروفایل Customer ندارند
+        if hasattr(user, &#x27;customer&#x27;):
+            return Order.objects.prefetch_related(&#x27;items__product&#x27;).filter(customer=user.customer)
+        return Order.objects.none()
+
+    # انتخاب سریالایزر بر اساس نوع متد (دریافت یا ثبت)
+    def get_serializer_class(self):
+        if self.request.method == &#x27;POST&#x27;:
+            return CreateOrderSerializer
+        return OrderSerializer
+    
+    # ارسال آبجکت request به سریالایزر برای دسترسی به اطلاعات کاربر
+    def get_serializer_context(self):
+        return {&#x27;request&#x27;: self.request}</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-80af-bee5-c70234477de8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-804b-b9a7-e4efb05ef448" class="" dir="auto">قدم سوم: اتصال URLها</p></div></aside><p id="398da1eb-8b9d-8027-b6a7-c4f015c3fa4b" class="" dir="auto">برای اینکه این API در دسترس قرار بگیرد، باید آن را به سیستم روتر جنگو متصل کنیم.</p><blockquote id="398da1eb-8b9d-806b-aff3-d869145d6f0e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7- در مسیر <code>apps/orders/</code> فایل <code>urls.py</code> را ایجاد کنید:<pre id="398da1eb-8b9d-8087-9c35-d2dd3526daf8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import OrderViewSet
+
+router = DefaultRouter()
+router.register(&#x27;orders&#x27;, OrderViewSet, basename=&#x27;orders&#x27;)
+
+urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><blockquote id="398da1eb-8b9d-8069-bc72-f8f91fa4d612" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">8- این مسیر را در <code>apps/api/urls.py</code> (روتر مرکزی) ثبت کنید:<pre id="398da1eb-8b9d-8005-95e2-ec9b8398e5e7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">urlpatterns = [
+    # ... مسیرهای قبلی ...
+    path(&#x27;&#x27;, include(&#x27;apps.carts.urls&#x27;)),
+    path(&#x27;&#x27;, include(&#x27;apps.orders.urls&#x27;)), # اضافه شدن مسیر سفارشات
+]</code></pre></blockquote><h3 id="398da1eb-8b9d-8036-9e2f-ffae5c1311bd" class="" dir="auto">معماری این بخش چگونه کار می‌کند؟ (Flow)</h3><p id="398da1eb-8b9d-80dc-914e-c1343128e19c" class="" dir="auto">۱. کاربر در فرانت‌اند دکمه <strong>&quot;ثبت سفارش&quot;</strong> را می‌زند.<br/>۲. یک درخواست <code>POST</code> حاوی توکن احراز هویت و <code>cart_id</code> به سرور می‌آید.<br/>۳. ویوی ما چک می‌کند کاربر لاگین است (<code>IsAuthenticated</code>).<br/>۴. دیتا به <code>CreateOrderSerializer</code> می‌رود و ولیدیت می‌شود.<br/>۵. سریالایزر به <code>OrderService</code> (لایه سرویس) دستور می‌دهد: <em>&quot;این سبد خرید را بگیر و برای این مشتری فاکتور کن.&quot;</em><br/>۶. لایه سرویس با دیتابیس درگیر می‌شود، سبد را پاک می‌کند، کالاها را به فاکتور می‌برد و قیمت‌ها را فریز می‌کند.<br/>۷. در نهایت یک فاکتور شیک ساخته شده و کد <code>201 Created</code> به کلاینت برمی‌گردد.</p><p id="398da1eb-8b9d-8010-9c2e-e0fa63cc43c8" class="" dir="auto">با این کدها، چرخه اصلی فروشگاه (از دیدن محصول تا ثبت فاکتور) از نظر منطقی کامل شده است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-809e-9710-cd139aa00d55" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8076-93ab-dd294b57a9cd" class="" dir="auto">رفع باگ‌های منطقی در همان لایه‌ای که کشف می‌شوند (مثل همین قفل شدن موجودی انبار)، از انباشته شدن بدهی فنی (Technical Debt) در آینده جلوگیری می‌کند.</p></div></aside><p id="398da1eb-8b9d-8000-971c-e1089ee5da1a" class="" dir="auto">برای بازگرداندن موجودی انبار، در سیستم‌های مقیاس‌پذیر و به خصوص داشبوردهای پیشرفته مدیریت انبار، معماری استاندارد استفاده از تسک‌های پس‌زمینه با ابزارهایی مانند Celery و Redis است تا سیستم به صورت کاملاً خودکار و در بک‌گراند فاکتورها را بررسی کند. اما از آنجایی که در این فاز هنوز Celery را به پروژه متصل نکرده‌ایم، منطق «بررسی در لحظه» (Just-in-Time) را در لایه سرویس پیاده‌سازی می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-802a-9dc5-ec74bcaba565" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8004-b3ed-d370b05bc749" class="" dir="auto">بخش اول: پیاده‌سازی منطق انقضای ۱۵ دقیقه‌ای فاکتور</p></div></aside><p id="398da1eb-8b9d-8028-aace-cc32dfadac7c" class="" dir="auto">ما باید دو متد جدید به «مغز متفکر» سفارشات اضافه کنیم: یکی برای لغو فاکتور و بازگرداندن موجودی انبار، و دیگری برای بررسی زمان سپری شده.</p><blockquote id="398da1eb-8b9d-80d7-be55-f0f783078df0" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">9- فایل <code>apps/orders/services.py</code> را باز کرده و این تغییرات را به کلاس <code>OrderService</code> اضافه کنید: <br/>ابتدا این ایمپورت‌ها را به بالای فایل اضافه کنید:<pre id="398da1eb-8b9d-8076-990d-e60e7207750c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.utils import timezone
+from datetime import timedelta</code></pre><p id="398da1eb-8b9d-8050-b82e-cb5b760bef14" class="" dir="auto">سپس کدهای زیر را به داخل کلاس <code>OrderService</code> (زیر متد قبلی) اضافه کنید:</p><pre id="398da1eb-8b9d-80b4-b9eb-c4e6f6041ba4" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">@staticmethod
+    @transaction.atomic
+    def cancel_expired_order(order):
+        &quot;&quot;&quot;
+        این متد فاکتور را لغو کرده و موجودی کالاها را به انبار برمی‌گرداند.
+        &quot;&quot;&quot;
+        # اگر وضعیت فاکتور چیزی غیر از &quot;در انتظار پرداخت&quot; است، کاری نکن
+        if order.status != Order.OrderStatus.PENDING:
+            return False
+
+        # حلقه روی تمام آیتم‌های فاکتور برای بازگرداندن موجودی
+        # استفاده از select_related برای جلوگیری از مشکل N+1 در ارتباط با جدول Product
+        for item in order.items.select_related(&#x27;product&#x27;):
+            product = item.product
+            product.inventory += item.quantity
+            product.save()
+
+        # تغییر وضعیت فاکتور به لغو شده
+        order.status = Order.OrderStatus.CANCELED
+        order.save()
+        return True
+
+    @staticmethod
+    def validate_order_for_payment(order_id):
+        &quot;&quot;&quot;
+        این متد قبل از ارسال کاربر به درگاه بانکی فراخوانی می‌شود
+        تا بررسی کند آیا هنوز برای پرداخت فرصت دارد یا خیر.
+        &quot;&quot;&quot;
+        try:
+            order = Order.objects.get(id=order_id)
+        except Order.DoesNotExist:
+            raise ValidationError(&quot;سفارش یافت نشد.&quot;)
+
+        if order.status == Order.OrderStatus.COMPLETED:
+            raise ValidationError(&quot;این سفارش قبلاً پرداخت شده است.&quot;)
+            
+        if order.status == Order.OrderStatus.CANCELED:
+            raise ValidationError(&quot;این سفارش لغو شده است.&quot;)
+
+        # محاسبه زمان انقضا (زمان ثبت فاکتور + ۱۵ دقیقه)
+        expiration_time = order.created_at + timedelta(minutes=15)
+        
+        # مقایسه با زمان حال
+        if timezone.now() &gt; expiration_time:
+            # فراخوانی متد بازگرداندن موجودی به انبار
+            OrderService.cancel_expired_order(order)
+            raise ValidationError(&quot;زمان ۱۵ دقیقه‌ای پرداخت به پایان رسیده و سفارش به دلیل اتمام مهلت لغو شد.&quot;)
+        
+        return order</code></pre></blockquote><p id="398da1eb-8b9d-8070-ab9c-e626eaf1ea88" class="" dir="auto">با این معماری، هر زمان که بخواهیم کاربر را به درگاه بانکی متصل کنیم، ابتدا متد <code>validate_order_for_payment</code> را صدا می‌زنیم. اگر زمان گذشته باشد، سیستم خودکار موجودی را به انبار برمی‌گرداند و جلوی پرداخت را می‌گیرد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-80af-9a54-f44b078668e9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-809f-a9b5-c5a90c3c9ba7" class="" dir="auto">بخش دوم: تکمیل پروفایل کاربری (Customer Profile و Address)</p></div></aside><blockquote id="398da1eb-8b9d-801e-8f80-c47f3c8e6f8e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">10- به‌روزرسانی مدل‌ها: فایل <code>apps/customers/models.py</code> را باز کنید: ما مدل <code>Customer</code> را گسترش می‌دهیم و مدل جدیدی به نام <code>Address</code> می‌سازیم (چون یک مشتری می‌تواند چندین آدرس داشته باشد: خانه، محل کار و...).<pre id="398da1eb-8b9d-80f2-bc72-d021a57493c9" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import models
+from django.conf import settings
+
+class Customer(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15, unique=True, null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f&quot;{self.user.first_name} {self.user.last_name}&quot;
+
+class Address(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name=&#x27;addresses&#x27;)
+    province = models.CharField(max_length=50, verbose_name=&quot;استان&quot;)
+    city = models.CharField(max_length=50, verbose_name=&quot;شهر&quot;)
+    street = models.TextField(verbose_name=&quot;آدرس دقیق (خیابان، پلاک، واحد)&quot;)
+    postal_code = models.CharField(max_length=10, verbose_name=&quot;کد پستی&quot;)
+
+    def __str__(self):
+        return f&quot;{self.province}, {self.city} - {self.postal_code}&quot;</code></pre></blockquote><blockquote id="398da1eb-8b9d-807b-a962-f3baea3933e4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">11- دستور زیر را در ترمینال تکرار کنید:<pre id="398da1eb-8b9d-80b0-998f-ccbf9ec8678e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">	python manage.py makemigrations customers
+	python manage.py migrate customers</code></pre></blockquote><p id="398da1eb-8b9d-80dd-b032-d7081b9bbea2" class="" dir="auto">خروجی</p><pre id="398da1eb-8b9d-8080-a8dc-f08e636dd30f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations customers
+Migrations for &#x27;customers&#x27;:
+  apps\customers\migrations\0003_remove_customer_uuid_alter_customer_phone_number_and_more.py
+    - Remove field uuid from customer
+    ~ Alter field phone_number on customer
+    ~ Alter field user on customer
+    + Create model Address
+
+$ python manage.py migrate customers
+Operations to perform:
+  Apply all migrations: customers
+Running migrations:
+  Applying customers.0003_remove_customer_uuid_alter_customer_phone_number_and_more... OK
+</code></pre><blockquote id="398da1eb-8b9d-80b7-b1ce-c7653fe825ca" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">12- ساخت سریالایزرها: در مسیر <code>apps/customers/</code> فایل <code>serializers.py</code> را ایجاد کنید:<pre id="398da1eb-8b9d-80fe-ae57-f219f720745d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework import serializers
+from .models import Customer, Address
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = [&#x27;id&#x27;, &#x27;province&#x27;, &#x27;city&#x27;, &#x27;street&#x27;, &#x27;postal_code&#x27;]
+
+class CustomerProfileSerializer(serializers.ModelSerializer):
+    # دریافت نام و ایمیل از جدول User (به صورت فقط‌خواندنی)
+    first_name = serializers.CharField(source=&#x27;user.first_name&#x27;, read_only=True)
+    last_name = serializers.CharField(source=&#x27;user.last_name&#x27;, read_only=True)
+    email = serializers.CharField(source=&#x27;user.email&#x27;, read_only=True)
+    
+    # نمایش لیست آدرس‌های کاربر
+    addresses = AddressSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Customer
+        fields = [&#x27;id&#x27;, &#x27;first_name&#x27;, &#x27;last_name&#x27;, &#x27;email&#x27;, &#x27;phone_number&#x27;, &#x27;birth_date&#x27;, &#x27;addresses&#x27;]</code></pre></blockquote><blockquote id="398da1eb-8b9d-8061-9f95-f08a197e238a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">13- ساخت Viewها: در مسیر <code>apps/customers/</code> فایل <code>views.py</code> را باز کنید:<br/>ما به دو API نیاز داریم: یکی برای خواندن و ویرایش پروفایل شخصی، و دیگری برای مدیریت آدرس‌ها.<pre id="398da1eb-8b9d-8054-a840-d035ac4947e2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.permissions import IsAuthenticated
+from .models import Customer, Address
+from .serializers import CustomerProfileSerializer, AddressSerializer
+
+class CustomerProfileView(RetrieveUpdateAPIView):
+    &quot;&quot;&quot;
+    این ویو برای مشاهده و ویرایش پروفایل کاربری خود شخص است.
+    &quot;&quot;&quot;
+    serializer_class = CustomerProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        # این متد جادویی باعث می‌شود نیازی به ارسال ID در URL نباشد.
+        # کاربر بر اساس توکنی که می‌فرستد، فقط پروفایل خودش را دریافت می‌کند.
+        customer, created = Customer.objects.get_or_create(user=self.request.user)
+        return customer
+
+class AddressViewSet(ModelViewSet):
+    &quot;&quot;&quot;
+    مدیریت آدرس‌های پستی کاربر
+    &quot;&quot;&quot;
+    serializer_class = AddressSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # هر کاربر فقط آدرس‌های خودش را می‌بیند
+        return Address.objects.filter(customer__user=self.request.user)
+
+    def perform_create(self, serializer):
+        # در زمان ساخت آدرس جدید، فیلد customer به صورت خودکار با کاربر فعلی پر می‌شود
+        customer, created = Customer.objects.get_or_create(user=self.request.user)
+        serializer.save(customer=customer)</code></pre></blockquote><p id="398da1eb-8b9d-802a-8d2d-ddce30fc4ce5" class="" dir="auto">متد <code>get_or_create</code> در ORM جنگو، یک ویژگی خاص دارد: این متد به جای یک آبجکت ساده، همیشه یک <strong>تاپل (Tuple)</strong> دوتایی برمی‌گرداند.</p><p id="398da1eb-8b9d-8008-8647-c71db277a591" class="" dir="auto">ساختار خروجی این متد به این شکل است: <code>(object, boolean)</code></p><ul id="398da1eb-8b9d-8053-b3de-ef92e56aef6c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متغیر اول (</strong><code><strong>customer</strong></code><strong>):</strong> خودِ آبجکت دیتابیس است (چه آن را پیدا کرده باشد، چه همان لحظه ساخته باشد).</li></ul><ul id="398da1eb-8b9d-80a3-8d7d-f1b5de6377bd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متغیر دوم (</strong><code><strong>created</strong></code><strong>):</strong> یک مقدار منطقی (True یا False) است.<ul id="398da1eb-8b9d-80ad-9f76-c6eda77a5724" class="bulleted-list" dir="auto"><li style="list-style-type:circle">اگر کاربر قبلاً پروفایل <code>Customer</code> داشته و جنگو فقط آن را از دیتابیس <strong>خوانده (Get)</strong> باشد، مقدار <code>created</code> برابر با <code>False</code> می‌شود.</li></ul><ul id="398da1eb-8b9d-8084-b176-c6958a559964" class="bulleted-list" dir="auto"><li style="list-style-type:circle">اگر کاربر پروفایل نداشته و جنگو همان لحظه یک رکورد جدید برایش <strong>ساخته (Create)</strong> باشد، مقدار <code>created</code> برابر با <code>True</code> می‌شود.</li></ul></li></ul><h3 id="398da1eb-8b9d-80b7-aba6-d98d45d54cc6" class="" dir="auto">چرا آن را نوشتیم ولی در کدهای بعدی از آن استفاده نکردیم؟</h3><p id="398da1eb-8b9d-805e-8f62-e92ba6f282fb" class="" dir="auto">در قطعه کدی که من نوشتم، ما عملاً کاری با متغیر <code>created</code> نداریم (چون فقط می‌خواستیم پروفایل را به دست بیاوریم). اما <strong>مجبوریم</strong> آن را بنویسیم تا عمل Unpacking (استخراج مقادیر از تاپل) در پایتون به درستی انجام شود.</p><p id="398da1eb-8b9d-8083-b101-caaa3ca7c5db" class="" dir="auto">اگر فقط می‌نوشتیم:</p><pre id="398da1eb-8b9d-8064-b686-ccc3291e310a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer = Customer.objects.get_or_create(user=self.request.user)</code></pre><p id="398da1eb-8b9d-8018-b8fe-f05d1bebbb28" class="" dir="auto">در این حالت، متغیر <code>customer</code> تبدیل به یک تاپل می‌شد (مثلاً: <code>(&lt;Customer Object&gt;, False)</code>) و وقتی در خط بعدی می‌خواستیم آن را به سریالایزر پاس بدهیم، سیستم کِرَش می‌کرد و ارور می‌داد چون سریالایزر یک آبجکت می‌خواهد، نه یک تاپل!</p><p id="398da1eb-8b9d-80e5-80b5-d886bbfe004a" class="" dir="auto"><strong>دو راه استاندارد برای هندل کردن این موضوع در پایتون وجود دارد:</strong></p><p id="398da1eb-8b9d-8034-8bc0-c3cf772ac7fe" class="" dir="auto">1- روشی که استفاده کردیم (خوانا و واضح برای برنامه‌نویسان دیگر):</p><pre id="398da1eb-8b9d-80f2-a7c6-e9619897f3ab" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer, created = Customer.objects.get_or_create(...)</code></pre><p id="398da1eb-8b9d-80a6-abdc-da11a2e0c7bd" class="" dir="auto"><br/>2- استفاده از متغیرِ پنهان <code>_</code> (روش مرسوم در پایتون برای متغیرهایی که نیازی به آن‌ها نداریم):</p><pre id="398da1eb-8b9d-8009-8a99-fc58b305dd70" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer, _ = Customer.objects.get_or_create(...)</code></pre><p id="398da1eb-8b9d-8000-8c43-d8b83f449074" class="" dir="auto">هر دو روش از نظر منطق برنامه‌نویسی کاملاً یکسان عمل می‌کنند.</p><h3 id="398da1eb-8b9d-8087-976d-dc8d637bd986" class="" dir="auto">چه زمانی متغیر <code>created</code> واقعاً به درد می‌خورد؟</h3><p id="398da1eb-8b9d-800d-a9f6-d2af8dfc4d27" class="" dir="auto">در سناریوهای تجاری لایه سرویس، این متغیر به شدت کاربردی است. فرض کنید می‌خواهیم وقتی پروفایل مشتری برای <strong>اولین بار</strong> ساخته می‌شود، یک پیامک یا ایمیل خوش‌آمدگویی برایش ارسال شود. با استفاده از این متغیر به راحتی می‌توانیم این کار را مدیریت کنیم:</p><pre id="398da1eb-8b9d-806e-9b98-ced48af74f0d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer, created = Customer.objects.get_or_create(user=self.request.user)
+
+if created:
+    # این کد فقط زمانی اجرا می‌شود که رکورد جدیدی در دیتابیس ثبت شده باشد
+    # مثلا: فراخوانی سرویس پیامک
+    SmsService.send_welcome_message(customer.user.first_name)</code></pre><p id="398da1eb-8b9d-8060-9cb3-f2fa6cdef64d" class="" dir="auto">پس در کدهای مربوط به این مرحله از توسعه ما، حضور <code>created</code> صرفاً برای تفکیک درست خروجیِ متدِ جنگو بود تا بتوانیم بدون خطا متغیر <code>customer</code> را استخراج کنیم.</p><blockquote id="398da1eb-8b9d-8006-9dbb-e701e2b794d2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">14-  تنظیم مسیرها: در مسیر <code>apps/customers/</code> فایل <code>urls.py</code> را ایجاد کنید:<pre id="398da1eb-8b9d-80c9-8256-e36ed21bca9e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CustomerProfileView, AddressViewSet
+
+router = DefaultRouter()
+router.register(&#x27;addresses&#x27;, AddressViewSet, basename=&#x27;addresses&#x27;)
+
+urlpatterns = [
+    path(&#x27;profile/&#x27;, CustomerProfileView.as_view(), name=&#x27;customer-profile&#x27;),
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-809e-b954-d4d2f2cdb945" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h3 id="398da1eb-8b9d-8044-a434-f7c3d0a3f0bc" class="" dir="auto">تا اینجا در معماری سیستم چه اتفاقی افتاده است؟</h3></div></aside><p id="398da1eb-8b9d-80f3-a45c-d157ab0c67e6" class="" dir="auto"><strong>ما با موفقیت «ستون فقرات تراکنش‌های مالی» سیستم را ساختیم. در ذهن خود این جریان داده را تجسم کنید:</strong></p><ol type="1" id="398da1eb-8b9d-8044-8bec-d6635bfab91b" class="numbered-list" start="1" dir="auto"><li><strong>موجودیت موقت (Cart):</strong> کاربر وارد سایت می‌شود و شروع به انتخاب کالا می‌کند. این اطلاعات در سبد خرید ذخیره می‌شود. سبد خرید بی‌ثبات است؛ کالاها کم و زیاد می‌شوند و قیمت‌ها با نوسان دیتابیس تغییر می‌کنند.</li></ol><ol type="1" id="398da1eb-8b9d-807d-9c8f-c17450b2b764" class="numbered-list" start="2" dir="auto"><li><strong>موجودیت دائمی و فریز شده (Order):</strong> به محض اینکه کاربر تصمیم به خرید می‌گیرد، لایه سرویسِ ما (همان <code>OrderService</code>) وارد عمل می‌شود. این لایه مثل یک دروازه‌بان، سبد خرید را از بین می‌برد، موجودی انبار را کسر می‌کند و یک «عکسِ ثابت و غیرقابل تغییر» از قیمت و کالاها به نام فاکتور (Order) ثبت می‌کند.</li></ol><ol type="1" id="398da1eb-8b9d-8022-b0f3-cf4c36aadc5b" class="numbered-list" start="3" dir="auto"><li> <strong>هویت مشتری (Customer &amp; Address):</strong> همزمان، ما فضایی ساختیم تا این فاکتورهای بی‌صاحب، به یک انسان واقعی با آدرس پستی دقیق متصل شوند.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-8043-81dc-c3648778d0dd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8057-bf3a-cb1c0702995d" class="" dir="auto">راهنمای تست بصری و عملیاتی (قدم به قدم در Swagger)</p></div></aside><p id="398da1eb-8b9d-801b-8674-c628dbc7ef47" class="" dir="auto"><br/>برای اینکه این مفاهیم انتزاعی را در عمل ببینید، پروژه را <code>runserver</code> کنید و آدرس</p><p id="398da1eb-8b9d-80bf-ac61-c4a1f6c8aee9" class="" dir="auto"> <code>http://127.0.0.1:8000/api/schema/swagger-ui/</code> را در مرورگر باز کنید. </p><p id="398da1eb-8b9d-80ad-a1be-f19eb0e03986" class="" dir="auto">مسیر زیر را دقیقاً به همین ترتیب طی کنید:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-8046-a821-fc38c7a9fb80" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-801b-935b-dec8be5a6898" class="" dir="auto"><strong>قدم اول: احراز هویت (ورود به سیستم)</strong></p></div></aside><ol type="1" id="398da1eb-8b9d-809a-9a24-d745e5f0258c" class="numbered-list" start="1" dir="auto"><li>در Swagger به بخش <code>token</code> (احتمالاً <code>POST /api/token/</code>) بروید.</li></ol><ol type="1" id="398da1eb-8b9d-80d5-aaf0-d3f134fd0138" class="numbered-list" start="2" dir="auto"><li>یوزرنیم و پسورد کاربری که قبلاً ساخته‌اید را وارد کنید و <code>Execute</code> را بزنید.</li></ol><ol type="1" id="398da1eb-8b9d-8023-86f3-c8607d4084d6" class="numbered-list" start="3" dir="auto"><li>مقدار <code>access</code> توکن را کپی کنید، روی دکمه قفل سبز رنگ (Authorize) در بالای صفحه کلیک کرده و توکن را آنجا قرار دهید. اکنون شما به عنوان یک کاربر لاگین شده شناخته می‌شوید.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-80c4-8014-dd6573a47ecc" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8076-ba65-d5f96ca53c3b" class="" dir="auto"><strong>قدم دوم: هویت‌بخشی و ثبت آدرس (دستاوردهای جدید)</strong></p></div></aside><ol type="1" id="398da1eb-8b9d-804b-b8fd-dfa579e8ca2a" class="numbered-list" start="1" dir="auto"><li><strong>ساخت/مشاهده پروفایل:</strong> به مسیر <code>GET /api/customers/profile/</code> بروید و <code>Execute</code> کنید. خواهید دید که سیستم به صورت خودکار (به لطف همان متد <code>get_or_create</code>) پروفایل شما را می‌سازد و اطلاعات اولیه را برمی‌گرداند.</li></ol><ol type="1" id="398da1eb-8b9d-80c1-8d25-e6a98ae5689d" class="numbered-list" start="2" dir="auto"><li><strong>ثبت آدرس پستی:</strong> به مسیر <code>POST /api/customers/addresses/</code> بروید. در بخش بدنه (Body)، اطلاعات یک آدرس تستی (استان، شهر، خیابان، کد پستی) را وارد و <code>Execute</code> کنید. باید کد <code>201 Created</code> بگیرید.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-8044-9043-ed8b7858c40f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-80b2-a5ee-f112257bc437" class="" dir="auto"><strong>قدم سوم: چرخه‌ی خرید (آماده‌سازی سبد)</strong></p></div></aside><ol type="1" id="398da1eb-8b9d-80d5-b838-c7e4a8bde31e" class="numbered-list" start="1" dir="auto"><li>یک سبد خرید در <code>POST /api/carts/</code> بسازید (آی‌دی <code>cart_id</code> را کپی کنید).</li></ol><ol type="1" id="398da1eb-8b9d-805a-a28a-d626227b50fa" class="numbered-list" start="2" dir="auto"><li>یک یا چند محصول تستی را از طریق <code>POST /api/cart-items/</code> به این سبد خرید اضافه کنید.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-8093-99b2-d0e60914ccae" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-80d4-94f4-e37c8274bbbb" class="" dir="auto"><strong>قدم چهارم: لحظه‌ی جادویی لایه سرویس (تبدیل سبد به فاکتور)</strong></p></div></aside><ol type="1" id="398da1eb-8b9d-808b-836a-f387ce500293" class="numbered-list" start="1" dir="auto"><li>حالا به سراغ مسیر <code>POST /api/orders/</code> بروید.</li></ol><ol type="1" id="398da1eb-8b9d-80fe-859e-fef8bedae445" class="numbered-list" start="2" dir="auto"><li>در بدنه درخواست، فقط <code>cart_id</code> که در مرحله قبل کپی کرده بودید را وارد کنید و <code>Execute</code> را بزنید.</li></ol><ol type="1" id="398da1eb-8b9d-80cf-bf2f-d858116cb3c8" class="numbered-list" start="3" dir="auto"><li><strong>نتیجه‌ای که باید ببینید:</strong> یک فاکتور کامل (Order) با وضعیت <code>P</code> (در انتظار پرداخت) به شما نمایش داده می‌شود. قیمت‌ها در فیلد <code>unit_price</code> ثبت شده‌اند.</li></ol><ol type="1" id="398da1eb-8b9d-80ec-8c16-cdbc5d35a901" class="numbered-list" start="4" dir="auto"><li><strong>تست عمیق‌تر:</strong> اگر الان دوباره سعی کنید سبد خریدِ قبلی را با متد <code>GET</code> فراخوانی کنید، ارور ۴۰۴ می‌گیرید، چون لایه سرویس ما آن سبد را پس از تبدیل به فاکتور، با موفقیت معدوم کرده است! همچنین اگر پنل ادمین محصولات را چک کنید، می‌بینید که موجودی انبار کسر شده است.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="398da1eb-8b9d-80a6-a98c-c964e447cc23" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="398da1eb-8b9d-8052-ae74-d34e14df0329" class="" dir="auto"><strong>مرحله‌ی بعدی توسعه چیست؟</strong></p></div></aside><p id="398da1eb-8b9d-80fa-91a9-dca441e79894" class="" dir="auto">ما الان یک فاکتورِ در انتظار پرداخت داریم و موجودی انبار را هم برای این مشتری رزرو (کسر) کرده‌ایم. در دنیای واقعی کسب‌وکار، قدم منطقی بعدی دریافت پول است!</p><p id="398da1eb-8b9d-80ab-abd9-e11eab10367c" class="" dir="auto">ایستگاه بعدی ما باید <strong>فاز پرداخت (Payment Domain)</strong> باشد. در این مرحله باید:</p><ul id="398da1eb-8b9d-80d8-a367-e5f002f50a0c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">جدولی برای ثبت تراکنش‌های مالی (Payments) بسازیم که به سفارش (Order) متصل باشد.</li></ul><ul id="398da1eb-8b9d-80dd-9063-ca8fb4361afa" class="bulleted-list" dir="auto"><li style="list-style-type:disc">معماری اتصال به درگاه پرداخت (مثل زرین‌پال یا یک درگاه شبیه‌ساز تستی) را پیاده‌سازی کنیم.</li></ul><ul id="398da1eb-8b9d-8092-9b41-e14264db69ea" class="bulleted-list" dir="auto"><li style="list-style-type:disc">پس از پرداخت موفق، وضعیت فاکتور را از <code>PENDING</code> به <code>COMPLETED</code> تغییر دهیم.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="397da1eb-8b9d-80c4-a32b-f55f5cd645e6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="397da1eb-8b9d-80d9-9741-d9e8e73baf3a" class="" dir="auto">پایان Part-7</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

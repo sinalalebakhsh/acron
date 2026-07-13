@@ -1,0 +1,997 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-6</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="395da1eb-8b9d-8064-9254-fa95c4a9ef97" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-6</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><h1 id="395da1eb-8b9d-80a4-aac2-e414bce6c477" class="" dir="auto">فاز 5: Cart Domain</h1><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-80b1-9437-d7014a0c4afa" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-80d7-a39b-fba1b612b54e" class="" dir="auto">در Part-4 ، فاز 4 تمام شد</p></div></aside><p id="395da1eb-8b9d-80e0-b37c-da7e42b38af8" class="" dir="auto">حالا با قدرت وارد یکی از حساس‌ترین بخش‌های فروشگاه می‌شویم. سبد خرید در اپلیکیشن‌های مدرن (مثل دیجی‌کالا یا آمازون) تفاوت‌های زیادی با سیستم‌های قدیمی دارد.</p><p id="395da1eb-8b9d-8097-aee5-c09e047fbff4" class="" dir="auto"><strong>تصمیمات معماری (چیستی و چرایی):</strong></p><p id="395da1eb-8b9d-808d-a963-f980cbcf0c39" class="" dir="auto">۱. <strong>آیا سبد خرید نیاز به لاگین دارد؟</strong><br/>در فروشگاه‌های مدرن، کاربر باید بتواند حتی بدون اینکه ثبت‌نام کرده باشد، محصولات را به سبد خرید اضافه کند. وقتی تصمیم به پرداخت گرفت، آن‌وقت لاگین می‌کند. پس ما نباید جدول <code>Cart</code> را به اجبار به <code>User</code> متصل کنیم.</p><p id="395da1eb-8b9d-8027-823d-e96e9257efef" class="" dir="auto">۲. <strong>چرا از UUID به عنوان Primary Key (کلید اصلی) استفاده می‌کنیم؟</strong><br/>اگر آیدی سبد خرید عدد باشد (مثلاً <code>id=5</code>)، یک هکر به راحتی در Postman می‌نویسد <code>/api/carts/6/</code> و سبد خرید شخص دیگری را می‌بیند! وقتی کلید اصلی را UUID (یک رشته طولانی و تصادفی) قرار دهیم، حدس زدن سبد خرید دیگران عملاً غیرممکن می‌شود. فرانت‌اند این UUID را می‌گیرد و در <code>LocalStorage</code> مرورگر کاربر ذخیره می‌کند.</p><p id="395da1eb-8b9d-80d5-8b46-e8e5954e2e03" class="" dir="auto">۳. <strong>جلوگیری از داده‌های تکراری (Unique Together):</strong><br/>اگر کاربر یک &quot;لپ‌تاپ&quot; در سبد خرید دارد و دوباره دکمه &quot;افزودن به سبد&quot; را می‌زند، دیتابیس نباید دو ردیف جداگانه برای لپ‌تاپ بسازد! بلکه باید تعداد (Quantity) لپ‌تاپ را در همان ردیف قبلی از ۱ به ۲ تغییر دهد.</p><blockquote id="395da1eb-8b9d-80dd-a555-e457d443e151" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1- <strong>فعال‌سازی اپلیکیشن در </strong><code><strong>base.py</strong></code><strong>:</strong><p id="395da1eb-8b9d-80b0-9f14-c448bfb5e4a5" class="" dir="auto">فایل config/settings/base.py را باز کنید و اپلیکیشن carts را از کامنت خارج کنید:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="395da1eb-8b9d-80a7-81f1-f7d8a8aaad41" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">INSTALLED_APPS = [
+    # ...
+    &#x27;apps.products&#x27;,
+    &#x27;apps.carts&#x27;, # این خط از کامنت خارج شود
+]</code></pre></blockquote><blockquote id="395da1eb-8b9d-808b-8e7c-c5830711c5fa" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2- طراحی ساختار دیتابیس در فایل <code>apps/carts/models.py</code>:<pre id="395da1eb-8b9d-807e-9d71-e84b90d1fa78" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import uuid
+from django.db import models
+from apps.products.models import Product
+
+class Cart(models.Model):
+    # الف) جایگزینی ID عددی با UUID به عنوان کلید اصلی امنیتی
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class CartItem(models.Model):
+    # ب) اتصال آیتم به سبد خرید
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name=&#x27;items&#x27;)
+    
+    # ج) اتصال آیتم به محصول
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=&#x27;cart_items&#x27;)
+    
+    # د) تعداد محصول در سبد
+    quantity = models.PositiveSmallIntegerField(default=1)
+
+    class Meta:
+        # هـ) جلوگیری از ساخت دو ردیف برای یک محصول تکراری در یک سبد
+        unique_together = [[&#x27;cart&#x27;, &#x27;product&#x27;]]
+
+    def __str__(self):
+        return f&quot;{self.quantity} x {self.product.name}&quot;</code></pre></blockquote><p id="395da1eb-8b9d-8007-8c06-ea6592a00c0d" class="" dir="auto"><strong>کالبدشکافی عمیق کدها (چرایی):</strong></p><ul id="395da1eb-8b9d-804c-9b32-f4296b51e653" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>primary_key=True</strong></code><strong> در فیلد ID:</strong> جنگو به صورت پیش‌فرض یک فیلد عددی پنهان به نام <code>id</code> می‌سازد. با این دستور به دیتابیس می‌گوییم: &quot;ستون عددی پیش‌فرض را نساز، من می‌خواهم این UUID دقیقاً همان کلید اصلی و ستون شماره یک جدول من باشد.&quot;</li></ul><ul id="395da1eb-8b9d-8029-9e66-f18c0b055432" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>on_delete=models.CASCADE</strong></code><strong>:</strong> * در رابطه <code>cart</code>: اگر یک سبد خرید به هر دلیلی پاک شود، تمام آیتم‌های داخل آن (CartItem) هم باید در دیتابیس دود شوند و از بین بروند. منطقی نیست آیتمی در دیتابیس بماند که صاحب (سبد) ندارد.<ul id="395da1eb-8b9d-806f-ab79-f45eae881b46" class="bulleted-list" dir="auto"><li style="list-style-type:circle">در رابطه <code>product</code>: اگر ادمین یک کالا را از سیستم حذف کند، آن کالا باید به صورت خودکار از سبد خرید تمام کاربران ناپدید شود.</li></ul></li></ul><ul id="395da1eb-8b9d-8003-a729-c7e56b57e654" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>PositiveSmallIntegerField</strong></code><strong>:</strong> برای تعداد کالا (Quantity) از این فیلد استفاده کردیم. چرا؟ چون تعداد کالا هرگز منفی نمی‌شود و از طرفی هیچکس ۳۲,۰۰۰ عدد لپ‌تاپ در یک سبد قرار نمی‌دهد! استفاده از <code>SmallInteger</code> به جای <code>Integer</code> ساده، فضای کمتری در حافظه RAM و هارد سرور اشغال می‌کند.</li></ul><ul id="395da1eb-8b9d-8036-9fe8-d373810615d4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>unique_together = [[&#x27;cart&#x27;, &#x27;product&#x27;]]</strong></code><strong>:</strong> این یک قفل ترکیبی در دیتابیس MySQL است. این کد به دیتابیس می‌گوید: &quot;اگر کسی سعی کرد در سبد خرید شماره <code>X</code>، محصول <code>Y</code> را برای بار دوم <code>INSERT</code> کند، جلوی او را بگیر و ارور بده.&quot; (بعداً در Serializer یاد می‌گیریم که چطور این ارور را مدیریت کنیم و به جای ساختن ردیف جدید، عدد Quantity را <code>UPDATE</code> کنیم).</li></ul><blockquote id="395da1eb-8b9d-80f7-924f-fbbf865259ba" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3- <strong>اعمال مدل‌ها در دیتابیس:</strong><p id="395da1eb-8b9d-80d4-93f0-d19b6e91bfb8" class="" dir="auto">در ترمینال خود کدهای زیر را اجرا کنید تا جداول ساخته شوند:</p><pre id="395da1eb-8b9d-80c3-9161-df7fb1f76a4b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations carts
+python manage.py migrate</code></pre></blockquote><p id="395da1eb-8b9d-80fa-95c1-c6a067c624b4" class="" dir="auto">خروجی:</p><pre id="395da1eb-8b9d-8012-8026-cd700ab97e76" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations carts
+Migrations for &#x27;carts&#x27;:
+  apps\carts\migrations\0001_initial.py
+    + Create model Cart
+    + Create model CartItem
+</code></pre><pre id="395da1eb-8b9d-80f2-87a9-ec720f5d9b55" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: accounts, admin, auth, carts, contenttypes, customers, products, sessions
+Running migrations:
+  Applying carts.0001_initial... OK
+</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-8051-84f3-d7036f20dcd2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-8080-8277-e86255020003" class="" dir="auto"><strong>ا  On-the-fly vs. Stored</strong></p></div></aside><p id="395da1eb-8b9d-80fc-86cb-f6ff6c0d26a6" class="" dir="auto"><br/>در این مرحله می‌خواهیم <code>CartSerializer</code> را بسازیم. اما قبل از اینکه دست به کیبورد ببریم، بیایید یک سناریوی مهم را در معماری نرم‌افزار بررسی کنیم: «محاسبه در لحظه» در برابر «ذخیره در دیتابیس» (On-the-fly vs. Stored).<br/>شاید این سوال پیش بیاید که چرا فیلدی به نام total_price  را مستقیماً داخل مدل CartItem (در دیتابیس) ذخیره نکردیم؟ <br/>فرض کنید کاربر لپ‌تاپی به قیمت ۵۰ میلیون تومان را به سبد خرید اضافه می‌کند. </p><p id="395da1eb-8b9d-80fe-a367-f45841f64e53" class="" dir="auto">اگر ما عدد ۵۰ میلیون را در رکورد سبد خرید ذخیره کنیم، چه می‌شود اگر فردا قیمت آن لپ‌تاپ در سایت تغییر کند و به ۵۵ میلیون برسد؟ سبد خرید کاربر همچنان ۵۰ میلیون را نشان می‌دهد که این یک باگ مالی خطرناک است!<br/>به همین دلیل، ما قیمت کل را در دیتابیس ذخیره نمی‌کنیم، بلکه در لحظه‌ای که کاربر سبد خرید را درخواست می‌کند، آن را به صورت زنده (Dynamic) محاسبه کرده و می‌فرستیم.  این جادو در DRF با ابزاری به نام  SerializerMethodField انجام می‌شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-8036-b3ca-df1cbfcf85fa" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-8036-9bd8-d3f4039bfd73" class="" dir="auto">قدم اول: ساخت Serializer سبد خرید و آیتم‌ها</p></div></aside><blockquote id="395da1eb-8b9d-80e1-b574-fc4f70a26719" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">4- در مسیر <code>apps/carts/</code> یک فایل جدید به نام <code>serializers.py</code> بسازید و کدهای زیر را به دقت وارد کنید:<br/><br/><pre id="395da1eb-8b9d-805c-a8c8-c00193fa858b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework import serializers
+from .models import Cart, CartItem
+from apps.products.models import Product
+
+# ۱. ساخت یک سریالایزر سبک و بهینه برای محصول داخل سبد خرید
+class SimpleProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        # ما در سبد خرید به توضیحات طولانی یا برند نیازی نداریم، فقط اطلاعات حیاتی!
+        fields = [&#x27;id&#x27;, &#x27;name&#x27;, &#x27;price&#x27;, &#x27;main_image&#x27;]
+
+
+# ۲. سریالایزر آیتم‌های داخل سبد (CartItem)
+class CartItemSerializer(serializers.ModelSerializer):
+    # نمایش اطلاعات محصول به صورت تو در تو، اما با سریالایزر سبک
+    product = SimpleProductSerializer(read_only=True)
+    
+    # تعریف یک فیلد محاسباتی که در دیتابیس وجود ندارد
+    total_price = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CartItem
+        fields = [&#x27;id&#x27;, &#x27;product&#x27;, &#x27;quantity&#x27;, &#x27;total_price&#x27;]
+
+    # متد متصل به فیلد محاسباتی بالا
+    def get_total_price(self, cart_item: CartItem):
+        # قیمت محصول × تعداد آن
+        return cart_item.quantity * cart_item.product.price
+
+
+# ۳. سریالایزر اصلی سبد خرید (Cart)
+class CartSerializer(serializers.ModelSerializer):
+    id = serializers.UUIDField(read_only=True)
+    
+    # اتصال آیتم‌ها به سبد خرید (توجه: کلمه items همان related_name در مدل است)
+    items = CartItemSerializer(many=True, read_only=True)
+    
+    # فیلد محاسباتی برای جمع کل مبلغ کل سبد خرید
+    grand_total = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Cart
+        fields = [&#x27;id&#x27;, &#x27;items&#x27;, &#x27;grand_total&#x27;]
+
+    # متد متصل به فیلد محاسباتی مبلغ کل
+    def get_grand_total(self, cart: Cart):
+        # یک حلقه پایتونی برای جمع زدن قیمت کل تک‌تک آیتم‌های این سبد
+        return sum([item.quantity * item.product.price for item in cart.items.all()])</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-8043-981b-f5470705d20c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-80b2-93e3-fbf8f6f35948" class="" dir="auto">کالبدشکافی عمیق و آموزش معماری این بخش</p></div></aside><p id="395da1eb-8b9d-80bc-affb-d6c4b19c3339" class="" dir="auto">بیایید این کدها را زیر ذره‌بین ببریم تا دقیقاً بفهمیم پشت صحنه چه اتفاقی می‌افتد:</p><p id="395da1eb-8b9d-8073-804c-f9ea78874f5d" class="" dir="auto">۱. چرا <code>SimpleProductSerializer</code> را ساختیم؟ (مفهوم Over-fetching)</p><p id="395da1eb-8b9d-8000-85b7-ca7e2c898305" class="" dir="auto">ما در فاز ۴ یک <code>ProductSerializer</code> بسیار قدرتمند ساختیم که دسته‌بندی، برند و گالری ۱۰ تایی تصاویر را لود می‌کرد. اگر همان را اینجا استفاده می‌کردیم، کاربر با باز کردن سبد خریدش حجم عظیمی از داده‌های غیرضروری را دانلود می‌کرد (به این مشکل در مهندسی نرم‌افزار Over-fetching می‌گویند که باعث کُندی لود اپلیکیشن می‌شود).<br/>با ساختن یک نسخه &quot;ساده‌سازی شده&quot; (فقط نام، عکس اصلی و قیمت)، سایز (Payload) پاسخ API را به شدت کاهش دادیم.</p><p id="395da1eb-8b9d-8055-a467-daabf4ec875a" class="" dir="auto">۲. مکانیزم <code>SerializerMethodField</code> چگونه کار می‌کند؟</p><p id="395da1eb-8b9d-80e4-b9c4-d0c0dbae70fc" class="" dir="auto">وقتی شما فیلدی از این نوع تعریف می‌کنید (مثل <code>total_price</code>)، جنگو می‌فهمد که نباید به دنبال این ستون در دیتابیس بگردد. در عوض، به صورت خودکار به دنبال متدی می‌گردد که اسم آن با <code>_get</code> شروع شود و نام فیلد در ادامه آن بیاید (یعنی <code>get_total_price</code>).</p><ul id="395da1eb-8b9d-804b-9eea-e2103210bcbf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>پارامتر ورودی متد (</strong><code><strong>cart_item</strong></code><strong>):</strong> DRF به صورت خودکار، همان رکوردِ دیتابیسی که در حال سریالایز شدن است را به این متد پاس می‌دهد.</li></ul><ul id="395da1eb-8b9d-80c6-a76d-c63b2d590841" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Type Hinting (</strong><code><strong>cart_item: CartItem</strong></code><strong>):</strong> این عبارت در پایتون اجباری نیست، اما یک استاندارد کدنویسی بسیار تمیز است. با نوشتن آن، ویرایشگر کد شما (مثل VS Code) می‌فهمد که این متغیر از جنس مدل <code>CartItem</code> است و وقتی نقطه (<code>.</code>) می‌گذارید، متدها و فیلدهای آن را به شما پیشنهاد می‌دهد.</li></ul><p id="395da1eb-8b9d-80a4-a7b7-dd57a8c00024" class="" dir="auto">۳. جادوی محاسبه <code>grand_total</code> در پایتون</p><p id="395da1eb-8b9d-804f-9081-dc77e20ebc29" class="" dir="auto">در متد <code>get_grand_total</code> ما از یک ویژگی قدرتمند پایتون به نام List Comprehension استفاده کردیم.<br/>کد <code>[item.quantity * item.product.price for item in cart.items.all()]</code> این کار را می‌کند:</p><ul id="395da1eb-8b9d-80b5-8021-ce460a426dda" class="bulleted-list" dir="auto"><li style="list-style-type:disc">می‌رود تمام آیتم‌های این سبد را می‌آورد (<code>cart.items.all()</code>).</li></ul><ul id="395da1eb-8b9d-8080-86dc-e736ab21f750" class="bulleted-list" dir="auto"><li style="list-style-type:disc">روی تک‌تک آن‌ها حلقه می‌زند.</li></ul><ul id="395da1eb-8b9d-80c3-89e3-f22f6cbfea50" class="bulleted-list" dir="auto"><li style="list-style-type:disc">تعداد را ضربدر قیمت می‌کند.</li></ul><ul id="395da1eb-8b9d-8027-96fb-d3d5c65b1632" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در نهایت یک لیست از اعداد (مبالغ) به ما می‌دهد (مثلاً <code>[50000, 120000]</code>).<br/>سپس تابع داخلی پایتون یعنی <code>sum()</code> تمام اعداد آن لیست را با هم جمع می‌کند و مبلغ نهایی فاکتور به دست می‌آید.</li></ul><p id="395da1eb-8b9d-809c-a031-c2b2ea3dc787" class="" dir="auto">با این معماری، هر بار که کاربر API سبد خرید را صدا می‌زند، قیمت‌ها دقیقاً با آخرین قیمت‌های ثبت شده در دیتابیسِ محصولات محاسبه می‌شوند و هرگز مغایرتی پیش نخواهد آمد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-80cf-ad79-ef021c63a360" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-80e1-8984-dcdaa697a25f" class="" dir="auto"><strong>حالا که این سریالایزر هوشمند را ساختیم، نوبت به ویوها (Views) می‌رسد. در Viewهای سبد خرید، ما با یک چالش روبرو هستیم: &quot;کاربر چطور یک آیتم را به سبد خرید اضافه کند در حالی که ما قانون </strong><code><strong>unique_together</strong></code><strong> (جلوگیری از کالای تکراری) را در دیتابیس گذاشته‌ایم؟&quot;</strong></p></div></aside><p id="396da1eb-8b9d-806c-9db2-d80717d9d427" class="" dir="auto">همان‌طور که در دیتابیس تنظیم کردیم، یک سبد خرید نمی‌تواند دو ردیف مجزا برای یک محصول تکراری داشته باشد. </p><p id="396da1eb-8b9d-8020-9520-c85eedc8f827" class="" dir="auto">اگر کاربر یک «گوشی اپل» در سبد خود دارد و دوباره دکمه «افزودن به سبد» را می‌زند، ما نباید به دیتابیس دستور <code>INSERT</code> (ساخت ردیف جدید) بدهیم، زیرا دیتابیس خشمگین شده و خطای ۵۰۰ (Server Error) میدهد.</p><p id="396da1eb-8b9d-8089-be4c-eeabd2e150ed" class="" dir="auto"> به جای آن، ما باید دستور <code>UPDATE</code> بدهیم و <code>quantity</code> (تعداد) را مثلاً از ۱ به ۲ تغییر دهیم.</p><p id="396da1eb-8b9d-80b7-9372-f5cb5eb64659" class="" dir="auto">اما سریالایزرهای پیش‌فرض DRF این هوشمندی را ندارند. </p><p id="396da1eb-8b9d-8080-aa54-e7216ecdff4c" class="" dir="auto">پس ما باید کنترل سریالایزر را به دست بگیریم. </p><p id="396da1eb-8b9d-8053-a58b-f09dc69f0979" class="" dir="auto">این کار از طریق <strong>جداسازی Serializerهای ورودی (Input) و خروجی (Output)</strong> و اورراید کردن متد <code>save</code> انجام می‌شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-80b2-9a15-d973a10b97c9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="395da1eb-8b9d-8090-a169-c7990583f029" class="" dir="auto">ساخت Serializerهای ورودی (افزودن و ویرایش)</p></div></aside><blockquote id="396da1eb-8b9d-80f0-92bc-d2732cbfd69f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">5-  فایل <code>apps/carts/serializers.py</code> را باز کنید و کدهای زیر را به انتهای آن (زیر کدهای قبلی) اضافه کنید:<br/><pre id="396da1eb-8b9d-8062-b5f9-e9baccf0eef2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># این کلاس فقط برای زمانی است که کلاینت می‌خواهد محصولی را به سبد اضافه کند (POST)
+class AddCartItemSerializer(serializers.ModelSerializer):
+    # کلاینت فقط این دو شناسه را برای ما می‌فرستد
+    product_id = serializers.IntegerField()
+    cart_id = serializers.UUIDField()
+
+    class Meta:
+        model = CartItem
+        fields = [&#x27;id&#x27;, &#x27;cart_id&#x27;, &#x27;product_id&#x27;, &#x27;quantity&#x27;]
+
+    # اعتبارسنجی: آیا این محصول اصلاً در فروشگاه وجود دارد؟
+    def validate_product_id(self, value):
+        if not Product.objects.filter(id=value).exists():
+            raise serializers.ValidationError(&quot;محصولی با این شناسه یافت نشد.&quot;)
+        return value
+
+    # اعتبارسنجی: آیا این سبد خرید اصلاً وجود دارد؟
+    def validate_cart_id(self, value):
+        if not Cart.objects.filter(id=value).exists():
+            raise serializers.ValidationError(&quot;سبد خریدی با این شناسه یافت نشد.&quot;)
+        return value
+
+    # قلب تپنده این بخش: تغییر رفتار ذخیره‌سازی برای دور زدن خطای دیتابیس
+    def save(self, **kwargs):
+        cart_id = self.validated_data[&#x27;cart_id&#x27;]
+        product_id = self.validated_data[&#x27;product_id&#x27;]
+        quantity = self.validated_data[&#x27;quantity&#x27;]
+
+        try:
+            # سناریو ۱: آیا این محصول از قبل در این سبد خرید وجود دارد؟
+            cart_item = CartItem.objects.get(cart_id=cart_id, product_id=product_id)
+            
+            # بله وجود دارد! پس فقط تعداد جدید را با تعداد قبلی جمع کن
+            cart_item.quantity += quantity
+            cart_item.save()
+            
+            self.instance = cart_item
+            
+        except CartItem.DoesNotExist:
+            # سناریو ۲: محصول در سبد نیست. پس یک ردیف جدید در دیتابیس بساز
+            self.instance = CartItem.objects.create(
+                cart_id=cart_id, 
+                product_id=product_id, 
+                quantity=quantity
+            )
+
+        return self.instance
+
+
+# این کلاس فقط برای زمانی است که کلاینت می‌خواهد تعداد را تغییر دهد (PATCH)
+# مثلاً کاربر در سبد خرید دکمه + یا - را می‌زند
+class UpdateCartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = [&#x27;quantity&#x27;]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-8072-a3aa-f9d2daa11f2f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="396da1eb-8b9d-8041-88c2-ed48487a289d" class="" dir="auto">کالبدشکافی کدهای Serializer (چیستی و چرایی)</p></div></aside><ul id="396da1eb-8b9d-8037-9f18-ccede68d5ea0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا کلاس‌های جدید ساختیم؟</strong> در متدولوژی تمیزِ API، دیتایی که ما به کلاینت نشان می‌دهیم (خروجی) با دیتایی که از او می‌گیریم (ورودی) متفاوت است. <code>CartItemSerializer</code> (که در بخش قبل ساختیم) برای نمایش بود و شامل <code>product_name</code> و <code>total_price</code> بود. اما وقتی کلاینت می‌خواهد محصولی ثبت کند، فقط یک عدد <code>product_id</code> برای ما می‌فرستد. ما نمی‌توانیم از یک سریالایزر برای هر دو کار استفاده کنیم، بنابراین <code>AddCartItemSerializer</code> را فقط به عنوان &quot;دروازه ورود داده&quot; ساختیم.</li></ul><ul id="396da1eb-8b9d-8027-b604-cc015d38b1d7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متدهای </strong><code><strong>validate_&lt;field_name&gt;</strong></code><strong>:</strong> همانند فاز ۳، ما اینجا هم امنیت را بالا بردیم. اگر یک هکر آیدی محصولی را بفرستد که در دیتابیس نیست، سیستم کرش نمی‌کند، بلکه متد <code>validate_product_id</code> یک خطای تمیزِ 400 Bad Request برمی‌گرداند.</li></ul><ul id="396da1eb-8b9d-80ec-9165-d2eebcfc044e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متد </strong><code><strong>save</strong></code><strong> و متغیر </strong><code><strong>self.validated_data</strong></code><strong>:</strong> وقتی جنگو تمام ولیدیشن‌ها را با موفقیت پاس می‌کند، دیتاهای تایید شده را در دیکشنری <code>validated_data</code> قرار می‌دهد. ما در بلوک <code>try</code> تلاش می‌کنیم با دستور <code>get</code> آن کالا را در آن سبد پیدا کنیم. اگر پیدا شد، فقط فیلد <code>quantity</code> آپدیت می‌شود (دور زدن <code>unique_together</code>) و اگر پیدا نشد، خطای <code>DoesNotExist</code> رخ می‌دهد که ما آن را در بلوک <code>except</code> شکار می‌کنیم و با دستور <code>create</code> ردیف جدید را می‌سازیم.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-8034-ad34-f4a5e3070bb4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="396da1eb-8b9d-8086-835d-f653cf421f41" class="" dir="auto">قدم دوم: ساخت Viewهای هوشمند سبد خرید</p></div></aside><p id="396da1eb-8b9d-80d3-821f-c9ee02e051d0" class="" dir="auto">اکنون باید کنترلرهای API (ویوها) را بسازیم تا درخواست‌های کلاینت را دریافت کرده و به سریالایزرهای مناسب هدایت کنند.</p><blockquote id="396da1eb-8b9d-80eb-bd29-dcd2c954234c" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6- در مسیر <code>apps/carts/</code> فایل <code>views.py</code> را ایجاد کرده و کدهای زیر را وارد کنید:<br/><pre id="396da1eb-8b9d-802b-8863-e00781f0381f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin
+from drf_spectacular.utils import extend_schema_view, extend_schema
+from .models import Cart, CartItem
+from .serializers import CartSerializer, CartItemSerializer, AddCartItemSerializer, UpdateCartItemSerializer
+
+@extend_schema_view(
+    create=extend_schema(summary=&quot;ساخت سبد خرید جدید&quot;, tags=[&#x27;Carts&#x27;]),
+    retrieve=extend_schema(summary=&quot;دریافت محتویات سبد خرید&quot;, tags=[&#x27;Carts&#x27;]),
+    destroy=extend_schema(summary=&quot;حذف کامل سبد خرید&quot;, tags=[&#x27;Carts&#x27;]),
+)
+class CartViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericViewSet):
+    &quot;&quot;&quot;
+    ویو برای مدیریت خودِ سبد خرید (بدون آیتم‌ها).
+    توجه: متد List حذف شده است زیرا هیچ کاربری نباید لیست سبد خرید دیگران را ببیند.
+    &quot;&quot;&quot;
+    # بهینه‌سازی کوئری دیتابیس برای جلوگیری از مشکل N+1 در دریافت آیتم‌های سبد
+    queryset = Cart.objects.prefetch_related(&#x27;items__product&#x27;).all()
+    serializer_class = CartSerializer
+
+
+@extend_schema_view(
+    create=extend_schema(summary=&quot;افزودن محصول به سبد خرید&quot;, tags=[&#x27;Cart Items&#x27;]),
+    partial_update=extend_schema(summary=&quot;تغییر تعداد یک محصول در سبد&quot;, tags=[&#x27;Cart Items&#x27;]),
+    destroy=extend_schema(summary=&quot;حذف یک محصول از سبد خرید&quot;, tags=[&#x27;Cart Items&#x27;]),
+)
+class CartItemViewSet(ModelViewSet):
+    &quot;&quot;&quot;
+    ویو برای مدیریت آیتم‌های داخل سبد خرید.
+    &quot;&quot;&quot;
+    # جلوگیری از استفاده از متد PUT (ما فقط به PATCH برای تغییر تعداد نیاز داریم)
+    http_method_names = [&#x27;post&#x27;, &#x27;patch&#x27;, &#x27;delete&#x27;]
+    
+    queryset = CartItem.objects.select_related(&#x27;product&#x27;).all()
+
+    # جادوی DRF: انتخاب سریالایزر به صورت دینامیک بر اساس نوع درخواست (Method)
+    def get_serializer_class(self):
+        if self.request.method == &#x27;POST&#x27;:
+            return AddCartItemSerializer
+        elif self.request.method == &#x27;PATCH&#x27;:
+            return UpdateCartItemSerializer
+        
+        return CartItemSerializer</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-800b-a9a8-ffc3a22b1c91" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="396da1eb-8b9d-8009-888e-e4f8869852bf" class="" dir="auto">کالبدشکافی کدهای View</p></div></aside><ul id="396da1eb-8b9d-8066-b713-cdb1d8cf8d12" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>CartViewSet</strong></code><strong> از </strong><code><strong>ModelViewSet</strong></code><strong> ارث‌بری نکرد؟</strong><br/>یک <code>ModelViewSet</code> کامل، ۵ متد دارد: ساختن، خواندن تکی، آپدیت کردن، پاک کردن و <strong>لیست کردن همه (List)</strong>. اگر ما از <code>ModelViewSet</code> استفاده می‌کردیم، مسیر <code>GET /api/carts/</code> باز می‌شد و هر کسی می‌توانست تمام سبدهای خرید فروشگاه را ببیند (یک فاجعه امنیتی!). با ارث‌بری از <code>GenericViewSet</code> و تزریق فقط سه میکسین (Mixin) ضروری یعنی <code>Create</code>, <code>Retrieve</code>, <code>Destroy</code>، ما به صورت جراحی‌گونه متدهای خطرناک را مسدود کردیم.</li></ul><ul id="396da1eb-8b9d-808f-a41e-f0987135da7f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>prefetch_related(&#x27;items__product&#x27;)</strong></code><strong>:</strong> علامت <code>__</code> (دو آندرلاین) در جنگو به معنای نفوذ به عمق جداول است. این کد می‌گوید: &quot;وقتی سبد خرید را از دیتابیس آوردی، تمام آیتم‌هایش (<code>items</code>) و تمام محصولاتِ آن آیتم‌ها (<code>product</code>) را هم از قبل کش (Cache) کن تا به مشکل N+1 برنخوریم.&quot;</li></ul><ul id="396da1eb-8b9d-80a9-b9fa-cb8615ea60ce" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>متد </strong><code><strong>get_serializer_class</strong></code><strong>:</strong> این یکی از پیشرفته‌ترین تکنیک‌های DRF است (Dynamic Serializers). کلاینت به یک URL واحد متصل می‌شود، اما بک‌اند ما می‌فهمد که اگر درخواست <code>POST</code> بود، باید از سریالایزر <code>AddCartItem</code> (که فقط آی‌دی می‌گیرد) استفاده کند و اگر <code>PATCH</code> بود از سریالایزر آپدیت استفاده کند.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-8066-a35b-ff32bf53fb82" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="396da1eb-8b9d-80c2-9d4d-c44bb7659cf6" class="" dir="auto">قدم سوم: تنظیم URLهای روتر</p></div></aside><blockquote id="396da1eb-8b9d-8062-8734-d0c9a371e206" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7- در مسیر <code>apps/carts/</code> فایل <code>urls.py</code> را ایجاد کنید:<br/><pre id="396da1eb-8b9d-801d-aa40-e1722d0dd122" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CartViewSet, CartItemViewSet
+
+router = DefaultRouter()
+# ثبت ویوست سبد خرید (آی‌دی این مسیر از نوع UUID خواهد بود)
+router.register(&#x27;carts&#x27;, CartViewSet, basename=&#x27;carts&#x27;)
+
+# ثبت ویوست آیتم‌های سبد خرید
+router.register(&#x27;cart-items&#x27;, CartItemViewSet, basename=&#x27;cart-items&#x27;)
+
+urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><blockquote id="396da1eb-8b9d-8058-b978-ccd0c4f966b4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">8-  مسیر نهایی را در <code>apps/api/urls.py</code> اضافه کنید:<br/><pre id="396da1eb-8b9d-803f-a4fe-e2679092472d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># بخشی از فایل apps/api/urls.py
+urlpatterns = [
+    # ...
+    path(&#x27;customers/&#x27;, include(&#x27;apps.customers.urls&#x27;)),
+    path(&#x27;products/&#x27;, include(&#x27;apps.products.urls&#x27;)),
+    # اضافه کردن مسیر سبد خرید به قلب API
+    path(&#x27;&#x27;, include(&#x27;apps.carts.urls&#x27;)), 
+]</code></pre><p id="396da1eb-8b9d-80c5-989b-d8ce5a68749f" class="" dir="auto"><br/>(نکته: چون در روتر خودش کلمات <code>carts</code> و <code>cart-items</code> را تعریف کردیم، اینجا رشته را خالی گذاشتیم <code>&#x27;&#x27;</code> تا URLها دوبل نشوند).</p></blockquote><blockquote id="396da1eb-8b9d-80e0-8622-fc636163c1f6" class="quote-large" dir="auto"><p id="396da1eb-8b9d-800a-a1d4-d137a36d7b90" class="block-color-orange" data-notion-highlight="orange" dir="auto">تست عملیات (مهم‌ترین بخش)</p><p id="396da1eb-8b9d-80eb-bbaa-d7a540eecba2" class="block-color-orange" data-notion-highlight="orange" dir="auto">حالا سرور را روشن کنید و به آدرس Swagger (<code>http://127.0.0.1:8000/api/docs/</code>) بروید.<br/>۱. یک درخواست <code>POST</code> به <code>/api/carts/</code> بزنید تا یک سبد خرید خالی ساخته شود. UUID تولید شده را کپی کنید.<br/>۲. حالا یک درخواست <code>POST</code> به <code>/api/cart-items/</code> بزنید. در Body درخواست، UUID سبد خرید، آی‌دی یک محصول از فروشگاه، و تعداد (<code>quantity: 1</code>) را بفرستید.<br/>۳. <strong>تست جادوی ما:</strong> دوباره همان درخواست را عیناً تکرار کنید. خواهید دید که به جای ارور دیتابیس، تعداد محصول شما ۲ می‌شود!</p></blockquote><p id="396da1eb-8b9d-8051-9b7f-fc70175c4484" class="" dir="auto">در اینجا راهنمای قدم‌به‌قدم برای ویرایش و ارسال Body در Swagger آمده است:</p><h3 id="396da1eb-8b9d-80fd-8dbd-cd8587ebd9e0" class="" dir="auto">راهنمای تصویری و قدم‌به‌قدم ارسال Body در Swagger</h3><blockquote id="396da1eb-8b9d-80bc-b9e7-d5de6ed19533" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto"><strong>1-  پیدا کردن Endpoint مورد نظر</strong></blockquote><ul id="396da1eb-8b9d-8043-a0aa-e613025dd77e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در صفحه Swagger (آدرس <code>http://127.0.0.1:8000/api/docs/</code>)، به پایین اسکرول کنید تا به تگ <strong>Cart Items</strong> (که در <code>@extend_schema</code> تعریف کردیم) برسید.</li></ul><ul id="396da1eb-8b9d-8032-ba7c-f6ccf742a6ca" class="bulleted-list" dir="auto"><li style="list-style-type:disc">روی نوار سبز رنگ که نوشته شده <code>POST /api/cart-items/</code> (افزودن محصول به سبد خرید) کلیک کنید تا این بخش باز و منبسط شود.</li></ul><blockquote id="396da1eb-8b9d-8007-838b-fda66768a6cc" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto"><strong>2- فعال‌سازی حالت تست</strong></blockquote><ul id="396da1eb-8b9d-8070-9bb9-dc3081ac2615" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در گوشه سمت راستِ پنلی که باز شد، یک دکمه خاکستری یا سفید رنگ به نام <code><strong>Try it out</strong></code> وجود دارد. روی آن کلیک کنید.</li></ul><ul id="396da1eb-8b9d-8087-b8ab-c85fd5b97ab9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><em>چرایی:</em> با زدن این دکمه، Swagger فرم‌ها و باکس‌های متنی را از حالت &quot;فقط خواندنی&quot; (Read-only) خارج کرده و به شما اجازه ویرایش و ارسال اطلاعات به سرور را می‌دهد.</li></ul><blockquote id="396da1eb-8b9d-80fe-8e7e-fd75ae16e740" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto"><strong>3- پیدا کردن و ویرایش باکس Body</strong></blockquote><ul id="396da1eb-8b9d-8072-8679-e4dc3e84d087" class="bulleted-list" dir="auto"><li style="list-style-type:disc">بعد از زدن دکمه <code>Try it out</code>، کمی پایین‌تر بخشی به نام <strong>Request body</strong> ظاهر می‌شود.</li></ul><ul id="396da1eb-8b9d-80f4-9d0c-db221454a4c1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">داخل این بخش، یک باکس متنیِ مشکی یا خاکستری رنگ (شبیه به محیط کدنویسی) می‌بینید که حاوی یک ساختار JSON اولیه است.</li></ul><ul id="396da1eb-8b9d-80ce-8042-f07dbcfdf6bc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">شما باید اطلاعات داخل این باکس را پاک کنید و اطلاعات واقعی خودتان را به شکل زیر جایگزین کنید:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" integrity="sha512-QXFMVAusM85vUYDaNgcYeU3rzSlc+bTV4JvkfJhjxSHlQEo+ig53BtnGkvFTiNJh8D+wv6uWAQ2vJaVmxe8d3w==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="396da1eb-8b9d-80e3-b16a-c0a1566261f9" class="code code-wrap" data-notion-code-syntax="json"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;cart_id&quot;: &quot;UUID-سبد-خریدی-که-در-مرحله-۱-کپی-کردید&quot;,
+  &quot;product_id&quot;: 1,
+  &quot;quantity&quot;: 1
+}</code></pre><p id="396da1eb-8b9d-8054-991b-ed0801b705dc" class="" dir="auto"><em>(نکته: به جای </em><em><code>1</code></em><em> در </em><em><code>product_id</code></em><em>، آی‌دی یکی از محصولاتی که قبلاً در پنل ادمین ساخته‌اید را قرار دهید. دقت کنید که ساختار JSON با دقت رعایت شود، مثلاً کلمات داخل کوتیشن </em><em><code>&quot;&quot;</code></em><em> باشند).</em></p><blockquote id="396da1eb-8b9d-8049-aa90-e98d0f89d90e" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto"><strong>4- ارسال درخواست به سمت بک‌اند (Execute)</strong></blockquote><ul id="396da1eb-8b9d-80c2-9cbd-e846139b74b5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دقیقاً در زیر همان باکس Request body، یک دکمه بزرگِ آبی رنگ به نام <code><strong>Execute</strong></code> وجود دارد. روی آن کلیک کنید.</li></ul><ul id="396da1eb-8b9d-8050-96d1-f3270b67a15b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><em>چرایی:</em> این دکمه دقیقاً معادل دکمه Send در Postman است. با زدن آن، مرورگر شما درخواست POST را به همراه بدنه JSON که نوشتید، به ویوی <code>CartItemViewSet</code> در بک‌اند جنگو می‌فرستد.</li></ul><blockquote id="396da1eb-8b9d-80a5-ae1f-c5cfb850763b" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto"><strong>5- مشاهده نتیجه (Responses)</strong></blockquote><ul id="396da1eb-8b9d-80dc-9373-c281d9824545" class="bulleted-list" dir="auto"><li style="list-style-type:disc">کمی پایین‌تر از دکمه Execute، بخشی به نام <strong>Responses</strong> و قسمت <strong>Server response</strong> وجود دارد.</li></ul><ul id="396da1eb-8b9d-80c5-9403-f6e72cef6437" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در آنجا می‌توانید <code>Code</code> (که باید <code>201</code> یا <code>200</code> باشد) و <code>Details</code> (که همان خروجی JSON از سمت سرور است) را مشاهده کنید.</li></ul><blockquote id="396da1eb-8b9d-807b-82d2-e428feb9cc10" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto">6- حالا دقیقاً همین عملیات را انجام دهید، یک بار محصول را ثبت کنید و سپس بدون اینکه چیزی را تغییر دهید، <strong>دوباره دکمه </strong><code><strong>Execute</strong></code><strong> را بزنید</strong>. در پاسخ دوم سرور، باید ببینید که اروری دریافت نمی‌کنید و عدد <code>quantity</code> برای آن محصول از ۱ به ۲ تغییر کرده است. این همان جادویی است که با اورراید کردن متد <code>save</code> در Serializer پیاده‌سازی کردیم!<br/></blockquote><p id="396da1eb-8b9d-805a-a70b-c80bffef30d6" class="" dir="auto"><strong>تصمیم معماری و راه حل</strong><br/>همان‌طور که قبلاً بحث کردیم، <strong>سبد خرید باید برای کاربران مهمان (بدون لاگین) هم باز باشد.</strong> شاید بپرسید آیا این کار از نظر امنیتی خطرناک نیست؟<br/>پاسخ: <strong>خیر.</strong> چون کلید اصلی سبد خرید ما یک <strong>UUID</strong> است (مثلاً <code>3fa85f64-5717-4562-b3fc-2c963f66afa6</code>). حدس زدن این رشته تصادفی برای هکرها عملاً غیرممکن است (احتمال ۱ در $2^{122}$). بنابراین فقط کسی که این UUID را دارد (که در مرورگر خود کاربر ذخیره می‌شود) می‌تواند سبد خرید را ببیند یا ویرایش کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-80a5-9de6-f9e0386c702b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="396da1eb-8b9d-808c-b0b5-f93025db38ff" class="" dir="auto"><strong>قفل‌گشایی از APIهای سبد خرید:</strong></p></div></aside><blockquote id="396da1eb-8b9d-8082-82b6-ebb68a43f004" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">9- فایل <code>apps/carts/views.py</code> را باز کنید. ماژول <code>AllowAny</code> را ایمپورت کرده و آن را به هر دو کلاس اضافه کنید: <br/>لطفا از کپی و پیست استفاده نکنید !!! <br/>تمام کد را خوانده و قسمت های لازم را انتقال دهید:<br/><pre id="396da1eb-8b9d-8061-8914-d73c27afa45f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># این ایمپورت را به بالای فایل اضافه کنید
+from rest_framework.permissions import AllowAny
+
+# ... کدهای قبلی ...
+
+class CartViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericViewSet):
+    # این خط را اضافه کنید تا قفل شکسته شود
+    permission_classes = [AllowAny]
+    
+    queryset = Cart.objects.prefetch_related(&#x27;items__product&#x27;).all()
+    serializer_class = CartSerializer
+
+
+class CartItemViewSet(ModelViewSet):
+    # این خط را اضافه کنید تا قفل شکسته شود
+    permission_classes = [AllowAny]
+    
+    http_method_names = [&#x27;post&#x27;, &#x27;patch&#x27;, &#x27;delete&#x27;]
+    queryset = CartItem.objects.select_related(&#x27;product&#x27;).all()
+    
+    # ... بقیه کدها بدون تغییر ...</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="396da1eb-8b9d-8036-9891-fa3df230e54f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="396da1eb-8b9d-806b-87af-cf98e5ca9ae2" class="" dir="auto">یک نکته آموزشی درباره Swagger (قفلِ بالای صفحه)</p></div></aside><p id="396da1eb-8b9d-8095-b9d1-c539bd40da3b" class="" dir="auto">اگر در آینده API خاصی داشتید که <strong>واقعاً</strong> نیاز به لاگین داشت (مثل پروفایل مشتری) و خواستید آن را در Swagger تست کنید، باید چه کار کنید؟</p><ol type="1" id="396da1eb-8b9d-8063-8f06-f1a7aa523fec" class="numbered-list" start="1" dir="auto"><li>ابتدا از طریق مسیر <code>POST /api/token/</code> یوزرنیم و پسورد خود را می‌فرستید.</li></ol><ol type="1" id="396da1eb-8b9d-80c8-aaa0-e7c0fe36a9e3" class="numbered-list" start="2" dir="auto"><li>سرور به شما یک <code>access_token</code> می‌دهد. آن را کپی می‌کنید.</li></ol><ol type="1" id="396da1eb-8b9d-8024-a4bb-fe38dcc436b6" class="numbered-list" start="3" dir="auto"><li>در بالاترین قسمت صفحه Swagger، یک دکمه سبز رنگ با آیکون قفل به نام <strong>Authorize</strong> وجود دارد. روی آن کلیک می‌کنید.</li></ol><ol type="1" id="396da1eb-8b9d-8038-952d-dc9874b1900e" class="numbered-list" start="4" dir="auto"><li>توکن خود را در باکس مربوطه Paste می‌کنید و دکمه Authorize را می‌زنید.<br/>از این به بعد، Swagger به صورت خودکار توکن شما را در تمام درخواست‌هایی که با دکمه <code>Execute</code> می‌زنید، تزریق می‌کند و دیگر خطای ۴۰۱ نمی‌گیرید.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="395da1eb-8b9d-801a-8db1-ecacbd755c05" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="395da1eb-8b9d-80be-9a98-d363a6f1b912" class="" dir="auto">پایان Part-6 </h1></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39bda1eb-8b9d-80cb-b6ac-d8ef303d34bd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="39bda1eb-8b9d-805c-ae1b-c8a77a0e4563" class="" dir="auto"> پایان فاز 5   Cart Domain</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
