@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'apps.payments',
     'apps.products',
     # 'apps.reviews',
+    'apps.shipments',
 ]
 
 # The MIDDLEWARE setting defines a list of middleware classes ,
