@@ -47,6 +47,18 @@ class Shipment(models.Model):
         verbose_name_plural = "مرسولات"
         ordering = ['-created_at']
 
+    def get_tracking_url(self):
+        """
+        تولید خودکار لینک رهگیری بر اساس شرکت حمل و نقل برای فرانت‌اند یا دستیار هوشمند
+        """
+        if not self.tracking_number:
+            return None
+        if self.carrier == 'POST':
+            return f"https://tracking.post.ir/?id={self.tracking_number}"
+        elif self.carrier == 'TIPX':
+            return f"https://tipaxco.com/tracking?id={self.tracking_number}"
+        return None
+
     def __str__(self):
         return f"Shipment for Order {self.order.id} - Status: {self.get_status_display()}"
 
