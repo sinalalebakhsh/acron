@@ -33,6 +33,7 @@ urlpatterns = [
     path('products/', include('apps.products.urls')), # مسیر محصولات اضافه شد!
     # payments
     path('payments/', include('apps.payments.urls')), # مسیر پرداخت اضافه شد!
-
+    # shipments
+    path('shipments/', include('apps.shipments.urls')), # مسیر مرسولات اضافه شد!
 
 ]
