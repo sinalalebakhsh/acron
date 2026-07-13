@@ -9,5 +9,6 @@
 * [Part-6](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-6-395da1eb8b9d80649254fa95c4a9ef97)
 * [Part-7](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-7-397da1eb8b9d80a48ae4d3d71d491885)
 * [Part-8](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-8-399da1eb8b9d80fc95b4da6179551f44)
+* [Part-9](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-9-39ada1eb8b9d80e0a6fbefe0ba308fb2)
 
 
