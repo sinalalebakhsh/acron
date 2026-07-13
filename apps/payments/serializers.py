@@ -14,7 +14,9 @@ from rest_framework import serializers
 # what is InitiatePaymentSerializer?
 # InitiatePaymentSerializer is a serializer class that defines the structure of the data
 class InitiatePaymentSerializer(serializers.Serializer):
-    order_id = serializers.IntegerField()
+    # This line was modified to match the orders database
+    order_id = serializers.UUIDField()
+
 
 # what is MockBankCallbackSerializer?
 # MockBankCallbackSerializer is a serializer class,
