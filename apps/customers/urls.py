@@ -1,10 +1,14 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CustomerProfileView, AddressViewSet
 
-from .views import CustomerMeView
-
+router = DefaultRouter()
+router.register('addresses', AddressViewSet, basename='addresses')
 
 urlpatterns = [
-
-    path('me/',CustomerMeView.as_view(),name='customer-me'),
-
+    path('profile/', CustomerProfileView.as_view(), name='customer-profile'),
+    path('', include(router.urls)),
 ]
+
+
+

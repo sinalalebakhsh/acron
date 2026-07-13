@@ -1,20 +1,15 @@
-# import the necessary modules and classes
+from datetime import timedelta
+
 from django.db import transaction
-# import the ValidationError exception from the Django REST framework,
-# which will be used to raise validation errors during the order creation process.
+from django.utils import timezone
+
 from rest_framework.exceptions import ValidationError
-# import the Cart model from the carts app, which represents a shopping cart in the system.
+
 from apps.carts.models import Cart
-# import the Order and OrderItem models from the orders app, which represent an order and its items in the system.
+
 from apps.orders.models import Order, OrderItem
 
-# import the Product model from the products app, which represents a product in the system.
-# This import is necessary because the order creation process involves checking product inventory and freezing product prices.
-# why we need it?
-# because when we create an order from a cart, 
-# we need to check the inventory of each product in the cart 
-# and freeze its price at the time of order creation. 
-# Therefore, we need to import the Product model to access its inventory and price fields.
+
 class OrderService:
     """
     This service takes a shopping cart and converts it into a finalized invoice (order).
@@ -68,5 +63,57 @@ class OrderService:
         cart.delete()
 
         return order
+
+    @staticmethod
+    @transaction.atomic
+    def cancel_expired_order(order):
+        """
+        این متد فاکتور را لغو کرده و موجودی کالاها را به انبار برمی‌گرداند.
+        """
+        # اگر وضعیت فاکتور چیزی غیر از "در انتظار پرداخت" است، کاری نکن
+        if order.status != Order.OrderStatus.PENDING:
+            return False
+
+        # حلقه روی تمام آیتم‌های فاکتور برای بازگرداندن موجودی
+        # استفاده از select_related برای جلوگیری از مشکل N+1 در ارتباط با جدول Product
+        for item in order.items.select_related('product'):
+            product = item.product
+            product.inventory += item.quantity
+            product.save()
+
+        # تغییر وضعیت فاکتور به لغو شده
+        order.status = Order.OrderStatus.CANCELED
+        order.save()
+        return True
+
+    @staticmethod
+    def validate_order_for_payment(order_id):
+        """
+        این متد قبل از ارسال کاربر به درگاه بانکی فراخوانی می‌شود
+        تا بررسی کند آیا هنوز برای پرداخت فرصت دارد یا خیر.
+        """
+        try:
+            order = Order.objects.get(id=order_id)
+        except Order.DoesNotExist:
+            raise ValidationError("سفارش یافت نشد.")
+
+        if order.status == Order.OrderStatus.COMPLETED:
+            raise ValidationError("این سفارش قبلاً پرداخت شده است.")
+            
+        if order.status == Order.OrderStatus.CANCELED:
+            raise ValidationError("این سفارش لغو شده است.")
+
+        # محاسبه زمان انقضا (زمان ثبت فاکتور + ۱۵ دقیقه)
+        expiration_time = order.created_at + timedelta(minutes=15)
+        
+        # مقایسه با زمان حال
+        if timezone.now() > expiration_time:
+            # فراخوانی متد بازگرداندن موجودی به انبار
+            OrderService.cancel_expired_order(order)
+            raise ValidationError("زمان ۱۵ دقیقه‌ای پرداخت به پایان رسیده و سفارش به دلیل اتمام مهلت لغو شد.")
+        
+        return order
+
+
 
 

@@ -1,6 +1,9 @@
 import uuid
+
 from django.db import models
-from apps.customers.models import Customer
+
+from apps.customers.models import Customer, Address
+
 from apps.products.models import Product
 
 
