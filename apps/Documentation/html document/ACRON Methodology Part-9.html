@@ -1,0 +1,996 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-9</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="39ada1eb-8b9d-80e0-a6fb-efe0ba308fb2" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-9</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39ada1eb-8b9d-80a0-b890-dfeb766e9adf" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="39ada1eb-8b9d-8026-8112-fb1150456333" class="" dir="auto">در Part-8 ، فاز 7  Payment Domain تمام شد</p></div></aside><h1 id="39ada1eb-8b9d-807e-a523-fcdf4f2206df" class="" dir="auto">فاز 8: Shipment &amp; Fulfillment Domain</h1><hr id="39ada1eb-8b9d-80c1-8a65-fcdbc06be893" dir="auto"/><p id="39cda1eb-8b9d-8094-bd03-fcce05a2f443" class="" dir="auto">اکنون وقت تکمیل آخرین قطعه از پازل فیزیکی تجارت الکترونیک است: <strong>دامنه ارسال و مرسولات (Shipment &amp; Fulfillment Domain)</strong>.</p><p id="39cda1eb-8b9d-801a-9c58-ed13d5c955f2" class="" dir="auto">وقتی پرداخت در مرحله قبل با موفقیت انجام شد و وضعیت سفارش به <code>COMPLETED</code> تغییر کرد، وظیفه سیستم مالی به پایان می‌رسد؛ اما کار انبار و لجستیک تازه شروع شده است! ما نیاز به سیستمی داریم که به محض تایید پرداخت، به صورت خودکار یک «مرسوله» برای سفارش بسازد تا انباردار بتواند کالا را بسته‌بندی کرده، تحویل پست دهد و کد رهگیری پستی را در سیستم ثبت کند.</p><p id="39cda1eb-8b9d-804b-9d90-f40d62376f3f" class="" dir="auto">این همان دیتابیسی است که وقتی در مرحله بعدی سرور MCP (دستیار هوش مصنوعی) را ساختیم و کاربر در چت پرسید: <em>&quot;سفارش من کجاست؟&quot;</em>، هوش مصنوعی با خواندن این جدول به او جواب می‌دهد: <em>&quot;سفارش شما تحویل اداره پست شده و کد مرسوله شما X است&quot;</em>.</p><blockquote id="39ada1eb-8b9d-8045-a021-ffb4e48456ad" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1-باید یک اپلیکیشن به نام <code>shipments</code> در پوشه <code>apps/</code> ایجاد کنیم و آن را به <code>INSTALLED_APPS</code> اضافه کنیم:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="39ada1eb-8b9d-80c0-b4b9-e83f4754d9a5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py startapp shipments apps/shipments</code></pre></blockquote><p id="39cda1eb-8b9d-80b7-b1a0-d26d89a4a70d" class="" dir="auto"><strong>طراحی مدل </strong><code><strong>Shipment</strong></code><strong> (دیتابیس):</strong></p><ul id="39cda1eb-8b9d-8076-9d9d-f332bc8641bb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">این جدول با یک رابطه یک‌به‌یک (OneToOne) به جدول <code>Order</code> متصل می‌شود و فیلدهایی مثل <strong>وضعیت ارسال</strong> (در حال آماده‌سازی، تحویل پیک/پست شده، تحویل مشتری شده)، <strong>کد رهگیری پستی</strong> (Tracking Number) و <strong>تاریخ تخمینی تحویل</strong> را در خود نگه می‌دارد.</li></ul><p id="39cda1eb-8b9d-8002-bbba-e047572ea373" class="" dir="auto"><strong> اتصال اتوماتیک (Automated Trigger):</strong></p><ul id="39cda1eb-8b9d-8035-8808-fde0c095342b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ما لایه <code>PaymentService</code> که در مرحله قبل نوشتیم را طوری ارتقا می‌دهیم که وقتی متد <code>verify_mock_payment</code> با موفقیت اجرا شد، فقط وضعیت فاکتور را تغییر ندهد؛ بلکه در همان لحظه، متد <code>create_shipment</code> از لایه سرویس مرسولات را فراخوانی کند تا یک مرسوله جدید به صورت خودکار برای انبار صادر شود.</li></ul><blockquote id="39cda1eb-8b9d-80dc-9c9c-dcdc161df0f6" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2-  فایل <code>config/settings.py</code> را باز کرده و آن را در لیست <code>LOCAL_APPS</code> ثبت کنید:<pre id="39cda1eb-8b9d-801d-9172-c1cbd0bd13dd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">LOCAL_APPS = [
+    # ... اپلیکیشن‌های قبلی
+    &#x27;apps.shipments&#x27;,
+]</code></pre></blockquote><blockquote id="39cda1eb-8b9d-8090-a419-ebb41365209a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3-  طراحی مدل مرسوله (<code>apps/shipments/models.py</code>)<p id="39cda1eb-8b9d-80b5-8791-ee92292067b4" class="" dir="auto">در این بخش دیتابیس لجستیک و انبار را پیاده‌سازی می‌کنیم.</p><pre id="39cda1eb-8b9d-80bd-91fc-d68b40132337" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import models
+from apps.orders.models import Order
+
+class ShipmentStatus(models.TextChoices):
+    PREPARING = &#x27;PRE&#x27;, &#x27;در حال آماده‌سازی و بسته‌بندی&#x27;
+    SHIPPED = &#x27;SHI&#x27;, &#x27;تحویل شرکت حمل و نقل شده&#x27;
+    DELIVERED = &#x27;DEL&#x27;, &#x27;تحویل مشتری شده&#x27;
+    CANCELED = &#x27;CAN&#x27;, &#x27;لغو شده&#x27;
+
+class CarrierChoices(models.TextChoices):
+    POST = &#x27;POST&#x27;, &#x27;شرکت ملی پست&#x27;
+    TIPAX = &#x27;TIPX&#x27;, &#x27;تیپاکس&#x27;
+    PEYK = &#x27;PEYK&#x27;, &#x27;پیک اختصاصی&#x27;
+
+class Shipment(models.Model):
+    order = models.OneToOneField(
+        Order, 
+        on_delete=models.PROTECT, 
+        related_name=&#x27;shipment&#x27;,
+        verbose_name=&quot;سفارش مربوطه&quot;
+    )
+    status = models.CharField(
+        max_length=3, 
+        choices=ShipmentStatus.choices, 
+        default=ShipmentStatus.PREPARING,
+        verbose_name=&quot;وضعیت ارسال&quot;
+    )
+    carrier = models.CharField(
+        max_length=4,
+        choices=CarrierChoices.choices,
+        default=CarrierChoices.POST,
+        verbose_name=&quot;شرکت حمل و نقل&quot;
+    )
+    tracking_number = models.CharField(
+        max_length=100, 
+        blank=True, 
+        null=True, 
+        verbose_name=&quot;کد رهگیری مرسوله&quot;
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=&quot;تاریخ ایجاد مرسوله&quot;)
+    shipped_at = models.DateTimeField(blank=True, null=True, verbose_name=&quot;تاریخ خروج از انبار&quot;)
+    delivered_at = models.DateTimeField(blank=True, null=True, verbose_name=&quot;تاریخ تحویل به مشتری&quot;)
+
+    class Meta:
+        verbose_name = &quot;مرسوله&quot;
+        verbose_name_plural = &quot;مرسولات&quot;
+        ordering = [&#x27;-created_at&#x27;]
+
+    def __str__(self):
+        return f&quot;Shipment for Order {self.order.id} - Status: {self.get_status_display()}&quot;</code></pre></blockquote><h4 id="39cda1eb-8b9d-8097-abe0-c364cbccf4af" class="" dir="auto">چرایی این طراحی معماری:</h4><ul id="39cda1eb-8b9d-80b7-80f1-c8ee9de3895d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>OneToOneField</strong></code><strong>؟</strong> هر فاکتور یا سفارش (<code>Order</code>) دقیقاً و منحصراً <strong>یک مرسوله فیزیکی</strong> در انبار دارد. رابطه‌ی یک‌به‌یک بهترین تضمین برای جلوگیری از ساخت مرسولات تکراری برای یک فاکتور است.</li></ul><ul id="39cda1eb-8b9d-80a7-b813-cc16fb02490c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>چرا </strong><code><strong>on_delete=models.PROTECT</strong></code><strong>؟</strong> خطرناک‌ترین اتفاق در دیتابیس‌های فروشگاهی، حذف تصادفی سوابق است. با استفاده از <code>PROTECT</code> به جنگو می‌گوییم: <em>&quot;اگر کسی خواست یک سفارش را حذف کند ولی برای آن مرسوله صادر شده بود، اجازه حذف نده و خطا صادر کن&quot;</em>. این کار امنیت تاریخچه داده‌ها را بالا می‌برد.</li></ul><blockquote id="39cda1eb-8b9d-803e-8554-e54f04ab09df" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">4-  لایه مغز متفکر مرسولات (<code>apps/shipments/services.py</code>)<p id="39cda1eb-8b9d-803f-8c22-ea134a885381" class="" dir="auto">طبق اصول پروژه، منطق بیزینس را از ویو جدا کرده و درون یک کلاس سرویس پیاده می‌کنیم.</p><pre id="39cda1eb-8b9d-80c2-afdf-dccbe7fec5b6" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.utils import timezone
+from .models import Shipment, ShipmentStatus
+
+class ShipmentService:
+    
+    @staticmethod
+    def create_shipment(order) -&gt; Shipment:
+        &quot;&quot;&quot;
+        صدا زدن اتوماتیک انبار برای آماده‌سازی کالا پس از پرداخت موفق
+        &quot;&quot;&quot;
+        # جلوگیری از ایجاد مرسوله تکراری در صورت دبل‌کلیک یا خطای زیرساختی
+        shipment, created = Shipment.objects.get_or_create(order=order)
+        return shipment
+
+    @staticmethod
+    def update_tracking_info(shipment_id: int, carrier: str, tracking_number: str) -&gt; Shipment:
+        &quot;&quot;&quot;
+        متدی مخصوص پنل انباردار برای ثبت کد مرسوله پستی
+        &quot;&quot;&quot;
+        shipment = Shipment.objects.get(id=shipment_id)
+        shipment.carrier = carrier
+        shipment.tracking_number = tracking_number
+        shipment.status = ShipmentStatus.SHIPPED
+        shipment.shipped_at = timezone.now()
+        shipment.save()
+        
+        # خلاقیت جدید: در این نقطه می‌توان وب‌هوک پیامک یا ایمیل اطلاع‌رسانی به کاربر را شلیک کرد.
+        return shipment</code></pre></blockquote><h4 id="39cda1eb-8b9d-80ab-aaca-e449cd249c1d" class="" dir="auto">خلاقیت جدید معماری (Intelligent Tracking Link):</h4><p id="39cda1eb-8b9d-80d0-8197-db53b9b47bb5" class="" dir="auto">به عنوان یک ارزش افزوده خلاقانه، متد زیر را به دکمه یا خروجی مدل <code>Shipment</code> اضافه می‌کنیم تا کاربر بدون نیاز به کپی-پیست کردن کد رهگیری، مستقیماً با کلیک روی یک لینک هوشمند به صفحه رهگیری سامانه پست یا تیپاکس هدایت شود:</p><blockquote id="39cda1eb-8b9d-80e8-9f90-f9ca8fba8c94" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">5-  این متد را می‌توانید داخل خود کلاس مدل <code>Shipment</code> در فایل <code>models.py</code> قرار دهید.<pre id="39cda1eb-8b9d-80be-9702-c4665a3b3410" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">def get_tracking_url(self):
+        &quot;&quot;&quot;
+        تولید خودکار لینک رهگیری بر اساس شرکت حمل و نقل برای فرانت‌اند یا دستیار هوشمند
+        &quot;&quot;&quot;
+        if not self.tracking_number:
+            return None
+        if self.carrier == &#x27;POST&#x27;:
+            return f&quot;https://tracking.post.ir/?id={self.tracking_number}&quot;
+        elif self.carrier == &#x27;TIPX&#x27;:
+            return f&quot;https://tipaxco.com/tracking?id={self.tracking_number}&quot;
+        return None</code></pre></blockquote><h3 id="39cda1eb-8b9d-8000-b768-ed24218e40ec" class="" dir="auto">شلیک اتوماتیک مرسوله (اتصال لایه پرداخت به انبار)</h3><p id="39cda1eb-8b9d-8007-9728-e0cfedcefd72" class="" dir="auto">حالا باید زنجیره انتقال داده را متصل کنیم.</p><blockquote id="39cda1eb-8b9d-80a2-bc6f-e7eefc696f5f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6-   فایل <code><strong>apps/payments/services.py</strong></code> را باز کنید. متد <code>verify_mock_payment</code> را پیدا کنید و خط مربوط به فراخوانی سرویس مرسوله را به آن اضافه کنید:<pre id="39cda1eb-8b9d-8033-9c1b-d0e41c05b0b0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from apps.shipments.services import ShipmentService  # &lt;--- اضافه کردن این ایمپورت
+
+class PaymentService:
+    # ... متدهای قبلی
+    
+    @staticmethod
+    def verify_mock_payment(transaction_id, is_successful):
+        # ... کدهای قبلی شما که وضعیت فاکتور را تغییر می‌داد
+        
+        if is_successful:
+						# کد های قبلی را تغییر ندهید
+
+						            # فقط 3 خط زیر رار اضافه کنید
+            # === اتصال زنجیره معماری ===
+            # به محض موفقیت پرداخت، به صورت خودکار دستور خروج از انبار صادر می‌شود
+            ShipmentService.create_shipment(payment.order)
+            
+        else:
+            payment.status = &#x27;F&#x27; # Failed
+            payment.save()
+            
+        return payment</code></pre></blockquote><p id="39cda1eb-8b9d-802c-b71d-da29c70640d2" class="" dir="auto">ساخت سریالایزر و ویو برای پیگیری کاربران (<code>serializers.py</code> &amp; <code>views.py</code>)</p><p id="39cda1eb-8b9d-80c2-b5ba-fb38bc7eb9b9" class="" dir="auto">کاربر باید بتواند وضعیت مرسوله خود را ببیند.</p><blockquote id="39cda1eb-8b9d-8000-8c2b-e729fbe710e0" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7-  فایل <code><strong>apps/shipments/serializers.py</strong></code> را بسازید:</blockquote><blockquote id="39cda1eb-8b9d-80d9-84c2-cfdaad275efb" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">8-  داخل فایل <code><strong>apps/shipments/serializers.py</strong></code> این کد را بنویسید:<pre id="39cda1eb-8b9d-802f-9945-d4d18cd99da4" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework import serializers
+from .models import Shipment
+
+class ShipmentTrackerSerializer(serializers.ModelSerializer):
+    status_display = serializers.CharField(source=&#x27;get_status_display&#x27;, read_only=True)
+    carrier_display = serializers.CharField(source=&#x27;get_carrier_display&#x27;, read_only=True)
+    tracking_url = serializers.CharField(source=&#x27;get_tracking_url&#x27;, read_only=True)
+
+    class Meta:
+        model = Shipment
+        fields = [
+            &#x27;id&#x27;, &#x27;status&#x27;, &#x27;status_display&#x27;, &#x27;carrier&#x27;, 
+            &#x27;carrier_display&#x27;, &#x27;tracking_number&#x27;, &#x27;tracking_url&#x27;,
+            &#x27;created_at&#x27;, &#x27;shipped_at&#x27;, &#x27;delivered_at&#x27;
+        ]
+        
+        
+        </code></pre></blockquote><blockquote id="39cda1eb-8b9d-809b-a65b-c5e2f5f150d4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">9- فایل <code><strong>apps/shipments/views.py</strong></code> را بسازید:<pre id="39cda1eb-8b9d-8092-9a14-f50b7a2a00a2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.permissions import IsAuthenticated
+from .models import Shipment
+from .serializers import ShipmentTrackerSerializer
+
+class CustomerShipmentViewSet(ReadOnlyModelViewSet):
+    &quot;&quot;&quot;
+    ویو فقط خواندنی (ReadOnly) برای اینکه کاربران وضعیت مرسوله خود را تعقیب کنند.
+    &quot;&quot;&quot;
+    serializer_class = ShipmentTrackerSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # هر کاربر فقط مرسوله‌ای را می‌بیند که فاکتور آن متعلق به خودش است
+        return Shipment.objects.filter(order__customer__user=self.request.user)
+        
+        
+    
+     </code></pre></blockquote><p id="39cda1eb-8b9d-8097-8bd6-c33220002073" class="" dir="auto"><strong>چرا </strong><code><strong>ReadOnlyModelViewSet</strong></code><strong>؟</strong> مشتری نباید بتواند وضعیت مرسوله را تغییر دهد یا کد رهگیری را دستکاری کند! او فقط حق دیدن (GET) دارد.</p><p id="39cda1eb-8b9d-80a6-be4c-c0458e67d64a" class="" dir="auto">تنظیم نهایی URLها</p><blockquote id="39cda1eb-8b9d-803d-a576-fe05bc7e3852" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">10-  فایل <code><strong>apps/shipments/urls.py</strong></code> را بسازید<br/><br/></blockquote><blockquote id="39cda1eb-8b9d-8041-a1b4-eef499229f44" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">11-  داخل فایل <code><strong>apps/shipments/urls.py</strong></code> را بنویسید:<pre id="39cda1eb-8b9d-8078-ba65-eaf4a6bedc52" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CustomerShipmentViewSet
+
+router = DefaultRouter()
+router.register(&#x27;track&#x27;, CustomerShipmentViewSet, basename=&#x27;shipment-track&#x27;)
+
+urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><blockquote id="39cda1eb-8b9d-80f5-8123-fdcafa0ec1c9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">12-  و در نهایت آن را در روتر مرکزی یعنی <code><strong>apps/api/urls.py</strong></code> ریجستر کنید:<pre id="39cda1eb-8b9d-805d-b093-d8725a877d37" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">urlpatterns = [
+    # ... مسیرهای قبلی
+    path(&#x27;shipments/&#x27;, include(&#x27;apps.shipments.urls&#x27;)),
+]</code></pre></blockquote><blockquote id="39cda1eb-8b9d-80ce-9a80-e6a487a798b4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">13-  داخل مسیر acron/apps/shipments/apps.py مورد زیر را تغییر دهید به حالت زیریش<pre id="39cda1eb-8b9d-80c8-9e1f-e05c693ee789" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">    name = &#x27;shipments&#x27; # حالت قدیمی
+    name = &#x27;apps.shipments&#x27; # تغییر دهید به این حالت</code></pre></blockquote><blockquote id="39cda1eb-8b9d-8034-b864-eb6a7edd0fef" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">14-  دستور نهایی برای دیتابیس<p id="39cda1eb-8b9d-806c-9e2e-c230c30c6f30" class="" dir="auto">کدها کامل شده‌اند. حالا دستورات زیر را در ترمینال بزنید تا جداول لجستیک خلق شوند:</p><pre id="39cda1eb-8b9d-800c-89eb-fd63ae80ec5f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations
+python manage.py migrate</code></pre></blockquote><p id="39cda1eb-8b9d-80ea-b1e6-dbbdad5f8154" class="" dir="auto">خروجی شبیه به زیر خواهد بود:</p><pre id="39cda1eb-8b9d-800b-b749-c9407f70a04a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations
+Migrations for &#x27;shipments&#x27;:
+  apps\shipments\migrations\0001_initial.py
+    + Create model Shipment
+
+
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: accounts, admin, auth, carts, contenttypes, customers, orders, payments, products, sessions, shipments
+Running migrations:
+  Applying shipments.0001_initial... OK
+</code></pre><aside class="block-color-purple callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="purple" style="white-space:pre-wrap;display:flex" id="39cda1eb-8b9d-8004-b022-c3d758251208" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h2 id="39cda1eb-8b9d-8022-b737-dc2bb5e2afde" class="" dir="auto">هسته فیزیکی و تجاری پروژه ACRON به بلوغ ۱۰۰٪ رسید. اکنون اگر خریدی انجام شود، دیتابیس انبار به صورت خودکار به روز می‌شود.</h2></div></aside><p id="39cda1eb-8b9d-80c2-919f-d810b9c7604c" class="" dir="auto">در دنیای واقعی، سیستم بدون پنل مدیریت (Backoffice) مثل یک ماشین مسابقه‌ای است که داشبورد ندارد. شما نمی‌توانید ببینید آیا موتور درست کار می‌کند یا نه. اضافه کردن این جریان به پنل ادمین جنگو (Django Admin) دو مزیت حیاتی برای ما دارد:</p><ol type="1" id="39cda1eb-8b9d-806c-a4b8-e8aa0b1979ee" class="numbered-list" start="1" dir="auto"><li><strong>تایید بصری چرخه:</strong> ما می‌توانیم با چشم خودمان ببینیم که وقتی یک پرداخت موفق در Swagger ثبت شد، چطور وضعیت فاکتور در ثانیه تغییر می‌کند و مرسوله انبار صادر می‌شود.</li></ol><ol type="1" id="39cda1eb-8b9d-808a-afc5-ff6caf99436c" class="numbered-list" start="2" dir="auto"><li><strong>آماده‌سازی برای MCP:</strong> وقتی دستیار هوش مصنوعی (MCP) را ساختیم، برای تست کردن آن نیاز داریم که به عنوان ادمین، وضعیت مرسوله را به «ارسال شده» تغییر دهیم یا کد پست دستی وارد کنیم تا ببینیم آیا هوش مصنوعی در چت این تغییرات را به کاربر درست گزارش می‌دهد یا خیر.</li></ol><p id="39cda1eb-8b9d-806d-8861-c00eb594414f" class="" dir="auto"><br/>داشبورد مدیریت پروژه ACRON را در سه اپلیکیشن <code>orders</code> و <code>payments</code> و <code>shipments</code> در این مرحله می سازیم:</p><h3 id="39cda1eb-8b9d-80b4-8e6c-ee89426fdb6f" class="" dir="auto">مدیریت فاکتورها و اقلام سفارشی (<code>apps/orders/admin.py</code>)</h3><p id="39cda1eb-8b9d-8005-9e0a-d348a927320d" class="" dir="auto">یک خطای رایج این است که فاکتور و آیتم‌های داخل آن را جداگانه ثبت می‌کنند. خلاقیت معماری در اینجا، استفاده از <code><strong>TabularInline</strong></code> است تا ادمین بتواند در همان صفحه فاکتور، ببیند کاربر چه کالاهایی خریده است.</p><blockquote id="39cda1eb-8b9d-80b2-99d4-e45f68fa8f54" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">15-  فایل <code>apps/orders/admin.py</code> را باز کنید و کدهای زیر را قرار دهید:<pre id="39cda1eb-8b9d-8001-ae0a-dfaee99af34c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from .models import Order, OrderItem
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
+    # فاکتور نهایی نباید توسط ادمین دستکاری شود تا جلوی فساد مالی گرفته شود
+    readonly_fields = [&#x27;product&#x27;, &#x27;quantity&#x27;, &#x27;unit_price&#x27;]
+    can_delete = False
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = [&#x27;id&#x27;, &#x27;customer&#x27;, &#x27;status&#x27;, &#x27;created_at&#x27;]
+    list_filter = [&#x27;status&#x27;, &#x27;created_at&#x27;]
+    search_fields = [&#x27;id&#x27;, &#x27;customer__user__username&#x27;]
+    inlines = [OrderItemInline]
+    
+    # سفارشات ثبت شده نباید خودسرانه حذف شوند
+    def has_delete_permission(self, request, obj=None):
+        return False</code></pre></blockquote><p id="39cda1eb-8b9d-8036-86f3-c64bb8e94c1e" class="" dir="auto">مدیریت تراکنش‌های مالی (<code>apps/payments/admin.py</code>)</p><p id="39cda1eb-8b9d-8073-b905-c5968f3ffeb0" class="" dir="auto">تراکنش‌های مالی بسیار حساس هستند. ادمین نباید بتواند مبلغ یا کد پیگیری بانک را ویرایش کند! او فقط باید بتواند آن‌ها را گزارش‌گیری کند.</p><blockquote id="39cda1eb-8b9d-80fc-9f6b-f573dd923753" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">16-  فایل <code>apps/payments/admin.py</code> را باز کنید:<pre id="39cda1eb-8b9d-806d-a025-e6a0852959df" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from .models import Payment
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = [&#x27;transaction_id&#x27;, &#x27;order&#x27;, &#x27;amount&#x27;, &#x27;status&#x27;, &#x27;created_at&#x27;]
+    list_filter = [&#x27;status&#x27;, &#x27;created_at&#x27;]
+    search_fields = [&#x27;transaction_id&#x27;, &#x27;order__id&#x27;]
+    
+    # تمام فیلدهای مالی را برای ادمین Read-Only می‌کنیم تا امنیت حفظ شود
+    readonly_fields = [&#x27;transaction_id&#x27;, &#x27;order&#x27;, &#x27;amount&#x27;, &#x27;status&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;]
+
+    def has_add_permission(self, request):
+        return False # ادمین نباید بتواند دستی تراکنش مالی خلق کند
+
+    def has_delete_permission(self, request, obj=None):
+        return False # تراکنش مالی هرگز نباید حذف شود</code></pre></blockquote><h3 id="39cda1eb-8b9d-8028-a4ba-c8f2667b6ff1" class="" dir="auto">پنل کنترل انبار و لجستیک (<code>apps/shipments/admin.py</code>)</h3><p id="39cda1eb-8b9d-80b9-b8c9-fbbdaf822ba1" class="" dir="auto">اینجا دقیقاً همان‌جایی است که انباردار وارد می‌شود. او فاکتورهای آماده ارسال را می‌بیند، کالا را بسته‌بندی می‌کند، شرکت حمل و نقل (پست/تیپاکس) را انتخاب کرده و <strong>کد رهگیری</strong> را وارد می‌کند.</p><blockquote id="39cda1eb-8b9d-80ec-a10b-eaab7ce23b75" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">17-  فایل <code>apps/shipments/admin.py</code> را باز کنید:<pre id="39cda1eb-8b9d-8095-bbab-dee94bb477ec" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib import admin
+from .models import Shipment
+
+@admin.register(Shipment)
+class ShipmentAdmin(admin.ModelAdmin):
+    list_display = [&#x27;id&#x27;, &#x27;order&#x27;, &#x27;status&#x27;, &#x27;carrier&#x27;, &#x27;tracking_number&#x27;, &#x27;created_at&#x27;]
+    list_filter = [&#x27;status&#x27;, &#x27;carrier&#x27;, &#x27;created_at&#x27;]
+    search_fields = [&#x27;order__id&#x27;, &#x27;tracking_number&#x27;]
+    
+    # سفارش مربوطه نباید در انبار جابجا شود
+    readonly_fields = [&#x27;order&#x27;, &#x27;created_at&#x27;, &#x27;shipped_at&#x27;, &#x27;delivered_at&#x27;]
+    
+    fieldsets = (
+        (&quot;اطلاعات پایه سفارش&quot;, {
+            &#x27;fields&#x27;: (&#x27;order&#x27;, &#x27;created_at&#x27;)
+        }),
+        (&quot;وضعیت لجستیک و انبارداری&quot;, {
+            &#x27;fields&#x27;: (&#x27;status&#x27;, &#x27;carrier&#x27;, &#x27;tracking_number&#x27;)
+        }),
+        (&quot;زمان‌بندی‌های ارسال&quot;, {
+            &#x27;fields&#x27;: (&#x27;shipped_at&#x27;, &#x27;delivered_at&#x27;),
+            &#x27;classes&#x27;: (&#x27;collapse&#x27;,) # این بخش را پنهان میکند تا صفحه شلوغ نشود
+        }),
+    )</code></pre></blockquote><blockquote id="39cda1eb-8b9d-8039-8002-ea55234b3728" class="block-color-orange quote-large" data-notion-highlight="orange" dir="auto">تست سناریوی کامل (The Grand Test)<p id="39cda1eb-8b9d-8085-8253-db569df77855" class="" dir="auto">حالا سرور را ران کنید (<code>python manage.py runserver</code>) و به آدرس <code>http://127.0.0.1:8000/admin/</code> بروید. یک سوپر یوزر بسازید و لاگین کنید. حالا این زنجیره شگفت‌انگیز را تست کنید:</p><ol type="1" id="39cda1eb-8b9d-80c1-9378-e1fe7140f2e3" class="numbered-list" start="1" dir="auto"><li>از طریق Swagger یک سفارش جدید بسازید (وضعیت فاکتور شما <code>P</code> یا همان Pending است).</li></ol><ol type="1" id="39cda1eb-8b9d-800d-a103-c826b82df4ed" class="numbered-list" start="2" dir="auto"><li>در پنل ادمین بخش <strong>Orders</strong> را باز کنید. فاکتور خود را می‌بینید که منتظر پرداخت است. اگر بخش <strong>Shipments</strong> را نگاه کنید، می‌بینید که هنوز هیچ مرسوله‌ای برای آن صادر نشده است (چون پولی پرداخت نشده).</li></ol><ol type="1" id="39cda1eb-8b9d-80d7-b213-c4545f732567" class="numbered-list" start="3" dir="auto"><li>حالا به Swagger بروید و متد <code>POST /api/payments/payments/initiate/</code> را صدا بزنید تا برای فاکتورتان لینک درگاه و تراکنش ساخته شود.</li></ol><ol type="1" id="39cda1eb-8b9d-805e-81c3-c4a4ee1dc6e9" class="numbered-list" start="4" dir="auto"><li>سپس متد شبیه‌ساز بانک یعنی <code>POST /api/payments/payments/mock_verify/</code> را با <code>is_successful=True</code> اجرا کنید.</li></ol><ol type="1" id="39cda1eb-8b9d-8092-91fc-e16337465718" class="numbered-list" start="5" dir="auto"><li><strong>لحظه جادویی:</strong> حالا پنل ادمین جنگو را رفرش کنید!<ul id="39cda1eb-8b9d-8006-85e3-e7842d7369a7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در بخش <strong>Orders</strong>، وضعیت فاکتور به صورت خودکار به <code>Completed</code> تغییر کرده است.</li></ul><ul id="39cda1eb-8b9d-8048-9dde-e86b1cb9cbbe" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در بخش <strong>Payments</strong>، وضعیت تراکنش موفق ثبت شده است.</li></ul><ul id="39cda1eb-8b9d-80e4-8dcf-ffe92903b4e2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">و شاهکار اینجاست: در بخش <strong>Shipments</strong>، به صورت کاملاً اتوماتیک یک رکورد مرسوله جدید برای انبار صادر شده که وضعیت آن <strong>&quot;در حال آماده‌سازی و بسته‌بندی&quot;</strong> است!</li></ul></li></ol><p id="39cda1eb-8b9d-800b-bb0d-ca7425682d1d" class="" dir="auto">حالا شما به عنوان یک ادمین/انباردار می‌توانید وارد آن مرسوله شوید، وضعیتش را به &quot;تحویل شرکت حمل و نقل شده&quot; تغییر دهید و یک کد رهگیری فرضی (مثل <code>1234567890</code>) در آن بنویسید و ذخیره کنید.</p><p id="39cda1eb-8b9d-806a-991c-dd30dbd34c96" class="" dir="auto">با این کار، سیستم ما اکنون صاحب یک <strong>دیتای کاملاً زنده، منطقی و واقعی</strong> شد. هسته بیزینس فروشگاه شما آماده است.</p></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39ada1eb-8b9d-80d2-9447-c17594125d53" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="39ada1eb-8b9d-8075-b5ef-e1898414080a" class="" dir="auto">پایان فاز 8: Shipment &amp; Fulfillment Domain</h1></div></aside><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39cda1eb-8b9d-80df-b305-d5867910ac8b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="39cda1eb-8b9d-8042-939c-f7738d1a1de5" class="" dir="auto">پایان Part-9</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
