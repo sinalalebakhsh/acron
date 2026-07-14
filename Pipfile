@@ -12,6 +12,7 @@ pillow = "*"
 opencv-python = "*"
 django-debug-toolbar = "*"
 drf-spectacular = "*"
+mcp = "*"
 
 [dev-packages]
 
