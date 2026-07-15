@@ -26,6 +26,17 @@
 │   │   ├── models.py
 │   │   ├── tests.py
 │   │   └── views.py
+│   ├── ai/
+│   │   ├── management/
+│   │   │   └── commands/
+│   │   │       └── run_mcp.py
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── test_client.py
+│   │   ├── tests.py
+│   │   └── views.py
 │   ├── api/
 │   │   ├── __init__.py
 │   │   ├── admin.py
@@ -249,7 +260,7 @@ Sina Lalehbakhsh <br>
 * [Part-7](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-7-397da1eb8b9d80a48ae4d3d71d491885)
 * [Part-8](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-8-399da1eb8b9d80fc95b4da6179551f44)
 * [Part-9](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-9-39ada1eb8b9d80e0a6fbefe0ba308fb2)
-
+* [Part-10](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-10-39ada1eb8b9d8032ac20ec61c189d41e)
 
 
 ```
@@ -304,6 +315,7 @@ We believe in open, collaborative software development. No matter your current r
 We are actively developing and expanding the architecture. Next steps in our roadmap include:
 - [x] **API Documentation:** Integrated OpenAPI 3.0 / Swagger UI.
 - [x] **Payment Gateway Domain:** Connecting orders to banking interfaces with secure callback handling.
+- [x] **MCP:** Model Context Control to Responsing interfaces with secure callback handling.
 - [ ] **Asynchronous Background Tasks:** Integrating Celery and Redis for automated inventory release and notification systems.
 - [ ] **Shared Core Services:** Expanding `core/services.py` for enterprise SMS, Email, and PDF generation.
 
@@ -494,6 +506,181 @@ from django.test import TestCase
 from django.shortcuts import render
 
 # Create your views here.
+
+```
+
+### File: `apps\ai\__init__.py`
+```python
+
+```
+
+### File: `apps\ai\admin.py`
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+### File: `apps\ai\apps.py`
+```python
+from django.apps import AppConfig
+
+
+class AiConfig(AppConfig):
+    name = 'apps.ai'
+
+```
+
+### File: `apps\ai\models.py`
+```python
+from django.db import models
+
+# Create your models here.
+
+```
+
+### File: `apps\ai\test_client.py`
+```python
+import sys  # <--- اضافه کردن کتابخانه سیستم برای خواندن مسیر پایتون فعال
+import asyncio
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+async def run_test_client():
+    # استفاده از sys.executable تضمین می‌کند که از پایتونِ فعال در pipenv استفاده شود
+    # 🟢 تغییر مهم: اضافه کردن "-u" برای غیرفعال کردن بافر در ویندوز
+    server_params = StdioServerParameters(
+        command=sys.executable, 
+        args=["-u","manage.py", "run_mcp"],
+    )
+    
+    print("⏳ در حال اتصال به سرور هوش مصنوعی ACRON...")
+    
+    try:
+        async with stdio_client(server_params) as (read, write):
+            async with ClientSession(read, write) as session:
+                # دست دادن اولیه با سرور (Handshake)
+                await session.initialize()
+                print("✅ اتصال با موفقیت برقرار شد!\n")
+                
+                # دریافت لیست ابزارها
+                tools_response = await session.list_tools()
+                print("🛠️ ابزارهای معرفی شده به هوش مصنوعی:")
+                for tool in tools_response.tools:
+                    print(f"  - نام ابزار: {tool.name} | کاربرد: {tool.description}")
+                
+                print("\n" + "="*50 + "\n")
+                
+                # فرض کنیم می‌خواهیم اولین سفارش داخل دیتابیس را تست کنیم
+                # در صورت نیاز شناسه سفارش خود را جایگزین کنید
+                target_order_id = "6d8c603e-fcde-44e2-9fe6-f93c87971948" 
+                
+                print(f"🤖 [شبیه‌سازی LLM]: در حال فراخوانی ابزار برای سفارش {target_order_id}...")
+                
+                result = await session.call_tool(
+                    "track_shipment_status", 
+                    arguments={"order_uuid": target_order_id}
+                )
+                
+                print("\n📥 پاسخ دریافتی از دیتابیس جنگو:")
+                print(result.content[0].text)
+                
+    except Exception as e:
+        print(f"❌ خطایی در کلاینت رخ داد: {e}\n❌ An error occurred in the client: unhandled errors in a TaskGroup (1 sub-exception)")
+
+if __name__ == "__main__":
+    asyncio.run(run_test_client())
+
+
+
+
+```
+
+### File: `apps\ai\tests.py`
+```python
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+### File: `apps\ai\views.py`
+```python
+from django.shortcuts import render
+
+# Create your views here.
+
+```
+
+### File: `apps\ai\management\commands\run_mcp.py`
+```python
+from django.core.management.base import BaseCommand
+from mcp.server.fastmcp import FastMCP
+from apps.orders.models import Order
+from apps.shipments.models import Shipment
+from asgiref.sync import sync_to_async  # 🟢 ۱. وارد کردن ابزار همگام‌سازی جنگو
+
+mcp = FastMCP("ACRON Core AI Engine")
+
+@mcp.tool()
+async def get_order_status(order_uuid: str) -> str:  # 🟢 تبدیل به تابع async
+    """
+    Get the current billing/payment status of an order using its UUID.
+    """
+    # اجرای کوئری دیتابیس در یک ترد همگام ایمن
+    @sync_to_async
+    def fetch_order():
+        try:
+            order = Order.objects.get(id=order_uuid)
+            return f"سفارش شماره {order_uuid} در وضعیت [{order.get_status_display()}] قرار دارد."
+        except Order.DoesNotExist:
+            return "خطا: سفارشی با این شناسه یافت نشد."
+        except Exception as e:
+            return f"خطای سیستم: {str(e)}"
+            
+    return await fetch_order()
+
+
+@mcp.tool()
+async def track_shipment_status(order_uuid: str) -> str:  # 🟢 تبدیل به تابع async
+    """
+    Track the physical shipping status, carrier info, and tracking code for an order.
+    """
+    # اجرای کوئری دیتابیس در یک ترد همگام ایمن
+    @sync_to_async
+    def fetch_shipment():
+        try:
+            shipment = Shipment.objects.get(order__id=order_uuid)
+            tracking_code = shipment.tracking_number or "هنوز صادر نشده است"
+            tracking_link = shipment.get_tracking_url() or "لینک پیگیری موجود نیست"
+            
+            return (
+                f"وضعیت ارسال: {shipment.get_status_display()}\n"
+                f"شرکت حمل و نقل: {shipment.get_carrier_display()}\n"
+                f"کد رهگیری پستی: {tracking_code}\n"
+                f"لینک مستقیم پیگیری: {tracking_link}"
+            )
+        except Shipment.DoesNotExist:
+            return "این سفارش هنوز پرداخت نشده یا مرسوله‌ای برای آن در انبار صادر نشده است."
+        except Exception as e:
+            return f"خطای سیستم: {str(e)}"
+            
+    return await fetch_shipment()
+
+
+class Command(BaseCommand):
+    help = "Starts the ACRON Model Context Protocol (MCP) Server"
+    
+    requires_system_checks = []
+
+    def handle(self, *args, **options):
+        # نوشتن پیام فقط روی stderr
+        self.stderr.write(self.style.SUCCESS("🤖 سرور هوش مصنوعی ACRON (MCP) روشن شد...\n🤖 ACRON AI Server (MCP) has been launched..."))
+        mcp.run(transport="stdio")
+    
+
+
 
 ```
 
@@ -13166,6 +13353,7 @@ INSTALLED_APPS = [
     'apps.products',
     # 'apps.reviews',
     'apps.shipments',
+    'apps.ai'
 ]
 
 # The MIDDLEWARE setting defines a list of middleware classes ,
