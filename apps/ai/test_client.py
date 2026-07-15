@@ -8,7 +8,7 @@ async def run_test_client():
     # ----------------- 🧪 آزمایشگاه امنیت -----------------
     # سناریو ۱: شناسه کاربری که در دیتابیس مالک سفارش "6d8c603e-fcde-44e2-9fe6-f93c87971948" است را وارد کنید (مثلاً "1")
     # سناریو ۲: شناسه یک کاربر دیگر یا یک کاربر فرضی (مثلاً "99") را بگذارید تا هک را شبیه‌سازی کنید!
-    logged_in_user_id = "1" 
+    logged_in_user_id = "5" 
     # -----------------------------------------------------
 
     env_vars = os.environ.copy()
@@ -33,7 +33,7 @@ async def run_test_client():
                 print(f"🤖 [شبیه‌سازی LLM]: در حال فراخوانی ابزار برای سفارش {target_order_id} با شناسه کاربر لود شده: {logged_in_user_id}...")
                 
                 result = await session.call_tool(
-                    "track_shipment_status", 
+                    "get_order_status", 
                     arguments={"order_uuid": target_order_id}
                 )
                 
