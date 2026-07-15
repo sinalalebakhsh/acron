@@ -217,6 +217,76 @@ Best Practice برای **Custom User**،  این است که App جداگانه�
 > ```
 > 
 
+> 10-2- این قطعه کد رو داخل این مسیر اضافه کن:
+> 
+> 
+> apps/accounts/admin.py
+> 
+> ```python
+> from django.contrib import admin
+> from django.contrib.auth.admin import UserAdmin
+> 
+> from .models import CustomUser
+> 
+> @admin.register(CustomUser)
+> class CustomUserAdmin(UserAdmin):
+>     fieldsets = (
+>         (
+>             None,
+>             {
+>                 "fields": (
+>                     "username",
+>                     "email",
+>                     "first_name",
+>                     "last_name",
+>                 )
+>             },
+>         ),
+>         (
+>             "Permissions",
+>             {
+>                 "fields": (
+>                     "is_staff",
+>                     "is_active",
+>                     "groups",
+>                     "user_permissions",
+>                 )
+>             },
+>         ),
+>     )
+> 
+>     add_fieldsets = (
+>         (
+>             None,
+>             {
+>                 "classes": ("wide",),
+>                 "fields": (
+>                     "username",
+>                     "email",
+>                     "first_name",
+> 
+>                     "last_name",
+> 
+>                     "password1",
+>                     "password2",
+>                 ),
+>             },
+>         ),
+>     )
+> 
+>     list_display = [
+>         'id',
+>         'username',
+>         'email',
+>         'first_name',
+>         'last_name',
+>         'last_login',
+> 
+>     ]
+> 
+> ```
+> 
+
 نکته بسیار مهم‌تر این تنظیم باید **قبل از اولین Migration پروژه** انجام شود.
 
 کل فایل [settings.py](http://settings.py) رو میخوایم کم کمک منتقل کنیم داخل این فایل ها داخل این مسیر :
@@ -3086,8 +3156,6 @@ customer=user.customer
 > 
 > 
 > ```python
-> #  acron/config/settings/admin.p 
-> 
 > from django.contrib import admin
 > 
 > from .models import Customer
