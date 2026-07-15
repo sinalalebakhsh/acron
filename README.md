@@ -46,6 +46,7 @@ We believe in open, collaborative software development. No matter your current r
 We are actively developing and expanding the architecture. Next steps in our roadmap include:
 - [x] **API Documentation:** Integrated OpenAPI 3.0 / Swagger UI.
 - [x] **Payment Gateway Domain:** Connecting orders to banking interfaces with secure callback handling.
+- [x] **MCP:** Model Context Control to Responsing interfaces with secure callback handling.
 - [ ] **Asynchronous Background Tasks:** Integrating Celery and Redis for automated inventory release and notification systems.
 - [ ] **Shared Core Services:** Expanding `core/services.py` for enterprise SMS, Email, and PDF generation.
 
