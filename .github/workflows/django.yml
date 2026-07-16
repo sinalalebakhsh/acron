@@ -10,7 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # ۱. راه‌اندازی دیتابیس موقت MySQL روی سرور گیت‌هاب
+    # ۱. مشخص کردن پوشه پیش‌فرض برای اجرای تمام دستورات این جاب (جابجایی به پوشه backend)
+    defaults:
+      run:
+        working-directory: backend
+
+    # ۲. راه‌اندازی دیتابیس موقت MySQL روی سرور گیت‌هاب
     services:
       mysql:
         image: mysql:8.0
@@ -23,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        # ۲. هماهنگی باrequirements: جنگو ۶ حداقل به پایتون ۳.۱۲ نیاز دارد
+        # ۳. هماهنگی با requirements: جنگو ۶ حداقل به پایتون ۳.۱۲ نیاز دارد
         python-version: ["3.12", "3.13"]
 
     steps:
@@ -34,8 +39,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
+        # مشخص کردن مسیر دقیق فایل ریکوایرمنتس برای کش گیت‌هاب
+        cache-dependency-path: backend/requirements.txt 
 
-    # ۳. نصب ابزارهای لینوکسی مورد نیاز برای کامپایل کتابخانه mysqlclient
+    # ۴. نصب ابزارهای لینوکسی مورد نیاز برای کامپایل کتابخانه mysqlclient
     - name: Install Linux Dependencies for MySQL
       run: |
         sudo apt-get update
@@ -46,9 +53,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # ۴. اجرای تست‌ها با معرفی آدرس جدید فایل تنظیمات
+    # ۵. اجرای تست‌ها با معرفی آدرس فایل تنظیمات
     - name: Run Tests
       env:
         DJANGO_SETTINGS_MODULE: config.settings.development
       run: |
         python manage.py test
+
+
+        
