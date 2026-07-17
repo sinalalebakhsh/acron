@@ -68,7 +68,8 @@ INSTALLED_APPS = [
     'apps.products',
     # 'apps.reviews',
     'apps.shipments',
-    'apps.ai'
+    'apps.ai',
+    'apps.advisor', # اضافه کردن اپلیکیشن جدید مشاور هوشمند
 ]
 
 # The MIDDLEWARE setting defines a list of middleware classes ,
