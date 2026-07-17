@@ -21,6 +21,8 @@ urlpatterns = [
     path('', include('apps.carts.urls')), 
     # orders
     path('', include('apps.orders.urls')), 
+    # اضافه کردن مسیرهای مشاور هوشمند جدید
+    path('', include('apps.advisor.urls')),
     # 🔑 JWT Authentication
     # JWT
     path('token/', TokenObtainPairView.as_view()),
