@@ -70,5 +70,8 @@ We acknowledge the assistance of the following AI tools in debugging, translatin
 Despite the severe challenges and limitations imposed by geographical sanctions on developers in Iran, this project was developed with passion, resilience, and the aid of modern technology. **It is my sincere hope that a future of friendly relationships, open collaboration, and borderless connection will be established between Iranian developers and the global tech community.**
 
 
-
+### How to run
+* after cloning
+* write in Terminal:  pipenv shell
+* than: pipenv install Pipefile.lock
 
