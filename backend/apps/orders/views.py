@@ -1,40 +1,50 @@
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin
+# apps/orders/views.py
+
+from rest_framework import viewsets, status
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from drf_spectacular.utils import extend_schema_view, extend_schema
 from .models import Order
-from .serializers import OrderSerializer, CreateOrderSerializer
+from .serializers import OrderSerializer, OrderCreateInputSerializer
+from .services import OrderService
 
-@extend_schema_view(
-    create=extend_schema(summary="تبدیل سبد خرید به سفارش (فاکتور)", tags=['Orders']),
-    list=extend_schema(summary="لیست سفارشات کاربر", tags=['Orders']),
-    retrieve=extend_schema(summary="جزئیات یک سفارش", tags=['Orders']),
-)
-class OrderViewSet(CreateModelMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet):
+class OrderViewSet(viewsets.ModelViewSet):
     """
-    ویوست مدیریت سفارشات مشتری.
-    دقت کنید که متدهای آپدیت و حذف مسدود شده‌اند، زیرا فاکتور قابل تغییر نیست.
+    کنترلر (View) مدیریت سفارشات.
+    با رعایت معماری تمیز، این ویو فاقد هرگونه منطق تجاری سنگین دیتابیسی است.
     """
-    # فقط کاربران لاگین شده حق دسترسی دارند
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # فقط کاربران لاگین شده به سفارشات دسترسی دارند
+    serializer_class = OrderSerializer
 
-    # هر کاربر فقط باید فاکتورهای خودش را ببیند، نه دیگران را!
     def get_queryset(self):
-        user = self.request.user
-        
-        # جلوگیری از خطای کاربرانی که هنوز پروفایل Customer ندارند
-        if hasattr(user, 'customer'):
-            return Order.objects.prefetch_related('items__product').filter(customer=user.customer)
-        return Order.objects.none()
+        """
+        برگرداندن لیست سفارشات متعلق به خود کاربر لاگین شده به ترتیب جدیدترین‌ها.
+        """
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')
 
-    # انتخاب سریالایزر بر اساس نوع متد (دریافت یا ثبت)
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return CreateOrderSerializer
-        return OrderSerializer
-    
-    # ارسال آبجکت request به سریالایزر برای دسترسی به اطلاعات کاربر
-    def get_serializer_context(self):
-        return {'request': self.request}
+    def create(self, request, *args, **kwargs):
+        """
+        اکشن ساخت سفارش (POST /api/orders/)
+        """
+        # ۱. اعتبارسنجی ورودی‌های خام (شناسه سبد خرید و آدرس ارسال) با استفاده از سریالایزر اختصاصی ورودی
+        input_serializer = OrderCreateInputSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        
+        # استخراج داده‌های تایید شده از سریالایزر
+        cart_id = input_serializer.validated_data['cart_id']
+        shipping_address = input_serializer.validated_data['shipping_address']
+
+        # ۲. ارجاع کار به لایه سرویس (قلب تپنده منطق تجاری)
+        # تمام فرآیندهای سنگین اتمیک، کسر انبار و فریز قیمت در اینجا و خارج از دید کنترلر رخ می‌دهد.
+        order = OrderService.place_order(
+            user=request.user,
+            cart_id=cart_id,
+            shipping_address=shipping_address
+        )
+
+        # ۳. آماده‌سازی خروجی استاندارد JSON با استفاده از سریالایزر اصلی سفارش
+        output_serializer = self.get_serializer(order)
+        
+        # برگرداندن پاسخ نهایی با وضعیت 201 Created به کلاینت
+        return Response(output_serializer.data, status=status.HTTP_201_CREATED)
 
 

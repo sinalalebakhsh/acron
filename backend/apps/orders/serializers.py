@@ -1,49 +1,35 @@
-from rest_framework import serializers
+# apps/orders/serializers.py
 
+from rest_framework import serializers
 from .models import Order, OrderItem
 
-from apps.carts.models import Cart
+class OrderCreateInputSerializer(serializers.Serializer):
+    """
+    سریالایزر اختصاصی برای ولیدیشن و دریافت اطلاعات اولیه ثبت سفارش از سمت فرانت‌اند.
+    این سریالایزر فاقد متد create یا update داخلی است، زیرا این وظایف به لایه سرویس منتقل شده‌اند.
+    """
+    cart_id = serializers.UUIDField(required=True, error_messages={'required': 'ارسال شناسه سبد خرید الزامی است.'})
+    shipping_address = serializers.CharField(required=True, min_length=10, error_messages={'required': 'آدرس ارسال نمی‌تواند خالی باشد.'})
 
-from .services import OrderService
 
-# ۱. سریالایزر نمایش آیتم‌های فاکتور
 class OrderItemSerializer(serializers.ModelSerializer):
-    # برای نمایش نام محصول به جای فقط آی‌دی آن
+    """
+    سریالایزر نمایش جزییات هر قلم کالا در فاکتور نهایی سفارش.
+    """
     product_name = serializers.CharField(source='product.name', read_only=True)
-    
+
     class Meta:
         model = OrderItem
-        fields = ['id', 'product_name', 'quantity', 'unit_price']
+        fields = ['id', 'product_name', 'quantity', 'price']
 
 
-# ۲. سریالایزر نمایش کل فاکتور
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True, read_only=True)
-    
+    """
+    سریالایزر اصلی برای خروجی دادن جزییات کامل یک سفارش به همراه اقلام تو در توی آن.
+    """
+    items = OrderItemSerializer(many=True, read_only=True) # نمایش اقلام سفارش به صورت Nested
+
     class Meta:
         model = Order
-        fields = ['id', 'status', 'created_at', 'items']
-
-
-# ۳. سریالایزر عملیاتی: فقط برای دریافت آی‌دی سبد خرید و ساخت فاکتور
-class CreateOrderSerializer(serializers.Serializer):
-    cart_id = serializers.UUIDField()
-
-    def validate_cart_id(self, cart_id):
-        # بررسی اینکه آیا این سبد خرید اصلاً وجود دارد؟
-        if not Cart.objects.filter(id=cart_id).exists():
-            raise serializers.ValidationError("سبد خرید نامعتبر است یا قبلا پرداخت شده است.")
-        return cart_id
-
-    def save(self, **kwargs):
-        cart_id = self.validated_data['cart_id']
-        
-        # استخراج مشتری از ریکوئست (کاربر باید لاگین باشد)
-        # ما request را از طریق context از سمت View به اینجا پاس می‌دهیم
-        customer = self.context['request'].user.customer
-        
-        # فراخوانی لایه سرویس که در مرحله قبل ساختیم!
-        order = OrderService.create_order_from_cart(cart_id=cart_id, customer=customer)
-        
-        return order
-
+        fields = ['id', 'total_price', 'shipping_address', 'status', 'items', 'created_at']
+    

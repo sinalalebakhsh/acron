@@ -1,119 +1,89 @@
-from datetime import timedelta
+# apps/orders/services.py
 
 from django.db import transaction
-from django.utils import timezone
-
 from rest_framework.exceptions import ValidationError
-
 from apps.carts.models import Cart
-
 from apps.orders.models import Order, OrderItem
-
+from apps.products.models import Product
 
 class OrderService:
     """
-    This service takes a shopping cart and converts it into a finalized invoice (order).
-    """  
-    @staticmethod
-    @transaction.atomic
-    def create_order_from_cart(cart_id, customer):
+    سرویس ارشد مدیریت و پردازش فرآیند ثبت سفارش در پروژه ACRON.
+    این کلاس کاملاً مستقل از ویو کار می‌کند و منطق تجاری را ایزوله نگه می‌دارد.
+    """
+
+    @classmethod
+    def place_order(cls, user, cart_id: str, shipping_address: str) -> Order:
         """
-        این سرویس یک سبد خرید را می‌گیرد و آن را به یک فاکتور قطعی تبدیل می‌کند.
+        متد اصلی ثبت سفارش. 
+        این متد ورودی‌های لازم را گرفته و تمام مراحل را در قالب یک تراکنش اتمیک پیش می‌برد.
         """
-        # ۱. پیدا کردن سبد خرید به همراه آیتم‌ها و محصولاتش (برای جلوگیری از N+1)
-        try:
-            cart = Cart.objects.prefetch_related('items__product').get(id=cart_id)
-        except Cart.DoesNotExist:
-            raise ValidationError("سبد خرید یافت نشد یا قبلاً پرداخت شده است.")
-
-        # ۲. اگر سبد خرید خالی بود، اجازه ساخت فاکتور نده!
-        if cart.items.count() == 0:
-            raise ValidationError("سبد خرید شما خالی است.")
-
-        # ۳. ساخت فاکتور اولیه (Header)
-        order = Order.objects.create(customer=customer)
-
-        # ۴. تبدیل تک‌تک آیتم‌های سبد به آیتم‌های فاکتور
-        order_items_to_create = []
-        for cart_item in cart.items.all():
-            product = cart_item.product
+        
+        # استفاده از context manager برای ایجاد یک Transaction اتمیک در دیتابیس.
+        # چرا؟ اگر هرکدام از خطوط داخل این بلوک با خطا مواجه شوند، دیتابیس به حالت اولیه
+        # برگشت می‌خورد (Rollback) و هیچ داده‌ی ناقصی ذخیره نمی‌شود.
+        with transaction.atomic():
             
-            # بررسی موجودی انبار در لحظه آخر
-            if product.inventory < cart_item.quantity:
-                raise ValidationError(f"موجودی محصول '{product.name}' کافی نیست.")
+            # ۱. واکشی سبد خرید به همراه اقلام آن به صورت بهینه برای جلوگیری از مشکل N+1 Query
+            # از select_related استفاده نمی‌کنیم چون رابطه با اقلام سبد خرید (CartItem) از نوع reverse foreign key است،
+            # پس از prefetch_related استفاده می‌کنیم تا اقلام را یکبار برای همیشه لود کنیم.
+            try:
+                cart = Cart.objects.prefetch_related('items__product').get(id=cart_id, is_active=True)
+            except Cart.DoesNotExist:
+                raise ValidationError("سبد خرید معتبری یافت نشد یا این سبد خرید قبلاً منقضی شده است.")
 
-            # کسر از موجودی انبار
-            product.inventory -= cart_item.quantity
-            product.save()
+            # ۲. بررسی اینکه آیا سبد خرید اصلاً قلم کالا دارد یا خیر
+            cart_items = cart.items.all()
+            if not cart_items:
+                raise ValidationError("سبد خرید شما خالی است و امکان ثبت سفارش وجود ندارد.")
 
-            # آماده‌سازی آیتم فاکتور (دقت کنید قیمت همین الان فریز می‌شود)
-            order_items_to_create.append(
-                OrderItem(
-                    order=order,
-                    product=product,
-                    quantity=cart_item.quantity,
-                    unit_price=product.price  # فریز کردن قیمت!
-                )
+            # ۳. محاسبه کل مبلغ سفارش و بررسی موجودی انبار به صورت یکجا
+            total_price = 0
+            for item in cart_items:
+                product = item.product
+                
+                # بررسی موجودی انبار: آیا موجودی محصول کمتر از تعداد درخواستی کاربر است؟
+                if product.stock < item.quantity:
+                    raise ValidationError(
+                        f"موجودی کالا '{product.name}' کافی نیست. موجودی فعلی: {product.stock}"
+                    )
+                
+                # محاسبه قیمت: تعداد ضربدر قیمت فعلی محصول
+                total_price += product.price * item.quantity
+
+            # ۴. ایجاد رکورد اصلی سفارش در دیتابیس
+            # در این مرحله سفارش در حالت 'PENDING' (در انتظار پرداخت) ایجاد می‌شود.
+            order = Order.objects.create(
+                user=user,
+                total_price=total_price,
+                shipping_address=shipping_address,
+                status='PENDING' # مقدار پیش‌فرض که نشان می‌دهد فرآیند پرداخت هنوز تکمیل نشده
             )
 
-        # ۵. ذخیره یکجای تمام آیتم‌ها در دیتابیس (بسیار بهینه‌تر از ذخیره تک‌تک)
-        OrderItem.objects.bulk_create(order_items_to_create)
+            # ۵. انتقال اقلام از سبد خرید به اقلام سفارش + فریز کردن قیمت‌ها + کسر از انبار
+            for item in cart_items:
+                product = item.product
+                
+                # فریز کردن قیمت: قیمت فعلی محصول را مستقیماً در جدول OrderItem ذخیره می‌کنیم.
+                # چرا؟ اگر فردا قیمت محصول تغییر کرد، فاکتور کاربر نباید دستخوش تغییر شود.
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=item.quantity,
+                    price=product.price # قیمت فریز شده کالا در لحظه خرید
+                )
 
-        # ۶. حذف سبد خرید (چون تبدیل به فاکتور شد)
-        cart.delete()
+                # کسر از انبار: موجودی محصول را به تعداد خریداری شده کاهش می‌دهیم
+                product.stock -= item.quantity
+                
+                # ذخیره تغییرات محصول در دیتابیس (فقط فیلد stock را آپدیت می‌کنیم تا پرفورمنس بالاتر برود)
+                product.save(update_fields=['stock'])
 
-        return order
+            # ۶. غیرفعال کردن سبد خرید (کاربر کارش با این سبد خرید تمام شده است)
+            cart.is_active = False
+            cart.save(update_fields=['is_active'])
 
-    @staticmethod
-    @transaction.atomic
-    def cancel_expired_order(order):
-        """
-        این متد فاکتور را لغو کرده و موجودی کالاها را به انبار برمی‌گرداند.
-        """
-        # اگر وضعیت فاکتور چیزی غیر از "در انتظار پرداخت" است، کاری نکن
-        if order.status != Order.OrderStatus.PENDING:
-            return False
-
-        # حلقه روی تمام آیتم‌های فاکتور برای بازگرداندن موجودی
-        # استفاده از select_related برای جلوگیری از مشکل N+1 در ارتباط با جدول Product
-        for item in order.items.select_related('product'):
-            product = item.product
-            product.inventory += item.quantity
-            product.save()
-
-        # تغییر وضعیت فاکتور به لغو شده
-        order.status = Order.OrderStatus.CANCELED
-        order.save()
-        return True
-
-    @staticmethod
-    def validate_order_for_payment(order_id):
-        """
-        این متد قبل از ارسال کاربر به درگاه بانکی فراخوانی می‌شود
-        تا بررسی کند آیا هنوز برای پرداخت فرصت دارد یا خیر.
-        """
-        try:
-            order = Order.objects.get(id=order_id)
-        except Order.DoesNotExist:
-            raise ValidationError("سفارش یافت نشد.")
-
-        if order.status == Order.OrderStatus.COMPLETED:
-            raise ValidationError("این سفارش قبلاً پرداخت شده است.")
-            
-        if order.status == Order.OrderStatus.CANCELED:
-            raise ValidationError("این سفارش لغو شده است.")
-
-        # محاسبه زمان انقضا (زمان ثبت فاکتور + ۱۵ دقیقه)
-        expiration_time = order.created_at + timedelta(minutes=15)
-        
-        # مقایسه با زمان حال
-        if timezone.now() > expiration_time:
-            # فراخوانی متد بازگرداندن موجودی به انبار
-            OrderService.cancel_expired_order(order)
-            raise ValidationError("زمان ۱۵ دقیقه‌ای پرداخت به پایان رسیده و سفارش به دلیل اتمام مهلت لغو شد.")
-        
-        return order
-
-
+            # خروجی متد: شیء سفارشِ ساخته شده را برمی‌گردانیم تا لایه‌های بالاتر از آن استفاده کنند
+            return order
 
 
