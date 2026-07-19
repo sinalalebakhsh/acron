@@ -1,34 +1,24 @@
-# Dependency directories (پوشه پکیج‌ها - معادل محیط مجازی در بک‌اند)
-node_modules/
-jspm_packages/
-web_modules/
-
-# Build outputs (فایل‌های کامپایل شده نهایی که بسیار حجیم هستند)
-dist/
-dist-ssr/
-build/
-out/
-
-# Logs (لوگ‌های خطا و پروسس‌ها)
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-*.log
+lerna-debug.log*
 
-# Local env files (فایل‌های تنظیمات محلی و کلیدهای امنیتی)
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+node_modules
+dist
+dist-ssr
+*.local
 
-# Editor directories and files (تنظیمات شخصی ادیتورها)
-.vscode/
-.idea/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
