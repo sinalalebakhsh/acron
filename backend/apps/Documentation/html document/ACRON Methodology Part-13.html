@@ -1,0 +1,1531 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-13</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3a0da1eb-8b9d-80ac-9228-ed8e884447f0" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-13</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-8078-9c19-f46cfc00a2b4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="3a0da1eb-8b9d-806d-b38c-d99970d1030a" class="" dir="auto">در Part-12 ، <strong>فاز 9:  MCP - Model Context Protocol  اپلیکیشن advisor ساخته شد. فاز 9 تمام شد.</strong></p></div></aside><h1 id="3a0da1eb-8b9d-80c0-94f0-d53deab10193" class="" dir="auto">فاز 10<strong>:  </strong>Service Layer</h1><hr id="3a0da1eb-8b9d-8038-a525-e241c084bc20" dir="auto"/><h4 id="3a0da1eb-8b9d-803f-9d70-eda0fafa7b02" class="" dir="auto">بخش اول: درک عمیق مفهوم لایه سرویس The Why</h4><p id="3a0da1eb-8b9d-8042-ab6e-d2abdfba478d" class="" dir="auto">در ساختار سنتی جنگو، توسعه‌دهندگان معمولاً کدهای منطق تجاری (Business Logic) را در یکی از سه جا می‌نویسند:</p><ol type="1" id="3a0da1eb-8b9d-80da-865b-f440b320b710" class="numbered-list" start="1" dir="auto"><li><strong>داخل Views:</strong> باعث چاق شدن ویو (Fat View) می‌شود. اگر فردا بخواهی همان کار را در یک کامند مدیریتی (Management Command) یا یک ورکر پس‌زمینه (Celery Task) انجام دهی، مجبور به کپی کردن کدهایش هستی.</li></ol><ol type="1" id="3a0da1eb-8b9d-801e-93d7-d7123855ac04" class="numbered-list" start="2" dir="auto"><li><strong>داخل Serializers:</strong> سریالایزر فقط وظیفه <strong>اعتبارسنجی شکل داده (Validation)</strong> و <strong>تبدیل فرمت (Serialization)</strong> را دارد. گذاشتن منطق‌های سنگین (مثل کسر از انبار یا تراکنش مالی) در آن، اصل Single Responsibility (تک‌وظیفگی) را نقض می‌کند.</li></ol><ol type="1" id="3a0da1eb-8b9d-80c3-9101-c754a9d4fe01" class="numbered-list" start="3" dir="auto"><li><strong>داخل Models:</strong> باعث چاق شدن مدل (Fat Model) می‌شود که خوانایی دیتابیس را پایین می‌آورد.</li></ol><p id="3a0da1eb-8b9d-8088-a684-da4f9b558607" class="" dir="auto"><strong>راه‌حل ارشد: Service Layer</strong><br/>لایه سرویس یک کلاس یا مجموعه‌ای از توابع خالص پایتونی است که هیچ وابستگی به لایه نمایش (HTTP Request, API, Response) ندارد. ورودی‌های خام را می‌گیرد، عملیات دیتابیسی و محاسباتی را انجام می‌دهد و خروجی را برمی‌گرداند.</p><h4 id="3a0da1eb-8b9d-8024-9e6d-ff7d000aace0" class="" dir="auto">سناریوی عملی: فرآیند پیچیده ثبت سفارش (<code>Order Placement</code>)</h4><p id="3a0da1eb-8b9d-8046-97b8-e3fff1b1a8fd" class="" dir="auto">برای یادگیری این الگو، ما فرآیند <strong>ثبت سفارش</strong> را در دامنه <code>orders</code> ریفکتور می‌کنیم. این فرآیند یکی از حساس‌ترین بخش‌های کل پروژه است چون شامل چندین کار متوالی است:</p><ol type="1" id="3a0da1eb-8b9d-804b-8a0d-c67313baf8b2" class="numbered-list" start="1" dir="auto"><li>بررسی معتبر بودن سبد خرید (Cart).</li></ol><ol type="1" id="3a0da1eb-8b9d-80c8-a11a-dee8f16049fe" class="numbered-list" start="2" dir="auto"><li>بررسی موجودی انبار برای تک‌تک محصولات موجود در سبد خرید.</li></ol><ol type="1" id="3a0da1eb-8b9d-80e9-8b84-f83360f0aab8" class="numbered-list" start="3" dir="auto"><li>قفل کردن یا فریز کردن قیمت محصول در آن لحظه (چون قیمت محصول ممکن است فردا تغییر کند اما سفارش کاربر باید با قیمت زمان خرید ثبت شود).</li></ol><ol type="1" id="3a0da1eb-8b9d-8045-8c2b-dec41d2dd7fe" class="numbered-list" start="4" dir="auto"><li>کم کردن موجودی انبار محصولات به صورت آنی.</li></ol><ol type="1" id="3a0da1eb-8b9d-804c-83ca-ce2c93b1a984" class="numbered-list" start="5" dir="auto"><li>ایجاد رکورد سفارش (<code>Order</code>) و اقلام سفارش (<code>OrderItem</code>).</li></ol><ol type="1" id="3a0da1eb-8b9d-80bf-b63f-c8d4aad0705f" class="numbered-list" start="6" dir="auto"><li>خالی کردن سبد خرید کاربر.</li></ol><p id="3a0da1eb-8b9d-80d8-9569-cccec457cbbe" class="" dir="auto">اگر در حین انجام قدم ۴ یا ۵ اینترنت قطع شود یا دیتابیس کرش کند چه می‌شود؟ اگر لایه سرویس نباشد، موجودی انبار کم شده اما سفارشی ثبت نشده است! ما در این لایه از <strong>تراکنش‌های اتمیک (</strong><code><strong>transaction.atomic</strong></code><strong>)</strong> استفاده می‌کنیم تا یا همه چیز با هم انجام شود یا هیچ‌چیز اعمال نشود (All or Nothing).</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-80db-b988-ff1498891a32" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a0da1eb-8b9d-80e8-9f04-d6822c6fe728" class="" dir="auto">قدم اول: ایجاد فایل سرویس سفارشات (<code>services.py</code>)</p></div></aside><blockquote id="3a0da1eb-8b9d-8000-8486-c682705c7c6d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1- فایل  <code>services.py</code> در پوشه <code>apps/orders/</code> را تغییر کد بده:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3a0da1eb-8b9d-8025-8d0e-c8f574b37b64" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/orders/services.py
+
+from django.db import transaction
+from rest_framework.exceptions import ValidationError
+from apps.carts.models import Cart
+from apps.orders.models import Order, OrderItem
+from apps.products.models import Product
+
+class OrderService:
+    &quot;&quot;&quot;
+    سرویس ارشد مدیریت و پردازش فرآیند ثبت سفارش در پروژه ACRON.
+    این کلاس کاملاً مستقل از ویو کار می‌کند و منطق تجاری را ایزوله نگه می‌دارد.
+    &quot;&quot;&quot;
+
+    @classmethod
+    def place_order(cls, user, cart_id: str, shipping_address: str) -&gt; Order:
+        &quot;&quot;&quot;
+        متد اصلی ثبت سفارش. 
+        این متد ورودی‌های لازم را گرفته و تمام مراحل را در قالب یک تراکنش اتمیک پیش می‌برد.
+        &quot;&quot;&quot;
+        
+        # استفاده از context manager برای ایجاد یک Transaction اتمیک در دیتابیس.
+        # چرا؟ اگر هرکدام از خطوط داخل این بلوک با خطا مواجه شوند، دیتابیس به حالت اولیه
+        # برگشت می‌خورد (Rollback) و هیچ داده‌ی ناقصی ذخیره نمی‌شود.
+        with transaction.atomic():
+            
+            # ۱. واکشی سبد خرید به همراه اقلام آن به صورت بهینه برای جلوگیری از مشکل N+1 Query
+            # از select_related استفاده نمی‌کنیم چون رابطه با اقلام سبد خرید (CartItem) از نوع reverse foreign key است،
+            # پس از prefetch_related استفاده می‌کنیم تا اقلام را یکبار برای همیشه لود کنیم.
+            try:
+                cart = Cart.objects.prefetch_related(&#x27;items__product&#x27;).get(id=cart_id, is_active=True)
+            except Cart.DoesNotExist:
+                raise ValidationError(&quot;سبد خرید معتبری یافت نشد یا این سبد خرید قبلاً منقضی شده است.&quot;)
+
+            # ۲. بررسی اینکه آیا سبد خرید اصلاً قلم کالا دارد یا خیر
+            cart_items = cart.items.all()
+            if not cart_items:
+                raise ValidationError(&quot;سبد خرید شما خالی است و امکان ثبت سفارش وجود ندارد.&quot;)
+
+            # ۳. محاسبه کل مبلغ سفارش و بررسی موجودی انبار به صورت یکجا
+            total_price = 0
+            for item in cart_items:
+                product = item.product
+                
+                # بررسی موجودی انبار: آیا موجودی محصول کمتر از تعداد درخواستی کاربر است؟
+                if product.stock &lt; item.quantity:
+                    raise ValidationError(
+                        f&quot;موجودی کالا &#x27;{product.name}&#x27; کافی نیست. موجودی فعلی: {product.stock}&quot;
+                    )
+                
+                # محاسبه قیمت: تعداد ضربدر قیمت فعلی محصول
+                total_price += product.price * item.quantity
+
+            # ۴. ایجاد رکورد اصلی سفارش در دیتابیس
+            # در این مرحله سفارش در حالت &#x27;PENDING&#x27; (در انتظار پرداخت) ایجاد می‌شود.
+            order = Order.objects.create(
+                user=user,
+                total_price=total_price,
+                shipping_address=shipping_address,
+                status=&#x27;PENDING&#x27; # مقدار پیش‌فرض که نشان می‌دهد فرآیند پرداخت هنوز تکمیل نشده
+            )
+
+            # ۵. انتقال اقلام از سبد خرید به اقلام سفارش + فریز کردن قیمت‌ها + کسر از انبار
+            for item in cart_items:
+                product = item.product
+                
+                # فریز کردن قیمت: قیمت فعلی محصول را مستقیماً در جدول OrderItem ذخیره می‌کنیم.
+                # چرا؟ اگر فردا قیمت محصول تغییر کرد، فاکتور کاربر نباید دستخوش تغییر شود.
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=item.quantity,
+                    price=product.price # قیمت فریز شده کالا در لحظه خرید
+                )
+
+                # کسر از انبار: موجودی محصول را به تعداد خریداری شده کاهش می‌دهیم
+                product.stock -= item.quantity
+                
+                # ذخیره تغییرات محصول در دیتابیس (فقط فیلد stock را آپدیت می‌کنیم تا پرفورمنس بالاتر برود)
+                product.save(update_fields=[&#x27;stock&#x27;])
+
+            # ۶. غیرفعال کردن سبد خرید (کاربر کارش با این سبد خرید تمام شده است)
+            cart.is_active = False
+            cart.save(update_fields=[&#x27;is_active&#x27;])
+
+            # خروجی متد: شیء سفارشِ ساخته شده را برمی‌گردانیم تا لایه‌های بالاتر از آن استفاده کنند
+            return order</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-801c-b3af-e87e59afd309" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a0da1eb-8b9d-802d-9913-df89369cc839" class="" dir="auto">قدم دوم: ریفکتور کردن و لاغر کردن ویو (<code>views.py</code>)</p></div></aside><blockquote id="3a0da1eb-8b9d-80f9-a882-f1fa8d9db503" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2- حالا که قلب منطق تجاری ما به لایه سرویس منتقل شد، بیایید فایل <code>apps/orders/views.py</code> را بازنویسی کنیم.  ویوی ما تمیز، خوانا و کوتاه (Thin View) می‌شود. وظیفه این ویو اکنون فقط گرفتن کلاینت درخواست و فرستادن آن به سرویس است.<pre id="3a0da1eb-8b9d-8064-925f-cfc773bf9a54" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/orders/views.py
+
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .models import Order
+from .serializers import OrderSerializer, OrderCreateInputSerializer
+from .services import OrderService
+
+class OrderViewSet(viewsets.ModelViewSet):
+    &quot;&quot;&quot;
+    کنترلر (View) مدیریت سفارشات.
+    با رعایت معماری تمیز، این ویو فاقد هرگونه منطق تجاری سنگین دیتابیسی است.
+    &quot;&quot;&quot;
+    permission_classes = [IsAuthenticated] # فقط کاربران لاگین شده به سفارشات دسترسی دارند
+    serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        &quot;&quot;&quot;
+        برگرداندن لیست سفارشات متعلق به خود کاربر لاگین شده به ترتیب جدیدترین‌ها.
+        &quot;&quot;&quot;
+        return Order.objects.filter(user=self.request.user).order_by(&#x27;-created_at&#x27;)
+
+    def create(self, request, *args, **kwargs):
+        &quot;&quot;&quot;
+        اکشن ساخت سفارش (POST /api/orders/)
+        &quot;&quot;&quot;
+        # ۱. اعتبارسنجی ورودی‌های خام (شناسه سبد خرید و آدرس ارسال) با استفاده از سریالایزر اختصاصی ورودی
+        input_serializer = OrderCreateInputSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        
+        # استخراج داده‌های تایید شده از سریالایزر
+        cart_id = input_serializer.validated_data[&#x27;cart_id&#x27;]
+        shipping_address = input_serializer.validated_data[&#x27;shipping_address&#x27;]
+
+        # ۲. ارجاع کار به لایه سرویس (قلب تپنده منطق تجاری)
+        # تمام فرآیندهای سنگین اتمیک، کسر انبار و فریز قیمت در اینجا و خارج از دید کنترلر رخ می‌دهد.
+        order = OrderService.place_order(
+            user=request.user,
+            cart_id=cart_id,
+            shipping_address=shipping_address
+        )
+
+        # ۳. آماده‌سازی خروجی استاندارد JSON با استفاده از سریالایزر اصلی سفارش
+        output_serializer = self.get_serializer(order)
+        
+        # برگرداندن پاسخ نهایی با وضعیت 201 Created به کلاینت
+        return Response(output_serializer.data, status=status.HTTP_201_CREATED)</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-8087-b1d4-c110b9072ac2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a0da1eb-8b9d-8065-9cdc-fc00054385a0" class="" dir="auto">قدم سوم: تنظیم سریالایزر ورودی (<code>serializers.py</code>)</p></div></aside><blockquote id="3a0da1eb-8b9d-80cd-90eb-d3be36e236f7" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3- برای اینکه مطمئن شویم داده‌های ورودی به ویو دقیقاً همان چیزی هستند که ما نیاز داریم، سریالایزر مخصوص ورودی ثبت سفارش را در فایل<br/> <code>apps/orders/serializers.py</code> باز تعریف می‌کنیم:<pre id="3a0da1eb-8b9d-806f-a3b1-f3a0d3aa5ae7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/orders/serializers.py
+
+from rest_framework import serializers
+from .models import Order, OrderItem
+
+class OrderCreateInputSerializer(serializers.Serializer):
+    &quot;&quot;&quot;
+    سریالایزر اختصاصی برای ولیدیشن و دریافت اطلاعات اولیه ثبت سفارش از سمت فرانت‌اند.
+    این سریالایزر فاقد متد create یا update داخلی است، زیرا این وظایف به لایه سرویس منتقل شده‌اند.
+    &quot;&quot;&quot;
+    cart_id = serializers.UUIDField(required=True, error_messages={&#x27;required&#x27;: &#x27;ارسال شناسه سبد خرید الزامی است.&#x27;})
+    shipping_address = serializers.CharField(required=True, min_length=10, error_messages={&#x27;required&#x27;: &#x27;آدرس ارسال نمی‌تواند خالی باشد.&#x27;})
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    &quot;&quot;&quot;
+    سریالایزر نمایش جزییات هر قلم کالا در فاکتور نهایی سفارش.
+    &quot;&quot;&quot;
+    product_name = serializers.CharField(source=&#x27;product.name&#x27;, read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = [&#x27;id&#x27;, &#x27;product_name&#x27;, &#x27;quantity&#x27;, &#x27;price&#x27;]
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    &quot;&quot;&quot;
+    سریالایزر اصلی برای خروجی دادن جزییات کامل یک سفارش به همراه اقلام تو در توی آن.
+    &quot;&quot;&quot;
+    items = OrderItemSerializer(many=True, read_only=True) # نمایش اقلام سفارش به صورت Nested
+
+    class Meta:
+        model = Order
+        fields = [&#x27;id&#x27;, &#x27;total_price&#x27;, &#x27;shipping_address&#x27;, &#x27;status&#x27;, &#x27;items&#x27;, &#x27;created_at&#x27;]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-8095-8788-c2eba3ccfb8a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3a0da1eb-8b9d-80cc-8bab-ca54f4723932" class="" dir="auto">(تحلیل معماری)</h3></div></aside><p id="3a0da1eb-8b9d-8038-9b40-c1e6540f4199" class="" dir="auto">ببینیم چه استانداردهای جهانی عظیمی را در این چند خط کد پیاده کردیم:</p><ol type="1" id="3a0da1eb-8b9d-8000-850a-c08678231c10" class="numbered-list" start="1" dir="auto"><li><strong>جداسازی کامل دغدغه‌ها (Separation of Concerns):</strong> ویو فقط با شبکه و درخواست‌های HTTP سر و کار دارد. سریالایزر فقط با اعتبارسنجی فرمت داده‌ها سر و کار دارد. سرویس فقط با قواعد بیزینس و قوانین دیتابیس سر و کار دارد.</li></ol><ol type="1" id="3a0da1eb-8b9d-8000-8677-dbcb50bf4d2d" class="numbered-list" start="2" dir="auto"><li><strong>امنیت دیتابیس با </strong><code><strong>transaction.atomic</strong></code><strong>:</strong> اگر در لایه سرویس، انبار محصول اول با موفقیت کم شود اما محصول دوم موجودی نداشته باشد و خطا رخ دهد، دیتابیس کل فرآیند را لغو می‌کند. محصول اول دوباره به انبار برمی‌گردد و هیچ فاکتور ناقصی صادر نمی‌شود. این یعنی پایداری ۱۰۰ درصدی سیستم مالی سوپراپلیکیشن acron.</li></ol><ol type="1" id="3a0da1eb-8b9d-808d-8e9f-e5dd4bfdc920" class="numbered-list" start="3" dir="auto"><li><strong>جلوگیری از تغییرات ناخواسته داده (Immutability):</strong> با انتقال قیمت کالا به جدول <code>OrderItem</code> در لایه سرویس، فاکتور کاربر را برای همیشه فریز کردیم. تغییر قیمت محصول در بخش مدیریت، فاکتورهای صادر شده‌ی قبلی را خراب نخواهد کرد.</li></ol><ol type="1" id="3a0da1eb-8b9d-8022-bf96-f0bdd626d578" class="numbered-list" start="4" dir="auto"><li><strong>قابلیت تست‌نویسی فوق‌العاده (Unit Testing):</strong> حالا تو می‌توانی بدون اینکه نیاز باشد یک درخواست فیک HTTP با کتابخانه‌های تست جنگو بسازی، مستقیماً متد <code>OrderPlacementService.place_order</code> را در تست‌های خود صدا بزنی، به آن دیتای فیک بدهی و خروجی دیتابیس را ارزیابی کنی. این همان چیزی است که شرکت‌های بزرگ در سطح جهان به دنبال آن هستند.</li></ol><h1 id="3a0da1eb-8b9d-8048-98f0-f34c54bc7390" class="" dir="auto">فاز 11: Frontend - Presentation Layer</h1><p id="3a0da1eb-8b9d-8075-85d5-c3c1da63e0ce" class="" dir="auto">چرا ترکیب React + Vite فرانت‌اندی؟</p><h3 id="3a0da1eb-8b9d-802b-91b0-d94473218ffb" class="" dir="auto">. آینده‌ی چت گفتگو (WebSockets)</h3><p id="3a0da1eb-8b9d-80af-8b66-d3f153639f05" class="" dir="auto">وقتی زمان راه‌اندازی چت برسد، فرانت‌اند باید بتواند یک کانکشن دائمی و زنده با بک‌اند نگه دارد. React به دلیل داشتن مفهومی به نام <code>useEffect</code> (مدیریت چرخه‌ی حیات کامپوننت‌ها)، اتصال به WebSocketها را بسیار تمیز و در قالب چند خط کد مدیریت می‌کند. پکیج‌های آماده‌ی فوق‌العاده‌ای هم در React برای رندر کردن چت‌باکس‌ها وجود دارد که کار را برایت بسیار ساده می‌کنند.</p><h3 id="3a0da1eb-8b9d-803f-ab88-e93da3005965" class="" dir="auto">۲. آینده‌ی بخش اکسپلور (Explore)</h3><p id="3a0da1eb-8b9d-8001-a20b-dcd2e3ec38ed" class="" dir="auto">بخش اکسپلور معمولاً نیاز به اسکرول بی‌پایان (Infinite Scroll)، لود شدن متحرک کارت‌ها (Skeleton Loaders) و فیلترهای آنی دارد. کامپوننت‌محور بودن React به تو اجازه می‌دهد یک بار کارتِ محصول یا پست را طراحی کنی و آن را به راحتی در کل ساختار اکسپلور به صورت داینامیک تکثیر کنی، بدون اینکه کدت کثیف شود.</p><h3 id="3a0da1eb-8b9d-8011-a4f6-f5663ec3cf96" class="" dir="auto">۳. چرا پیچیده نیست؟ (حذف غول‌های Next.js یا Nuxt.js)</h3><p id="3a0da1eb-8b9d-809f-a7ca-e7c5dd6cb40e" class="" dir="auto">ما به سراغ Next.js نمی‌رویم. Next.js مفاهیم پیچیده‌ای مثل رندرینگ سمت سرور (SSR) دارد که یادگیری‌اش طولانی است. ما از <strong>Vite</strong> استفاده می‌کنیم. لودر بسیار سبکی که در عرض ۳ ثانیه یک پروژه مدرن React با زبان JavaScript یا TypeScript به تو تحویل می‌دهد که ساختارش بسیار شفاف و سرراست است.</p><h2 id="3a1da1eb-8b9d-80f1-85f1-fbd293b3e772" class="" dir="auto">🏛️ ساختار درختی فرانت‌اند (سازگار با دامنه‌های بک‌اند)</h2><p id="3a1da1eb-8b9d-80f7-bc98-db6b42f702a4" class="" dir="auto">پوشه <code>frontend/</code> پروژه شما را به این صورت مهندسی می‌کنیم تا دقیقاً با اپ‌های بک‌اند (<code>accounts</code>, <code>products</code>, <code>carts</code>, <code>orders</code>) هماهنگ باشد:  </p><pre id="3a1da1eb-8b9d-805a-aa5e-c807a564d630" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/
+├── public/
+├── src/
+│   ├── assets/             # تصاویر، فونت‌ها و استایل‌های عمومی
+│   ├── components/         # کامپوننت‌های مشترک جهانی (Button, Input, Loader)
+│   ├── config/             # تنظیمات اصلی (آدرس API، متغیرهای محیطی)
+│   ├── context/            # مدیریت وضعیت‌های سراسری (مانند AuthContext برای توکن‌ها)
+│   ├── hooks/              # هوک‌های سفارشی و عمومی پروژه (useFetch, useDebounce)
+│   │
+│   ├── services/           # 🧠 لایه ارتباط با دیتابیس/سرور (مغز ارتباطی)
+│   │   ├── apiClient.js    # اینس‌تنس Axios به همراه Interceptorها برای مدیریت JWT
+│   │   └── authService.js  # متدهای مربوط به Login, Refresh Token و Me
+│   │
+│   ├── features/           # 📦 دامنه‌های تجاری (دقیقاً آینه اپ‌های جنگو)
+│   │   ├── auth/           # مدیریت ورود و حساب کاربری (accounts)
+│   │   ├── products/       # کاتالوگ و جزئیات محصولات (products)
+│   │   ├── carts/          # سبد خرید و محاسبات مبالغ (carts)
+│   │   └── orders/         # ثبت سفارش و پیگیری مالی (orders &amp; payments)
+│   │
+│   ├── routes/             # مدیریت مسیرها و دیوارهای امنیتی (Protected Routes)
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+└── vite.config.js          # استفاده از ابزار مدرن Vite به جای CRA</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-80d4-9239-f78cd924dd27" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-80db-9d2e-d6c75e96ce28" class="" dir="auto">🛠️ ۳ گام کلیدی برای شروع پیاده‌سازی</p></div></aside><p id="3a1da1eb-8b9d-80cf-bf11-fd2de5e3df35" class="" dir="auto"><strong>1- راه‌اندازی لایه سرویس (API Client)</strong><br/>در اولین قدم، ابزاری مثل <strong>Axios</strong> را برای مدیریت درخواست‌ها راه‌اندازی می‌کنیم. با توجه به اینکه در بک‌اند از <code>djangorestframework-simplejwt</code> استفاده شده است، فرانت‌اند باید بتواند به‌صورت خودکار توکن‌های منقضی شده را نوسازی کند.  <br/>• یک Axios Interceptor می‌نویسیم که هرگاه سرور خطای <code>401 Unauthorized</code> برگرداند، به آدرس <code>/api/token/refresh/</code> درخواست بفرستد، توکن جدید را بگیرد و درخواست کاربر را بدون اینکه خودش متوجه شود، مجدداً ارسال کند.  </p><p id="3a1da1eb-8b9d-8095-aa8a-f3e84d05910a" class="" dir="auto"><strong>2- آینه‌سازی دامنه‌ها (Domain Mapping)</strong><br/>در پوشه <code>features/</code> برای هر اپلیکیشن جنگو یک ماژول فرانت‌ایندی می‌سازیم:<br/>• بک‌اند <code>apps/carts/</code> $\rightarrow$ فرانت‌اند <code>features/carts/</code>: شامل کامپوننت‌های نمایش آیتم‌های سبد، دکمه‌های کم و زیاد کردن تعداد (PATCH به <code>/api/cart-items/</code>) و نمایش جمع کل مبلغ (<code>grand_total</code>).  <br/>• بک‌اند <code>apps/products/</code> $\rightarrow$ فرانت‌اند <code>features/products/</code>: شامل کارت‌های محصول، فیلتر دسته‌بندی‌ها و بهینه‌سازی لود تصاویر محصول. </p><p id="3a1da1eb-8b9d-80ba-bfc5-d3303caf922b" class="" dir="auto"><strong>3- مدیریت وضعیت احراز هویت (Auth Context)<br/></strong>از یک Context در React برای نگهداری وضعیت کاربر فعلی (آیا لاگین هست یا خیر؟) استفاده می‌کنیم. به محض لود شدن کامپوننت اصلی، درخواستی به ابزار محافظت‌شده <code>/api/me/</code> ارسال می‌شود تا اطلاعات هویتی کاربر (مثل نام و ایمیل) در فرانت‌اند کش و آماده استفاده شود.</p><p id="3a1da1eb-8b9d-80f1-bdda-fe619aabad8e" class="" dir="auto"><br/>📄 ۱. تنظیم فایل <code>.gitignore</code> برای فرانت‌اند</p><blockquote id="3a0da1eb-8b9d-8063-bf48-f4b24a96a8ad" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1- یک فایل به نام <code>.gitignore</code> در داخل پوشه <code>frontend/</code> ایجاد کنید و محتویات زیر را در آن قرار دهید تا فایل‌های حجیم و خروجی‌های ساخت (Build Outputs) کاملاً توسط گیت نادیده گرفته شوند:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3a0da1eb-8b9d-80c0-8cb8-e3f8647108fd" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all"># Dependency directories (پوشه پکیج‌ها - معادل محیط مجازی در بک‌اند)
+node_modules/
+jspm_packages/
+web_modules/
+
+# Build outputs (فایل‌های کامپایل شده نهایی که بسیار حجیم هستند)
+dist/
+dist-ssr/
+build/
+out/
+
+# Logs (لوگ‌های خطا و پروسس‌ها)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Local env files (فایل‌های تنظیمات محلی و کلیدهای امنیتی)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files (تنظیمات شخصی ادیتورها)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-805e-957b-f417cb89ad70" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-80ec-a60f-d5263bad77b2" class="" dir="auto">🛠️ ۲. نحوه مدیریت پکیج‌ها در سیستم جدید</p></div></aside><p id="3a1da1eb-8b9d-8002-8a43-fe4b3f08d86c" class="" dir="auto">از این به بعد، فرآیند توسعه شما و بقیه اعضای تیم به این صورت خواهد بود:</p><ol type="1" id="3a1da1eb-8b9d-8051-b828-d6d554b5f624" class="numbered-list" start="1" dir="auto"><li><strong>اضافه کردن پکیج جدید:</strong> وقتی دستور <code>npm install axios</code> را می‌زنید، پکیج به صورت محلی در <code>node_modules</code> دانلود می‌شود اما گیت فقط تغییرات متنیِ چند بایتی را در <code>package.json</code> ثبت می‌کند.</li></ol><ol type="1" id="3a1da1eb-8b9d-80f6-bc82-e252a1cbba90" class="numbered-list" start="2" dir="auto"><li><strong>کلون کردن پروژه از گیت‌هاب:</strong> وقتی پروژه را روی سیستم دیگری کلون می‌کنید، پوشه <code>node_modules</code> وجود ندارد. کافیست در پوشه فرانت‌اند دستور زیر را بزنید تا کل فرانت‌اند بر اساس فرمول <code>package.json</code> در چند ثانیه بازسازی شود:</li></ol><p id="3a1da1eb-8b9d-80f9-8e0a-c5eead699975" class="" dir="auto"><strong>ویندوز (Windows): </strong>کافیست به سایت رسمی <a href="https://nodejs.org/">nodejs.org</a>  بروید و نسخه <strong>LTS  </strong>را دانلود و نصب کنید.</p><h3 id="3a1da1eb-8b9d-80da-be5b-f0f236d17d94" class="" dir="auto">تست و تایید نهایی</h3><p id="3a1da1eb-8b9d-801c-9d95-fbd7ee207962" class="" dir="auto">پس از انجام یکی از مراحل بالا، ترمینال خود را ری‌استارت کنید و دستورات زیر را برای اطمینان از نصب صحیح وارد کنید:</p><pre id="3a1da1eb-8b9d-80e6-9405-d8f58854bd56" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">node -v
+npm -v</code></pre><p id="3a1da1eb-8b9d-804c-9e37-e956b04702b1" class="" dir="auto">🌐 ۳. انتقال آدرس API به فایل محیطی (امنیت و انعطاف)</p><blockquote id="3a1da1eb-8b9d-802b-9256-dc4b438f382b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2- برای اینکه آدرس IP یا دامنه‌ی بک‌اند (مثل <code>[http://127.0.0.1:8000](http://127.0.0.1:8000)</code>) در کدهای گیت‌هاب هاردکد (Hardcode) نشود و حجم فایل‌ها یا ردپای امنیتی ایجاد نکند، یک فایل به نام <code>.env</code> در ریشه فرانت‌اند بسازید:<pre id="3a1da1eb-8b9d-804d-ad98-eaaf2210f4ea" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">VITE_API_BASE_URL=http://127.0.0.1:8000/api</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-8007-800b-da91a9acaf26" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-8026-8e52-fc2af5b3870a" class="" dir="auto">پیاده‌سازی لایه ارتباطی Axios و مدیریت چرخه توکن (JWT)</p></div></aside><p id="3a1da1eb-8b9d-8071-bff0-f6de95c20442" class="" dir="auto">یک فایل در مسیر <code>src/services/apiClient.js</code> ایجاد کنید. این فایل مغز متفکر ارتباطات فرانت‌اند با اِندپوینت‌های سرور شما خواهد بود و وظایف زیر را به صورت خودکار انجام می‌دهد:</p><ol type="1" id="3a1da1eb-8b9d-8003-aeb1-fc0d7c1ed7bf" class="numbered-list" start="1" dir="auto"><li>تزریق خودکار <code>Access Token</code> به هدر تمام درخواست‌های نیازمند احراز هویت.</li></ol><ol type="1" id="3a1da1eb-8b9d-80d5-be06-dfbeaec16260" class="numbered-list" start="2" dir="auto"><li>شکار خطاهای <code>401 Unauthorized</code> و اقدام خودکار برای تمدید توکن از طریق <code>/api/token/refresh/</code>.</li></ol><ol type="1" id="3a1da1eb-8b9d-809e-a0e3-df05b43d905e" class="numbered-list" start="3" dir="auto"><li>تلاش مجدد برای ارسال درخواست اصلی کاربر پس از تمدید موفقیت‌آمیز توکن، بدون اینکه کاربر متوجه وقفه‌ای شود.</li></ol><blockquote id="3a0da1eb-8b9d-80cf-9f30-cead1590bb99" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3- یک فایل در مسیر <code>frontend/src/services/apiClient.js</code> ایجاد کنید. کد زیر را داخل بگذارید:<pre id="3a0da1eb-8b9d-805d-ad49-eaff94dc225f" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import axios from &#x27;axios&#x27;;
+
+// تعریف آدرس پایه API (می‌تواند از فایل .env خوانده شود)
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || &#x27;http://127.0.0.1:8000/api&#x27;;
+
+// ایجاد یک اینس‌تنس اختصاصی از اکسیدوس برای درخواست‌های عمومی و احراز هویت شده
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+  },
+});
+
+// ----------------------------------------------------------------
+// ۱. Request Interceptor: تزریق توکن به هدر درخواست‌ها
+// ----------------------------------------------------------------
+apiClient.interceptors.request.use(
+  (config) =&gt; {
+    const accessToken = localStorage.getItem(&#x27;access_token&#x27;);
+    
+    // اگر توکن در حافظه مرورگر موجود بود، آن را به هدر Authorization اضافه کن
+    if (accessToken &amp;&amp; !config.headers[&#x27;Authorization&#x27;]) {
+      config.headers[&#x27;Authorization&#x27;] = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) =&gt; {
+    return Promise.reject(error);
+  }
+);
+
+// ----------------------------------------------------------------
+// ۲. Response Interceptor: مدیریت خطای 401 و تمدید خودکار توکن
+// ----------------------------------------------------------------
+apiClient.interceptors.response.use(
+  (response) =&gt; response, // اگر پاسخ موفقیت‌آمیز بود، بدون تغییر آن را پاس بده
+  async (error) =&gt; {
+    const originalRequest = error.config;
+
+    // بررسی اینکه آیا خطا مربوط به انقضای توکن (401) است و آیا قبلاً این درخواست را مجدد تلاش نکرده‌ایم؟
+    if (error.response?.status === 401 &amp;&amp; !originalRequest._retry) {
+      originalRequest._retry = true; // علامت‌گذاری درخواست برای جلوگیری از حلقه بی‌نهایت
+
+      const refreshToken = localStorage.getItem(&#x27;refresh_token&#x27;);
+
+      // اگر رفرش توکن وجود نداشت، کاربر باید مجدداً لاگین کند
+      if (!refreshToken) {
+        handleLogout();
+        return Promise.reject(error);
+      }
+
+      try {
+        // ارسال درخواست تمدید توکن به اِندپوینت بک‌اند
+        // نکته مهم: از خود apiClient استفاده نمی‌کنیم تا وارد اینترسپتور قبلی نشود
+        const response = await axios.post(`${API_BASE_URL}/token/refresh/`, {
+          refresh: refreshToken,
+        });
+
+        const newAccessToken = response.data.access;
+
+        // ذخیره توکن دسترسی جدید در مرورگر
+        localStorage.setItem(&#x27;access_token&#x27;, newAccessToken);
+
+        // به‌روزرسانی هدر درخواست اصلی با توکن جدید
+        originalRequest.headers[&#x27;Authorization&#x27;] = `Bearer ${newAccessToken}`;
+
+        // ارسال مجدد درخواست اصلی کاربر با توکن جدید
+        return apiClient(originalRequest);
+      } catch (refreshError) {
+        // اگر فرآیند تمدید توکن هم با خطا مواجه شد (مثلاً رفرش توکن هم منقضی شده بود)
+        handleLogout();
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+// تابع کمکی برای پاکسازی اطلاعات در صورت منقضی شدن کامل نشست کاربری
+function handleLogout() {
+  localStorage.removeItem(&#x27;access_token&#x27;);
+  localStorage.removeItem(&#x27;refresh_token&#x27;);
+  // هدایت کاربر به صفحه لاگین (در صورت استفاده از React Router می‌توان این منطق را بهبود داد)
+  if (window.location.pathname !== &#x27;/login&#x27;) {
+    window.location.href = &#x27;/login&#x27;;
+  }
+}
+
+export default apiClient;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-800f-b206-da43dc1e3cb4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-8014-8539-e810c7b4f14f" class="" dir="auto">تعریف متدهای اختصاصی احراز هویت (<code>authService.js</code>)</p></div></aside><blockquote id="3a1da1eb-8b9d-8032-b870-e138a0e953bd" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">4- حالا برای اینکه لایه منطق (Service) را از کامپوننت‌ها جدا نگه داریم، متدهای اصلی ورود و خروج را در فایل <code>frontend/src/services/authService.js</code> با استفاده از کلاینتی که ساختیم تعریف می‌کنیم:<pre id="3a1da1eb-8b9d-8090-894b-e3cd04f3d9ff" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import apiClient from &#x27;./apiClient&#x27;;
+
+const authService = {
+  // متد لاگین و دریافت توکن‌های اولیه
+  login: async (username, password) =&gt; {
+    const response = await apiClient.post(&#x27;/token/&#x27;, { username, password });
+    if (response.data.access &amp;&amp; response.data.refresh) {
+      localStorage.setItem(&#x27;access_token&#x27;, response.data.access);
+      localStorage.setItem(&#x27;refresh_token&#x27;, response.data.refresh);
+    }
+    return response.data;
+  },
+
+  // دریافت اطلاعات کاربر فعلی (اکانت محافظت‌شده)
+  getCurrentUser: async () =&gt; {
+    const response = await apiClient.get(&#x27;/accounts/me/&#x27;); // فرض بر وجود اِندپوینت me
+    return response.data;
+  },
+
+  // خروج از حساب کاربری
+  logout: () =&gt; {
+    localStorage.removeItem(&#x27;access_token&#x27;);
+    localStorage.removeItem(&#x27;refresh_token&#x27;);
+    window.location.href = &#x27;/login&#x27;;
+  }
+};
+
+export default authService;</code></pre></blockquote><blockquote id="3a0da1eb-8b9d-80fe-afd0-f36091a6a894" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">5- این دستور را در ترمینال در دایرکتوری frontend بنویسید:<pre id="3a0da1eb-8b9d-80b0-afe3-f8ef1e2d4e2c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">npm create vite@latest .</code></pre></blockquote><p id="3a1da1eb-8b9d-8030-87a6-d83ea8aaf48c" class="" dir="auto"><strong>نکته:</strong> گذاشتن <strong>نقطه (</strong><code><strong>.</strong></code><strong>)</strong> در انتهای دستور بسیار مهم است؛ این نقطه به ابزار می‌گوید پروژه را دقیقاً درون همین پوشه <code>frontend</code> بسازد و پوشه جدیدی ایجاد نکند.</p><p id="3a1da1eb-8b9d-80b2-a6b0-ffe253911510" class="" dir="auto">بعد از زدن این دستور:</p><ol type="1" id="3a1da1eb-8b9d-802b-aa25-e966dd9c777b" class="numbered-list" start="1" dir="auto"><li>از شما پرسیده می‌شود که فریمورک را انتخاب کنید -&gt; گزینه <strong>React</strong> را انتخاب کنید.</li></ol><ol type="1" id="3a1da1eb-8b9d-80cb-9e25-ea572038587a" class="numbered-list" start="2" dir="auto"><li>سپس زبان را انتخاب کنید -&gt; گزینه <strong>JavaScript</strong> را انتخاب کنید.</li></ol><ol type="1" id="3a1da1eb-8b9d-804f-acf4-e9d6d14d66b7" class="numbered-list" start="3" dir="auto"><li>در پاسخ به سوال : Which linter to use?  این گزینه را انتخاب کنید :<code><strong>ESLint</strong></code> (گزینه دوم)</li></ol><ol type="1" id="3a1da1eb-8b9d-8093-aa03-ff2be1873c45" class="numbered-list" start="4" dir="auto"><li>حالا که فایل‌ها ایجاد شدند، مجدداً دستور <code>npm install</code> را بزنید تا پکیج‌های اولیه نصب شوند.</li></ol><p id="3a1da1eb-8b9d-80e0-83e1-f7ecd46d0f29" class="" dir="auto">نتیجخ شبیه به این است :</p><pre id="3a1da1eb-8b9d-802b-b833-c2d789c0b5f0" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">npm create vite@latest .
+Need to install the following packages:
+create-vite@9.1.1
+Ok to proceed? (y) y
+
+&gt; npx
+&gt; create-vite .
+
+│
+◇  Current directory is not empty. Please choose how to proceed:
+│  Ignore files and continue
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  JavaScript
+│
+◇  Which linter to use?
+│  ESLint
+│
+◇  Install with npm and start now?
+│  Yes
+│
+◇  Scaffolding project in D:\Repo\Django\acron\frontend...
+│
+◇  Installing dependencies with npm...
+</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-80ca-b47b-feeb16a7e54b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-8081-8864-eca786318f49" class="" dir="auto">توقف سرور و نصب Axios</p></div></aside><p id="3a1da1eb-8b9d-803c-bfac-f7b6a1fb821d" class="" dir="auto">برای اینکه ترمینال آزاد شود و بتوانیم کتابخانه <strong>Axios</strong> (ابزار ارسال درخواست‌ها به بک‌اند) را نصب کنیم، مراحل زیر را انجام دهید:</p><ol type="1" id="3a1da1eb-8b9d-80f6-8b9a-cc3f921ddf24" class="numbered-list" start="1" dir="auto"><li>در همان ترمینالی که Vite در حال اجراست، کلیدهای <code><strong>Ctrl + C</strong></code> را فشار دهید.</li></ol><ol type="1" id="3a1da1eb-8b9d-804f-b234-d63704c8c9fd" class="numbered-list" start="2" dir="auto"><li>در صورت درخواست تایید، کلید <code><strong>y</strong></code> و سپس <strong>Enter</strong> را بزنید تا سرور موقتاً متوقف شود.</li></ol><blockquote id="3a1da1eb-8b9d-80a8-9a4a-db78ac5b8c4d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6- حالا دستور زیر را برای نصب Axios وارد کنید و منتظر بمانید تا نصب شود:<pre id="3a1da1eb-8b9d-80de-86fe-fcbe6ab043a7" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">npm install axios</code></pre></blockquote><p id="3a1da1eb-8b9d-80f0-a6ca-c0133447420d" class="" dir="auto">خروجی:</p><pre id="3a1da1eb-8b9d-80a9-bb2d-c74385708ae0" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">$ npm install axios
+
+added 25 packages, and audited 161 packages in 9s
+
+37 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+</code></pre><blockquote id="3a1da1eb-8b9d-802e-995c-c3c5afa970ce" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6- <strong>پاک‌سازی فایل </strong><code><strong>src/App.jsx</strong></code><strong>:<br/>این فایل را باز کنید، تمام کدهای پیش‌فرض داخل آن را کاملاً پاک کنید و این ساختار ساده و خام را جایگزین و ذخیره کنید:</strong><pre id="3a1da1eb-8b9d-80bb-b53c-cdacc7ccd7e6" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">function App() {
+  return (
+    &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;50px&#x27;, fontFamily: &#x27;sans-serif&#x27; }}&gt;
+      &lt;h1&gt;پروژه فرانت‌اند Acron راه‌اندازی شد&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><blockquote id="3a1da1eb-8b9d-8074-906d-e37c5bf91832" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7-1- <strong>حذف استایل‌های دمو:</strong><br/>فایل <code>src/App.css</code> را باز کنید، تمام کدهای داخل آن را پاک (Delete) کرده و فایل را به صورت کاملاً خالی ذخیره کنید.</blockquote><blockquote id="3a1da1eb-8b9d-80f5-8524-f992f481f7bc" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7-2- <strong>حذف استایل‌های دمو:</strong><br/>فایل <code>src/index.css</code> را باز کنید، کدهای پیش‌فرض آن را هم پاک کنید و ذخیره کنید (فعلاً نیازی به استایل‌های پیش‌فرض ویت نداریم).</blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-8090-a1cb-f0da1d1cdf0c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-805f-aa18-fe2b974c3438" class="" dir="auto">روشن کردن موتور فرانت‌اند (<code>npm run dev</code>)</p></div></aside><blockquote id="3a1da1eb-8b9d-806b-a353-dc59e71177b7" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">8- در ترمینال خود، مطمئن شوید که داخل پوشه <code>frontend/</code> هستید و دستور زیر را تایپ کنید:<pre id="3a1da1eb-8b9d-8035-b73e-f88bad18632f" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">npm run dev</code></pre></blockquote><pre id="3a1da1eb-8b9d-8090-801a-ca1880dc4b3b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">$ npm run dev
+
+&gt; frontend@0.0.0 dev
+&gt; vite
+
+8:59:25 PM [vite] (client) Re-optimizing dependencies because lockfile has changed
+
+  VITE v8.1.5  ready in 966 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+</code></pre><p id="3a1da1eb-8b9d-801f-9273-ecc372d560c8" class="" dir="auto">💡 علت این کار چیست؟</p><p id="3a1da1eb-8b9d-8092-83ac-daa1f370bce3" class="" dir="auto">در بک‌اند جنگو، شما دستور <code>python manage.py runserver</code> را می‌زنید تا سرور لوکال روی پورت <code>8000</code> بالا بیاید. در فرانت‌اند‌های مدرن (مثل ابزار Vite که استفاده می‌کنیم)، دستور <code>npm run dev</code> دقیقاً همین کار را می‌کند. این دستور یک سرور سبک و فوق‌العاده سریع روی پورت معمولاً <code>5173</code> می‌سازد.</p><p id="3a1da1eb-8b9d-806c-863a-c4ee5f091dfd" class="" dir="auto">وقتی این دستور را زدید، یک لینک مثل <code>http://localhost:5173</code> به شما می‌دهد. آن را در مرورگر (مثلاً گوگل کروم) باز کنید. فعلاً صفحه پیش‌فرض Vite را می‌بینید.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-8083-b94e-e1e30ba16212" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-800b-adb2-dec2acc64d86" class="" dir="auto">ایجاد پوشه‌بندی استاندارد پروژه</p></div></aside><p id="3a1da1eb-8b9d-8091-940d-c8c2bb1cb418" class="" dir="auto">برای اینکه یک فرانت‌اند ساختاریافته داشته باشیم که مدیریت توکن‌ها و کامپوننت‌ها در آن سردرگم‌کننده نباشد، ساختار درختی زیر را ایجاد می‌کنیم.<br/>درون پوشه <code><strong>src</strong></code>، این ۳ پوشه جدید را بسازید:</p><ul id="3a1da1eb-8b9d-8081-860f-f41f2b731c2c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>api</strong></code>: مخصوص فایل‌های تنظیمات Axios و توابع مربوط به درخواست‌های شبکه.</li></ul><ul id="3a1da1eb-8b9d-80b4-a92a-f76918a2177c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>components</strong></code>: مخصوص المان‌های ظاهری و صفحات مختلف برنامه.</li></ul><ul id="3a1da1eb-8b9d-8047-9723-e5f62ec7ab4a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code><strong>context</strong></code>: مخصوص مدیریت وضعیت‌های سراسری (مثل نگهداری وضعیت احراز هویت کاربر).</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-8021-9e8e-f2afe33f658a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-80a2-8070-f57ff0ccf71b" class="" dir="auto">کانفیگ پایه‌ی Axios</p></div></aside><blockquote id="3a1da1eb-8b9d-80b3-84da-da7afa6f5d0a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">9- برای اینکه مجبور نباشیم در تمام فایل‌ها آدرس سرور جنگو را تکرار کنیم، یک نمونه‌ی مرکزی (Instance) از Axios می‌سازیم.<br/>درون پوشه جدید <code><strong>src/api</strong></code>، یک فایل به نام <code><strong>axiosInstance.js</strong></code> بسازید و این کدها را درون آن قرار دهید:<pre id="3a1da1eb-8b9d-80ba-b216-fe2ca7d48033" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import axios from &#x27;axios&#x27;;
+
+const axiosInstance = axios.create({
+    baseURL: &#x27;http://127.0.0.1:8000/api/&#x27;, // آدرس پیش‌فرض APIهای جنگو
+    timeout: 5000,
+    headers: {
+        &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+        &#x27;Accept&#x27;: &#x27;application/json&#x27;,
+    },
+});
+
+export default axiosInstance;</code></pre></blockquote><blockquote id="3a1da1eb-8b9d-80da-90e1-f2d3b40b18d8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">10- این مراحل را که انجام دادید، برای اطمینان دستور <code>npm run dev</code> را بزنید تا مطمئن شویم پروژه بدون ارور بالا می‌آید.</blockquote><p id="3a1da1eb-8b9d-80ec-9b8d-e69e4774b9ef" class="" dir="auto"><br/>حالا مستقیم به سراغ مهم‌ترین بخش معماری شبکه یعنی <strong>مدیریت خودکار توکن‌های JWT (چرخه Access Token و Refresh Token)</strong> می‌رویم. هدف این است که فرانت‌اِند به صورت کاملاً هوشمند، توکن احراز هویت را به درخواست‌ها بچسباند و اگر توکن منقضی شد، بدون اینکه کاربر متوجه شود یا صفحه ریفرش شود، توکن جدید را از جنگو گرفته و درخواست را دوباره ارسال کند.<br/><br/></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-800e-8726-ea47e6b79863" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a1da1eb-8b9d-80c9-9211-d1b686894e77" class="" dir="auto">آپدیت فایل <code>axiosInstance.js</code></p></div></aside><blockquote id="3a1da1eb-8b9d-8049-aa33-c55738e3f72f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">11- فایل <code><strong>src/api/axiosInstance.js</strong></code> را که قبلاً ساختید باز کنید، کل کدهای قبلی آن را پاک کنید و این کد هوشمند و مجهز به اینترسپتورها (Interceptors) را جایگزین آن کنید:<pre id="3a1da1eb-8b9d-803b-bfc5-f3e390b670bb" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import axios from &#x27;axios&#x27;;
+
+// ۱. ساخت نمونه پایه اکسپوس
+const axiosInstance = axios.create({
+    baseURL: &#x27;http://127.0.0.1:8000/api/&#x27;, // آدرس بک‌اند جنگو
+    timeout: 5000,
+    headers: {
+        &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+        &#x27;Accept&#x27;: &#x27;application/json&#x27;,
+    },
+});
+
+// ۲. اینترسپتور درخواست‌ها: تزریق خودکار توکن به هدر تمام درخواست‌ها
+axiosInstance.interceptors.request.use(
+    (config) =&gt; {
+        const accessToken = localStorage.getItem(&#x27;access_token&#x27;);
+        if (accessToken) {
+            config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+        return config;
+    },
+    (error) =&gt; {
+        return Promise.reject(error);
+    }
+);
+
+// ۳. اینترسپتور پاسخ‌ها: مدیریت هوشمند خطای 401 و تمدید توکن با Refresh Token
+axiosInstance.interceptors.response.use(
+    (response) =&gt; response,
+    async (error) =&gt; {
+        const originalRequest = error.config;
+
+        // اگر سرور خطای 401 داد و این درخواست قبلاً یک‌بار برای تمدید تلاش نکرده بود
+        if (error.response &amp;&amp; error.response.status === 401 &amp;&amp; !originalRequest._retry) {
+            originalRequest._retry = true;
+            const refreshToken = localStorage.getItem(&#x27;refresh_token&#x27;);
+
+            if (refreshToken) {
+                try {
+                    // ارسال درخواست تمدید توکن به لایه احراز هویت جنگو
+                    const response = await axios.post(&#x27;http://127.0.0.1:8000/api/token/refresh/&#x27;, {
+                        refresh: refreshToken,
+                    });
+
+                    const newAccessToken = response.data.access;
+                    localStorage.setItem(&#x27;access_token&#x27;, newAccessToken);
+
+                    // به‌روزرسانی هدر درخواست اصلی با توکن جدید و اجرای مجدد آن
+                    originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+                    return axiosInstance(originalRequest);
+                } catch (refreshError) {
+                    // اگر خودِ ریفرش توکن هم منقضی یا باطل شده باشد -&gt; خروج کاربر
+                    localStorage.removeItem(&#x27;access_token&#x27;);
+                    localStorage.removeItem(&#x27;refresh_token&#x27;);
+                    
+                    // بعداً در لایه Context این بخش را برای انتقال کاربر به صفحه لاگین بهینه‌تر می‌کنیم
+                    window.location.href = &#x27;/login&#x27;; 
+                    return Promise.reject(refreshError);
+                }
+            }
+        }
+        return Promise.reject(error);
+    }
+);
+
+export default axiosInstance;</code></pre></blockquote><h3 id="3a1da1eb-8b9d-8014-9102-d1685ee0332b" class="" dir="auto">این کد دقیقاً چه کاری انجام می‌دهد؟</h3><ul id="3a1da1eb-8b9d-8094-bf6b-e8b7a4f545f8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>بخش Request Interceptor:</strong> مثل یک باج‌گیر قبل از خروج هر نامه (درخواست HTTP) به مقصد سرور، بررسی می‌کند که آیا <code>access_token</code> در مرورگر ذخیره شده یا نه. اگر باشد، آن را به صورت خودکار در هدر قرار می‌دهد.</li></ul><ul id="3a1da1eb-8b9d-8078-a5bd-dc4d4883c6e7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>بخش Response Interceptor:</strong> گوش‌به‌زنگِ پاسخ‌های سرور می‌نشیند. اگر جنگو خطای <code>401 Unauthorized</code> (توکن منقضی شده) پس فرستاد، این تابع درخواست اصلی را موقتاً در هوا نگه می‌دارد، مخفیانه با <code>refresh_token</code> یک توکن جدید از جنگو می‌گیرد، آن را جایگزین می‌کند و درخواست قبلی کاربر را طوری دوباره می‌فرستد که کاربر اصلاً متوجه قطع و وصل شدن توکن نشود.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8064-b795-c19d1543fa4a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8044-b949-c4c81d985d41" class="" dir="auto">ساخت <strong>لایه مدیریت وضعیت احراز هویت (AuthContext)</strong></p></div></aside><p id="3a2da1eb-8b9d-808c-b1a6-e5983fdb1b92" class="" dir="auto">این لایه مثل مغز متفکر برنامه عمل می‌کند؛ متوجه می‌شود که آیا کاربر لاگین کرده است یا خیر، اطلاعات کاربر را در سراسر برنامه پخش می‌کند و توابع ورود (Login) و خروج (Logout) را در اختیار تمام صفحات قرار می‌دهد.</p><blockquote id="3a1da1eb-8b9d-8009-a803-d9e036fa10c3" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">12- درون پوشه‌ای که قبلاً ساختید یعنی <code><strong>src/context</strong></code>، یک فایل جدید به نام <code><strong>AuthContext.jsx</strong></code> بسازید و این کدهای استاندارد را داخل آن قرار دهید:<pre id="3a1da1eb-8b9d-807d-878c-e0c49b19652d" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { createContext, useState, useEffect } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+
+// ایجاد کانتکست اصلی احراز هویت
+export const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) =&gt; {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() =&gt; {
+        // بررسی وضعیت کاربر در اولین ورود به سایت
+        const checkAuth = () =&gt; {
+            const token = localStorage.getItem(&#x27;access_token&#x27;);
+            if (token) {
+                // فعلاً وضعیت کاربر را بر اساس وجود توکن تایید می‌کنیم
+                setUser({ loggedIn: true });
+            }
+            setLoading(false);
+        };
+        checkAuth();
+    }, []);
+
+    // تابع ورود به برنامه و دریافت توکن از جنگو
+    const login = async (username, password) =&gt; {
+        try {
+            // ارسال درخواست به اندپوینت توکن جنگو (آدرس با baseURL ترکیب می‌شود -&gt; api/token/)
+            const response = await axiosInstance.post(&#x27;token/&#x27;, {
+                username,
+                password,
+            });
+
+            // ذخیره توکن‌ها در مرورگر
+            localStorage.setItem(&#x27;access_token&#x27;, response.data.access);
+            localStorage.setItem(&#x27;refresh_token&#x27;, response.data.refresh);
+
+            // به‌روزرسانی وضعیت کاربر در برنامه
+            setUser({ username });
+            return { success: true };
+        } catch (error) {
+            return {
+                success: false,
+                error: error.response?.data?.detail || &#x27;نام کاربری یا رمز عبور اشتباه است.&#x27;,
+            };
+        }
+    };
+
+    // تابع خروج از برنامه
+    const logout = () =&gt; {
+        localStorage.removeItem(&#x27;access_token&#x27;);
+        localStorage.removeItem(&#x27;refresh_token&#x27;);
+        setUser(null);
+    };
+
+    return (
+        &lt;AuthContext.Provider value={{ user, loading, login, logout }}&gt;
+            {!loading &amp;&amp; children}
+        &lt;/AuthContext.Provider&gt;
+    );
+};</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-80af-8ab7-d388636b2cf0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80b3-8e4a-caefa87e203f" class="" dir="auto">متصل کردن لایه احراز هویت به کل برنامه</p></div></aside><p id="3a2da1eb-8b9d-80ff-ab69-f8e84ba52719" class="" dir="auto">برای اینکه این کانتکست روی کل پروژه اعمال شود، باید آن را به دور کامپوننت اصلی برنامه بپیچیم.</p><blockquote id="3a1da1eb-8b9d-80b7-ae37-fbf18e03938b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">13- فایل <code><strong>src/main.jsx</strong></code> را باز کنید. کدهای آن را کاملاً پاک کرده و این نسخه جدید و متصل به کانتکست را جایگزین کنید:<pre id="3a1da1eb-8b9d-8006-b3a1-ff1f4d4d213c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import { StrictMode } from &#x27;react&#x27;
+import { createRoot } from &#x27;react-dom/client&#x27;
+import App from &#x27;./App.jsx&#x27;
+import &#x27;./index.css&#x27;
+import { AuthProvider } from &#x27;./context/AuthContext.jsx&#x27;
+
+createRoot(document.getElementById(&#x27;root&#x27;)).render(
+  &lt;StrictMode&gt;
+    &lt;AuthProvider&gt;
+      &lt;App /&gt;
+    &lt;/AuthProvider&gt;
+  &lt;/StrictMode&gt;,
+)</code></pre></blockquote><p id="3a2da1eb-8b9d-804b-af37-ef3dfa9cbea5" class="" dir="auto">با اعمال این تغییرات، فرانت‌اِند پروژه شما اکنون مجهز به یک سیستم هوشمند احراز هویت سراسری است. فایل‌ها را ذخیره کنید. خروجی ترمینال را بررسی کنید تا مطمئن شویم هیچ خطای تایپی یا مسیر اشتباهی وجود ندارد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-80e0-93f2-e0e99bc24af7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8006-9b11-f751c0443257" class="" dir="auto"> ساخت کامپوننت لاگین (<code>Login.jsx</code>)</p></div></aside><blockquote id="3a1da1eb-8b9d-809f-9320-c25299f4dc20" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">14- درون پوشه <code><strong>src/components</strong></code>، یک فایل جدید به نام <code><strong>Login.jsx</strong></code> بسازید و این کدها را درون آن قرار دهید. این فرم به <code>AuthContext</code> متصل می‌شود و اطلاعات را مستقیم به جنگو می‌فرستد:<pre id="3a1da1eb-8b9d-80dc-a858-c11870c33db3" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useContext } from &#x27;react&#x27;;
+import { AuthContext } from &#x27;../context/AuthContext&#x27;;
+
+function Login() {
+    const { login } = useContext(AuthContext);
+    const [username, setUsername] = useState(&#x27;&#x27;);
+    const [password, setPassword] = useState(&#x27;&#x27;);
+    const [error, setError] = useState(&#x27;&#x27;);
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) =&gt; {
+        e.preventDefault();
+        setError(&#x27;&#x27;);
+        setLoading(true);
+
+        const result = await login(username, password);
+        
+        setLoading(false);
+        if (!result.success) {
+            setError(result.error);
+        }
+    };
+
+    return (
+        &lt;div style={styles.container}&gt;
+            &lt;div style={styles.card}&gt;
+                &lt;h2 style={styles.title}&gt;ورود به سیستم Acron&lt;/h2&gt;
+                
+                {error &amp;&amp; &lt;div style={styles.error}&gt;{error}&lt;/div&gt;}
+                
+                &lt;form onSubmit={handleSubmit} style={styles.form}&gt;
+                    &lt;div style={styles.inputGroup}&gt;
+                        &lt;label style={styles.label}&gt;نام کاربری:&lt;/label&gt;
+                        &lt;input 
+                            type=&quot;text&quot; 
+                            value={username} 
+                            onChange={(e) =&gt; setUsername(e.target.value)} 
+                            style={styles.input}
+                            required 
+                        /&gt;
+                    &lt;/div&gt;
+                    
+                    &lt;div style={styles.inputGroup}&gt;
+                        &lt;label style={styles.label}&gt;رمز عبور:&lt;/label&gt;
+                        &lt;input 
+                            type=&quot;password&quot; 
+                            value={password} 
+                            onChange={(e) =&gt; setPassword(e.target.value)} 
+                            style={styles.input}
+                            required 
+                        /&gt;
+                    &lt;/div&gt;
+                    
+                    &lt;button type=&quot;submit&quot; style={styles.button} disabled={loading}&gt;
+                        {loading ? &#x27;در حال بررسی...&#x27; : &#x27;ورود&#x27;}
+                    &lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    );
+}
+
+// استایل‌های درون‌برنامه‌ای ساده برای ظاهر فرم
+const styles = {
+    container: { display: &#x27;flex&#x27;, justifyContent: &#x27;center&#x27;, alignItems: &#x27;center&#x27;, height: &#x27;80vh&#x27;, fontFamily: &#x27;sans-serif&#x27; },
+    card: { padding: &#x27;30px&#x27;, borderRadius: &#x27;8px&#x27;, boxShadow: &#x27;0 4px 15px rgba(0,0,0,0.1)&#x27;, width: &#x27;350px&#x27;, backgroundColor: &#x27;#fff&#x27;, direction: &#x27;rtl&#x27; },
+    title: { textAlign: &#x27;center&#x27;, marginBottom: &#x27;20px&#x27;, color: &#x27;#333&#x27; },
+    form: { display: &#x27;flex&#x27;, flexDirection: &#x27;column&#x27; },
+    inputGroup: { marginBottom: &#x27;15px&#x27; },
+    label: { display: &#x27;block&#x27;, marginBottom: &#x27;5px&#x27;, fontWeight: &#x27;bold&#x27;, color: &#x27;#555&#x27; },
+    input: { width: &#x27;100%&#x27;, padding: &#x27;10px&#x27;, borderRadius: &#x27;4px&#x27;, border: &#x27;1px solid #ccc&#x27;, boxSizing: &#x27;border-box&#x27; },
+    button: { padding: &#x27;10px&#x27;, backgroundColor: &#x27;#4CAF50&#x27;, color: &#x27;white&#x27;, border: &#x27;none&#x27;, borderRadius: &#x27;4px&#x27;, cursor: &#x27;pointer&#x27;, fontSize: &#x27;16px&#x27;, fontWeight: &#x27;bold&#x27; },
+    error: { backgroundColor: &#x27;#ffebee&#x27;, color: &#x27;#c62828&#x27;, padding: &#x27;10px&#x27;, borderRadius: &#x27;4px&#x27;, marginBottom: &#x27;15px&#x27;, textAlign: &#x27;center&#x27;, fontSize: &#x27;14px&#x27; }
+};
+
+export default Login;
+
+</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8026-a957-e6398de2ee64" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80ba-9144-ed72883e9e2c" class="" dir="auto">نمایش فرم لاگین در فایل اصلی (<code>App.jsx</code>)</p></div></aside><p id="3a2da1eb-8b9d-805c-9e17-ca605a50b0ee" class="" dir="auto">برای اینکه بتوانیم وضعیت ورود کاربر را به صورت زنده تست کنیم، فایل <code><strong>src/App.jsx</strong></code> را باز کنید و کدهای آن را به این شکل تغییر دهید. با این تغییر، اگر کاربر لاگین نکرده باشد فرم لاگین را می‌بیند و اگر با موفقیت وارد شود، دکمه خروج و پیام خوش‌آمدگویی را مشاهده خواهد کرد:</p><blockquote id="3a1da1eb-8b9d-806f-a88b-c10635910181" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">15- فایل <code><strong>src/App.jsx</strong></code> را باز کنید و کدهای آن را به این شکل تغییر دهید.<pre id="3a1da1eb-8b9d-80d2-bec6-f26f1be4eae6" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useContext } from &#x27;react&#x27;;
+import { AuthContext } from &#x27;./context/AuthContext&#x27;;
+import Login from &#x27;./components/Login&#x27;;
+
+function App() {
+  const { user, logout } = useContext(AuthContext);
+
+  return (
+    &lt;div&gt;
+      {user ? (
+        &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;100px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+          &lt;h1&gt;خوش آمدید! شما با موفقیت وارد پروژه Acron شدید.&lt;/h1&gt;
+          &lt;button 
+            onClick={logout} 
+            style={{ padding: &#x27;10px 20px&#x27;, backgroundColor: &#x27;#f44336&#x27;, color: &#x27;white&#x27;, border: &#x27;none&#x27;, borderRadius: &#x27;4px&#x27;, cursor: &#x27;pointer&#x27;, marginTop: &#x27;20px&#x27; }}
+          &gt;
+            خروج از حساب
+          &lt;/button&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;Login /&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-809e-99be-cd50be4f0974" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80db-8e97-c8046dfc2a01" class="" dir="auto">هوشمند کردن خطایاب در فرانت‌اِند</p></div></aside><p id="3a2da1eb-8b9d-8098-b227-fb4bdef0d4a5" class="" dir="auto">برای اینکه دقیقاً بفهمیم جنگو چه پاسخی می‌فرستد، بیایید کدهای بخش <code>catch</code> در فایل <code>src/context/AuthContext.jsx</code> را کمی دقیق‌تر کنیم تا خودِ خطای واقعی را به ما نشان دهد.</p><blockquote id="3a1da1eb-8b9d-80f1-9fa8-d06ee9db3a55" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">16- فایل <code><strong>src/context/AuthContext.jsx</strong></code> را باز کنید و تابع <code>login</code> را با این نسخه جایگزین کنید (در این نسخه <code>console.error</code> را اضافه کرده‌ایم تا ارور واقعی لو برود):<pre id="3a1da1eb-8b9d-8034-b94d-d321ce2e47e2" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">const login = async (username, password) =&gt; {
+    try {
+        const response = await axiosInstance.post(&#x27;token/&#x27;, {
+            username,
+            password,
+        });
+
+        localStorage.setItem(&#x27;access_token&#x27;, response.data.access);
+        localStorage.setItem(&#x27;refresh_token&#x27;, response.data.refresh);
+
+        setUser({ username });
+        return { success: true };
+    } catch (error) {
+        // این خط ارور واقعی را در کنسول مرورگر (F12) چاپ می‌کند تا بفهمیم داستان چیست
+        console.error(&quot;Login Error details:&quot;, error);
+
+        return {
+            success: false,
+            // اگر سرور پاسخ داده بود ارور سرور را نشان بده، در غیر این صورت پیغام خطای شبکه
+            error: error.response?.data?.detail || error.message || &#x27;خطا در برقراری ارتباط با سرور&#x27;,
+        };
+    }
+};</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8072-a983-c05ebeae72d4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-808d-856d-eb5ca00c9818" class="" dir="auto">دو علت اصلی و راه‌حل آن‌ها در سمت جنگو</p></div></aside><p id="3a2da1eb-8b9d-8079-849e-e272f53d9a7d" class="" dir="auto">اگر بعد از تغییر بالا، متن خطا به <strong>&quot;Network Error&quot;</strong> یا <strong>&quot;CORS Error&quot;</strong> تغییر کرد، دو مورد زیر را در سمت جنگو بررسی کنید:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-802c-b9ac-c603a6484645" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80bf-bfe3-ef06f4e9eb72" class="" dir="auto">فعال نبودن CORS در جنگو (مهم‌ترین عامل)</p></div></aside><p id="3a2da1eb-8b9d-807c-9947-c58ea3332abf" class="" dir="auto">چون ری‌آکت روی پورت <code>5173</code> اجرا می‌شود و جنگو روی پورت <code>8000</code>، جنگو به دلایل امنیتی درخواست‌های ری‌آکت را مسدود می‌کند مگر اینکه به آن اجازه داده باشید.</p><blockquote id="3a2da1eb-8b9d-807b-a80d-ef17c07872a5" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">17- پکیج <code>django-cors-headers</code>  روی پروژه نصب کنید<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3a2da1eb-8b9d-8024-af04-cd0ea90ff66f" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">pipenv install django-cors-headers</code></pre></blockquote><blockquote id="3a2da1eb-8b9d-80b4-b67a-d333cda4d984" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">18- پکیج <code>django-cors-headers</code>  را داخل <a href="http://base.py">base.py</a> اضافه کنید<pre id="3a2da1eb-8b9d-805a-9d85-edea233681e4" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># and then add it to your installed apps:
+INSTALLED_APPS = [
+    ...,
+    &quot;corsheaders&quot;,
+    ...,
+]
+
+# You will also need to add a middleware class 
+# to listen in on responses:
+MIDDLEWARE = [
+    ...,
+    &quot;corsheaders.middleware.CorsMiddleware&quot;,
+    &quot;django.middleware.common.CommonMiddleware&quot;,
+    ...,
+]
+</code></pre></blockquote><figure id="3a2da1eb-8b9d-8052-a063-d3a27a4d038c" class="image" data-notion-image="image.png" dir="ltr"><a href="image.png"><img style="width:704px" src="image3.png"/></a></figure><figure id="3a2da1eb-8b9d-80f7-99a9-e5ea365b626b" class="image" data-notion-image="image%201.png" dir="ltr"><a href="image%201.png"><img style="width:704px" src="image%201.png"/></a></figure><blockquote id="3a2da1eb-8b9d-80d4-a187-e48a4afbab76" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">19- همچنین در <code>base.py</code> تنظیمات زیر را قرار داده‌اید:<pre id="3a2da1eb-8b9d-80b4-9324-ecbc0c5e4b9c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">CORS_ALLOWED_ORIGINS = [
+    &quot;http://localhost:5173&quot;,
+    &quot;http://127.0.0.1:5173&quot;,
+]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8051-85ae-fa4c96bcdc04" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80e6-b35f-ced1352796ef" class="" dir="auto">راه‌اندازی سیستم مسیرها (Routing) و صفحات محافظت‌شده</p></div></aside><p id="3a2da1eb-8b9d-8004-8bb3-ff8e84b07105" class="" dir="auto">در حال حاضر ما به صورت دستی و با یک شرط ساده در <code>App.jsx</code> تعیین می‌کنیم که فرم ورود نشان داده شود یا پیام خوش‌آمدگویی. اما در یک پروژه واقعی و استاندارد، ما نیاز به صفحات مجزا (مانند آدرس <code>/login</code> برای ورود و آدرس <code>/</code> برای صفحه اصلی پروژه) داریم. همچنین باید از صفحات اصلی محافظت کنیم تا افراد لاگین‌نشده نتوانند به آن‌ها دسترسی داشته باشند (<strong>Protected Routes</strong>).<br/>برای این کار، ابزار استاندارد ری‌آکت یعنی <strong>React Router</strong> را راه‌اندازی می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8091-83e3-fd632b57cd65" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8002-97d0-ed35965f71c6" class="" dir="auto">توقف سرور و نصب React Router</p></div></aside><blockquote id="3a2da1eb-8b9d-80a4-914e-cb187d737591" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">20- در ترمینال با کلیدهای <code><strong>Ctrl + C</strong></code> سرور را متوقف کنید و دستور زیر را برای نصب کتابخانه مسیریافتگی اجرا کنید:<pre id="3a2da1eb-8b9d-80b3-919c-ea5f5e1bbe6c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">npm install react-router-dom</code></pre></blockquote><p id="3a2da1eb-8b9d-80c3-a904-f02ab415d07c" class="" dir="auto">خروجی شبیه این خواهد بود:</p><pre id="3a2da1eb-8b9d-80cb-936d-de5505800b5d" class="code code-wrap" data-notion-code-syntax="bash"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">$ npm install react-router-dom
+
+added 4 packages, and audited 165 packages in 11s
+
+38 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8042-a858-d75ed601b818" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8039-a626-d3ad57ed4fc2" class="" dir="auto">ساخت کامپوننت مسیرهای محافظت‌شده (<code>ProtectedRoute.jsx</code>)</p></div></aside><p id="3a2da1eb-8b9d-80cf-afcb-d088f4d2440c" class="" dir="auto">ما به ابزاری نیاز داریم که مثل نگهبان جلوی ورود کاربران غیرمجاز را به صفحات داخلی پروژه بگیرد.</p><blockquote id="3a2da1eb-8b9d-8089-9dfc-d2f8891362e9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">21- درون پوشه <code><strong>src/components</strong></code>، یک فایل جدید به نام <code><strong>ProtectedRoute.jsx</strong></code> بسازید و این کد را قرار دهید:<pre id="3a2da1eb-8b9d-80b8-be5a-e4bc5f51b29b" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useContext } from &#x27;react&#x27;;
+import { Navigate } from &#x27;react-router-dom&#x27;;
+import { AuthContext } from &#x27;../context/AuthContext&#x27;;
+
+// این کامپوننت دور هر صفحه‌ای بپیچد، آن صفحه پنهان و امن می‌شود
+function ProtectedRoute({ children }) {
+    const { user, loading } = useContext(AuthContext);
+
+    if (loading) {
+        return &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;50px&#x27; }}&gt;در حال بارگذاری...&lt;/div&gt;;
+    }
+
+    // اگر کاربر لاگین نکرده بود، او را به صفحه لاگین هدایت کن
+    if (!user) {
+        return &lt;Navigate to=&quot;/login&quot; replace /&gt;;
+    }
+
+    // اگر لاگین بود، اجازه بده محتوای صفحه را ببیند
+    return children;
+}
+
+export default ProtectedRoute;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-803f-a79f-eea7a80bd31d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80e4-af93-f14b5bec3535" class="" dir="auto">به‌روزرسانی و ساختار نهایی لایه آدرس‌ها در <code>App.jsx</code></p></div></aside><blockquote id="3a2da1eb-8b9d-8073-9739-dace997f0495" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">22- حالا فایل <code><strong>src/App.jsx</strong></code> را باز کنید و سیستم مسیردهی اصولی پروژه را جایگزین کدهای قبلی کنید:<pre id="3a2da1eb-8b9d-803e-9935-e92130f66655" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useContext } from &#x27;react&#x27;;
+import { BrowserRouter as Router, Routes, Route, Navigate } from &#x27;react-router-dom&#x27;;
+import { AuthContext } from &#x27;./context/AuthContext&#x27;;
+import Login from &#x27;./components/Login&#x27;;
+import ProtectedRoute from &#x27;./components/ProtectedRoute&#x27;;
+
+// صفحه اصلی برنامه (داشبورد یا محیط اصلی پروژه Acron)
+function Dashboard() {
+  const { user, logout } = useContext(AuthContext);
+  return (
+    &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;100px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h1&gt;به پنل اصلی پروژه Acron خوش آمدید!&lt;/h1&gt;
+      &lt;p&gt;این یک صفحه محافظت‌شده است و فقط کاربران لاگین‌شده آن را می‌بینند.&lt;/p&gt;
+      &lt;button 
+        onClick={logout} 
+        style={{ padding: &#x27;10px 20px&#x27;, backgroundColor: &#x27;#f44336&#x27;, color: &#x27;white&#x27;, border: &#x27;none&#x27;, borderRadius: &#x27;4px&#x27;, cursor: &#x27;pointer&#x27;, marginTop: &#x27;20px&#x27; }}
+      &gt;
+        خروج از حساب
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+function App() {
+  const { user } = useContext(AuthContext);
+
+  return (
+    &lt;Router&gt;
+      &lt;Routes&gt;
+        {/* مسیر لاگین: اگر کاربر از قبل لاگین پدارد، او را مستقیم بفرست به صفحه اصلی */}
+        &lt;Route 
+          path=&quot;/login&quot; 
+          element={user ? &lt;Navigate to=&quot;/&quot; replace /&gt; : &lt;Login /&gt;} 
+        /&gt;
+
+        {/* مسیر اصلی پروژه: توسط کامپوننت ProtectedRoute محافظت شده است */}
+        &lt;Route 
+          path=&quot;/&quot; 
+          element={
+            &lt;ProtectedRoute&gt;
+              &lt;Dashboard /&gt;
+            &lt;/ProtectedRoute&gt;
+          } 
+        /&gt;
+
+        {/* هدایت کردن هر آدرس ناشناخته دیگر به صفحه اصلی */}
+        &lt;Route path=&quot;*&quot; element={&lt;Navigate to=&quot;/&quot; replace /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><p id="3a2da1eb-8b9d-8021-814e-c4048df89583" class="" dir="auto">پس از ذخیره فایل‌ها، سرور را دوباره با دستور <code>npm run dev</code> روشن کنید.</p><p id="3a2da1eb-8b9d-802b-90ea-dcd6c14f85fd" class="" dir="auto">حالا پروژه شما مثل یک وب‌سایت کاملاً حرفه‌ای عمل می‌کند: اگر به آدرس اصلی بروید و لاگین نباشید، خودکار به <code>/login</code> منتقل می‌شوید؛ و اگر لاگین کنید، به صفحه اصلی پنل منتقل خواهید شد و با زدن دکمه خروج مجدداً به صفحه لاگین برمی‌گردید.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-8041-9738-d0f0e8ad5358" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="3a0da1eb-8b9d-80d0-9eb1-df00b75d35e4" class="" dir="auto">پایان Part-13</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

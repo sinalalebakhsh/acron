@@ -1,0 +1,1108 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-12</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="39fda1eb-8b9d-80e2-a1dc-cc54e00ce765" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-12</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39fda1eb-8b9d-803a-a335-fd49384d74de" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="39fda1eb-8b9d-80a9-a13e-e0115665a1f7" class="" dir="auto">در Part-11 ، <strong>فاز 9:  MCP - Model Context Protocol  تمام پروژه به دو پوشه backend و frontend منتقل شد تا پتانسیل مغیاس پذیری مناسب تری برای بزرگ شدن پروژه داشته باشد.</strong></p></div></aside><h1 id="39fda1eb-8b9d-80f7-b1c2-df730219f839" class="" dir="auto">فاز <strong>9:  MCP - Model Context Protocol </strong> </h1><hr id="39fda1eb-8b9d-80bf-a702-f05f4c0ca66a" dir="auto"/><p id="39fda1eb-8b9d-8069-9905-cf633295759e" class="" dir="auto">Agent می‌تواند به سؤال‌هایی مثل این پاسخ بدهد:</p><ul id="39fda1eb-8b9d-80a4-97cc-c775387789fd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">پروژه ACRON چیست؟</li></ul><ul id="39fda1eb-8b9d-805a-afe2-f3614649696f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">معماری آن چگونه است؟</li></ul><ul id="39fda1eb-8b9d-806f-95f7-f6b0642c971c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چه قابلیت‌هایی دارد؟</li></ul><ul id="39fda1eb-8b9d-8085-a70f-d2d18acaeb9e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">توسعه‌دهنده پروژه چه تخصص‌هایی دارد؟</li></ul><ul id="39fda1eb-8b9d-8045-85d6-e0d8583bb282" class="bulleted-list" dir="auto"><li style="list-style-type:disc">وضعیت پروژه چیست؟</li></ul><ul id="39fda1eb-8b9d-80a0-974c-e461b3de8002" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چگونه می‌توان مشارکت کرد؟</li></ul><ul id="39fda1eb-8b9d-8062-bdb4-eb35c6d8b7ee" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چگونه می‌توان قرارداد بست؟</li></ul><ul id="39fda1eb-8b9d-80c2-a721-eed89607d514" class="bulleted-list" dir="auto"><li style="list-style-type:disc">این پروژه چه تفاوتی با پروژه‌های دیگر دارد؟</li></ul><ul id="39fda1eb-8b9d-8095-a297-c57dfa0e51e2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">وضعیت سفارش چیست؟ (در آینده)</li></ul><ul id="39fda1eb-8b9d-804f-bbff-f410b3b8682d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">وضعیت مرسوله چیست؟ (در آینده)</li></ul><ul id="39fda1eb-8b9d-8005-b490-fa412dac633d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چه APIهایی وجود دارد؟ (در آینده)</li></ul><h2 id="39fda1eb-8b9d-807f-8ed4-e10c7ad43ca7" class="" dir="auto">قدم اول: ساخت ساختار اپلیکیشن <code>advisor</code></h2><blockquote id="39fda1eb-8b9d-80a8-8b82-ea83f195eccf" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">1- ابتدا باید ساختار فولدرها را در پروژه ایجاد کنیم. در ترمینال خود (در محیط مجازی فعال پروژه) دستور زیر را اجرا کن: <br/>دقت کن که داخل فولدر backend باشی<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="39fda1eb-8b9d-80be-a41a-cfd1b3e67897" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py startapp advisor apps/advisor</code></pre></blockquote><p id="39fda1eb-8b9d-80c8-87c8-e93790bbd62c" class="" dir="auto">پس از اجرای این دستور، پوشه <code>apps/advisor/</code> ساخته می‌شود. حالا باید جنگو را متوجه حضور این اپلیکیشن کنیم.</p><p id="39fda1eb-8b9d-8078-9d19-dc3835af0841" class="" dir="auto"><strong>چرا؟</strong> جنگو برای اینکه بتواند مدل‌های این اپلیکیشن را در دیتابیس بسازد و مسیرهای آن را بشناسد، باید نام آن را در لیست <code>INSTALLED_APPS</code> ببیند. از آنجا که ما از ساختار ماژولار استفاده می‌کنیم و اپ‌ها داخل پوشه <code>apps</code> هستند، نام آن را به صورت <code>&#x27;apps.advisor&#x27;</code> وارد می‌کنیم.</p><blockquote id="39fda1eb-8b9d-80e6-b0d0-d7f3a6fec530" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">2- فایل <code>apps/advisor/apps.py</code> را باز کن و مطمئن شو که کلاس تنظیمات به این صورت تعریف شده است:<pre id="39fda1eb-8b9d-80d7-ab1e-c8b14edd37a3" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/advisor/apps.py
+
+from django.apps import AppConfig
+
+class AdvisorConfig(AppConfig):
+    default_auto_field = &#x27;django.db.models.BigAutoField&#x27;
+    name = &#x27;apps.advisor&#x27; # حتماً باید پیشوند apps داشته باشد تا با ساختار پروژه همخوانی داشته باشد</code></pre></blockquote><blockquote id="39fda1eb-8b9d-80ac-87d7-c57789d82e4a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">3-  حالا فایل تنظیمات پایه یعنی <code>config/settings/base.py</code> را باز کن و اپلیکیشن جدیدمان را در <code>INSTALLED_APPS</code> ثبت کن:<pre id="39fda1eb-8b9d-805f-9ccf-c334d49ef464" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># config/settings/base.py
+
+INSTALLED_APPS = [
+    # ... اپلیکیشن‌های قبلی جنگو و پکیج‌ها ...
+    
+    # اپلیکیشن‌های اختصاصی پروژه ACRON
+    &#x27;apps.accounts&#x27;,
+    &#x27;apps.customers&#x27;,
+    &#x27;apps.products&#x27;,
+    &#x27;apps.carts&#x27;,
+    &#x27;apps.orders&#x27;,
+    &#x27;apps.payments&#x27;,
+    &#x27;apps.shipments&#x27;,
+    &#x27;apps.ai&#x27;,
+    &#x27;apps.advisor&#x27;, # اضافه کردن اپلیکیشن جدید مشاور هوشمند
+]</code></pre></blockquote><h4 id="39fda1eb-8b9d-803c-a681-f47c933d5983" class="" dir="auto">قدم دوم: طراحی مدل‌های دیتابیس (<code>models.py</code>)</h4><p id="39fda1eb-8b9d-80b3-aebf-c4035895a0b5" class="" dir="auto">برای اینکه این سیستم کاملاً تجاری و واقعی باشد، ما نباید فقط یک ورودی بگیریم و جواب بدهیم و تمام! ما نیاز داریم گفتگوها را ذخیره کنیم تا:</p><ol type="1" id="39fda1eb-8b9d-801c-b759-eb7a0eee9d37" class="numbered-list" start="1" dir="auto"><li>کارفرماها بتوانند یک نشست گفتگو (Session) داشته باشند و سوالات متوالی بپرسند (حفظ Context گفتگو).</li></ol><ol type="1" id="39fda1eb-8b9d-80ee-aa92-ee73cc74c25d" class="numbered-list" start="2" dir="auto"><li>تو به عنوان صاحب پروژه بتوانی در پنل ادمین ببینی چه کسانی با مشاور تو چت کرده‌اند و علایق کارفرماها چیست.</li></ol><p id="39fda1eb-8b9d-8091-990e-db536435b354" class="" dir="auto">برای این کار دو مدل طراحی می‌کنیم:</p><ol type="1" id="39fda1eb-8b9d-8072-8595-c5aa8f786a65" class="numbered-list" start="1" dir="auto"><li><code>Conversation</code>: نماینده یک جلسه گفتگوی یکتا بین یک کاربر/کارفرما و مشاور هوشمند.</li></ol><ol type="1" id="39fda1eb-8b9d-8060-85b4-dd8b869ef811" class="numbered-list" start="2" dir="auto"><li><code>Message</code>: نماینده هر پیام رد و بدل شده (پیام کاربر و پاسخ هوش مصنوعی).</li></ol><blockquote id="39fda1eb-8b9d-80a1-a71b-c29eea7f2fc7" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">4-  فایل <code>apps/advisor/models.py</code> را باز کن و کدهای زیر را بنویس. <pre id="39fda1eb-8b9d-80a6-965a-ecf439144e5f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/advisor/models.py
+
+from django.db import models
+from django.conf import settings
+import uuid
+
+class Conversation(models.Model):
+    &quot;&quot;&quot;
+    هر نمونه از این کلاس، نشان‌دهنده یک جلسه چت (Chat Session) است.
+    کاربران (حتی بدون لاگین یا با لاگین) می‌توانند یک چت جدید شروع کنند.
+    برای امنیت و غیرقابل حدس بودن جلسات چت، کلید اصلی را UUID قرار می‌دهیم.
+    &quot;&quot;&quot;
+    # استفاده از UUID به جای کلید عددی (ID) برای جلوگیری از دسترسی غیرمجاز دیگران به تاریخچه چت‌ها
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    # اگر کاربر لاگین کرده باشد، او را به این گفتگو متصل می‌کنیم. اگر مهمان باشد، Null می‌ماند.
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name=&#x27;advisor_conversations&#x27;,
+        verbose_name=&quot;کاربر&quot;
+    )
+    
+    # ذخیره آی‌پی یا یک کلید شناسایی فرانت‌اند برای تحلیل بهتر رفتار کاربران غیرلاگین
+    visitor_session_key = models.CharField(
+        max_length=255, 
+        null=True, 
+        blank=True, 
+        verbose_name=&quot;کلید نشست بازدیدکننده&quot;
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=&quot;تاریخ شروع گفتگو&quot;)
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=&quot;آخرین فعالیت&quot;)
+
+    class Meta:
+        ordering = [&#x27;-updated_at&#x27;]
+        verbose_name = &quot;گفتگوی مشاور&quot;
+        verbose_name_plural = &quot;گفتگوهای مشاور&quot;
+
+    def __str__(self):
+        user_str = self.user.username if self.user else f&quot;مهمان ({self.id.hex[:8]})&quot;
+        return f&quot;گفتگو با {user_str} - {self.created_at.strftime(&#x27;%Y-%m-%d %H:%M&#x27;)}&quot;
+
+
+class Message(models.Model):
+    &quot;&quot;&quot;
+    هر سطر از این جدول، یک پیام (یا سوال از طرف کاربر یا پاسخ از طرف هوش مصنوعی) را ذخیره می‌کند.
+    &quot;&quot;&quot;
+    ROLE_CHOICES = [
+        (&#x27;user&#x27;, &#x27;کاربر&#x27;),
+        (&#x27;assistant&#x27;, &#x27;دستیار هوش مصنوعی&#x27;),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    # اتصال پیام به گفتگوی مربوطه؛ اگر گفتگو پاک شود، تمام پیام‌های آن نیز پاک خواهند شد (CASCADE)
+    conversation = models.ForeignKey(
+        Conversation,
+        on_delete=models.CASCADE,
+        related_name=&#x27;messages&#x27;,
+        verbose_name=&quot;گفتگو&quot;
+    )
+    
+    # نقش ارسال‌کننده پیام (آیا کاربر سوال پرسیده یا هوش مصنوعی پاسخ داده؟)
+    role = models.CharField(
+        max_length=10,
+        choices=ROLE_CHOICES,
+        verbose_name=&quot;نقش ارسال‌کننده&quot;
+    )
+    
+    # متن اصلی پیام
+    content = models.TextField(verbose_name=&quot;محتوای پیام&quot;)
+    
+    # تحلیل لحن پیام کاربر (مثلاً فنی، عامیانه، رسمی، بیزینسی) که توسط لایه سرویس تشخیص داده شده است
+    detected_tone = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name=&quot;لحن شناسایی‌شده&quot;
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=&quot;زمان ارسال&quot;)
+
+    class Meta:
+        ordering = [&#x27;created_at&#x27;] # پیام‌ها باید به ترتیب زمان ارسال نمایش داده شوند تا رشته گفتگو درست بماند
+        verbose_name = &quot;پیام&quot;
+        verbose_name_plural = &quot;پیام‌ها&quot;
+
+    def __str__(self):
+        return f&quot;{self.get_role_display()}: {self.content[:50]}...&quot;</code></pre></blockquote><p id="39fda1eb-8b9d-8092-8904-ff809263524b" class="" dir="auto"><strong>چرا این ساختار دیتابیس؟ (تحلیل معماری)</strong><br/>ما از الگوی رایج چت‌بات‌های پیشرفته استفاده کردیم. تفکیک گفتگو (<code>Conversation</code>) از پیام‌ها (<code>Message</code>) به ما اجازه می‌دهد که یک سیستم چت چندمرحله‌ای بسازیم. این کار جلوی فرستادن کل تاریخچه در قالب یک پیام طولانی و بی‌ساختار از سمت کلاینت را می‌گیرد. جنگو با استفاده از رابطه <code>ForeignKey</code> بین این دو مدل، مدیریت زنجیره چت را به عهده می‌گیرد.</p><blockquote id="39fda1eb-8b9d-8028-9744-d0daf27bec25" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">5- حالا دستورات ساخت و اعمال مهاجرت‌ها (Migrations) را در ترمینال بزن تا جداول در دیتابیس MySQL ساخته شوند:<pre id="39fda1eb-8b9d-806e-86c1-f196acfa90cb" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations advisor
+python manage.py migrate</code></pre></blockquote><p id="3a0da1eb-8b9d-80ea-b995-f268ddf13d8a" class="" dir="auto">خروجی شبیه زیر خواهد بود:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3a0da1eb-8b9d-80fb-9935-ff02587b6b32" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">$python manage.py makemigrations advisor
+Migrations for &#x27;advisor&#x27;:
+  apps\advisor\migrations\0001_initial.py
+    + Create model Conversation
+    + Create model Message
+
+$python manage.py migrate advisor
+Operations to perform:
+  Apply all migrations: advisor
+Running migrations:
+  Applying advisor.0001_initial... OK
+</code></pre><p id="39fda1eb-8b9d-8026-a835-f8a451028a3d" class="" dir="auto"><br/>قدم سوم: طراحی ادمین برای مدیریت و مانیتورینگ گفتگوها (<code>admin.py</code>)<br/><br/>به عنوان یک توسعه‌دهنده، باید همیشه ابزار مانیتورینگ مناسب در پنل مدیریت جنگو (Django Admin) داشته باشی تا بتوانی بدون نیاز به کوئری زدن مستقیم به دیتابیس، وضعیت چت‌ها را تحلیل کنی.</p><blockquote id="39fda1eb-8b9d-80c1-8cb7-ea9f35ea2871" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">6- فایل <code>apps/advisor/admin.py</code> را باز کن و کدهای زیر را قرار بده:<pre id="39fda1eb-8b9d-8003-9b97-fda45ce9c702" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/advisor/admin.py
+
+from django.contrib import admin
+from .models import Conversation, Message
+
+class MessageInline(admin.TabularInline):
+    &quot;&quot;&quot;
+    این کلاس به ما اجازه می‌دهد که پیام‌های هر گفتگو را به صورت مستقیم 
+    و در داخل صفحه همان گفتگو در پنل ادمین مشاهده کنیم (Inline).
+    &quot;&quot;&quot;
+    model = Message
+    extra = 0 # تعداد ردیف‌های خالی اضافی برای ایجاد پیام جدید را صفر می‌گذاریم
+    readonly_fields = [&#x27;role&#x27;, &#x27;content&#x27;, &#x27;detected_tone&#x27;, &#x27;created_at&#x27;]
+    can_delete = False # برای حفظ تاریخچه‌ها، امکان حذف دستی پیام‌ها از داخل ادمین گفتگو را می‌بندیم
+
+
+@admin.register(Conversation)
+class ConversationAdmin(admin.ModelAdmin):
+    &quot;&quot;&quot;
+    تنظیمات مدیریت گفتگوها در پنل ادمین.
+    &quot;&quot;&quot;
+    list_display = [&#x27;id&#x27;, &#x27;get_user_or_guest&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;]
+    list_filter = [&#x27;created_at&#x27;, &#x27;updated_at&#x27;]
+    search_fields = [&#x27;user__username&#x27;, &#x27;visitor_session_key&#x27;]
+    inlines = [MessageInline] # نمایش پیام‌های مرتبط در پایین صفحه گفتگو
+
+    def get_user_or_guest(self, obj):
+        if obj.user:
+            return obj.user.username
+        return f&quot;مهمان ({obj.visitor_session_key or &#x27;نامشخص&#x27;})&quot;
+    get_user_or_guest.short_description = &quot;کاربر / مهمان&quot;
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    &quot;&quot;&quot;
+    تنظیمات مدیریت تک پیام‌ها در پنل ادمین.
+    &quot;&quot;&quot;
+    list_display = [&#x27;id&#x27;, &#x27;conversation_link&#x27;, &#x27;role&#x27;, &#x27;short_content&#x27;, &#x27;detected_tone&#x27;, &#x27;created_at&#x27;]
+    list_filter = [&#x27;role&#x27;, &#x27;detected_tone&#x27;, &#x27;created_at&#x27;]
+    search_fields = [&#x27;content&#x27;, &#x27;conversation__id&#x27;]
+    readonly_fields = [&#x27;created_at&#x27;]
+
+    def short_content(self, obj):
+        return obj.content[:75] + &quot;...&quot; if len(obj.content) &gt; 75 else obj.content
+    short_content.short_description = &quot;خلاصه متن&quot;
+
+    def conversation_link(self, obj):
+        # ایجاد یک لینک مستقیم به گفتگوی مادر در پنل ادمین
+        from django.urls import reverse
+        from django.utils.html import format_html
+        link = reverse(&quot;admin:advisor_conversation_change&quot;, args=[obj.conversation.id])
+        return format_html(&#x27;&lt;a href=&quot;{}&quot;&gt;مشاهده گفتگو ({})&lt;/a&gt;&#x27;, link, obj.conversation.id.hex[:8])
+    conversation_link.short_description = &quot;لینک گفتگو&quot;</code></pre></blockquote><p id="39fda1eb-8b9d-809f-bc67-db7a5873deeb" class="" dir="auto"><br/>قدم چهارم: قلب سیستم هوشمند؛ لایه سرویس (<code>services.py</code>)</p><aside class="block-color-purple callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="purple" style="white-space:pre-wrap;display:flex" id="39fda1eb-8b9d-80ba-a4d2-d66ba93aa423" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h3 id="39fda1eb-8b9d-80ac-a1d1-db6d50e2b993" class="" dir="auto">برای دوری از Vibe Coding، ما تمام کارهای مربوط به فراخوانی مدل زبان (LLM)، تزریق کانتکست‌های رزومه (سینا لاله بخش)و معماری ACRON، و تحلیل لحن کاربر را در یک <strong>لایه سرویس (Service Layer)</strong> مجزا می‌نویسیم.</h3></div></aside><p id="39fda1eb-8b9d-80a6-9b43-f58e81b5865d" class="" dir="auto"><strong>چرا؟ (Why):</strong> در معماری تمیز (Clean Architecture)، کنترلر یا View جنگو نباید مستقیماً با کلاینت‌های خارجی (مثل کتابخانه‌های API هوش مصنوعی) سر و کله بزند. ویو فقط ورودی را می‌گیرد، به سرویس می‌دهد و خروجی را بازمی‌گرداند. این کار باعث می‌شود کدهای ما قابلیت تست‌نویسی بسیار بالا (Testability) داشته باشند و اگر فردا خواستیم ارائه‌دهنده سرویس هوش مصنوعی را عوض کنیم، نیازی به تغییر کدهای بخش API و سریالایزر نباشد.</p><blockquote id="39fda1eb-8b9d-8035-9e5a-cfb6bd903bfc" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">7- بیایید فایلی به نام <code>services.py</code> در پوشه <code>apps/advisor/</code> بسازیم.</blockquote><p id="39fda1eb-8b9d-8082-bc6d-df1519d82cf5" class="" dir="auto">ما کانتکست سیستم (System Prompt) را به گونه‌ای طراحی می‌کنیم که شامل اطلاعات رزومه‌ات (از PDF و PPTX) و اطلاعات پروژه ACRON (از فایل‌های مستندات پروژه) باشد. همچنین به هوش مصنوعی دستور می‌دهیم که لحن سوال کاربر را شناسایی کند، به زبان و ادبیات خودش پاسخ دهد و آن لحن را در فیلد مجزایی برگرداند.</p><p id="39fda1eb-8b9d-80f1-84eb-f27f4922348d" class="" dir="auto">برای اینکه کد ما بدون نیاز به کلیدهای API گران‌قیمت یا پیچیده کار کند، یک شبیه‌ساز سرویس هوش مصنوعی هوشمند (Mock/Real LLM Service) می‌نویسیم که ساختار پرامپت‌نویسی بسیار پیشرفته‌ای دارد. در دنیای واقعی، تو می‌توانی از SDK رسمی <code>google-generativeai</code> یا هر کلاینت دیگری استفاده کنی. در اینجا من نحوه مدیریت پرامپت سیستم و چگونگی کوئری زدن را پیاده‌سازی می‌کنم تا مفهوم معماری را عمیقاً درک کنی.</p><blockquote id="39fda1eb-8b9d-8084-9e15-f700629ac941" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">8- داخل فایل <a href="http://services.py">services.py</a> در apps/advisor این کد را بنویس:<br/>این قطعه کد به دلیل حجم زیاد داخل Notion اجازه ساخت کد باز که بشود کپی کنید وجود ندارد. اصل فایل را دانلود کنید. سپس در مسیر replace کنید.<figure id="39fda1eb-8b9d-80f8-8ffc-ca3c097c07cb" dir="ltr"><div class="source"><a href="services.py" data-notion-file="services.py" data-notion-file-alias="services.py">services.py</a></div></figure></blockquote><p id="39fda1eb-8b9d-8080-a5e6-c1cb441e29aa" class="" dir="auto"><br/>قدم پنجم: طراحی سریالایزرها (<code>serializers.py</code>)</p><p id="39fda1eb-8b9d-8047-91a2-d9e750412206" class="" dir="auto">برای اینکه داده‌های ورودی کلاینت را اعتبارسنجی کنیم و داده‌های خروجی را به فرمت استاندارد JSON تبدیل کنیم، نیاز به Serializer داریم.</p><p id="39fda1eb-8b9d-80e2-9c3e-de6bbde0b6d8" class="" dir="auto"><strong>چرا؟ (Why):</strong> جنگو داده‌های دیتابیس را به صورت آبجکت پایتونی نگه می‌دارد. مرورگر یا اپلیکیشن‌های موبایل نمی‌توانند آبجکت پایتون را بفهمند؛ آن‌ها نیاز به فرمت استاندارد JSON دارند. سریالایزر وظیفه تبدیل این آبجکت‌ها به JSON (Serialization) و برعکس، یعنی تبدیل ورودی کاربر به داده معتبر پایتون (Deserialization) را بر عهده دارد.</p><blockquote id="39fda1eb-8b9d-80f8-b828-d10576a7b3de" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">9- فایل جدیدی به نام <code>serializers.py</code> در مسیر <code>apps/advisor/</code> بساز و کدهای زیر را در آن قرار بده:</blockquote><blockquote id="39fda1eb-8b9d-8007-87d9-ef7de3e99725" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">10- در فایل serializers این کد را بنویس:<pre id="39fda1eb-8b9d-8023-b064-c91905a12947" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/advisor/serializers.py
+
+from rest_framework import serializers
+from .models import Conversation, Message
+
+class MessageSerializer(serializers.ModelSerializer):
+    &quot;&quot;&quot;
+    سریالایزر برای نمایش پیام‌های داخل یک گفتگو.
+    &quot;&quot;&quot;
+    role_display = serializers.CharField(source=&#x27;get_role_display&#x27;, read_only=True)
+
+    class Meta:
+        model = Message
+        fields = [
+            &#x27;id&#x27;,
+            &#x27;role&#x27;,
+            &#x27;role_display&#x27;,
+            &#x27;content&#x27;,
+            &#x27;detected_tone&#x27;,
+            &#x27;created_at&#x27;
+        ]
+        read_only_fields = [&#x27;id&#x27;, &#x27;role_display&#x27;, &#x27;detected_tone&#x27;, &#x27;created_at&#x27;]
+
+
+class ConversationSerializer(serializers.ModelSerializer):
+    &quot;&quot;&quot;
+    سریالایزر برای ساخت گفتگو و واکشی اطلاعات کلی آن.
+    &quot;&quot;&quot;
+    # نمایش پیام‌های مرتبط با گفتگو به صورت Nested (تو در تو)
+    messages = MessageSerializer(many=True, read_only=True)
+    user_username = serializers.CharField(source=&#x27;user.username&#x27;, read_only=True)
+
+    class Meta:
+        model = Conversation
+        fields = [
+            &#x27;id&#x27;,
+            &#x27;user&#x27;,
+            &#x27;user_username&#x27;,
+            &#x27;visitor_session_key&#x27;,
+            &#x27;messages&#x27;,
+            &#x27;created_at&#x27;,
+            &#x27;updated_at&#x27;
+        ]
+        read_only_fields = [&#x27;id&#x27;, &#x27;user&#x27;, &#x27;user_username&#x27;, &#x27;created_at&#x27;, &#x27;updated_at&#x27;]
+
+
+class AskAdvisorInputSerializer(serializers.Serializer):
+    &quot;&quot;&quot;
+    سریالایزر اختصاصی برای دریافت ورودی سوال کاربر.
+    این کلاس به صورت مستقیم به مدل وصل نیست و فقط وظیفه ولیدیشن ورودی خام API را دارد.
+    &quot;&quot;&quot;
+    question = serializers.CharField(
+        required=True, 
+        min_length=3, 
+        error_messages={
+            &#x27;required&#x27;: &#x27;لطفاً سوال خود را بفرستید.&#x27;,
+            &#x27;min_length&#x27;: &#x27;سوال شما باید حداقل ۳ کاراکتر باشد.&#x27;
+        }
+    )</code></pre></blockquote><p id="39fda1eb-8b9d-8098-acde-e67984449efb" class="" dir="auto">قدم ششم: طراحی کنترلر و ویوها (<code>views.py</code>)</p><p id="39fda1eb-8b9d-806a-964d-c4250a781a6f" class="" dir="auto">حالا نوبت به لایه کنترلر یا همان API Views می‌رسد. ما دو کار اصلی را در API خود پیاده‌سازی می‌کنیم:</p><ol type="1" id="39fda1eb-8b9d-80fe-8cd0-c3da6691186c" class="numbered-list" start="1" dir="auto"><li><strong>ساخت گفتگو جدید یا بازخوانی گفتگوهای قبلی</strong> (با استفاده از <code>ModelViewSet</code> در DRF).</li></ol><ol type="1" id="39fda1eb-8b9d-80b7-b498-dd47c1c8b756" class="numbered-list" start="2" dir="auto"><li><strong>ارسال سوال به مشاور هوشمند</strong> روی یک چت خاص (با تعریف یک <code>action</code> اختصاصی روی ViewSet).</li></ol><blockquote id="39fda1eb-8b9d-80e6-ae34-f2408f706a4b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">11- فایل <code>apps/advisor/views.py</code> را باز کن و کدهای زیر را بنویس:<pre id="39fda1eb-8b9d-808e-a50a-e0e389569f60" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/advisor/views.py
+
+from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from drf_spectacular.utils import extend_schema, OpenApiResponse
+
+from .models import Conversation
+from .serializers import ConversationSerializer, AskAdvisorInputSerializer, MessageSerializer
+from .services import AdvisorAIService
+
+class AdvisorViewSet(viewsets.ModelViewSet):
+    &quot;&quot;&quot;
+    مجموعه وب‌سرویس‌های مدیریت گفتگو و ارتباط با مشاور هوشمند پروژه ACRON و سینا لاله بخش.
+    این مسیر نیاز به لاگین اجباری ندارد تا همه کارفرمایان بتوانند به راحتی با مشاور چت کنند.
+    &quot;&quot;&quot;
+    permission_classes = [AllowAny]
+    queryset = Conversation.objects.prefetch_related(&#x27;messages&#x27;).all()
+    serializer_class = ConversationSerializer
+    
+    # برای امنیت، متدهای ویرایش و حذف کلی گفتگوها را در سطح عمومی API غیرفعال می‌کنیم
+    http_method_names = [&#x27;get&#x27;, &#x27;post&#x27;, &#x27;delete&#x27;]
+
+    def perform_create(self, serializer):
+        &quot;&quot;&quot;
+        هنگام ایجاد یک گفتگوی جدید، اگر کاربر لاگین کرده باشد، او را ثبت می‌کنیم.
+        همچنین آی‌پی یا سشن بازدیدکننده را نیز برای بررسی‌های بعدی ذخیره می‌کنیم.
+        &quot;&quot;&quot;
+        user = self.request.user if self.request.user.is_authenticated else None
+        
+        # گرفتن آی‌پی ساده کاربر به عنوان کلید سشن مهمان
+        x_forwarded_for = self.request.META.get(&#x27;HTTP_X_FORWARDED_FOR&#x27;)
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(&#x27;,&#x27;)[0]
+        else:
+            ip = self.request.META.get(&#x27;REMOTE_ADDR&#x27;)
+            
+        serializer.save(user=user, visitor_session_key=ip)
+
+    @extend_schema(
+        summary=&quot;ارسال سوال به مشاور هوشمند پروژه&quot;,
+        description=&quot;با ارسال شناسه گفتگو و سوال خود، پاسخ هوشمند و متقاعدکننده منطبق با لحن خود را دریافت کنید.&quot;,
+        request=AskAdvisorInputSerializer,
+        responses={
+            200: OpenApiResponse(response=MessageSerializer, description=&quot;پاسخ هوش مصنوعی تولید و ذخیره شد.&quot;),
+            400: OpenApiResponse(description=&quot;ورودی نامعتبر است.&quot;)
+        }
+    )
+    @action(detail=True, methods=[&#x27;post&#x27;], url_path=&#x27;ask&#x27;)
+    def ask(self, request, pk=None):
+        &quot;&quot;&quot;
+        مسیر اختصاصی: POST /api/advisor/{conversation_uuid}/ask/
+        این متد سوال کاربر را دریافت کرده، به لایه سرویس منتقل می‌کند و پاسخ هوشمند را برمی‌گرداند.
+        &quot;&quot;&quot;
+        # ۱. لود کردن گفتگوی مربوطه از دیتابیس
+        conversation = self.get_object()
+        
+        # ۲. بررسی و اعتبارسنجی ورودی سوال با سریالایزر اختصاصی
+        input_serializer = AskAdvisorInputSerializer(data=request.data)
+        if not input_serializer.is_valid():
+            return Response(input_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        user_question = input_serializer.validated_data[&#x27;question&#x27;]
+        
+        # ۳. فراخوانی لایه سرویس برای ارتباط با مدل زبانی و ذخیره‌سازی پیام‌ها
+        ai_response_message = AdvisorAIService.generate_response(
+            conversation_id=conversation.id,
+            user_message_content=user_question
+        )
+        
+        # ۴. سریالایز کردن پاسخ نهایی هوش مصنوعی برای ارسال به کلاینت
+        output_serializer = MessageSerializer(ai_response_message)
+        return Response(output_serializer.data, status=status.HTTP_200_OK)</code></pre></blockquote><p id="39fda1eb-8b9d-8021-ba56-ce8d4fe9a0c1" class="" dir="auto">قدم هفتم: مسیریابی و ثبت آدرس‌ها (<code>urls.py</code>)</p><p id="39fda1eb-8b9d-80b6-a15e-da72f6255521" class="" dir="auto">حالا باید آدرس‌های این اپلیکیشن جدید را تعریف کرده و به آدرس‌دهی کل پروژه (Root URLconf) متصل کنیم.</p><blockquote id="39fda1eb-8b9d-806e-8100-e2d86be6370d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">12- فایل جدیدی به نام <code>urls.py</code> در مسیر <code>apps/advisor/</code> بساز و کدهای زیر را وارد کن:<pre id="39fda1eb-8b9d-809f-b807-e6912d45acdd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/advisor/urls.py
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import AdvisorViewSet
+
+# استفاده از DefaultRouter برای ساخت خودکار مسیرهای استاندارد RESTful
+router = DefaultRouter()
+router.register(r&#x27;advisor&#x27;, AdvisorViewSet, basename=&#x27;advisor&#x27;)
+
+urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><blockquote id="39fda1eb-8b9d-80a3-a2e2-c210e403fdec" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">13- حالا فایل مسیریابی کل APIهای پروژه یعنی <code>apps/api/urls.py</code> را باز کن و مسیرهای اپلیکیشن <code>advisor</code> را به آن اضافه کن:<pre id="39fda1eb-8b9d-8005-9ff6-fab6ebb1c32e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># apps/api/urls.py
+
+from django.urls import include, path
+
+urlpatterns = [
+    # ... مسیرهای قبلی پروژه ...
+    path(&#x27;accounts/&#x27;, include(&#x27;apps.accounts.urls&#x27;)),
+    path(&#x27;customers/&#x27;, include(&#x27;apps.customers.urls&#x27;)),
+    path(&#x27;products/&#x27;, include(&#x27;apps.products.urls&#x27;)),
+    path(&#x27;carts/&#x27;, include(&#x27;apps.carts.urls&#x27;)),
+    path(&#x27;orders/&#x27;, include(&#x27;apps.orders.urls&#x27;)),
+    path(&#x27;payments/&#x27;, include(&#x27;apps.payments.urls&#x27;)),
+    
+    # اضافه کردن مسیرهای مشاور هوشمند جدید
+    path(&#x27;&#x27;, include(&#x27;apps.advisor.urls&#x27;)),
+]</code></pre></blockquote><p id="39fda1eb-8b9d-800e-b7b1-f81b19e5136b" class="" dir="auto">چرخه‌ی کامل تست و اجرای قدم به قدم پروژه (چگونه تست کنیم؟)</p><p id="39fda1eb-8b9d-80ca-af26-c575d4606f46" class="" dir="auto">1- اجرای سرور:</p><pre id="39fda1eb-8b9d-8023-8574-f1a3bfab9ad5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><p id="39fda1eb-8b9d-80d8-ae50-e283d1f7a5bf" class="" dir="auto"><strong>2- باز کردن مستندات Swagger:</strong></p><p id="39fda1eb-8b9d-8013-a52f-c5d5c43558fa" class="" dir="auto">مرورگر خود را باز کن و به آدرس زیر برو:</p><p id="39fda1eb-8b9d-80f5-9572-ec776529d872" class="" dir="auto"><code>http://127.0.0.1:8000/api/schema/swagger-ui/</code><br/>حالا باید بخش جدید مربوط به وب‌سرویس‌های <code>advisor</code> را در آنجا ببینی!</p><p id="39fda1eb-8b9d-80e5-b240-f63e13d225ba" class="" dir="auto">3- <strong>ساختن گفتگو (Chat Session):</strong></p><ul id="39fda1eb-8b9d-8077-9615-e42a7b996086" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در Swagger متد <code>POST /api/advisor/</code> را پیدا کن.</li></ul><ul id="39fda1eb-8b9d-809b-a5e9-dc0489493849" class="bulleted-list" dir="auto"><li style="list-style-type:disc">بدنه درخواست (Request Body) را خالی بگذار و روی <strong>Execute</strong> بزن.</li></ul><ul id="39fda1eb-8b9d-809f-b337-f36c21df3bf1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>نتیجه:</strong> یک پاسخ با وضعیت <code>201 Created</code> می‌گیری که شامل یک شناسه طولانی منحصر به فرد (<code>id</code>) مثل <code>3fa85f64-5717-4562-b3fc-2c963f66afa6</code> است. این شناسه گفتگو (Conversation ID) را کپی کن.</li></ul><p id="39fda1eb-8b9d-80bd-bde8-cac6d9bf6517" class="" dir="auto">4- <strong>پرسیدن سوال با لحن رسمی (کارفرما):</strong></p><ul id="39fda1eb-8b9d-80b2-9b38-d3fb72e3d2bc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">متد <code>POST /api/advisor/{id}/ask/</code> را باز کن.</li></ul><ul id="39fda1eb-8b9d-8014-aa82-eeb2e2b1aa50" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در بخش پارامترها، شناسه‌ای که کپی کردی را در بخش <code>id</code> قرار بده.</li></ul><ul id="39fda1eb-8b9d-8099-ba5f-e0e66933cb24" class="bulleted-list" dir="auto"><li style="list-style-type:disc">در بخش بدنه درخواست، سوالی کاملاً رسمی بنویس:</li></ul><pre id="39fda1eb-8b9d-8069-82f1-f291f537dc36" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;question&quot;: &quot;با سلام، لطفا بفرمایید آقای سینا لاله بخش چه تخصص‌های کلیدی در حوزه بهینه‌سازی دیتابیس جنگو دارند و شرایط همکاری با ایشان چگونه است؟&quot;
+}</code></pre><ul id="3a0da1eb-8b9d-80b0-9f9e-c7a4ee58e62c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دکمه <strong>Execute</strong> را بزن.</li></ul><ul id="3a0da1eb-8b9d-805c-a357-c0d9c16c51fa" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>نتیجه جادویی:</strong> هوش مصنوعی لحن شما را <strong>Business / Formal</strong> تشخیص می‌دهد و پاسخی کاملاً محترمانه، رسمی و شرکتی که متقاعدکننده است بازمی‌گرداند.</li></ul><p id="3a0da1eb-8b9d-80a4-80c3-daffb9ab6af6" class="" dir="auto"><strong>5- پرسیدن سوال با لحن دوستانه و عامیانه (یک رفیق یا یوتیوبر):</strong></p><ul id="3a0da1eb-8b9d-8039-a8d4-ce5a7311638b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">با همان <code>id</code> گفتگو، سوال دیگری بفرست:<br/></li></ul><pre id="3a0da1eb-8b9d-8055-9f90-c43f60b59da2" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;question&quot;: &quot;سلام داداش، دمت گرم. این سینا لاله بخش که میگن کیه؟ کارش چطوریه؟ خیلی کارش درسته؟&quot;
+}</code></pre><ul id="3a0da1eb-8b9d-8072-8476-eda3b69d17b7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دکمه <strong>Execute</strong> را بزن.</li></ul><ul id="3a0da1eb-8b9d-808d-b458-fa49a1a83fc0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>نتیجه جادویی:</strong> سیستم متوجه صمیمیت سوال می‌شود، لحن را به <strong>Friendly / Informal</strong> تغییر می‌دهد و با همان ادبیات صمیمی و پرانرژی پاسخ می‌دهد تا کارفرما احساس راحتی کامل کند.</li></ul><p id="3a0da1eb-8b9d-80cc-bce9-dbd525dee713" class="" dir="auto">6- <strong>پرسیدن سوال کاملاً فنی (یک مهندس نرم‌افزار):</strong></p><ul id="3a0da1eb-8b9d-8032-91dc-c8fbb29ef1ef" class="bulleted-list" dir="auto"><li style="list-style-type:disc">یک سوال فنی ارسال کن:</li></ul><pre id="3a0da1eb-8b9d-8004-9356-d24ece79ac3c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;question&quot;: &quot;پروژه ACRON چطور کار می‌کنه؟ نحوه استفاده از UUID در سبد خرید و معماری لایه پرداخت اونو برام توضیح بده.&quot;
+}</code></pre><ul id="3a0da1eb-8b9d-801f-9f5c-d17123ffcd50" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دکمه <strong>Execute</strong> را بزن.</li></ul><ul id="3a0da1eb-8b9d-80a7-9583-cc5abcc69609" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>نتیجه جادویی:</strong> پاسخ با رویکرد عمیق مهندسی ارائه شده و نحوه ساختاردهی دامنه‌های پروژه را با تکیه بر متدولوژی ACRON شرح می‌دهد.</li></ul><p id="3a0da1eb-8b9d-8040-9641-d04edd78ca22" class="" dir="auto">7- <strong>بررسی در پنل ادمین:</strong><br/>به آدرس <code>http://127.0.0.1:8000/admin/</code> برو. بخش <strong>Advisor Conversations</strong> و <strong>Messages</strong> را باز کن. تمام این گفتگوها، پیام‌های رد و بدل شده، لحن شناسایی شده و جزییات بازدیدکننده به زیبایی در آنجا مانیتور می‌شوند.</p><h3 id="3a0da1eb-8b9d-8099-b20b-dccd88102bc8" class="" dir="auto">خلاصه مفاهیم آموزشی این فاز (جهت یادگیری عمیق شما)</h3><p id="3a0da1eb-8b9d-80ad-baf0-c9b4d2a8e9cc" class="" dir="auto">به عنوان یک دانشجو با ذهنیت ارشد (Senior Mindset)، بیایید مفاهیم حیاتی که در این فاز یاد گرفتیم را مرور کنیم:</p><ul id="3a0da1eb-8b9d-80c1-a05b-cf8a724d9d29" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>مزیت UUID بر Integer:</strong> اگر از شناسه عددی استفاده می‌کردیم، کارفرماها می‌توانستند با تغییر شناسه گفتگو در آدرس بار، چت‌های دیگران را بخوانند. استفاده از <code>uuid4</code> امنیت حریم خصوصی گفتگوها را تضمین می‌کند.</li></ul><ul id="3a0da1eb-8b9d-8052-8e7f-f0fe657cf5ea" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>مزیت Separation of Concerns (تفکیک وظایف):</strong> ما کدهای مربوط به هوش مصنوعی و ساخت پرامپت‌ها را در فایل <code>services.py</code> نوشتیم. این کار باعث شد که لایه View ما سبک بماند و فقط وظیفه هدایت ترافیک شبکه را به عهده داشته باشد. این الگو به نگهداری آسان‌تر پروژه‌های بزرگ کمک شایانی می‌کند.</li></ul><ul id="3a0da1eb-8b9d-8013-bb12-c9029f68de97" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>مزیت Nested Serializer:</strong> ما با قرار دادن <code>MessageSerializer</code> به صورت لیست در داخل <code>ConversationSerializer</code> توانستیم کل سابقه گفتگو را به صورت ساختاریافته در یک درخواست GET خروجی بگیریم.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="39fda1eb-8b9d-80f9-bc48-d07349fe1392" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="39fda1eb-8b9d-80af-8e01-ef31b6fe0a17" class="" dir="auto">پایان Part-12</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
