@@ -5,38 +5,48 @@ import axiosInstance from './api/axiosInstance'; // وارد کردن نمونه
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// پنل اصلی پروژه Acron (با قابلیت دریافت دیتا از سرور)
+
+
+
 function Dashboard() {
   const { user, logout } = useContext(AuthContext);
-  const [serverMessage, setServerMessage] = useState('در حال بارگذاری اطلاعات از جنگو...');
+  const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // ۱. ارسال درخواست به یک اِندپوینت دلخواه در جنگو که نیاز به لاگین دارد.
-    // نکته: آدرس زیر را می‌توانید به هر کدام از اِندپوینت‌های محافظت‌شده جنگوی خود تغییر دهید (مثلاً 'profile/' یا 'dashboard/')
-    axiosInstance.get('dashboard/') 
+    // ارسال درخواست به اِندپوینت واقعی پروفایل در جنگو
+    axiosInstance.get('customers/profile/') 
       .then((response) => {
-        // اگر سرور پاسخ داد، دیتا را در استیت ذخیره می‌کنیم
-        // فرض می‌کنیم جنگو یک فیلد به نام message یا شبیه آن پس می‌فرستد
-        setServerMessage(response.data.message || 'اطلاعات با موفقیت دریافت شد اما فیلد message یافت نشد.');
+        // ذخیره اطلاعات واقعی مشتری (مانند تلفن، کد ملی یا هر چه در سریالایزر هست)
+        setProfileData(response.data);
       })
       .catch((err) => {
         console.error("API Call Error:", err);
-        setError('فرانت‌اِند درخواست را فرستاد، اما بک‌اِند خطایی برگرداند یا این اِندپوینت هنوز ساخته نشده است.');
+        setError('خطا در دریافت اطلاعات واقعی پروفایل از دیتابیس.');
       });
   }, []);
 
   return (
     <div style={{ textAlign: 'center', marginTop: '80px', fontFamily: 'sans-serif', direction: 'rtl' }}>
       <h1>به پنل اصلی پروژه Acron خوش آمدید!</h1>
-      <p style={{ color: '#555', fontSize: '18px' }}>کاربر جاری: <strong>{user?.username}</strong></p>
+      <p style={{ color: '#555', fontSize: '18px' }}>کاربر جاری سیستم: <strong>{user?.username}</strong></p>
       
       <hr style={{ width: '50%', margin: '20px auto', borderColor: '#eee' }} />
 
-      {/* نمایش پیام دریافتی از جنگو */}
-      <div style={{ padding: '20px', backgroundColor: error ? '#ffebee' : '#e8f5e9', display: 'inline-block', borderRadius: '6px', minWidth: '300px' }}>
-        <h4 style={{ margin: '0 0 10px 0', color: error ? '#c62828' : '#2e7d32' }}>پاسخ زنده از سرور جنگو:</h4>
-        <p style={{ margin: 0, color: '#333' }}>{error ? error : serverMessage}</p>
+      <div style={{ padding: '20px', backgroundColor: error ? '#ffebee' : '#e8f5e9', display: 'inline-block', borderRadius: '6px', minWidth: '350px', textAlign: 'right' }}>
+        <h4 style={{ margin: '0 0 10px 0', color: error ? '#c62828' : '#2e7d32', textAlign: 'center' }}>
+          {error ? 'خطا در ارتباط' : 'مشخصات واقعی شما از دیتابیس جنگو:'}
+        </h4>
+        
+        {error ? (
+          <p style={{ color: '#333', textAlign: 'center' }}>{error}</p>
+        ) : profileData ? (
+          <pre style={{ direction: 'ltr', backgroundColor: '#fff', padding: '10px', borderRadius: '4px', overflowX: 'auto' }}>
+            {JSON.stringify(profileData, null, 2)}
+          </pre>
+        ) : (
+          <p style={{ textAlign: 'center' }}>در حال بارگذاری اطلاعات...</p>
+        )}
       </div>
 
       <br />
@@ -49,6 +59,11 @@ function Dashboard() {
     </div>
   );
 }
+
+
+// ...........
+
+
 
 function App() {
   const { user } = useContext(AuthContext);
