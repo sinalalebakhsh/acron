@@ -13,6 +13,7 @@ opencv-python = "*"
 django-debug-toolbar = "*"
 drf-spectacular = "*"
 mcp = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
