@@ -20,27 +20,28 @@ export const AuthProvider = ({ children }) => {
         };
         checkAuth();
     }, []);
+    
 
-    // تابع ورود به برنامه و دریافت توکن از جنگو
     const login = async (username, password) => {
         try {
-            // ارسال درخواست به اندپوینت توکن جنگو (آدرس با baseURL ترکیب می‌شود -> api/token/)
             const response = await axiosInstance.post('token/', {
                 username,
                 password,
             });
 
-            // ذخیره توکن‌ها در مرورگر
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
 
-            // به‌روزرسانی وضعیت کاربر در برنامه
             setUser({ username });
             return { success: true };
         } catch (error) {
+            // این خط ارور واقعی را در کنسول مرورگر (F12) چاپ می‌کند تا بفهمیم داستان چیست
+            console.error("Login Error details:", error);
+
             return {
                 success: false,
-                error: error.response?.data?.detail || 'نام کاربری یا رمز عبور اشتباه است.',
+                // اگر سرور پاسخ داده بود ارور سرور را نشان بده، در غیر این صورت پیغام خطای شبکه
+                error: error.response?.data?.detail || error.message || 'خطا در برقراری ارتباط با سرور',
             };
         }
     };
