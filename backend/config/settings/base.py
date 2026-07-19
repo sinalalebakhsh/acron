@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # that provide extra functionality to the Django project.
     'rest_framework',
     'drf_spectacular', # مستندسازی API
+    "corsheaders",
 
 
     # CREATE by me
@@ -84,6 +85,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Third Party:
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 
@@ -251,5 +256,10 @@ SPECTACULAR_SETTINGS = {
 }
 
 
+# What is CORS ?
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
 
