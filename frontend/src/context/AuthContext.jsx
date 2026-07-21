@@ -1,62 +1,68 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import axiosInstance from '../api/axiosInstance';
 
-// ایجاد کانتکست اصلی احراز هویت
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        // بررسی وضعیت کاربر در اولین ورود به سایت
-        const checkAuth = () => {
-            const token = localStorage.getItem('access_token');
-            if (token) {
-                // فعلاً وضعیت کاربر را بر اساس وجود توکن تایید می‌کنیم
-                setUser({ loggedIn: true });
-            }
-            setLoading(false);
-        };
-        checkAuth();
-    }, []);
-    
-
-    const login = async (username, password) => {
+  // بررسی وضعیت ورود با فراخوانی مسیر /api/me/
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const token = localStorage.getItem('access_token');
+      if (token) {
         try {
-            const response = await axiosInstance.post('token/', {
-                username,
-                password,
-            });
-
-            localStorage.setItem('access_token', response.data.access);
-            localStorage.setItem('refresh_token', response.data.refresh);
-
-            setUser({ username });
-            return { success: true };
+          // 👈 دریافت اطلاعات کاربر از مسیر دقیق /api/me/
+          const response = await axiosInstance.get('me/');
+          setUser(response.data);
         } catch (error) {
-            // این خط ارور واقعی را در کنسول مرورگر (F12) چاپ می‌کند تا بفهمیم داستان چیست
-            console.error("Login Error details:", error);
-
-            return {
-                success: false,
-                // اگر سرور پاسخ داده بود ارور سرور را نشان بده، در غیر این صورت پیغام خطای شبکه
-                error: error.response?.data?.detail || error.message || 'خطا در برقراری ارتباط با سرور',
-            };
+          console.error('توکن نامعتبر است:', error);
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
         }
+      }
+      setLoading(false);
     };
 
-    // تابع خروج از برنامه
-    const logout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        setUser(null);
-    };
+    checkAuthStatus();
+  }, []);
 
-    return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
-            {!loading && children}
-        </AuthContext.Provider>
-    );
+  // تابع ورود به حساب
+  const login = async (username, password) => {
+    // 👈 ارسال درخواست لاگین به مسیر دقیق /api/token/
+    const response = await axiosInstance.post('token/', { 
+      username: username, 
+      password: password 
+    });
+    
+    const { access, refresh } = response.data;
+
+    // ذخیره توکن‌ها در Local Storage
+    localStorage.setItem('access_token', access);
+    localStorage.setItem('refresh_token', refresh);
+    
+    // دریافت اطلاعات پروفایل کاربر بلافاصله پس از لاگین
+    const userProfile = await axiosInstance.get('me/');
+    setUser(userProfile.data);
+    
+    return response.data;
+  };
+
+  // تابع خروج
+  const logout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, loading, isAuthenticated: !!user }}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };
+
+export const useAuth = () => useContext(AuthContext);
+export { AuthContext };
 
