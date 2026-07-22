@@ -50,12 +50,12 @@ function Dashboard() {
       </div>
 
       <br />
-      <button 
+      {/* <button 
         onClick={logout} 
         style={{ padding: '10px 20px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '30px', fontWeight: 'bold' }}
       >
         خروج از حساب
-      </button>
+      </button> */}
     </div>
   );
 }
@@ -65,11 +65,18 @@ function Dashboard() {
 
 
 
+import { useAuth } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import Products from './components/Products';
+
+
+
 function App() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route 
           path="/login" 
@@ -77,9 +84,17 @@ function App() {
         />
         <Route 
           path="/" 
-          element = {
+          element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/products" 
+          element={
+            <ProtectedRoute>
+              <Products />
             </ProtectedRoute>
           } 
         />
@@ -90,4 +105,5 @@ function App() {
 }
 
 export default App;
+
 
