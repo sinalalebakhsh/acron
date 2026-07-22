@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
+import { useCart } from '../context/CartContext'; // 👈 اضافه شد
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const { addToCart } = useCart(); // 👈 دریافت تابع افزودن به سبد
 
   useEffect(() => {
     // دریافت لیست محصولات از API جنگو
@@ -53,7 +55,9 @@ function Products() {
               <span style={{ fontWeight: 'bold', color: '#059669' }}>
                 {product.price ? `${Number(product.price).toLocaleString()} تومان` : 'قیمت تعیین‌نشده'}
               </span>
-              <button style={{
+              <button 
+              onClick={() => addToCart(product.id)} // 👈 کلیک و ارسال ID محصول
+              style={{
                 padding: '8px 12px',
                 backgroundColor: '#2563eb',
                 color: 'white',
