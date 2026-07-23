@@ -4,6 +4,8 @@ import { AuthContext } from './context/AuthContext';
 import axiosInstance from './api/axiosInstance'; // وارد کردن نمونه اکسپوس خودمان
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import Cart from './components/Cart'; // 👈 اضافه شد
+
 
 
 
@@ -95,6 +97,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Products />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/cart" 
+          element={
+            <ProtectedRoute>
+              <Cart />
             </ProtectedRoute>
           } 
         />

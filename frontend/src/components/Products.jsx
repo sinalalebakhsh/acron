@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
-import { useCart } from '../context/CartContext'; // 👈 اضافه شد
+import { useCart } from '../context/CartContext';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { addToCart } = useCart(); // 👈 دریافت تابع افزودن به سبد
+  const [addingId, setAddingId] = useState(null); // 👈 نگهداری ID محصول در حال اضافه شدن
+  const [successId, setSuccessId] = useState(null); // 👈 نگهداری ID محصولی که اضافه شد
+
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    // دریافت لیست محصولات از API جنگو
     axiosInstance.get('products/')
       .then((response) => {
-        // بسته به اینکه API شما صفحه بندی دارد یا لیست مستقیم برمی گرداند
         const data = response.data.results || response.data;
         setProducts(data);
         setLoading(false);
@@ -24,6 +25,18 @@ function Products() {
       });
   }, []);
 
+  const handleAddToCart = async (productId) => {
+    setAddingId(productId); // فعال کردن حالت لودینگ دکمه
+    await addToCart(productId);
+    setAddingId(null);
+    
+    // نمایش پیام موفقیت‌آمیز به مدت ۱.۵ ثانیه
+    setSuccessId(productId);
+    setTimeout(() => {
+      setSuccessId(null);
+    }, 1500);
+  };
+
   if (loading) return <h3 style={{ textAlign: 'center', marginTop: '50px' }}>در حال بارگذاری محصولات...</h3>;
   if (error) return <h3 style={{ textAlign: 'center', color: 'red', marginTop: '50px' }}>{error}</h3>;
 
@@ -33,7 +46,7 @@ function Products() {
       
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
         gap: '20px'
       }}>
         {products.map((product) => (
@@ -49,23 +62,32 @@ function Products() {
           }}>
             <div>
               <h3 style={{ margin: '0 0 10px 0', color: '#0f172a' }}>{product.name || product.title}</h3>
-              <p style={{ color: '#64748b', fontSize: '14px' }}>{product.description || 'بدون توضیحات'}</p>
+              <p style={{ color: '#64748b', fontSize: '14px', lineHeight: '1.6' }}>{product.description || 'بدون توضیحات'}</p>
             </div>
             <div style={{ marginTop: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontWeight: 'bold', color: '#059669' }}>
                 {product.price ? `${Number(product.price).toLocaleString()} تومان` : 'قیمت تعیین‌نشده'}
               </span>
+              
               <button 
-              onClick={() => addToCart(product.id)} // 👈 کلیک و ارسال ID محصول
-              style={{
-                padding: '8px 12px',
-                backgroundColor: '#2563eb',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}>
-                افزودن به سبد
+                onClick={() => handleAddToCart(product.id)}
+                disabled={addingId === product.id}
+                style={{
+                  padding: '8px 14px',
+                  backgroundColor: successId === product.id ? '#10b981' : '#2563eb',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: addingId === product.id ? 'not-allowed' : 'pointer',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+              >
+                {addingId === product.id 
+                  ? 'در حال افزودن...' 
+                  : successId === product.id 
+                    ? 'افزوده شد ✓' 
+                    : 'افزودن به سبد'}
               </button>
             </div>
           </div>
@@ -76,5 +98,3 @@ function Products() {
 }
 
 export default Products;
-
-

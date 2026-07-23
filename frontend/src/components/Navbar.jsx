@@ -28,6 +28,19 @@ function Navbar() {
         <h2 style={{ margin: 0, color: '#38bdf8' }}>ACRON</h2>
         <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>داشبورد</Link>
         <Link to="/products" style={{ color: 'white', textDecoration: 'none' }}>محصولات</Link>
+        <Link to="/cart" style={{ textDecoration: 'none' }}>
+            <span style={{
+              backgroundColor: '#0284c7',
+              color: 'white',
+              padding: '6px 12px',
+              borderRadius: '12px',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}>
+              🛒 سبد خرید: {cartCount}
+            </span>
+        </Link>
       </div>
 
       <div>
