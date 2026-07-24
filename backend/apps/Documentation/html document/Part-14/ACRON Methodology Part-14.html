@@ -1,0 +1,2020 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-14</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3a2da1eb-8b9d-80ad-9df4-fabcf68758fc" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-14</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-804b-9653-cb4783fe2361" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8000-986d-fe5a959273b7" class="" dir="auto">در Part-13 ، <strong>فاز 11:   </strong> Frontend - Presentation Layer  تا قدم 22 توسعه داده شد</p></div></aside><h1 id="3a2da1eb-8b9d-80ff-a615-c3c747b3855d" class="" dir="auto">فاز 11<strong>:  </strong> Frontend - Presentation Layer  </h1><p id="3a2da1eb-8b9d-807b-8dbb-ff79f4018327" class="" dir="auto">شروع قدم 23</p><hr id="3a2da1eb-8b9d-8077-82bb-d0ca7563f5bd" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8003-9922-d7c79d1a523a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-80a2-ad50-dae27a820276" class="" dir="auto">اولین فراخوانی ایمن از بک‌اِند (Data Fetching)</p></div></aside><p id="3a2da1eb-8b9d-808f-8fbf-f3383a91ae7d" class="" dir="auto">فایل <code><strong>src/App.jsx</strong></code> را باز کنید. می‌خواهیم بخش کامپوننت <code>Dashboard</code> (که در خطوط بالایی فایل قرار دارد) را ارتقا دهیم تا بتواند دیتا را از جنگو بگیرد و نمایش دهد.</p><blockquote id="3a2da1eb-8b9d-80fb-bacb-fb14d58d8d0b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">23- کدهای داخل فایل <code>src/App.jsx</code> را با این نسخه کامل‌تر جایگزین کنید:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3a2da1eb-8b9d-8070-8985-e385c69041d2" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useContext, useState, useEffect } from &#x27;react&#x27;;
+import { BrowserRouter as Router, Routes, Route, Navigate } from &#x27;react-router-dom&#x27;;
+import { AuthContext } from &#x27;./context/AuthContext&#x27;;
+import axiosInstance from &#x27;./api/axiosInstance&#x27;; // وارد کردن نمونه اکسپوس خودمان
+import Login from &#x27;./components/Login&#x27;;
+import ProtectedRoute from &#x27;./components/ProtectedRoute&#x27;;
+
+// پنل اصلی پروژه Acron (با قابلیت دریافت دیتا از سرور)
+function Dashboard() {
+  const { user, logout } = useContext(AuthContext);
+  const [serverMessage, setServerMessage] = useState(&#x27;در حال بارگذاری اطلاعات از جنگو...&#x27;);
+  const [error, setError] = useState(&#x27;&#x27;);
+
+  useEffect(() =&gt; {
+    // ۱. ارسال درخواست به یک اِندپوینت دلخواه در جنگو که نیاز به لاگین دارد.
+    // نکته: آدرس زیر را می‌توانید به هر کدام از اِندپوینت‌های محافظت‌شده جنگوی خود تغییر دهید (مثلاً &#x27;profile/&#x27; یا &#x27;dashboard/&#x27;)
+    axiosInstance.get(&#x27;dashboard/&#x27;) 
+      .then((response) =&gt; {
+        // اگر سرور پاسخ داد، دیتا را در استیت ذخیره می‌کنیم
+        // فرض می‌کنیم جنگو یک فیلد به نام message یا شبیه آن پس می‌فرستد
+        setServerMessage(response.data.message || &#x27;اطلاعات با موفقیت دریافت شد اما فیلد message یافت نشد.&#x27;);
+      })
+      .catch((err) =&gt; {
+        console.error(&quot;API Call Error:&quot;, err);
+        setError(&#x27;فرانت‌اِند درخواست را فرستاد، اما بک‌اِند خطایی برگرداند یا این اِندپوینت هنوز ساخته نشده است.&#x27;);
+      });
+  }, []);
+
+  return (
+    &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;80px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h1&gt;به پنل اصلی پروژه Acron خوش آمدید!&lt;/h1&gt;
+      &lt;p style={{ color: &#x27;#555&#x27;, fontSize: &#x27;18px&#x27; }}&gt;کاربر جاری: &lt;strong&gt;{user?.username}&lt;/strong&gt;&lt;/p&gt;
+      
+      &lt;hr style={{ width: &#x27;50%&#x27;, margin: &#x27;20px auto&#x27;, borderColor: &#x27;#eee&#x27; }} /&gt;
+
+      {/* نمایش پیام دریافتی از جنگو */}
+      &lt;div style={{ padding: &#x27;20px&#x27;, backgroundColor: error ? &#x27;#ffebee&#x27; : &#x27;#e8f5e9&#x27;, display: &#x27;inline-block&#x27;, borderRadius: &#x27;6px&#x27;, minWidth: &#x27;300px&#x27; }}&gt;
+        &lt;h4 style={{ margin: &#x27;0 0 10px 0&#x27;, color: error ? &#x27;#c62828&#x27; : &#x27;#2e7d32&#x27; }}&gt;پاسخ زنده از سرور جنگو:&lt;/h4&gt;
+        &lt;p style={{ margin: 0, color: &#x27;#333&#x27; }}&gt;{error ? error : serverMessage}&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;br /&gt;
+      &lt;button 
+        onClick={logout} 
+        style={{ padding: &#x27;10px 20px&#x27;, backgroundColor: &#x27;#f44336&#x27;, color: &#x27;white&#x27;, border: &#x27;none&#x27;, borderRadius: &#x27;4px&#x27;, cursor: &#x27;pointer&#x27;, marginTop: &#x27;30px&#x27;, fontWeight: &#x27;bold&#x27; }}
+      &gt;
+        خروج از حساب
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+function App() {
+  const { user } = useContext(AuthContext);
+
+  return (
+    &lt;Router&gt;
+      &lt;Routes&gt;
+        &lt;Route 
+          path=&quot;/login&quot; 
+          element={user ? &lt;Navigate to=&quot;/&quot; replace /&gt; : &lt;Login /&gt;} 
+        /&gt;
+        &lt;Route 
+          path=&quot;/&quot; 
+          element = {
+            &lt;ProtectedRoute&gt;
+              &lt;Dashboard /&gt;
+            &lt;/ProtectedRoute&gt;
+          } 
+        /&gt;
+        &lt;Route path=&quot;*&quot; element={&lt;Navigate to=&quot;/&quot; replace /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-80d0-b00e-fd4a83d3e89f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8035-9248-fcd4a80f29ea" class="" dir="auto">هدف از این گام چیست؟</p></div></aside><p id="3a2da1eb-8b9d-8057-bafe-e2dfaacd18ca" class="" dir="auto"><br/>وقتی شما وارد برنامه می‌شوید و به صفحه داشبورد می‌رسید، ری‌آکت به صورت خودکار با دستور <code>axiosInstance.get(&#x27;dashboard/&#x27;)</code> به جنگو سیگنال می‌فرستد. از آنجا که ما از <code>axiosInstance</code> خودمان استفاده کرده‌ایم، اینترسپتوری که قبلاً نوشتیم فعال می‌شود و بدون اینکه شما کار اضافه‌ای کنید، توکن JWT را به هدر درخواست می‌چسباند. </p><p id="3a2da1eb-8b9d-80ff-b8ed-d4d2202f528c" class="" dir="auto">فایل را ذخیره کنید و نتیجه را در مرورگر ببینید. با توجه به اینکه آیا اِندپوینتی به نام <code>api/dashboard/</code> در سمت جنگو ساخته‌اید یا خیر، نتیجه را بررسی کنید.</p><figure id="3a2da1eb-8b9d-80ef-ac99-f651df22b7f6" class="image" data-notion-image="7bc6d421-ca97-4ee8-9cd6-ae082b162899.png" dir="ltr"><a href="7bc6d421-ca97-4ee8-9cd6-ae082b162899.png"><img style="width:598.8304093567251px" src="7bc6d421-ca97-4ee8-9cd6-ae082b162899.png"/></a></figure><p id="3a2da1eb-8b9d-80e1-b5ba-ef8ae56b0d4d" class="" dir="auto">این وضعیت نشان می‌دهد که سیستم مدیریت خطای ری‌اکت شما دقیقاً همان‌طور که طراحی کرده بودیم عمل کرده است. فرانت‌اِند درخواست را همراه با توکن JWT به جنگو فرستاده، جنگو چون این مسیر را نداشته خطای <code>404 Not Found</code> پس داده، و ری‌اکت بدون اینکه کرش کند یا به هم بریزد، خطا را گرفت و در آن باکس قرمز نمایش داد. یعنی لوله‌کشی شبکه کاملاً درست کار می‌کند.</p><p id="3a2da1eb-8b9d-80ee-ae32-fc346cce23e3" class="" dir="auto">برای اینکه این چرخه را کامل کنیم و طعم یک ارتباط ۱۰۰٪ واقعی را بچشید، بیایید این اِندپوینت را خیلی سریع در سمت جنگو بسازیم تا باکس قرمز شما به یک پیام سبز و زنده تبدیل شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8097-8f20-f6abe87f6143" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8004-8f32-c056690e5494" class="" dir="auto">به‌روزرسانی فرانت‌اند برای دریافت اطلاعات واقعی</p></div></aside><p id="3a2da1eb-8b9d-8010-a3c7-c8eb774748ea" class="" dir="auto">حالا به سراغ فرانت‌اند می‌رویم. فایل <code><strong>src/App.jsx</strong></code> را باز کنید و کامپوننت <code>Dashboard</code> را طوری تغییر دهید که به جای درخواست دادن به مسیر فرضی <code>dashboard/</code>، به مسیر واقعی پروفایل کاربر درخواست بفرستد و اطلاعات دیتابیس را نمایش دهد:</p><blockquote id="3a2da1eb-8b9d-803e-8914-f7c28d24bdde" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">24- این فایل را به این شکل تغییر دهید : <code><strong>src/App.jsx</strong></code><em> فقط تابع Dashboard را تغییر بدهید.</em><pre id="3a2da1eb-8b9d-806c-89cd-e30178ebb933" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">function Dashboard() {
+  const { user, logout } = useContext(AuthContext);
+  const [profileData, setProfileData] = useState(null);
+  const [error, setError] = useState(&#x27;&#x27;);
+
+  useEffect(() =&gt; {
+    // ارسال درخواست به اِندپوینت واقعی پروفایل در جنگو
+    axiosInstance.get(&#x27;customers/profile/&#x27;) 
+      .then((response) =&gt; {
+        // ذخیره اطلاعات واقعی مشتری (مانند تلفن، کد ملی یا هر چه در سریالایزر هست)
+        setProfileData(response.data);
+      })
+      .catch((err) =&gt; {
+        console.error(&quot;API Call Error:&quot;, err);
+        setError(&#x27;خطا در دریافت اطلاعات واقعی پروفایل از دیتابیس.&#x27;);
+      });
+  }, []);
+
+  return (
+    &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;80px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h1&gt;به پنل اصلی پروژه Acron خوش آمدید!&lt;/h1&gt;
+      &lt;p style={{ color: &#x27;#555&#x27;, fontSize: &#x27;18px&#x27; }}&gt;کاربر جاری سیستم: &lt;strong&gt;{user?.username}&lt;/strong&gt;&lt;/p&gt;
+      
+      &lt;hr style={{ width: &#x27;50%&#x27;, margin: &#x27;20px auto&#x27;, borderColor: &#x27;#eee&#x27; }} /&gt;
+
+      &lt;div style={{ padding: &#x27;20px&#x27;, backgroundColor: error ? &#x27;#ffebee&#x27; : &#x27;#e8f5e9&#x27;, display: &#x27;inline-block&#x27;, borderRadius: &#x27;6px&#x27;, minWidth: &#x27;350px&#x27;, textAlign: &#x27;right&#x27; }}&gt;
+        &lt;h4 style={{ margin: &#x27;0 0 10px 0&#x27;, color: error ? &#x27;#c62828&#x27; : &#x27;#2e7d32&#x27;, textAlign: &#x27;center&#x27; }}&gt;
+          {error ? &#x27;خطا در ارتباط&#x27; : &#x27;مشخصات واقعی شما از دیتابیس جنگو:&#x27;}
+        &lt;/h4&gt;
+        
+        {error ? (
+          &lt;p style={{ color: &#x27;#333&#x27;, textAlign: &#x27;center&#x27; }}&gt;{error}&lt;/p&gt;
+        ) : profileData ? (
+          &lt;pre style={{ direction: &#x27;ltr&#x27;, backgroundColor: &#x27;#fff&#x27;, padding: &#x27;10px&#x27;, borderRadius: &#x27;4px&#x27;, overflowX: &#x27;auto&#x27; }}&gt;
+            {JSON.stringify(profileData, null, 2)}
+          &lt;/pre&gt;
+        ) : (
+          &lt;p style={{ textAlign: &#x27;center&#x27; }}&gt;در حال بارگذاری اطلاعات...&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;br /&gt;
+      &lt;button 
+        onClick={logout} 
+        style={{ padding: &#x27;10px 20px&#x27;, backgroundColor: &#x27;#f44336&#x27;, color: &#x27;white&#x27;, border: &#x27;none&#x27;, borderRadius: &#x27;4px&#x27;, cursor: &#x27;pointer&#x27;, marginTop: &#x27;30px&#x27;, fontWeight: &#x27;bold&#x27; }}
+      &gt;
+        خروج از حساب
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-803d-92e6-deffdf433bd4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a2da1eb-8b9d-8090-9b55-f5aeb55aa804" class="" dir="auto">نتیجه این تغییر چیست؟</p></div></aside><p id="3a2da1eb-8b9d-803f-9c31-ff70a68437ee" class="" dir="auto">با این کار، به محض اینکه لاگین کنید، فرانت‌اند با توکنِ امنِ کاربر به کامپوننت ادغام‌شده‌ی جدید شما در جنگو (<code>CustomerProfileView</code>) متصل می‌شود. جنگو با متد <code>get_or_create</code> کاربر را در جدول مشتریان پیدا می‌کند (یا می‌سازد) و تمام اطلاعات ساختاریافته‌ی آن را به صورت یک شیء JSON به فرانت‌اند برمی‌گرداند تا روی صفحه چاپ شود. این یعنی دیتای واقعی و زنده دیتابیس، جایگزین پیام تستی قبلی می‌شود.</p><blockquote id="3a4da1eb-8b9d-8030-ac3f-fedf28824ff0" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">25- در ترمینال خود، مطمئن شوید که داخل پوشه <code>frontend/</code> هستید و دستور زیر را تایپ کنید:<pre id="3a4da1eb-8b9d-8028-8255-ff5e8dfb7e0c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">npm run dev</code></pre><p id="3a4da1eb-8b9d-8022-9b6a-fe3c2e540202" class="" dir="auto">در مسیر <code>backend/ </code>هم دستور زیر را بنویسید:</p><pre id="3a4da1eb-8b9d-802b-89d4-d635639a910b" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-8040-8a53-e0227e6fa968" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-805a-be4d-d87c7a828c2f" class="" dir="auto">🛠️ کدام قسمت‌های فرانت‌اند باید توسعه داده شوند؟</p></div></aside><p id="3a4da1eb-8b9d-808b-93d8-f8dd32c29ecf" class="" dir="auto">برای اینکه فرانت‌اند کاملاً به بک‌اند متصل بشه و یک وب‌اپلیکیشن کامل داشته باشیم، توسعه فرانت‌اند را به صورت <strong>گام‌به‌گام و بدون پیچیدگی</strong> پیش می‌بریم:</p><div data-notion-highlight="yellow" dir="auto"><ul id="3a4da1eb-8b9d-8029-8e32-de4b1a15e0e4" class="block-color-yellow bulleted-list" data-notion-highlight="yellow"><li style="list-style-type:disc"><strong>گام اول: زیرساخت ارتباطی و مدیریت ورود (</strong><code><strong>AuthContext</strong></code><strong> + </strong><code><strong>Axios Interceptor</strong></code><strong>)</strong></li></ul></div><p id="3a4da1eb-8b9d-80a8-9977-f7cecf442f20" class="" dir="auto"><strong>تنظیم Axios Interceptor:</strong> تنظیم سرویس <code>api.js</code> برای ارسال خودکار توکن Access JWT در هدر درخواست‌ها و دریافت خودکار توکن جدید با Refresh Token در صورت انقضا.</p><p id="3a4da1eb-8b9d-801a-89b8-e4e871df3b43" class="" dir="auto"><strong>ساخت </strong><code><strong>AuthContext</strong></code><strong>:</strong> ساخت یک Context کلی در React برای نگهداری وضعیت لاگین بودن کاربر، اطلاعات پروفایل، و متدهای <code>login</code> و <code>logout</code>.</p><div data-notion-highlight="yellow" dir="auto"><ul id="3a4da1eb-8b9d-8012-bf4d-ef83592e5180" class="block-color-yellow bulleted-list" data-notion-highlight="yellow"><li style="list-style-type:disc"><strong>گام دوم: مسیریابی و حفاظت از مسیرها (</strong><code><strong>React Router</strong></code><strong>)</strong></li></ul></div><p id="3a4da1eb-8b9d-8008-91ed-f437c3f18fd9" class="" dir="auto">تعریف مسیرهای اصلی (<code>/login</code>, <code>/register</code>, <code>/dashboard</code>, <code>/products</code>).</p><p id="3a4da1eb-8b9d-8061-8493-dd6c9563c1e7" class="" dir="auto">ساخت کامپوننت <code>ProtectedRoute</code> برای جلوگیری از دسترسی کاربران غیرمجاز به صفحات شخصی (مثل سفارشات و پروفایل).</p><div data-notion-highlight="yellow" dir="auto"><ul id="3a4da1eb-8b9d-80fb-a3b4-e099dc1f70b3" class="block-color-yellow bulleted-list" data-notion-highlight="yellow"><li style="list-style-type:disc"><strong>گام سوم: ویجت مشاور هوشمند ACRON (</strong><code><strong>AdvisorChat Component</strong></code><strong>)</strong></li></ul></div><p id="3a4da1eb-8b9d-8019-8e3d-ccb56fc504fd" class="" dir="auto">ساخت کامپوننت چت برای اتصال به بخش <code>apps/advisor</code> بک‌اند.</p><p id="3a4da1eb-8b9d-806b-b465-fb7d28122021" class="" dir="auto">این بخش یک رابط کاربرپسند ایجاد می‌کند تا هر بازدیدکننده‌ای بتواند با مشاور هوشمند پروژه چت کند و سوالاتش را بپرسد.</p><div data-notion-highlight="yellow" dir="auto"><ul id="3a4da1eb-8b9d-80a6-91d7-e26fc402d7a6" class="block-color-yellow bulleted-list" data-notion-highlight="yellow"><li style="list-style-type:disc"><strong>گام چهارم: فروشگاه، محصولات و سبد خرید</strong></li></ul></div><p id="3a4da1eb-8b9d-8073-abbb-ceeedf60bdda" class="" dir="auto"><strong>صفحه کاتالوگ محصولات (</strong><code><strong>/products</strong></code><strong>):</strong> دریافت و نمایش لیست محصولات و دسته‌بندی‌ها از بک‌اند.</p><p id="3a4da1eb-8b9d-8046-8025-f3d31fbc6262" class="" dir="auto"><strong>سبد خرید (</strong><code><strong>/cart</strong></code><strong>):</strong> اتصال فرانت‌اند به API سبد خرید (که با UUID کار می‌کند) و انتقال به مرحله ثبت سفارش.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-80be-be46-d697c13257d7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-80a3-ab60-f85bd287eb78" class="" dir="auto"><strong>🌐 بخش اول: سرویس مرکزی درخواست‌ها (</strong><code><strong>src/api/api.js</strong></code><strong>)</strong></p></div></aside><p id="3a4da1eb-8b9d-801c-a8e7-de701723d90e" class="" dir="auto">در این فایل یک نمونه اختصاصی از کتابخانه <strong>Axios</strong> می‌سازیم. وظیفه این فایل چسباندن خودکار توکن‌های JWT به تمام درخواست‌ها و مدیریت تمدید خودکار توکن‌های منقضی‌شده است.</p><ul id="3a4da1eb-8b9d-8041-93d9-e5f09323749e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>📚 آموزش مفاهیم این بخش (حداقل دو خط برای هر قسمت):</strong></li></ul><ol type="1" id="3a4da1eb-8b9d-8094-b231-da16b92b9d0c" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم Axios Instance (</strong><code><strong>axios.create</strong></code><strong>):</strong><br/>در جاوااسکریپت به جای اینکه در تمام فایل‌ها آدرس کامل بک‌اند (<code>[http://127.0.0.1:8000/api/](http://127.0.0.1:8000/api/)...</code>) را تکرار کنیم، یک نسخه مرکزیت‌یافته از آکسیوس می‌سازیم. این کار باعث می‌شود اگر در آینده آدرس دامنه یا هدرهای پیش‌فرض تغییر کرد، فقط همین یک فایل را ویرایش کنیم و کل برنامه به‌روزرسانی شود.</li></ol><ol type="1" id="3a4da1eb-8b9d-80b1-a764-dc386667b296" class="numbered-list" start="2" dir="auto"><li><strong>مفهوم Request Interceptor (شنودکننده درخواست‌ها):</strong><br/>اینترسپتور درخواست مثل یک دروازه بازرسی قبل از خروج هر درخواست HTTP عمل می‌کند. این تابع قبل از ارسال هر پیام به سمت بک‌اند جنگو، توکن دسترسی (<code>access_token</code>) را از حافظه مرورگر (<code>localStorage</code>) می‌خواند و آن را در هدر استاندارد <code>Authorization</code> قرار می‌دهد تا بک‌اند هویت ما را تشخیص دهد.</li></ol><ol type="1" id="3a4da1eb-8b9d-80e3-8948-c2f16b9fb98c" class="numbered-list" start="3" dir="auto"><li><strong>مفهوم Response Interceptor و تمدید خودکار توکن (Refresh Token Flow):</strong><br/>زمانی که توکن کوتاه‌مدت دسترسی منقضی می‌شود، بک‌اند خطای <code>401 Unauthorized</code> برمی‌گرداند. این اینترسپتور خطا را شکار کرده، به‌صورت کاملاً مخفیانه و بدون اینکه کاربر متوجه شود یک درخواست به API رفرش توکن می‌فرستد، توکن جدید می‌گیرد، آن را ذخیره کرده و درخواست قبلی کاربر را دوباره تکرار می‌کند.</li></ol><blockquote id="3a2da1eb-8b9d-80c1-a167-d66412cceec9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">26- 💻 کد فایل <code>src/api/api.js</code>:<pre id="3a2da1eb-8b9d-8055-a3b3-d5b1476a9462" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import axios from &#x27;axios&#x27;;
+
+// ساخت نمونه مرکزی اکسپوس
+const axiosInstance = axios.create({
+  baseURL: &#x27;http://127.0.0.1:8000/api/&#x27;,
+  headers: {
+    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+  },
+});
+
+// Request Interceptor: تزریق توکن به تمام درخواست‌ها
+axiosInstance.interceptors.request.use(
+  (config) =&gt; {
+    const accessToken = localStorage.getItem(&#x27;access_token&#x27;);
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) =&gt; Promise.reject(error)
+);
+
+// Response Interceptor: تمدید توکن در صورت دریافت خطای 401
+axiosInstance.interceptors.response.use(
+  (response) =&gt; response,
+  async (error) =&gt; {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 &amp;&amp; !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshToken = localStorage.getItem(&#x27;refresh_token&#x27;);
+        if (!refreshToken) throw new Error(&#x27;توکن رفرش وجود ندارد&#x27;);
+
+        // آدرس تمدید توکن جنگو
+        const response = await axios.post(&#x27;http://127.0.0.1:8000/api/accounts/token/refresh/&#x27;, {
+          refresh: refreshToken,
+        });
+
+        const newAccessToken = response.data.access;
+        localStorage.setItem(&#x27;access_token&#x27;, newAccessToken);
+
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        localStorage.removeItem(&#x27;access_token&#x27;);
+        localStorage.removeItem(&#x27;refresh_token&#x27;);
+        window.location.href = &#x27;/login&#x27;;
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-80d3-a476-c932baed99ca" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-806c-8bbf-f0e10910b321" class="" dir="auto"><strong>🔐 بخش دوم: مدیریت سراسری حالت ورود (</strong><code><strong>src/context/AuthContext.jsx</strong></code><strong>)</strong></p></div></aside><p id="3a4da1eb-8b9d-80da-b3ad-ca9b37fba012" class="" dir="auto">در سیستم‌های مدرن ریکت، اطلاعاتی مثل &quot;کاربر کیست&quot; و &quot;آیا لاگین کرده است یا نه&quot; باید در تمام صفحات در دسترس باشد.</p><ul id="3a4da1eb-8b9d-80fb-a10e-ceb53f6a4e80" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>📚 آموزش مفاهیم این بخش (حداقل دو خط برای هر قسمت):</strong></li></ul><ol type="1" id="3a4da1eb-8b9d-8024-bb04-ff1a9a6a5a2b" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم React Context (</strong><code><strong>createContext</strong></code><strong>):<br/></strong>در ریکت به‌طور عادی برای فرستادن اطلاعات از یک کامپوننت پدر به فرزند باید متغیرها را دانه به دانه (Prop Drilling) پاس بدهیم که پروژه را شلوغ می‌کند. با Context یک حافظه اختصاصی در سطح کل برنامه می‌سازیم تا تمام صفحات (مثل هدر، داشبورد، سبد خرید) مستقیماً به وضعیت احراز هویت دسترسی داشته باشند.</li></ol><ol type="1" id="3a4da1eb-8b9d-808e-af5a-d2a5ccc200fa" class="numbered-list" start="2" dir="auto"><li><strong>مفهوم React Hooks (</strong><code><strong>useState</strong></code><strong> و </strong><code><strong>useEffect</strong></code><strong>):</strong><br/>هوک <code>useState</code> متغیرهایی می‌سازد که اگر مقدارشان تغییر کند، ریکت خودبه‌خود ظاهر صفحه را به‌روزرسانی می‌کند (مثلاً تغییر وضعیت کاربر از null به اطلاعات واقعی). هوک <code>useEffect</code> کدهایی را اجرا می‌کند که باید فقط یک بار هنگام باز شدن سایت اجرا شوند (مثل چک کردن اینکه آیا توکنی در مرورگر ذخیره شده یا نه).</li></ol><ol type="1" id="3a4da1eb-8b9d-802c-b600-c4c1e1933619" class="numbered-list" start="3" dir="auto"><li><strong>مفهوم Custom Hook (</strong><code><strong>useAuth</strong></code><strong>):</strong><br/>برای اینکه در صفحات مختلف مجبور نباشیم هربار توابع پیچیده ریکت (<code>useContext(AuthContext)</code>) را ایمپورت کنیم، یک هوک شخصی‌سازی‌شده به نام <code>useAuth</code> می‌سازیم. این کار باعث می‌شود کد صفحات دیگر بسیار خواناتر، تمیزتر و کوتاه‌تر شود.</li></ol><blockquote id="3a2da1eb-8b9d-80ba-8796-febc198baa63" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">27- 💻 کد فایل <code>src/context/AuthContext.jsx</code>:<pre id="3a2da1eb-8b9d-8005-b581-e45bc5f0bfb0" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { createContext, useState, useEffect, useContext } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;; // استفاده از فایل یکتا
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) =&gt; {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() =&gt; {
+    const checkAuthStatus = async () =&gt; {
+      const token = localStorage.getItem(&#x27;access_token&#x27;);
+      if (token) {
+        try {
+          const response = await axiosInstance.get(&#x27;accounts/me/&#x27;);
+          setUser(response.data);
+        } catch (error) {
+          console.error(&#x27;توکن نامعتبر است:&#x27;, error);
+          localStorage.removeItem(&#x27;access_token&#x27;);
+          localStorage.removeItem(&#x27;refresh_token&#x27;);
+        }
+      }
+      setLoading(false);
+    };
+
+    checkAuthStatus();
+  }, []);
+
+  const login = async (email, password) =&gt; {
+    // ارسال درخواست لاگین به جنگو
+    const response = await axiosInstance.post(&#x27;accounts/login/&#x27;, { email, password });
+    const { access, refresh, user: userData } = response.data;
+
+    // این دو خط مقادیر را در Local Storage ذخیره می‌کنند
+    localStorage.setItem(&#x27;access_token&#x27;, access);
+    localStorage.setItem(&#x27;refresh_token&#x27;, refresh);
+    
+    setUser(userData);
+    return response.data;
+  };
+
+  const logout = () =&gt; {
+    localStorage.removeItem(&#x27;access_token&#x27;);
+    localStorage.removeItem(&#x27;refresh_token&#x27;);
+    setUser(null);
+  };
+
+  return (
+    &lt;AuthContext.Provider value={{ user, login, logout, loading, isAuthenticated: !!user }}&gt;
+      {!loading &amp;&amp; children}
+    &lt;/AuthContext.Provider&gt;
+  );
+};
+
+export const useAuth = () =&gt; useContext(AuthContext);
+export { AuthContext };</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-80b7-876a-ca6e56241573" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-802d-8394-c7beacc22238" class="" dir="auto"><strong>🔑 نحوه اتصال در فایل اصلی (</strong><code><strong>src/main.jsx</strong></code><strong> یا </strong><code><strong>src/App.jsx</strong></code><strong>)</strong></p></div></aside><p id="3a4da1eb-8b9d-80f1-b454-f80cf740fb75" class="" dir="auto">برای اینکه این زیرساخت روی کل فرانت‌اند اعمال شود، کامپوننت اصلی برنامه را داخل <code>&lt;AuthProvider&gt;</code> قرار می‌دهیم:</p><blockquote id="3a2da1eb-8b9d-80e8-b9ad-d17dd5aa5035" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">28- در فایل main.jsx<pre id="3a2da1eb-8b9d-80dd-87d9-c6be7d101013" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import ReactDOM from &#x27;react-dom/client&#x27;;
+import App from &#x27;./App.jsx&#x27;;
+import { AuthProvider } from &#x27;./context/AuthContext.jsx&#x27;;
+
+ReactDOM.createRoot(document.getElementById(&#x27;root&#x27;)).render(
+  &lt;React.StrictMode&gt;
+    &lt;AuthProvider&gt;
+      &lt;App /&gt;
+    &lt;/AuthProvider&gt;
+  &lt;/React.StrictMode&gt;
+);</code></pre></blockquote><p id="3a4da1eb-8b9d-80c4-a1c1-e5def28404a0" class="" dir="auto">🎯 ۱. در نهایت چه اتفاقی خواهد افتاد؟</p><ul id="3a4da1eb-8b9d-8074-aa35-d18573e0cb49" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>ارسال خودکار شناسنامه کاربر:</strong> از این به بعد، هر درخواستی که از طریق فایل <code>api.js</code> به بک‌اند فرستاده شود، توکن JWT کاربر را به‌صورت خودکار در هدر خود همراه دارد.</li></ul><ul id="3a4da1eb-8b9d-80f7-a189-dfc3e6c709ad" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>تمدید مخفیانه و بدون وقفه نشست کاربر:</strong> اگر کاربر در حال کار با سایت باشد و توکن کوتاه‌مدت او منقضی شود، فرانت‌اند به‌طور کاملاً خودکار و در پس‌زمینه توکن جدید می‌گیرد و کار کاربر قطع نمی‌شود.</li></ul><ul id="3a4da1eb-8b9d-80e6-bd81-cd506e9c96e1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>دسترسی عمومی به وضعیت ورود:</strong> تمام صفحات برنامه (مثل هدر، سبد خرید، صفحه پروفایل) در هر لحظه می‌دانند کاربر لاگین است یا نه.</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-807b-8d41-fde2470ac0b1" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-80fa-90f6-db98192f9a20" class="" dir="auto"><strong>🧪 نحوه تست و مشاهده مقادیر در Local Storage</strong></p></div></aside><ul id="3a4da1eb-8b9d-80a1-a5b3-edc14ff6c928" class="bulleted-list" dir="auto"><li style="list-style-type:disc">برنامه را اجرا کنید و در مرورگر به آدرس <code>/login</code> بروید.</li></ul><ul id="3a4da1eb-8b9d-80ac-89e7-dd0799b4b6a2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">کلید <strong>F12</strong> را بزنید و وارد تب <strong>Application ➔ Local Storage</strong> شوید.</li></ul><ul id="3a4da1eb-8b9d-80b1-aaab-d14c8b15d512" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ایمیل و رمز عبور معتبر یک کاربر در دیتابیس جنگو را وارد کرده و دکمه <strong>ورود</strong> را بزنید.</li></ul><ul id="3a4da1eb-8b9d-80c2-b4d2-df36517035d3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">به محض موفقیت‌آمیز بودن ورود، بلافاصله دو کلید <code>access_token</code> و <code>refresh_token</code> در جدول <code>Local Storage</code> ظاهر خواهند شد.</li></ul><p id="3a4da1eb-8b9d-8069-bf01-cbb960f17e35" class="" dir="auto">در ساختار پروژه شما، آدرس‌ها مستقیماً در <code>apps/api/urls.py</code> تعریف شده‌اند و عبارت <code>accounts</code> در مسیر آدرس‌ها وجود ندارد. به همین دلیل وقتی فرانت‌اند آدرس <code>/api/accounts/login/</code> را صدا می‌زد، جنگو خطای ۴۰۴ برمی‌گرداند.</p><p id="3a4da1eb-8b9d-80ac-961b-edb25fc3ac91" class="" dir="auto">طبق فایل‌های شما، آدرس‌های واقعی احراز هویت در بک‌اند به این صورت هستند:</p><ul id="3a4da1eb-8b9d-8052-a177-f63afe147c13" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>دریافت توکن (لاگین):</strong> <code>[http://127.0.0.1:8000/api/token/](http://127.0.0.1:8000/api/token/)</code></li></ul><ul id="3a4da1eb-8b9d-805f-b005-fb3a608de0b9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>تمدید توکن (رفرش):</strong> <code>[http://127.0.0.1:8000/api/token/refresh/](http://127.0.0.1:8000/api/token/refresh/)</code></li></ul><ul id="3a4da1eb-8b9d-8014-88b2-e0a9d7f8742e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>اطلاعات کاربر جاری:</strong> <code>[http://127.0.0.1:8000/api/me/](http://127.0.0.1:8000/api/me/)</code></li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-800c-bb98-dfcf231bfe81" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-801f-8508-fcd7a588ef23" class="" dir="auto">📚 آموزش مفاهیم عیب‌یابی این بخش</p></div></aside><ol type="1" id="3a4da1eb-8b9d-80fa-a300-c9cdc9a50673" class="numbered-list" start="1" dir="auto"><li><strong>دلیل خطای ۴۰۴ بر اساس ساختار واقعی URLها:</strong><br/>در فایل <code>apps/api/urls.py</code> شما، آدرس دریافت توکن به‌صورت <code>path(&#x27;token/&#x27;, TokenObtainPairView.as_view())</code> تعریف شده است. چون این فایل خود تحت مسیر <code>api/</code> در <code>config/urls.py</code> قرار دارد، آدرس نهایی بدون نیاز به کلمه <code>accounts</code> می‌افتد.</li></ol><ol type="1" id="3a4da1eb-8b9d-806d-9361-f837bb03e4b9" class="numbered-list" start="2" dir="auto"><li><strong>پارامتر ورودی استاندارد در SimpleJWT جنگو:</strong><br/>کتابخانه SimpleJWT به‌صورت پیش‌فرض برای دریافت توکن در <code>TokenObtainPairView</code> منتظر فیلدهای <code>username</code> و <code>password</code> است. اگر در فرم لاگین از ایمیل استفاده می‌کنید، باید آن را در قالب کلید <code>username</code> یا <code>email</code> (بسته به تنظیمات سریالایزر شما) به سمت جنگو ارسال کنیم.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-8042-97ce-df507b893cf2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-808d-8ebe-e5211ac79eac" class="" dir="auto">🛠️ اصلاح کدهای فرانت‌اند جهت انطباق کامل با بک‌اند</p></div></aside><blockquote id="3a4da1eb-8b9d-8087-b63e-d09315ffdf1f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">30- اصلاح فایل <code>src/api/axiosInstance.js</code><p id="3a4da1eb-8b9d-8068-8c78-fbb8742fc96f" class="" dir="auto">آدرس تمدید توکن در اینترسپتور پاسخ را روی <code>token/refresh/</code> تنظیم می‌کنیم:</p><pre id="3a4da1eb-8b9d-8028-b7ff-c6375a25083e" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import axios from &#x27;axios&#x27;;
+
+// ۱. ساخت نمونه مرکزی اکسپوس
+const axiosInstance = axios.create({
+  baseURL: &#x27;http://127.0.0.1:8000/api/&#x27;,
+  headers: {
+    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+  },
+});
+
+// ۲. Request Interceptor: تزریق خودکار توکن دسترسی
+axiosInstance.interceptors.request.use(
+  (config) =&gt; {
+    const accessToken = localStorage.getItem(&#x27;access_token&#x27;);
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) =&gt; Promise.reject(error)
+);
+
+// ۳. Response Interceptor: تمدید توکن هنگام خطای 401
+axiosInstance.interceptors.response.use(
+  (response) =&gt; response,
+  async (error) =&gt; {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 &amp;&amp; !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshToken = localStorage.getItem(&#x27;refresh_token&#x27;);
+        if (!refreshToken) throw new Error(&#x27;توکن رفرش وجود ندارد&#x27;);
+
+        // 👈 آدرس دقیق تمدید توکن بر اساس apps/api/urls.py
+        const response = await axios.post(&#x27;http://127.0.0.1:8000/api/token/refresh/&#x27;, {
+          refresh: refreshToken,
+        });
+
+        const newAccessToken = response.data.access;
+        localStorage.setItem(&#x27;access_token&#x27;, newAccessToken);
+
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        localStorage.removeItem(&#x27;access_token&#x27;);
+        localStorage.removeItem(&#x27;refresh_token&#x27;);
+        window.location.href = &#x27;/login&#x27;;
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;</code></pre></blockquote><blockquote id="3a4da1eb-8b9d-801b-99c6-f15e66dcaf79" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">31- اصلاح فایل <code>src/context/AuthContext.jsx</code><p id="3a4da1eb-8b9d-80dc-bae9-d3dbe6fead42" class="" dir="auto">آدرس‌های <code>token/</code> و <code>me/</code> را در کانتکست جایگزین می‌کنیم:</p><pre id="3a4da1eb-8b9d-80ca-9f20-d9b1eca15e84" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { createContext, useState, useEffect, useContext } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) =&gt; {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // بررسی وضعیت ورود با فراخوانی مسیر /api/me/
+  useEffect(() =&gt; {
+    const checkAuthStatus = async () =&gt; {
+      const token = localStorage.getItem(&#x27;access_token&#x27;);
+      if (token) {
+        try {
+          // 👈 دریافت اطلاعات کاربر از مسیر دقیق /api/me/
+          const response = await axiosInstance.get(&#x27;me/&#x27;);
+          setUser(response.data);
+        } catch (error) {
+          console.error(&#x27;توکن نامعتبر است:&#x27;, error);
+          localStorage.removeItem(&#x27;access_token&#x27;);
+          localStorage.removeItem(&#x27;refresh_token&#x27;);
+        }
+      }
+      setLoading(false);
+    };
+
+    checkAuthStatus();
+  }, []);
+
+  // تابع ورود به حساب
+  const login = async (username, password) =&gt; {
+    // 👈 ارسال درخواست لاگین به مسیر دقیق /api/token/
+    const response = await axiosInstance.post(&#x27;token/&#x27;, { 
+      username: username, 
+      password: password 
+    });
+    
+    const { access, refresh } = response.data;
+
+    // ذخیره توکن‌ها در Local Storage
+    localStorage.setItem(&#x27;access_token&#x27;, access);
+    localStorage.setItem(&#x27;refresh_token&#x27;, refresh);
+    
+    // دریافت اطلاعات پروفایل کاربر بلافاصله پس از لاگین
+    const userProfile = await axiosInstance.get(&#x27;me/&#x27;);
+    setUser(userProfile.data);
+    
+    return response.data;
+  };
+
+  // تابع خروج
+  const logout = () =&gt; {
+    localStorage.removeItem(&#x27;access_token&#x27;);
+    localStorage.removeItem(&#x27;refresh_token&#x27;);
+    setUser(null);
+  };
+
+  return (
+    &lt;AuthContext.Provider value={{ user, login, logout, loading, isAuthenticated: !!user }}&gt;
+      {!loading &amp;&amp; children}
+    &lt;/AuthContext.Provider&gt;
+  );
+};
+
+export const useAuth = () =&gt; useContext(AuthContext);
+export { AuthContext };
+</code></pre></blockquote><p id="3a4da1eb-8b9d-8006-bde6-cba706ee68ed" class="" dir="auto">🧪 نتیجه بعد از اعمال این تغییرات</p><ol type="1" id="3a4da1eb-8b9d-8083-ae8f-c64c8fa61acb" class="numbered-list" start="1" dir="auto"><li>درخواست ورود به <code>[http://127.0.0.1:8000/api/token/](http://127.0.0.1:8000/api/token/)</code> ارسال می‌شود و کد <code><strong>200 OK</strong></code> برمی‌گرداند.</li></ol><ol type="1" id="3a4da1eb-8b9d-80ba-8f9b-e9489af8833b" class="numbered-list" start="2" dir="auto"><li>کلیدهای <code>access_token</code> و <code>refresh_token</code> بلافاصله در <strong>Application ➔ Local Storage</strong> مرورگر ظاهر می‌شوند.</li></ol><ol type="1" id="3a4da1eb-8b9d-8031-99e7-dc1935b6eb9d" class="numbered-list" start="3" dir="auto"><li>بلافاصله درخواست دیگری به <code>[http://127.0.0.1:8000/api/me/](http://127.0.0.1:8000/api/me/)</code> ارسال شده و مشخصات کاربر لاگین شده دریافت می‌شود.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-80fb-a37b-dadbfdd0f2f9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-8023-b1f2-d46f16d700ba" class="" dir="auto">📚 آموزش مفاهیم این لاگ‌ها و اتفاقات (توضیحات آموزشی)</p></div></aside><ol type="1" id="3a4da1eb-8b9d-8028-a677-fdd32c683259" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم درخواست‌های </strong><code><strong>OPTIONS</strong></code><strong> (CORS Preflight):</strong><br/>وقتی فرانت‌اند روی یک پورت (<code>5173</code>) و بک‌اند روی پورت دیگری (<code>8000</code>) باشد، مرورگر به دلایل امنیتی ابتدا یک درخواست مخفیانه به نام <code>OPTIONS</code> ارسال می‌کند. مرورگر با این کار از جنگو می‌پرسد &quot;آیا اجازه دارم درخواست اصلی (POST/GET) همراه با هدر Authorization را بفرستم؟&quot; و پاسخ <code>200</code> جنگو به این معنی است که مجوز صادر شده است.</li></ol><ol type="1" id="3a4da1eb-8b9d-80a0-866d-e5b1a5263868" class="numbered-list" start="2" dir="auto"><li><strong>زنجیره درخواست‌های لاگین و دریافت پروفایل (</strong><code><strong>/api/token/</strong></code><strong> و </strong><code><strong>/api/me/</strong></code><strong>):</strong><br/>لاگ <code>POST /api/token/ 200</code> یعنی فرم لاگین، نام کاربری و رمز عبور را ارسال کرده و جنگو توکن‌ها را صادر کرده است. بلافاصله فرانت‌اند این توکن را دریافت کرده، در Local Storage قرار داده و به‌صورت خودکار درخواست بعدی را همراه با توکن به <code>/api/me/</code> و <code>/api/customers/profile/</code> فرستاده تا اطلاعات پروفایل شما را از دیتابیس خوانده و روی صفحه نمایش دهد.</li></ol><ol type="1" id="3a4da1eb-8b9d-8045-b56a-f054edd9a2de" class="numbered-list" start="3" dir="auto"><li><strong>ساختار توکن‌های JWT ذخیره‌شده در Local Storage:</strong><br/>این رشته‌های بلندی که در مرورگر مشاهده می‌کنی (<code>...eyJhbGciOiJIUzI1Ni</code>)، توکن‌های JWT استاندارد هستند. این توکن‌ها از سه بخش تشکیل شده‌اند (Header، Payload و Signature) که بخش وسط آن حاوی شناسه کاربر (<code>user_id: 5</code>) و زمان انقضای توکن به صورت رمزنگاری‌شده است؛ به همین دلیل بدون نیاز به ذخیره رمز عبور در مرورگر، هویت کاربر اثبات می‌شود.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-807e-a5a4-f757e9fa9b77" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-8027-a462-d2a37a426fb8" class="" dir="auto">🏆 چرخه کامل کاری که انجام داده شد:</p></div></aside><ol type="1" id="3a4da1eb-8b9d-8001-b0a3-cf33d58c121d" class="numbered-list" start="1" dir="auto"><li>کاربر فرم لاگین را پر کرد.</li></ol><ol type="1" id="3a4da1eb-8b9d-8019-8f9d-f1914f6f731a" class="numbered-list" start="2" dir="auto"><li>آکسیوس درخواست POST را به <code>/api/token/</code> فرستاد و دو توکن Access و Refresh گرفت.</li></ol><ol type="1" id="3a4da1eb-8b9d-80b4-9cc0-db00f5616b99" class="numbered-list" start="3" dir="auto"><li>توکن‌ها در <strong>Local Storage</strong> مرورگر ذخیره شدند.</li></ol><ol type="1" id="3a4da1eb-8b9d-806a-bc83-f7895e339f9b" class="numbered-list" start="4" dir="auto"><li>اینترسپتور آکسیوس به‌طور خودکار توکن Access را در هدر درخواست‌های بعدی گذاشت.</li></ol><ol type="1" id="3a4da1eb-8b9d-803c-bff2-dab7b6737015" class="numbered-list" start="5" dir="auto"><li>فرانت‌اند درخواست GET به <code>/api/customers/profile/</code> فرستاد و اطلاعات دیتابیس روی داشبورد قرار گرفت.</li></ol><p id="3a4da1eb-8b9d-8069-923c-da1c5923f60d" class="" dir="auto">زیرساخت ارتباطی و امنیتی فرانت‌اند و بک‌اند به کامل‌ترین شکل ممکن پایه ریزی شد!</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-8098-bc27-ebd5e18f7a1f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3a4da1eb-8b9d-8003-97b2-f15ebfc12510" class="" dir="auto">حال که زیرساخت احراز هویت و ارتباط با بک‌اند ۱۰۰٪ تثبیت شده، مناسب‌ترین و منطقی‌ترین قسمت برای توسعه، <strong>ساخت نوار ناوبری (Navbar) و صفحه کاتالوگ محصولات (</strong><code><strong>/products</strong></code><strong>)</strong> است.</h4></div></aside><p id="3a4da1eb-8b9d-803e-ac62-c75eb18dbcd6" class="" dir="auto">در حال حاضر کاربر پس از لاگین فقط یک صفحه ساده با کدهای JSON می‌بیند. با ساخت این دو بخش، پروژه از یک نمونه آزمایشگاهی به یک <strong>وب‌اپلیکیشن واقعی و کاربردی</strong> تبدیل می‌شود و داده‌های موجود در اپلیکیشن <code>products</code> جنگو روی فرانت‌اند به نمایش درمی‌آیند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-807d-bb47-f6629d19c384" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-80e2-89c3-c27afd2b2048" class="" dir="auto">📚 آموزش مفاهیم این فاز</p></div></aside><ol type="1" id="3a4da1eb-8b9d-8033-8557-da588b042f9c" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم پیمایش لیست‌ها در ریکت (</strong><code><strong>Array.prototype.map</strong></code><strong>):</strong><br/>در جاوااسکریپت و ریکت، برای تبدیل یک لیست از داده‌ها (مثلاً آرایه‌ای از محصولات دریافت شده از API) به عناصر گرافیکی HTML، از متد <code>.map()</code> استفاده می‌کنیم. این متد روی تک‌تک محصولات حلقه زده و برای هر کدام یک کارت گرافیکی تولید می‌کند.</li></ol><ol type="1" id="3a4da1eb-8b9d-80fa-bc49-ce0ece47589d" class="numbered-list" start="2" dir="auto"><li><strong>مفهوم کلید یکتا در لیست‌های ریکت (</strong><code><strong>key</strong></code><strong> prop):</strong><br/>وقتی در ریکت لیستی از آیتم‌ها را رندر می‌کنیم، باید به هر عنصر یک ویژگی به نام <code>key</code> (که مقدار آن معمولاً ID محصول است) اختصاص دهیم. این کلید به موتور ریکت کمک می‌کند تغییرات دیتابیس را هوشمندانه تشخیص داده و فقط همان کارت خاص را بدون رندر مجدد کل صفحه، به‌روزرسانی کند.</li></ol><ol type="1" id="3a4da1eb-8b9d-801d-9a1a-f6960028b416" class="numbered-list" start="3" dir="auto"><li><strong>مفهوم کامپوننت‌های قابلاستیفاده (Reusable Components):</strong><br/>در ساختار ریکت، اجزای مستقل مانند نوار بالای سایت (<code>Navbar</code>) در فایل‌های جداگانه ساخته می‌شوند. این کار باعث می‌شود بتوانیم هدر سایت را در تمام صفحات (داشبورد، محصولات، چت و...) قرار دهیم بدون اینکه مجبور باشیم کدهای آن را تکرار کنیم.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-803a-ad11-f7f3100c78f0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-8002-a9d8-d77f2829b931" class="" dir="auto">🛠️ مراحل پیاده‌سازی این بخش</p></div></aside><blockquote id="3a4da1eb-8b9d-80c9-879c-cc5de9befe39" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">32- گام اول: ساخت نوار ناوبری (<code>src/components/Navbar.jsx</code>)<p id="3a4da1eb-8b9d-8028-b623-c542d1e24610" class="" dir="auto">یک هدر ساده برای رفت‌وآمد بین صفحات و نمایش وضعیت کاربر لاگین‌شده می‌سازیم:</p><pre id="3a4da1eb-8b9d-8088-8d10-d0479fe1e8c6" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import { Link, useNavigate } from &#x27;react-router-dom&#x27;;
+import { useAuth } from &#x27;../context/AuthContext&#x27;;
+
+function Navbar() {
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () =&gt; {
+    logout();
+    navigate(&#x27;/login&#x27;);
+  };
+
+  return (
+    &lt;nav style={{
+      display: &#x27;flex&#x27;,
+      justifyContent: &#x27;space-between&#x27;,
+      alignItems: &#x27;center&#x27;,
+      padding: &#x27;15px 30px&#x27;,
+      backgroundColor: &#x27;#1e293b&#x27;,
+      color: &#x27;white&#x27;,
+      direction: &#x27;rtl&#x27;,
+      fontFamily: &#x27;sans-serif&#x27;
+    }}&gt;
+      &lt;div style={{ display: &#x27;flex&#x27;, gap: &#x27;20px&#x27;, alignItems: &#x27;center&#x27; }}&gt;
+        &lt;h2 style={{ margin: 0, color: &#x27;#38bdf8&#x27; }}&gt;ACRON&lt;/h2&gt;
+        &lt;Link to=&quot;/&quot; style={{ color: &#x27;white&#x27;, textDecoration: &#x27;none&#x27; }}&gt;داشبورد&lt;/Link&gt;
+        &lt;Link to=&quot;/products&quot; style={{ color: &#x27;white&#x27;, textDecoration: &#x27;none&#x27; }}&gt;محصولات&lt;/Link&gt;
+      &lt;/div&gt;
+
+      &lt;div&gt;
+        {isAuthenticated ? (
+          &lt;div style={{ display: &#x27;flex&#x27;, gap: &#x27;15px&#x27;, alignItems: &#x27;center&#x27; }}&gt;
+            &lt;span&gt;خوش آمدی، &lt;strong&gt;{user?.username}&lt;/strong&gt;&lt;/span&gt;
+            &lt;button 
+              onClick={handleLogout} 
+              style={{ padding: &#x27;6px 12px&#x27;, backgroundColor: &#x27;#ef4444&#x27;, color: &#x27;white&#x27;, border: &#x27;none&#x27;, borderRadius: &#x27;4px&#x27;, cursor: &#x27;pointer&#x27; }}
+            &gt;
+              خروج
+            &lt;/button&gt;
+          &lt;/div&gt;
+        ) : (
+          &lt;Link to=&quot;/login&quot; style={{ color: &#x27;#38bdf8&#x27;, textDecoration: &#x27;none&#x27; }}&gt;ورود به حساب&lt;/Link&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  );
+}
+
+export default Navbar;
+
+
+</code></pre></blockquote><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-808f-9325-ee1c9e1e66d9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-8040-a763-d223241a4212" class="" dir="auto">گام دوم: ساخت صفحه کاتالوگ محصولات (<code>src/components/Products.jsx</code>)</p></div></aside><blockquote id="3a4da1eb-8b9d-80e4-bb42-e78e505aadc2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">33- این کامپوننت داده‌ها را از مسیر <code>[http://127.0.0.1:8000/api/products/](http://127.0.0.1:8000/api/products/)</code> دریافت کرده و کارت‌های محصولات را رندر می‌کند:<pre id="3a4da1eb-8b9d-8012-9c94-c9aa38f1ff72" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useEffect } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+
+function Products() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(&#x27;&#x27;);
+
+  useEffect(() =&gt; {
+    // دریافت لیست محصولات از API جنگو
+    axiosInstance.get(&#x27;products/&#x27;)
+      .then((response) =&gt; {
+        // بسته به اینکه API شما صفحه بندی دارد یا لیست مستقیم برمی گرداند
+        const data = response.data.results || response.data;
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) =&gt; {
+        console.error(&#x27;خطا در دریافت محصولات:&#x27;, err);
+        setError(&#x27;امکان دریافت لیست محصولات وجود ندارد.&#x27;);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return &lt;h3 style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;50px&#x27; }}&gt;در حال بارگذاری محصولات...&lt;/h3&gt;;
+  if (error) return &lt;h3 style={{ textAlign: &#x27;center&#x27;, color: &#x27;red&#x27;, marginTop: &#x27;50px&#x27; }}&gt;{error}&lt;/h3&gt;;
+
+  return (
+    &lt;div style={{ padding: &#x27;30px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h2 style={{ textAlign: &#x27;center&#x27;, marginBottom: &#x27;30px&#x27; }}&gt;کاتالوگ محصولات ACRON&lt;/h2&gt;
+      
+      &lt;div style={{
+        display: &#x27;grid&#x27;,
+        gridTemplateColumns: &#x27;repeat(auto-fill, minmax(250px, 1fr))&#x27;,
+        gap: &#x27;20px&#x27;
+      }}&gt;
+        {products.map((product) =&gt; (
+          &lt;div key={product.id} style={{
+            border: &#x27;1px solid #e2e8f0&#x27;,
+            borderRadius: &#x27;8px&#x27;,
+            padding: &#x27;15px&#x27;,
+            backgroundColor: &#x27;#fff&#x27;,
+            boxShadow: &#x27;0 2px 4px rgba(0,0,0,0.05)&#x27;,
+            display: &#x27;flex&#x27;,
+            flexDirection: &#x27;column&#x27;,
+            justifyContent: &#x27;space-between&#x27;
+          }}&gt;
+            &lt;div&gt;
+              &lt;h3 style={{ margin: &#x27;0 0 10px 0&#x27;, color: &#x27;#0f172a&#x27; }}&gt;{product.name || product.title}&lt;/h3&gt;
+              &lt;p style={{ color: &#x27;#64748b&#x27;, fontSize: &#x27;14px&#x27; }}&gt;{product.description || &#x27;بدون توضیحات&#x27;}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div style={{ marginTop: &#x27;15px&#x27;, display: &#x27;flex&#x27;, justifyContent: &#x27;space-between&#x27;, alignItems: &#x27;center&#x27; }}&gt;
+              &lt;span style={{ fontWeight: &#x27;bold&#x27;, color: &#x27;#059669&#x27; }}&gt;
+                {product.price ? `${Number(product.price).toLocaleString()} تومان` : &#x27;قیمت تعیین‌نشده&#x27;}
+              &lt;/span&gt;
+              &lt;button style={{
+                padding: &#x27;8px 12px&#x27;,
+                backgroundColor: &#x27;#2563eb&#x27;,
+                color: &#x27;white&#x27;,
+                border: &#x27;none&#x27;,
+                borderRadius: &#x27;4px&#x27;,
+                cursor: &#x27;pointer&#x27;
+              }}&gt;
+                افزودن به سبد
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Products;
+
+
+</code></pre></blockquote><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-8027-8958-fafa52e3ba5d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-8062-ac9a-cfe9a6e25661" class="" dir="auto">گام سوم: به‌روزرسانی مسیرها در <code>App.jsx</code></p></div></aside><blockquote id="3a4da1eb-8b9d-804b-8a2c-c476b221f225" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">34- کافی است <code>Navbar</code> را بالای تمامی مسیرها قرار داده و مسیر <code>/products</code> را اضافه کنید:<pre id="3a4da1eb-8b9d-80c7-8c0c-ed9c4368215d" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">
+
+
+import { useAuth } from &#x27;./context/AuthContext&#x27;;
+import Navbar from &#x27;./components/Navbar&#x27;;
+import Products from &#x27;./components/Products&#x27;;
+
+
+
+function App() {
+  const { user } = useAuth();
+
+  return (
+    &lt;Router&gt;
+      &lt;Navbar /&gt;
+      &lt;Routes&gt;
+        &lt;Route 
+          path=&quot;/login&quot; 
+          element={user ? &lt;Navigate to=&quot;/&quot; replace /&gt; : &lt;Login /&gt;} 
+        /&gt;
+        &lt;Route 
+          path=&quot;/&quot; 
+          element={
+            &lt;ProtectedRoute&gt;
+              &lt;Dashboard /&gt;
+            &lt;/ProtectedRoute&gt;
+          } 
+        /&gt;
+        &lt;Route 
+          path=&quot;/products&quot; 
+          element={
+            &lt;ProtectedRoute&gt;
+              &lt;Products /&gt;
+            &lt;/ProtectedRoute&gt;
+          } 
+        /&gt;
+        &lt;Route path=&quot;*&quot; element={&lt;Navigate to=&quot;/&quot; replace /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;
+
+
+</code></pre></blockquote><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-803f-9a81-f5a380a654d0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-802f-b2f2-d107340d73da" class="" dir="auto">🧹 یک اصلاح کوچک (تمیزکاری کد Dashboard)</p></div></aside><p id="3a4da1eb-8b9d-80ab-a72e-ef867bb076ea" class="" dir="auto">اکنون که دکمه <strong>خروج</strong> در نوار ناوبری بالای سایت قرار دارد، وجود دکمه خروج دوم و تکراری در وسط صفحه داشبورد دیگر نیازی نیست.</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a4da1eb-8b9d-80e2-9e02-fa41970fbb6d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a4da1eb-8b9d-801d-857e-cd08e09ac2d0" class="" dir="auto">📚 مفهوم آموزشی: اصل DRY (Don&#x27;t Repeat Yourself)</p></div></aside><p id="3a4da1eb-8b9d-80c3-ab8a-d03f132735ae" class="" dir="auto"><strong>مفهوم اصل DRY در ریکت:</strong></p><p id="3a4da1eb-8b9d-8047-9165-efd98e274bfd" class="" dir="auto">وقتی یک قابلیت یا عنصر گرافیکی (مثل دکمه خروج یا وضعیت کاربر) را در یک کامپوننت عمومی مثل <code>Navbar</code> قرار می‌دهیم، باید آن را از کامپوننت‌های فرعی پاک کنیم. این کار مانع از سردرگمی کاربر و شلوغی بی‌مورد کدهای پروژه می‌شود.</p><blockquote id="3a4da1eb-8b9d-806e-b3b0-f96f5378e708" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">35- می‌توانی دکمه <code>&lt;button onClick={logout}&gt;</code> را از فایل <code>Dashboard</code> حذف کنی تا ظاهر صفحه تمیزتر و خلوت‌تر شود.</blockquote><p id="3a5da1eb-8b9d-80b8-8151-d933966dc163" class="" dir="auto">اگر دقت کنی، دکمه <strong>«افزودن به سبد»</strong> روی کارت محصول وجود دارد اما هنوز با کلیک روی آن اتفاقی نمی‌افتد.</p><p id="3a5da1eb-8b9d-80eb-8f76-cc6ba436b094" class="" dir="auto">گام بعدی منطقی و جدی پروژه، <strong>اتصال این دکمه به API سبد خرید جنگو (</strong><code><strong>apps.carts</strong></code><strong>) و اضافه کردن آیکون/تعداد سبد خرید به </strong><code><strong>Navbar</strong></code> است.</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-8074-bf09-f52320cbfb12" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-8079-8ad1-c9e33400d65c" class="" dir="auto">📚 آموزش مفاهیم این بخش</p></div></aside><ol type="1" id="3a5da1eb-8b9d-808e-8438-d43995c71b5c" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم مدیریت رویداد کلیک (</strong><code><strong>onClick Event Handling</strong></code><strong>):</strong><br/>در ریکت برای پاسخ به اکشن‌های کاربر (مثل کلیک روی دکمه)، یک تابع را به ویژگی <code>onClick</code> متصل می‌کنیم. این تابع شناسه (<code>id</code>) محصول کلیک‌شده را دریافت کرده و آن را در قالب یک درخواست به سمت API سبد خرید بک‌اند ارسال می‌کند.</li></ol><ol type="1" id="3a5da1eb-8b9d-8074-b1f8-cf3d4134ff10" class="numbered-list" start="2" dir="auto"><li><strong>مفهوم شناسه یکتای سبد خرید (</strong><code><strong>Cart UUID</strong></code><strong>):</strong><br/>در اپلیکیشن <code>carts</code> جنگو، سبد خرید با یک کلید شناسه یکتا (UUID) شناسایی می‌شود. در فرانت‌اند این <code>cart_id</code> را در <code>localStorage</code> ذخیره می‌کنیم تا اگر کاربر صفحه را رفرش کرد، محتویات سبد خرید او پاک نشود.</li></ol><ol type="1" id="3a5da1eb-8b9d-80a1-bd4f-dcb3481470df" class="numbered-list" start="3" dir="auto"><li><strong>مفهوم مدیریت وضعیت سبد خرید (</strong><code><strong>CartContext</strong></code><strong>):</strong><br/>برای اینکه تعداد محصولات داخل سبد خرید به‌صورت هم‌زمان در تمام صفحات و بالای سایت (در <code>Navbar</code>) نمایش داده شود، یک Context اختصاصی برای سبد خرید می‌سازیم تا تغییرات آن در لحظه در کل فرانت‌اند منعکس شود.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-8057-99ba-ec115971daa4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-801c-a917-dc8e8b81d60e" class="" dir="auto">🛠️ مراحل پیاده‌سازی سبد خرید</p></div></aside><blockquote id="3a4da1eb-8b9d-8007-8626-d6da935d221c" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">36- ساخت کانتکست سبد خرید (<code>src/context/CartContext.jsx</code>)<p id="3a5da1eb-8b9d-8069-94ef-d2b62bfea325" class="" dir="auto">این فایل وظیفه دریافت سبد خرید، افزودن محصول به آن و نگهداری تعداد آیتم‌ها را بر عهده دارد:</p><pre id="3a4da1eb-8b9d-80f0-8ed7-e89851495a20" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { createContext, useState, useEffect, useContext } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+
+const CartContext = createContext();
+
+export const CartProvider = ({ children }) =&gt; {
+  const [cart, setCart] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+
+  // ۱. دریافت یا ایجاد سبد خرید هنگام ورود به سایت
+  const fetchOrCreateCart = async () =&gt; {
+    let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    try {
+      if (!cartId) {
+        // ایجاد سبد خرید جدید در جنگو
+        const response = await axiosInstance.post(&#x27;carts/&#x27;);
+        cartId = response.data.id;
+        localStorage.setItem(&#x27;cart_id&#x27;, cartId);
+      }
+      
+      // دریافت جزئیات سبد خرید
+      const response = await axiosInstance.get(`carts/${cartId}/`);
+      setCart(response.data);
+      
+      // محاسبه مجموع تعداد آیتم‌های داخل سبد
+      const totalItems = response.data.items?.reduce((sum, item) =&gt; sum + item.quantity, 0) || 0;
+      setCartCount(totalItems);
+    } catch (error) {
+      console.error(&#x27;خطا در دریافت سبد خرید:&#x27;, error);
+    }
+  };
+
+  useEffect(() =&gt; {
+    fetchOrCreateCart();
+  }, []);
+
+  // ۲. تابع افزودن محصول به سبد خرید
+  const addToCart = async (productId) =&gt; {
+    let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    if (!cartId) {
+      await fetchOrCreateCart();
+      cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    }
+
+    try {
+      await axiosInstance.post(`carts/${cartId}/items/`, {
+        product_id: productId,
+        quantity: 1,
+      });
+      // به‌روزرسانی مجدد اطلاعات سبد خرید
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(&#x27;خطا در افزودن به سبد خرید:&#x27;, error);
+    }
+  };
+
+  return (
+    &lt;CartContext.Provider value={{ cart, cartCount, addToCart, refreshCart: fetchOrCreateCart }}&gt;
+      {children}
+    &lt;/CartContext.Provider&gt;
+  );
+};
+
+export const useCart = () =&gt; useContext(CartContext);
+
+
+</code></pre></blockquote><blockquote id="3a4da1eb-8b9d-8000-9e35-c500fde7bbd2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">37- اتصال <code>CartProvider</code> در <code>main.jsx</code><p id="3a5da1eb-8b9d-807a-af8c-e7166c69c695" class="" dir="auto">فایل <code>src/main.jsx</code> را ویرایش کن تا <code>CartProvider</code> هم دور برنامه قرار گیرد:</p><pre id="3a4da1eb-8b9d-800f-b087-e62c922080c4" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import ReactDOM from &#x27;react-dom/client&#x27;;
+import App from &#x27;./App.jsx&#x27;;
+import { AuthProvider } from &#x27;./context/AuthContext.jsx&#x27;;
+import { CartProvider } from &#x27;./context/CartContext.jsx&#x27;;
+
+ReactDOM.createRoot(document.getElementById(&#x27;root&#x27;)).render(
+  &lt;React.StrictMode&gt;
+    &lt;AuthProvider&gt;
+      &lt;CartProvider&gt;
+        &lt;App /&gt;
+      &lt;/CartProvider&gt;
+    &lt;/AuthProvider&gt;
+  &lt;/React.StrictMode&gt;
+);
+</code></pre></blockquote><blockquote id="3a5da1eb-8b9d-80a0-8d02-e4c04c598c92" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">38- به‌روزرسانی <code>Navbar.jsx</code> برای نمایش نشانگر سبد خرید<p id="3a5da1eb-8b9d-803e-bcec-d73f17487f37" class="" dir="auto">در فایل <code>src/components/Navbar.jsx</code> تعداد محصولات سبد خرید را اضافه می‌کنیم:<br/>دقت کن فقط قسمت هایی که مشخص شده را اضافه کن </p><pre id="3a5da1eb-8b9d-809a-a7a5-f1e07c4d277e" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import { Link, useNavigate } from &#x27;react-router-dom&#x27;;
+import { useAuth } from &#x27;../context/AuthContext&#x27;;
+import { useCart } from &#x27;../context/CartContext&#x27;; // 👈 اضافه شد
+
+function Navbar() {
+  const { user, logout, isAuthenticated } = useAuth();
+  const { cartCount } = useCart(); // 👈 دریافت تعداد آیتم‌های سبد خرید
+  const navigate = useNavigate();
+</code></pre></blockquote><blockquote id="3a5da1eb-8b9d-8016-ae36-f8257ff08811" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">39- فعال‌سازی دکمه «افزودن به سبد» در <code>Products.jsx</code><p id="3a5da1eb-8b9d-8034-9d74-c0ec65c4f637" class="" dir="auto">فایل <code>src/components/Products.jsx</code> را طوری به‌روزرسانی می‌کنیم که هنگام کلیک روی دکمه، محصول واقعی به سبد خرید متصل شود:</p><pre id="3a5da1eb-8b9d-80e0-a016-c027dc01f6af" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useEffect } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+import { useCart } from &#x27;../context/CartContext&#x27;; // 👈 اضافه شد
+
+function Products() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(&#x27;&#x27;);
+  const { addToCart } = useCart(); // 👈 دریافت تابع افزودن به سبد
+
+  useEffect(() =&gt; {
+    axiosInstance.get(&#x27;products/&#x27;)
+      .then((response) =&gt; {
+        const data = response.data.results || response.data;
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) =&gt; {
+        console.error(&#x27;خطا در دریافت محصولات:&#x27;, err);
+        setError(&#x27;امکان دریافت لیست محصولات وجود ندارد.&#x27;);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return &lt;h3 style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;50px&#x27; }}&gt;در حال بارگذاری محصولات...&lt;/h3&gt;;
+  if (error) return &lt;h3 style={{ textAlign: &#x27;center&#x27;, color: &#x27;red&#x27;, marginTop: &#x27;50px&#x27; }}&gt;{error}&lt;/h3&gt;;
+
+  return (
+    &lt;div style={{ padding: &#x27;30px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h2 style={{ textAlign: &#x27;center&#x27;, marginBottom: &#x27;30px&#x27; }}&gt;کاتالوگ محصولات ACRON&lt;/h2&gt;
+      
+      &lt;div style={{
+        display: &#x27;grid&#x27;,
+        gridTemplateColumns: &#x27;repeat(auto-fill, minmax(280px, 1fr))&#x27;,
+        gap: &#x27;20px&#x27;
+      }}&gt;
+        {products.map((product) =&gt; (
+          &lt;div key={product.id} style={{
+            border: &#x27;1px solid #e2e8f0&#x27;,
+            borderRadius: &#x27;8px&#x27;,
+            padding: &#x27;15px&#x27;,
+            backgroundColor: &#x27;#fff&#x27;,
+            boxShadow: &#x27;0 2px 4px rgba(0,0,0,0.05)&#x27;,
+            display: &#x27;flex&#x27;,
+            flexDirection: &#x27;column&#x27;,
+            justifyContent: &#x27;space-between&#x27;
+          }}&gt;
+            &lt;div&gt;
+              &lt;h3 style={{ margin: &#x27;0 0 10px 0&#x27;, color: &#x27;#0f172a&#x27; }}&gt;{product.name || product.title}&lt;/h3&gt;
+              &lt;p style={{ color: &#x27;#64748b&#x27;, fontSize: &#x27;14px&#x27;, lineHeight: &#x27;1.6&#x27; }}&gt;{product.description || &#x27;بدون توضیحات&#x27;}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div style={{ marginTop: &#x27;15px&#x27;, display: &#x27;flex&#x27;, justifyContent: &#x27;space-between&#x27;, alignItems: &#x27;center&#x27; }}&gt;
+              &lt;span style={{ fontWeight: &#x27;bold&#x27;, color: &#x27;#059669&#x27; }}&gt;
+                {product.price ? `${Number(product.price).toLocaleString()} تومان` : &#x27;قیمت تعیین‌نشده&#x27;}
+              &lt;/span&gt;
+              &lt;button 
+                onClick={() =&gt; addToCart(product.id)} // 👈 کلیک و ارسال ID محصول
+                style={{
+                  padding: &#x27;8px 14px&#x27;,
+                  backgroundColor: &#x27;#2563eb&#x27;,
+                  color: &#x27;white&#x27;,
+                  border: &#x27;none&#x27;,
+                  borderRadius: &#x27;4px&#x27;,
+                  cursor: &#x27;pointer&#x27;,
+                  fontWeight: &#x27;bold&#x27;
+                }}
+              &gt;
+                افزودن به سبد
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Products;</code></pre></blockquote><p id="3a5da1eb-8b9d-8071-b292-f4b8c07091e5" class="" dir="auto"><strong>🧪 تست عملی</strong></p><ol type="1" id="3a5da1eb-8b9d-807a-8b41-dccc3effe921" class="numbered-list" start="1" dir="auto"><li>کدهای بالا را اعمال و ذخیره کن.</li></ol><ol type="1" id="3a5da1eb-8b9d-805c-a997-cc5271467b56" class="numbered-list" start="2" dir="auto"><li>به صفحه محصولات برو و روی دکمه <strong>«افزودن به سبد»</strong> کلیک کن.</li></ol><ol type="1" id="3a5da1eb-8b9d-80c8-b68e-cb0f187889cd" class="numbered-list" start="3" dir="auto"><li>مشاهده خواهی کرد که عدد نشانگر <strong>🛒 سبد خرید</strong> در <code>Navbar</code> بلافاصله بدون رفرش شدن صفحه افزایش می‌یابد!</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-8084-a9de-e756c9f5a136" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-802b-b824-f0625f3e1df1" class="" dir="auto">📚 آموزش مفاهیم عیب‌یابی این بخش</p></div></aside><ol type="1" id="3a5da1eb-8b9d-806a-a8c4-d37d5dd0ecbb" class="numbered-list" start="1" dir="auto"><li><strong>دلیل اول: عدم وجود شناسه در دیتابیس (Stale Cart ID in LocalStorage):</strong><br/>وقتی یک <code>cart_id</code> در مرورگر شما ذخیره شده باشد اما دیتابیس جنگو ریست، پاک یا تغییر کرده باشد، مرورگر همچنان شناسه قدیمی را به سرور می‌فرستد. جنگو چون سبد خریدی با این شناسه در دیتابیس پیدا نمی‌کند، امکان اضافه کردن محصول به آن را ندارد و خطای ۴۰۴ برمی‌گرداند.</li></ol><ol type="1" id="3a5da1eb-8b9d-8040-95a6-e91157756cc5" class="numbered-list" start="2" dir="auto"><li><strong>دلیل دوم: ناهماهنگی در مسیریابی جنگو (</strong><code><strong>apps/carts/urls.py</strong></code><strong>):</strong><br/>در Django REST Framework (به‌خصوص زمانی که از Nested Routers استفاده می‌شود)، ممکن است نام پارامتر مسیر یا فرمت آدرس در فایل <code>urls.py</code> با <code>/carts/&lt;cart_id&gt;/items/</code> تفاوت داشته باشد (مثلاً آدرس به‌صورت <code>/carts/items/</code> یا با نام پارامتر دیگری تعریف شده باشد).</li></ol><blockquote id="3a5da1eb-8b9d-8070-8098-f5a47063c7a4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">در آدرس cart/urls.py کدها به این صورت بودند:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3a5da1eb-8b9d-800c-b878-d06d86253c74" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CartViewSet, CartItemViewSet
+
+router = DefaultRouter()
+# ثبت ویوست سبد خرید (آی‌دی این مسیر از نوع UUID خواهد بود)
+router.register(&#x27;carts&#x27;, CartViewSet, basename=&#x27;carts&#x27;)
+
+# ثبت ویوست آیتم‌های سبد خرید
+router.register(&#x27;cart-items&#x27;, CartItemViewSet, basename=&#x27;cart-items&#x27;)
+
+urlpatterns = [
+    path(&#x27;&#x27;, include(router.urls)),
+]</code></pre></blockquote><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-803f-8cfd-cb55c44e0e26" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-8023-b954-d5f2f3719c5b" class="" dir="auto">📚 آموزش مفاهیم این فایل</p></div></aside><ol type="1" id="3a5da1eb-8b9d-805b-b172-fcfbc6fcb0c5" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم روتر استاندارد (</strong><code><strong>DefaultRouter</strong></code><strong>):</strong><br/>روتر استاندارد جنگو مسیرهای REST را به‌صورت کاملاً جداگانه و تخت تولید می‌کند. وقتی عبارت <code>router.register(&#x27;cart-items&#x27;, ...)</code> را می‌نویسی، جنگو فقط مسیرهای مستقیم مثل <code>/api/cart-items/</code> را می‌شناسد و مسیرهای تو در تو مثل <code>/api/carts/123/items/</code> را به صورت خودکار ایجاد نمی‌کند.</li></ol><ol type="1" id="3a5da1eb-8b9d-8057-af78-edf004ae3c3c" class="numbered-list" start="2" dir="auto"><li><strong>علت دقیق خطای 404 بر اساس این فایل:</strong><br/>فرانت‌اند درخواست اضافه کردن محصول را به آدرس <code>/api/carts/&lt;cart_id&gt;/items/</code> ارسال می‌کرد که وجود خارجی در این مسیریابی نداشت. آدرس واقعی که بک‌اند شما برای مدیریت آیتم‌های سبد خرید منتظر آن است، مسیر <code>/api/cart-items/</code> می‌باشد.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-806b-95c6-c423034ac013" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-805d-941b-d5549a761886" class="" dir="auto">🧭 لیست آدرس‌های واقعی سبد خرید در بک‌اند شما</p></div></aside><p id="3a5da1eb-8b9d-807a-bd71-e89cc6144296" class="" dir="auto">با توجه به این فایل <code>urls.py</code>، آدرس‌های API شما دقیقاً به شکل زیر هستند:</p><table id="3a5da1eb-8b9d-800a-a99f-d33cc75a75ad" class="simple-table" dir="ltr"><tbody><tr id="3a5da1eb-8b9d-8082-9f20-f060993df840" dir="ltr"><td id="Mpwu" class=""><strong>عملیات</strong></td><td id="roOk" class=""><strong>روش (Method)</strong></td><td id="p}MQ" class=""><strong>آدرس دقیق API</strong></td><td id="WuTG" class=""><strong>مقادیر ارسالی (Body)</strong></td></tr><tr id="3a5da1eb-8b9d-8023-96f3-e44449821f66" dir="ltr"><td id="Mpwu" class=""><strong>ایجاد سبد جدید</strong></td><td id="roOk" class=""><code>POST</code></td><td id="p}MQ" class=""><code>/api/carts/</code></td><td id="WuTG" class="">خالی</td></tr><tr id="3a5da1eb-8b9d-80ed-9d4b-cde42c08b20f" dir="ltr"><td id="Mpwu" class=""><strong>دریافت اطلاعات سبد</strong></td><td id="roOk" class=""><code>GET</code></td><td id="p}MQ" class=""><code>/api/carts/&lt;cart_id&gt;/</code></td><td id="WuTG" class="">خالی</td></tr><tr id="3a5da1eb-8b9d-80fa-adf6-e5e7e2482bde" dir="ltr"><td id="Mpwu" class=""><strong>افزودن محصول به سبد</strong></td><td id="roOk" class=""><code>POST</code></td><td id="p}MQ" class=""><code>/api/cart-items/</code></td><td id="WuTG" class=""><code>{ cart: cart_id, product_id: id, quantity: 1 }</code></td></tr></tbody></table><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-80e8-9f49-e8c2b6ec8b48" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-8077-bb20-c647be54b157" class="" dir="auto">🛠️ اصلاح فایل <code>src/context/CartContext.jsx</code> در فرانت‌اند</p></div></aside><blockquote id="3a5da1eb-8b9d-8052-9cbe-fa9b95bdcde8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">40- برای انطباق کاملاً دقیق با کدهای جنگو، تابع <code>fetchOrCreateCart</code> و <code>addToCart</code> را در <code>CartContext.jsx</code> به این صورت به‌روزرسانی کن:<pre id="3a5da1eb-8b9d-800b-a015-d4f98330bf59" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { createContext, useState, useEffect, useContext } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+
+const CartContext = createContext();
+
+export const CartProvider = ({ children }) =&gt; {
+  const [cart, setCart] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+
+  // ۱. دریافت یا ساخت سبد خرید
+  const fetchOrCreateCart = async () =&gt; {
+    let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    try {
+      if (!cartId) {
+        // ساخت سبد جدید با آدرس /api/carts/
+        const response = await axiosInstance.post(&#x27;carts/&#x27;);
+        cartId = response.data.id;
+        localStorage.setItem(&#x27;cart_id&#x27;, cartId);
+      }
+      
+      // دریافت جزئیات سبد خرید با آدرس /api/carts/&lt;cart_id&gt;/
+      const response = await axiosInstance.get(`carts/${cartId}/`);
+      setCart(response.data);
+      
+      const totalItems = response.data.items?.reduce((sum, item) =&gt; sum + item.quantity, 0) || 0;
+      setCartCount(totalItems);
+    } catch (error) {
+      console.error(&#x27;خطا در دریافت سبد خرید:&#x27;, error);
+      // اگر سبد خرید با این شناسه وجود نداشت، پاکش کن تا دفعه بعد جدید ساخته شود
+      if (error.response?.status === 404) {
+        localStorage.removeItem(&#x27;cart_id&#x27;);
+      }
+    }
+  };
+
+  useEffect(() =&gt; {
+    fetchOrCreateCart();
+  }, []);
+
+  // ۲. افزودن محصول به سبد خرید با آدرس تخت /api/cart-items/
+  const addToCart = async (productId) =&gt; {
+    let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    
+    if (!cartId) {
+      const newCartResponse = await axiosInstance.post(&#x27;carts/&#x27;);
+      cartId = newCartResponse.data.id;
+      localStorage.setItem(&#x27;cart_id&#x27;, cartId);
+    }
+
+    try {
+      // 👈 ارسال به آدرس دقیق /api/cart-items/
+      await axiosInstance.post(&#x27;cart-items/&#x27;, {
+        cart: cartId,
+        product_id: productId, // یا product بسته به سریالایزر جنگو
+        quantity: 1,
+      });
+      
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(&#x27;خطا در افزودن به سبد خرید:&#x27;, error);
+    }
+  };
+
+  return (
+    &lt;CartContext.Provider value={{ cart, cartCount, addToCart, refreshCart: fetchOrCreateCart }}&gt;
+      {children}
+    &lt;/CartContext.Provider&gt;
+  );
+};
+
+export const useCart = () =&gt; useContext(CartContext);</code></pre></blockquote><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-804d-9aa3-c26767cd00a0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-80d5-96e6-ce7c70915dd3" class="" dir="auto">📚 آموزش مفاهیم این خطای جدید</p></div></aside><ol type="1" id="3a5da1eb-8b9d-8043-92d2-d9ab26ba1bac" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم خطای 400 Bad Request (خطای اعتبارپذیری / Validation):</strong><br/>زمانی که درخواست به مقصد می‌رسد اما ساختار داده‌های ارسالی (Request Body) با قوانین تعریف شده در <code>Serializer</code> جنگو همخوانی ندارد، سرور پاسخ 400 برمی‌گرداند. این خطا نشان می‌دهد فرمت نام فیلدها (مثلاً ارسال <code>product_id</code> به جای <code>product</code>) یا نوع داده‌ها اشتباه است.</li></ol><ol type="1" id="3a5da1eb-8b9d-801c-9a38-cdbe9bbb14ff" class="numbered-list" start="2" dir="auto"><li><strong>نحوه استفاده از Swagger برای کشف ساختار دقیق ورودی (Schema):</strong><br/>در تصویر اسواگر که فرستادی، بخش <code>/api/carts/</code> باز شده است. اگر در همان صفحه اسواگر کمی پایین‌تر بروی و روی بخش <code><strong>POST /api/cart-items/</strong></code> کلیک کنی، در قسمت <strong>Example Value</strong> یا <strong>Schema</strong> دقیقاً مشخص شده که جنگو چه نام فیلدهایی را برای افزودن محصول به سبد خرید انتظار دارد.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-80d2-a544-dcaf8627e9b9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-803d-a8e7-d249f93d6c05" class="" dir="auto">🛠️ نحوه یافتن سریع علت دقیق خطا (در ۱ ثانیه)</p></div></aside><p id="3a5da1eb-8b9d-80ad-9851-f75126913386" class="" dir="auto">راه اول: نگاه کردن به تب Network مرورگر (سریع‌ترین روش)</p><p id="3a5da1eb-8b9d-8034-9c3d-c370679e8d6a" class="" dir="auto">در مرورگر کلید <strong>F12</strong> را بزن و به تب <strong>Network</strong> برو.</p><p id="3a5da1eb-8b9d-808e-b05f-d6543843aac7" class="" dir="auto">روی درخواستی که قرمز شده (<code>cart-items</code>) کلیک کن.</p><p id="3a5da1eb-8b9d-80b9-a2a5-efa5359c8819" class="" dir="auto">تب <strong>Response</strong> را باز کن؛ جنگو دقیقاً متن خطا را نوشته است (مثلاً: <code>{&quot;product&quot;: [&quot;This field is required.&quot;]}</code>).</p><p id="3a5da1eb-8b9d-8072-b63f-e9437a922250" class="" dir="auto">راه دوم: اصلاحات احتمالاً موردنیاز در <code>CartContext.jsx</code></p><p id="3a5da1eb-8b9d-8034-a789-f736afd284ab" class="" dir="auto">در بیشتر پروژه‌های Django REST Framework، یکی از دو حالت زیر برای <code>cart-items</code> وجود دارد:</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-809f-a7e2-e323022be9f8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3a5da1eb-8b9d-8022-bb8d-d354b04c9c57" class="" dir="auto"><br/>لطفاً در مرورگر در تب <strong>Network</strong>، روی درخواست <code>cart-items</code> بزن و ببین در تب <strong>Response</strong> چه متن خطایی از سمت جنگو نوشته شده است؟<br/><br/>{&quot;cart_id&quot;:[&quot;This field is required.&quot;]}</h4></div></aside><p id="3a5da1eb-8b9d-804d-b3db-f59c03daa194" class="" dir="auto">📚 آموزش مفاهیم این خطا</p><ol type="1" id="3a5da1eb-8b9d-80ae-8ed0-ebed89b4750c" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم نام‌گذاری فیلدها در سریالایزر جنگو (DRF Serializer Field Mapping):</strong><br/>سریالایزر جنگو داده‌های JSON ورودی را کلید به کلید بررسی می‌کند. وقتی در بک‌اند فیلد مرتبط با سبد خرید با نام <code>cart_id</code> تعریف شده باشد، ارسال کلیدی مثل <code>cart</code> باعث می‌شود سریالایزر آن را نادیده گرفته و اعلام کند که فیلد اجباری <code>cart_id</code> ارسال نشده است.</li></ol><ol type="1" id="3a5da1eb-8b9d-8087-9093-ea1bba715aa6" class="numbered-list" start="2" dir="auto"><li><strong>رفع خطای ۴۰۰ با انطباق دقیق کلیدها (Payload Alignment):</strong><br/>برای رفع خطای 400 Bad Request نیازی به تغییر منطق برنامه یا کدهای جنگو نیست. تنها با تغییر نام کلید در شیء ارسالی JavaScript به <code>cart_id</code>، پیام خطا برطرف شده و داده‌ها در دیتابیس ثبت می‌شوند.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a5da1eb-8b9d-80f8-8258-cd931498d7b8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a5da1eb-8b9d-80cb-a45c-f0e69b5e2a94" class="" dir="auto">🛠️ اصلاح کدهای <code>CartContext.jsx</code></p></div></aside><blockquote id="3a5da1eb-8b9d-805e-a614-f1fa48c6e736" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">41- در فایل <code>src/context/CartContext.jsx</code> تابع <code>addToCart</code> را به شکل زیر به‌روزرسانی کن:<pre id="3a5da1eb-8b9d-80dd-9dc1-e61be0ed0685" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">const addToCart = async (productId) =&gt; {
+  let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+  
+  if (!cartId) {
+    const newCartResponse = await axiosInstance.post(&#x27;carts/&#x27;);
+    cartId = newCartResponse.data.id;
+    localStorage.setItem(&#x27;cart_id&#x27;, cartId);
+  }
+
+  try {
+    // 👈 نام کلید دقیقا به cart_id تغییر کرد
+    await axiosInstance.post(&#x27;cart-items/&#x27;, {
+      cart_id: cartId,
+      product_id: productId,
+      quantity: 1,
+    });
+    
+    await fetchOrCreateCart();
+  } catch (error) {
+    console.error(&#x27;خطا در افزودن به سبد خرید:&#x27;, error.response?.data || error);
+  }
+};
+
+
+</code></pre></blockquote><p id="3a5da1eb-8b9d-80f1-a044-fbaac053fa99" class="" dir="auto">عدم نمایش بازخورد در مرورگر به این دلیل است که ما هنوز <strong>بازخورد بصری (UX Feedback)</strong> مانند پیام کوتاه (Toast Notification) یا حالت لودینگ روی دکمه، و همچنین <strong>صفحه مشاهده سبد خرید (</strong><code><strong>/cart</strong></code><strong>)</strong> را پیاده‌سازی نکرده‌ایم.</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a6da1eb-8b9d-809d-b33b-c2a43aceb09b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a6da1eb-8b9d-8097-bf47-c4a9a12c146c" class="" dir="auto">📚 آموزش مفاهیم این بخش</p></div></aside><ol type="1" id="3a6da1eb-8b9d-800a-8511-cb82b629d822" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم بازخورد کاربری (UX Feedback / Toast Notification):</strong><br/>در طراحی رابط کاربری (UI/UX)، وقتی کاربر عملیاتی مانند افزودن به سبد خرید را انجام می‌دهد، سیستم باید بلافاصله با تغییر وضعیت دکمه (مثلاً نمایش «در حال افزودن...») یا یک پیام شناور کوتاه، کاربر را از موفقیت‌آمیز بودن عملیات آگاه سازد.</li></ol><ol type="1" id="3a6da1eb-8b9d-80d0-9543-e70b87254778" class="numbered-list" start="2" dir="auto"><li><strong>مدیریت وضعیت لودینگ اختصاصی (Item-level Loading State):</strong><br/>وقتی روی یک کارت محصول کلیک می‌شود، نباید کل صفحه لودینگ شود؛ بلکه فقط همان دکمه‌ای که کلیک شده غیرفعال (Disabled) می‌شود تا از ارسال درخواست‌های تکراری و ناهماهنگی در دیتابیس جلوگیری کند.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a6da1eb-8b9d-80e6-91d7-cba12ce46c5a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a6da1eb-8b9d-802a-8ff4-dd3d3dbe46e6" class="" dir="auto">🛠️ مراحل پیاده‌سازی بازخورد و صفحه سبد خرید</p></div></aside><blockquote id="3a5da1eb-8b9d-806b-a165-dff921d01ae8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">42- افزودن لودینگ و پیام موفقیت به دکمه در <code>Products.jsx</code><p id="3a6da1eb-8b9d-80af-ae86-cdbc2b541a3f" class="" dir="auto">فایل <code>src/components/Products.jsx</code> را به شکل زیر به‌روزرسانی کن تا دکمه هنگام کلیک حالت لودینگ و پیام <strong>«افزوده شد ✓»</strong> بگیرد:</p><pre id="3a5da1eb-8b9d-8031-812f-e8d7104139a3" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { useState, useEffect } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+import { useCart } from &#x27;../context/CartContext&#x27;;
+
+function Products() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(&#x27;&#x27;);
+  const [addingId, setAddingId] = useState(null); // 👈 نگهداری ID محصول در حال اضافه شدن
+  const [successId, setSuccessId] = useState(null); // 👈 نگهداری ID محصولی که اضافه شد
+
+  const { addToCart } = useCart();
+
+  useEffect(() =&gt; {
+    axiosInstance.get(&#x27;products/&#x27;)
+      .then((response) =&gt; {
+        const data = response.data.results || response.data;
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) =&gt; {
+        console.error(&#x27;خطا در دریافت محصولات:&#x27;, err);
+        setError(&#x27;امکان دریافت لیست محصولات وجود ندارد.&#x27;);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleAddToCart = async (productId) =&gt; {
+    setAddingId(productId); // فعال کردن حالت لودینگ دکمه
+    await addToCart(productId);
+    setAddingId(null);
+    
+    // نمایش پیام موفقیت‌آمیز به مدت ۱.۵ ثانیه
+    setSuccessId(productId);
+    setTimeout(() =&gt; {
+      setSuccessId(null);
+    }, 1500);
+  };
+
+  if (loading) return &lt;h3 style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;50px&#x27; }}&gt;در حال بارگذاری محصولات...&lt;/h3&gt;;
+  if (error) return &lt;h3 style={{ textAlign: &#x27;center&#x27;, color: &#x27;red&#x27;, marginTop: &#x27;50px&#x27; }}&gt;{error}&lt;/h3&gt;;
+
+  return (
+    &lt;div style={{ padding: &#x27;30px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h2 style={{ textAlign: &#x27;center&#x27;, marginBottom: &#x27;30px&#x27; }}&gt;کاتالوگ محصولات ACRON&lt;/h2&gt;
+      
+      &lt;div style={{
+        display: &#x27;grid&#x27;,
+        gridTemplateColumns: &#x27;repeat(auto-fill, minmax(280px, 1fr))&#x27;,
+        gap: &#x27;20px&#x27;
+      }}&gt;
+        {products.map((product) =&gt; (
+          &lt;div key={product.id} style={{
+            border: &#x27;1px solid #e2e8f0&#x27;,
+            borderRadius: &#x27;8px&#x27;,
+            padding: &#x27;15px&#x27;,
+            backgroundColor: &#x27;#fff&#x27;,
+            boxShadow: &#x27;0 2px 4px rgba(0,0,0,0.05)&#x27;,
+            display: &#x27;flex&#x27;,
+            flexDirection: &#x27;column&#x27;,
+            justifyContent: &#x27;space-between&#x27;
+          }}&gt;
+            &lt;div&gt;
+              &lt;h3 style={{ margin: &#x27;0 0 10px 0&#x27;, color: &#x27;#0f172a&#x27; }}&gt;{product.name || product.title}&lt;/h3&gt;
+              &lt;p style={{ color: &#x27;#64748b&#x27;, fontSize: &#x27;14px&#x27;, lineHeight: &#x27;1.6&#x27; }}&gt;{product.description || &#x27;بدون توضیحات&#x27;}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div style={{ marginTop: &#x27;15px&#x27;, display: &#x27;flex&#x27;, justifyContent: &#x27;space-between&#x27;, alignItems: &#x27;center&#x27; }}&gt;
+              &lt;span style={{ fontWeight: &#x27;bold&#x27;, color: &#x27;#059669&#x27; }}&gt;
+                {product.price ? `${Number(product.price).toLocaleString()} تومان` : &#x27;قیمت تعیین‌نشده&#x27;}
+              &lt;/span&gt;
+              
+              &lt;button 
+                onClick={() =&gt; handleAddToCart(product.id)}
+                disabled={addingId === product.id}
+                style={{
+                  padding: &#x27;8px 14px&#x27;,
+                  backgroundColor: successId === product.id ? &#x27;#10b981&#x27; : &#x27;#2563eb&#x27;,
+                  color: &#x27;white&#x27;,
+                  border: &#x27;none&#x27;,
+                  borderRadius: &#x27;4px&#x27;,
+                  cursor: addingId === product.id ? &#x27;not-allowed&#x27; : &#x27;pointer&#x27;,
+                  fontWeight: &#x27;bold&#x27;,
+                  transition: &#x27;background-color 0.2s&#x27;
+                }}
+              &gt;
+                {addingId === product.id 
+                  ? &#x27;در حال افزودن...&#x27; 
+                  : successId === product.id 
+                    ? &#x27;افزوده شد ✓&#x27; 
+                    : &#x27;افزودن به سبد&#x27;}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Products;</code></pre></blockquote><blockquote id="3a5da1eb-8b9d-8050-82dd-f64297898b1f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">43- ساخت صفحه نمایش کامل سبد خرید (<code>src/components/Cart.jsx</code>)<p id="3a6da1eb-8b9d-80b3-907b-eb9394e41ba8" class="" dir="auto">حالا یک صفحه اختصاصی می‌سازیم تا اقلام داخل سبد خرید را مشاهده کنی:</p><pre id="3a5da1eb-8b9d-804f-b72b-cc0605c15c45" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import { useCart } from &#x27;../context/CartContext&#x27;;
+
+function Cart() {
+  const { cart, cartCount } = useCart();
+
+  if (!cart || !cart.items || cart.items.length === 0) {
+    return (
+      &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;50px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+        &lt;h2&gt;سبد خرید شما خالی است 🛒&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div style={{ padding: &#x27;30px&#x27;, maxWidth: &#x27;800px&#x27;, margin: &#x27;0 auto&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h2&gt;سبد خرید شما ({cartCount} آیتم)&lt;/h2&gt;
+      
+      &lt;div style={{ display: &#x27;flex&#x27;, flexDirection: &#x27;column&#x27;, gap: &#x27;15px&#x27;, marginTop: &#x27;20px&#x27; }}&gt;
+        {cart.items.map((item) =&gt; (
+          &lt;div key={item.id} style={{
+            display: &#x27;flex&#x27;,
+            justifyContent: &#x27;space-between&#x27;,
+            alignItems: &#x27;center&#x27;,
+            padding: &#x27;15px&#x27;,
+            border: &#x27;1px solid #e2e8f0&#x27;,
+            borderRadius: &#x27;8px&#x27;,
+            backgroundColor: &#x27;#fff&#x27;
+          }}&gt;
+            &lt;div&gt;
+              &lt;h4 style={{ margin: &#x27;0 0 5px 0&#x27; }}&gt;{item.product?.name || `محصول کد ${item.product_id}`}&lt;/h4&gt;
+              &lt;span style={{ color: &#x27;#64748b&#x27;, fontSize: &#x27;14px&#x27; }}&gt;تعداد: {item.quantity}&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;div style={{ fontWeight: &#x27;bold&#x27;, color: &#x27;#059669&#x27; }}&gt;
+              {item.total_price 
+                ? `${Number(item.total_price).toLocaleString()} تومان` 
+                : item.product?.price 
+                  ? `${(Number(item.product.price) * item.quantity).toLocaleString()} تومان`
+                  : &#x27;&#x27;}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Cart;</code></pre></blockquote><blockquote id="3a6da1eb-8b9d-807b-8f2a-c03b367100cc" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">44- کلیک‌پذیر کردن لینک سبد خرید در <code>Navbar.jsx</code> و افزودن مسیر به <code>App.jsx</code><p id="3a6da1eb-8b9d-8058-9c22-e9b85ad270ce" class="" dir="auto">در <code><strong>Navbar.jsx</strong></code>، بخش آیکون سبد خرید را تبدیل به لینک کن:</p><pre id="3a6da1eb-8b9d-8009-8abc-ffc6a165c72c" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">&lt;Link to=&quot;/cart&quot; style={{ textDecoration: &#x27;none&#x27; }}&gt;
+  &lt;span style={{
+    backgroundColor: &#x27;#0284c7&#x27;,
+    color: &#x27;white&#x27;,
+    padding: &#x27;6px 12px&#x27;,
+    borderRadius: &#x27;12px&#x27;,
+    fontSize: &#x27;14px&#x27;,
+    fontWeight: &#x27;bold&#x27;,
+    cursor: &#x27;pointer&#x27;
+  }}&gt;
+    🛒 سبد خرید: {cartCount}
+  &lt;/span&gt;
+&lt;/Link&gt;</code></pre></blockquote><blockquote id="3a6da1eb-8b9d-80b6-9b43-d77a5c1021bf" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">45- در <code><strong>App.jsx</strong></code> مسیر <code>/cart</code> را ثبت کن:<pre id="3a6da1eb-8b9d-8053-a5ce-f7e02fbcb747" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import Cart from &#x27;./components/Cart&#x27;; // 👈 اضافه شد
+
+// در بخش Routes:
+&lt;Route 
+  path=&quot;/cart&quot; 
+  element={
+    &lt;ProtectedRoute&gt;
+      &lt;Cart /&gt;
+    &lt;/ProtectedRoute&gt;
+  } 
+/&gt;</code></pre></blockquote><p id="3a6da1eb-8b9d-8051-bce1-d7d3aac9cebd" class="" dir="auto">این تغییرات را ذخیره کن و دکمه را فشار بده؛ حالا هم دکمه واکنش انیمیشنی نشان می‌دهد و هم با کلیک روی آیکون سبد خرید در Navbar می‌توانی اقلام اضافه شده را ببینی!</p><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a6da1eb-8b9d-8097-8cb1-c3994ca3cdfd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a6da1eb-8b9d-8024-880e-d4bd31a2d193" class="" dir="auto">📚 آموزش مفاهیم این گام</p></div></aside><ol type="1" id="3a6da1eb-8b9d-804f-9015-d0571aecd464" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم محاسبات متکی بر داده (Derived State):</strong><br/>در صفحه سبد خرید، قیمت کل هر سطر (مثلاً ۳ عدد × ۱۰ تومان = ۳۰ تومان) حاصل ترکیب تعداد و قیمت واحد است. به‌جای ذخیره این محاسبات در حافظه جداگانه، فرانت‌اند بر اساس داده‌های زنده دریافتی از دیتابیس، قیمت‌ها را در لحظه رندر محاسبه می‌کند تا هیچ ناهماهنگی مالی ایجاد نشود.</li></ol><ol type="1" id="3a6da1eb-8b9d-806a-a495-f7e6637c3599" class="numbered-list" start="2" dir="auto"><li><strong>مدیریت عملیات ویرایش و حذف در REST API (</strong><code><strong>PATCH</strong></code><strong> و </strong><code><strong>DELETE</strong></code><strong>):</strong><br/>برای کامل شدن چرخه سبد خرید، به دو متد استاندارد دیگر نیاز داریم: <code>PATCH</code> برای کم/زیاد کردن تعداد محصول (مثلاً تغییر تعداد اپل ۱۰ از ۳ به ۲) و <code>DELETE</code> برای حذف کامل یک کالا از سبد.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a6da1eb-8b9d-8041-a1dc-ea5993bd8f9a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a6da1eb-8b9d-80e2-af24-fe08e597530f" class="" dir="auto">🛠️ پیشنهاد گام بعدی برای تکمیل سبد خرید</p></div></aside><p id="3a6da1eb-8b9d-8085-92e0-ed910e976c4a" class="" dir="auto">برای اینکه صفحه <code>/cart</code> به یک سبد خرید ۱۰۰٪ حرفه‌ای تبدیل شود، دو بخش زیر را اضافه می‌کنیم:</p><ol type="1" id="3a6da1eb-8b9d-8058-9800-cf4feb2ca023" class="numbered-list" start="1" dir="auto"><li><strong>کنترلرهای تعداد (</strong><code><strong>+</strong></code><strong> / ) و دکمه حذف (سطل آشغال)</strong> در کنار هر محصول.</li></ol><ol type="1" id="3a6da1eb-8b9d-8035-ab2e-ec0ca00b4abf" class="numbered-list" start="2" dir="auto"><li><strong>باکس خلاصه‌فاکتور (جمع کل خرید)</strong> و دکمه <strong>«ادامه جهت ثبت سفارش»</strong>.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a6da1eb-8b9d-8040-bd3d-e1ec31d16ccf" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a6da1eb-8b9d-80d3-9dd7-d05a488c442b" class="" dir="auto">📚 آموزش مفاهیم این فاز</p></div></aside><ol type="1" id="3a6da1eb-8b9d-80f0-b45d-dad587560836" class="numbered-list" start="1" dir="auto"><li><strong>مفهوم متدهای HTTP PATCH و DELETE:</strong><br/>در REST API، وقتی می‌خواهیم فقط یک بخش کوچک از داده (مثلاً تعداد یک محصول) را تغییر دهیم، از متد <code>PATCH</code> استفاده می‌کنیم که جزئی است. اما متد <code>DELETE</code> به‌طور کامل یک منبع (ارتباط یک محصول در سبد خرید) را از دیتابیس پاک می‌کند.</li></ol><ol type="1" id="3a6da1eb-8b9d-805b-8ba8-eb286d7f5f59" class="numbered-list" start="2" dir="auto"><li><strong>همگام‌سازی وضعیت در فرانت‌اند پس از تغییر (State Re-fetching):</strong><br/>پس از ارسال درخواست <code>PATCH</code> یا <code>DELETE</code> به جنگو، بلافاصله تابع <code>fetchOrCreateCart</code> را صدا می‌زنیم. این کار باعث می‌شود اطلاعات جدید سبد خرید مستقیماً از دیتابیس خوانده شده و تمام بخش‌های سایت (از جمله عدد موجود در <code>Navbar</code>) بدون رفرش شدن مرورگر به‌روزرسانی شوند.</li></ol><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3a6da1eb-8b9d-800f-96ae-f25d4599f9b6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3a6da1eb-8b9d-8022-a157-ff0a226b79bd" class="" dir="auto">🛠️ مراحل پیاده‌سازی کامل سبد خرید</p></div></aside><blockquote id="3a6da1eb-8b9d-80d9-b87a-eff39a1ac2fb" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">46- به‌روزرسانی <code>src/context/CartContext.jsx</code><p id="3a7da1eb-8b9d-8037-9931-d891456d80cd" class="" dir="auto">توابع <code>updateQuantity</code> و <code>removeFromCart</code> را به کانتکست اضافه می‌کنیم:</p><pre id="3a6da1eb-8b9d-8052-b71b-dea5387dc023" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React, { createContext, useState, useEffect, useContext } from &#x27;react&#x27;;
+import axiosInstance from &#x27;../api/axiosInstance&#x27;;
+
+const CartContext = createContext();
+
+export const CartProvider = ({ children }) =&gt; {
+  const [cart, setCart] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+
+  // ۱. دریافت یا ایجاد سبد خرید
+  const fetchOrCreateCart = async () =&gt; {
+    let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    try {
+      if (!cartId) {
+        const response = await axiosInstance.post(&#x27;carts/&#x27;);
+        cartId = response.data.id;
+        localStorage.setItem(&#x27;cart_id&#x27;, cartId);
+      }
+      
+      const response = await axiosInstance.get(`carts/${cartId}/`);
+      setCart(response.data);
+      
+      const totalItems = response.data.items?.reduce((sum, item) =&gt; sum + item.quantity, 0) || 0;
+      setCartCount(totalItems);
+    } catch (error) {
+      console.error(&#x27;خطا در دریافت سبد خرید:&#x27;, error);
+      if (error.response?.status === 404) {
+        localStorage.removeItem(&#x27;cart_id&#x27;);
+      }
+    }
+  };
+
+  useEffect(() =&gt; {
+    fetchOrCreateCart();
+  }, []);
+
+  // ۲. افزودن محصول به سبد خرید
+  const addToCart = async (productId) =&gt; {
+    let cartId = localStorage.getItem(&#x27;cart_id&#x27;);
+    
+    if (!cartId) {
+      const newCartResponse = await axiosInstance.post(&#x27;carts/&#x27;);
+      cartId = newCartResponse.data.id;
+      localStorage.setItem(&#x27;cart_id&#x27;, cartId);
+    }
+
+    try {
+      await axiosInstance.post(&#x27;cart-items/&#x27;, {
+        cart_id: cartId,
+        product_id: productId,
+        quantity: 1,
+      });
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(&#x27;خطا در افزودن به سبد خرید:&#x27;, error.response?.data || error);
+    }
+  };
+
+  // ۳. تغییر تعداد محصول در سبد خرید (تغییر با PATCH) 👈 جدید
+  const updateQuantity = async (itemId, newQuantity) =&gt; {
+    if (newQuantity &lt; 1) return;
+    try {
+      await axiosInstance.patch(`cart-items/${itemId}/`, {
+        quantity: newQuantity
+      });
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(&#x27;خطا در به‌روزرسانی تعداد:&#x27;, error.response?.data || error);
+    }
+  };
+
+  // ۴. حذف کامل محصول از سبد خرید (حذف با DELETE) 👈 جدید
+  const removeFromCart = async (itemId) =&gt; {
+    try {
+      await axiosInstance.delete(`cart-items/${itemId}/`);
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(&#x27;خطا در حذف آیتم از سبد خرید:&#x27;, error.response?.data || error);
+    }
+  };
+
+  return (
+    &lt;CartContext.Provider value={{ 
+      cart, 
+      cartCount, 
+      addToCart, 
+      updateQuantity, 
+      removeFromCart, 
+      refreshCart: fetchOrCreateCart 
+    }}&gt;
+      {children}
+    &lt;/CartContext.Provider&gt;
+  );
+};
+
+export const useCart = () =&gt; useContext(CartContext);</code></pre></blockquote><blockquote id="3a6da1eb-8b9d-80cb-9406-fad3c0c65d35" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">47- به‌روزرسانی UI در <code>src/components/Cart.jsx</code><p id="3a7da1eb-8b9d-80d9-b510-e9bd6842957b" class="" dir="auto">رابط کاربری سبد خرید را طوری طراحی می‌کنیم که دکمه‌های <code>+</code> و <code>-</code> و دکمه حذف سطل آشغال همراه با خلاصه‌فاکتور کامل داشته باشد:</p><pre id="3a6da1eb-8b9d-8009-b0d5-fadaef1078e4" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import { useCart } from &#x27;../context/CartContext&#x27;;
+import { Link } from &#x27;react-router-dom&#x27;;
+
+function Cart() {
+  const { cart, cartCount, updateQuantity, removeFromCart } = useCart();
+
+  if (!cart || !cart.items || cart.items.length === 0) {
+    return (
+      &lt;div style={{ textAlign: &#x27;center&#x27;, marginTop: &#x27;60px&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+        &lt;h2&gt;سبد خرید شما خالی است 🛒&lt;/h2&gt;
+        &lt;p style={{ color: &#x27;#64748b&#x27;, marginTop: &#x27;10px&#x27; }}&gt;می‌توانید محصولات را از کاتالوگ انتخاب کنید.&lt;/p&gt;
+        &lt;Link to=&quot;/products&quot; style={{
+          display: &#x27;inline-block&#x27;,
+          marginTop: &#x27;15px&#x27;,
+          padding: &#x27;10px 20px&#x27;,
+          backgroundColor: &#x27;#2563eb&#x27;,
+          color: &#x27;white&#x27;,
+          textDecoration: &#x27;none&#x27;,
+          borderRadius: &#x27;6px&#x27;
+        }}&gt;
+          مشاهده کاتالوگ محصولات
+        &lt;/Link&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  // محاسبه قیمت کل سبد خرید
+  const calculateTotalPrice = () =&gt; {
+    return cart.items.reduce((sum, item) =&gt; {
+      const price = item.total_price || (item.product?.price ? Number(item.product.price) * item.quantity : 0);
+      return sum + price;
+    }, 0);
+  };
+
+  return (
+    &lt;div style={{ padding: &#x27;30px&#x27;, maxWidth: &#x27;850px&#x27;, margin: &#x27;0 auto&#x27;, fontFamily: &#x27;sans-serif&#x27;, direction: &#x27;rtl&#x27; }}&gt;
+      &lt;h2 style={{ marginBottom: &#x27;20px&#x27;, color: &#x27;#0f172a&#x27; }}&gt;سبد خرید شما ({cartCount} آیتم)&lt;/h2&gt;
+      
+      &lt;div style={{ display: &#x27;flex&#x27;, flexDirection: &#x27;column&#x27;, gap: &#x27;15px&#x27; }}&gt;
+        {cart.items.map((item) =&gt; (
+          &lt;div key={item.id} style={{
+            display: &#x27;flex&#x27;,
+            justifyContent: &#x27;space-between&#x27;,
+            alignItems: &#x27;center&#x27;,
+            padding: &#x27;15px 20px&#x27;,
+            border: &#x27;1px solid #e2e8f0&#x27;,
+            borderRadius: &#x27;8px&#x27;,
+            backgroundColor: &#x27;#fff&#x27;,
+            boxShadow: &#x27;0 1px 3px rgba(0,0,0,0.05)&#x27;
+          }}&gt;
+            {/* اطلاعات محصول */}
+            &lt;div style={{ flex: 1 }}&gt;
+              &lt;h3 style={{ margin: &#x27;0 0 5px 0&#x27;, fontSize: &#x27;18px&#x27;, color: &#x27;#1e293b&#x27; }}&gt;
+                {item.product?.name || item.product?.title || `محصول کد ${item.product_id}`}
+              &lt;/h3&gt;
+              &lt;span style={{ color: &#x27;#059669&#x27;, fontWeight: &#x27;bold&#x27; }}&gt;
+                {item.product?.price ? `${Number(item.product.price).toLocaleString()} تومان` : &#x27;&#x27;}
+              &lt;/span&gt;
+            &lt;/div&gt;
+
+            {/* کنترلرهای افزایش / کاهش تعداد */}
+            &lt;div style={{ display: &#x27;flex&#x27;, alignItems: &#x27;center&#x27;, gap: &#x27;10px&#x27;, marginLeft: &#x27;30px&#x27; }}&gt;
+              &lt;button 
+                onClick={() =&gt; updateQuantity(item.id, item.quantity + 1)}
+                style={{
+                  width: &#x27;32px&#x27;,
+                  height: &#x27;32px&#x27;,
+                  backgroundColor: &#x27;#e2e8f0&#x27;,
+                  border: &#x27;none&#x27;,
+                  borderRadius: &#x27;4px&#x27;,
+                  fontSize: &#x27;18px&#x27;,
+                  fontWeight: &#x27;bold&#x27;,
+                  cursor: &#x27;pointer&#x27;
+                }}
+              &gt;
+                +
+              &lt;/button&gt;
+
+              &lt;span style={{ fontWeight: &#x27;bold&#x27;, fontSize: &#x27;16px&#x27;, minWidth: &#x27;20px&#x27;, textAlign: &#x27;center&#x27; }}&gt;
+                {item.quantity}
+              &lt;/span&gt;
+
+              &lt;button 
+                onClick={() =&gt; updateQuantity(item.id, item.quantity - 1)}
+                disabled={item.quantity &lt;= 1}
+                style={{
+                  width: &#x27;32px&#x27;,
+                  height: &#x27;32px&#x27;,
+                  backgroundColor: item.quantity &lt;= 1 ? &#x27;#f1f5f9&#x27; : &#x27;#e2e8f0&#x27;,
+                  color: item.quantity &lt;= 1 ? &#x27;#cbd5e1&#x27; : &#x27;#000&#x27;,
+                  border: &#x27;none&#x27;,
+                  borderRadius: &#x27;4px&#x27;,
+                  fontSize: &#x27;18px&#x27;,
+                  fontWeight: &#x27;bold&#x27;,
+                  cursor: item.quantity &lt;= 1 ? &#x27;not-allowed&#x27; : &#x27;pointer&#x27;
+                }}
+              &gt;
+                -
+              &lt;/button&gt;
+            &lt;/div&gt;
+
+            {/* قیمت کل آیتم و دکمه حذف */}
+            &lt;div style={{ display: &#x27;flex&#x27;, alignItems: &#x27;center&#x27;, gap: &#x27;20px&#x27; }}&gt;
+              &lt;span style={{ fontWeight: &#x27;bold&#x27;, fontSize: &#x27;16px&#x27;, color: &#x27;#0f172a&#x27;, minWidth: &#x27;100px&#x27;, textAlign: &#x27;left&#x27; }}&gt;
+                {(item.total_price 
+                  ? Number(item.total_price) 
+                  : (Number(item.product?.price || 0) * item.quantity)
+                ).toLocaleString()} تومان
+              &lt;/span&gt;
+
+              &lt;button 
+                onClick={() =&gt; removeFromCart(item.id)}
+                style={{
+                  padding: &#x27;6px 12px&#x27;,
+                  backgroundColor: &#x27;#fee2e2&#x27;,
+                  color: &#x27;#ef4444&#x27;,
+                  border: &#x27;1px solid #fca5a5&#x27;,
+                  borderRadius: &#x27;6px&#x27;,
+                  cursor: &#x27;pointer&#x27;,
+                  fontSize: &#x27;14px&#x27;,
+                  fontWeight: &#x27;bold&#x27;
+                }}
+              &gt;
+                حذف 🗑️
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+
+      {/* بخش خلاصه فاکتور و جمع کل */}
+      &lt;div style={{
+        marginTop: &#x27;30px&#x27;,
+        padding: &#x27;20px&#x27;,
+        backgroundColor: &#x27;#f8fafc&#x27;,
+        border: &#x27;1px solid #cbd5e1&#x27;,
+        borderRadius: &#x27;8px&#x27;,
+        display: &#x27;flex&#x27;,
+        justifyContent: &#x27;space-between&#x27;,
+        alignItems: &#x27;center&#x27;
+      }}&gt;
+        &lt;div&gt;
+          &lt;span style={{ fontSize: &#x27;16px&#x27;, color: &#x27;#475569&#x27; }}&gt;مجموع قابل پرداخت:&lt;/span&gt;
+          &lt;h2 style={{ margin: &#x27;5px 0 0 0&#x27;, color: &#x27;#059669&#x27; }}&gt;
+            {calculateTotalPrice().toLocaleString()} تومان
+          &lt;/h2&gt;
+        &lt;/div&gt;
+
+        &lt;button 
+          onClick={() =&gt; alert(&#x27;مرحله بعدی: اتصال به ثبت سفارش و درگاه پرداخت&#x27;)}
+          style={{
+            padding: &#x27;12px 24px&#x27;,
+            backgroundColor: &#x27;#16a34a&#x27;,
+            color: &#x27;white&#x27;,
+            border: &#x27;none&#x27;,
+            borderRadius: &#x27;6px&#x27;,
+            fontSize: &#x27;16px&#x27;,
+            fontWeight: &#x27;bold&#x27;,
+            cursor: &#x27;pointer&#x27;
+          }}
+        &gt;
+          ادامه جهت ثبت سفارش ➔
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Cart;</code></pre></blockquote><p id="3a7da1eb-8b9d-8028-a4e7-c37229187707" class="" dir="auto">🧪 تست عملی</p><ol type="1" id="3a7da1eb-8b9d-8007-923d-eb51569711f9" class="numbered-list" start="1" dir="auto"><li>کدهای دو فایل فوق را ذخیره کن.</li></ol><ol type="1" id="3a7da1eb-8b9d-8082-bba9-ee2e5db2e508" class="numbered-list" start="2" dir="auto"><li>وارد مسیر <code>/cart</code> شو.</li></ol><ol type="1" id="3a7da1eb-8b9d-80e7-9f90-dbf79c470ffb" class="numbered-list" start="3" dir="auto"><li>روی <code><strong>+</strong></code> و  کلیک کن؛ مشاهده می‌کنی که تعداد، قیمت کل محصول، جمع کل فاکتور و عدد سبد خرید در Navbar همگی در لحظه به‌روزرسانی می‌شوند.</li></ol><ol type="1" id="3a7da1eb-8b9d-80e4-b4c4-dac6aa360dee" class="numbered-list" start="4" dir="auto"><li>روی دکمه <strong>حذف 🗑️</strong> کلیک کن؛ محصول بلافاصله از سبد خرید پاک می‌شود.</li></ol><figure id="3a7da1eb-8b9d-8073-b4e3-ee98e450920d" class="image" data-notion-image="image27hdl23.png" dir="ltr"><a href="image27hdl23.png"><img style="width:692px" src="image27hdl23.png"/></a></figure><p id="3a7da1eb-8b9d-8063-a1a5-ef15aee8c60b" class="" dir="auto">همان‌طور که در تصویر مشخص است:<br/>• مجموع <strong>۵ آیتم</strong> به‌طور دقیق هم در تیتر و هم در <code>Navbar</code> محاسبه شده است.<br/>• محاسبه قیمت‌های جزئی ($2 \times 12 = 24$ و $3 \times 10 = 30$) و جمع کل فاکتور (<strong>۵۴ تومان</strong>) کاملاً درست انجام شده است.<br/>• دکمه‌های کنترل تعداد و حذف هم ساختار ظاهری بسیار شکیلی پیدا کرده‌اند.<br/>به این ترتیب، <strong>زیرساخت کامل سبد خرید (Cart Management)</strong> پروژه ACRON با موفقیت پیاده‌سازی و بسته شد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a2da1eb-8b9d-8087-9623-ed41bf76ea22" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="3a2da1eb-8b9d-80aa-b6e6-dc0713136ef9" class="" dir="auto">پایان Part-14</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
