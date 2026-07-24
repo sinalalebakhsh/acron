@@ -7,18 +7,16 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
   const [cartCount, setCartCount] = useState(0);
 
-  // ۱. دریافت یا ساخت سبد خرید
+  // ۱. دریافت یا ایجاد سبد خرید
   const fetchOrCreateCart = async () => {
     let cartId = localStorage.getItem('cart_id');
     try {
       if (!cartId) {
-        // ساخت سبد جدید با آدرس /api/carts/
         const response = await axiosInstance.post('carts/');
         cartId = response.data.id;
         localStorage.setItem('cart_id', cartId);
       }
       
-      // دریافت جزئیات سبد خرید با آدرس /api/carts/<cart_id>/
       const response = await axiosInstance.get(`carts/${cartId}/`);
       setCart(response.data);
       
@@ -26,7 +24,6 @@ export const CartProvider = ({ children }) => {
       setCartCount(totalItems);
     } catch (error) {
       console.error('خطا در دریافت سبد خرید:', error);
-      // اگر سبد خرید با این شناسه وجود نداشت، پاکش کن تا دفعه بعد جدید ساخته شود
       if (error.response?.status === 404) {
         localStorage.removeItem('cart_id');
       }
@@ -37,38 +34,65 @@ export const CartProvider = ({ children }) => {
     fetchOrCreateCart();
   }, []);
 
- const addToCart = async (productId) => {
-  let cartId = localStorage.getItem('cart_id');
-  
-  if (!cartId) {
-    const newCartResponse = await axiosInstance.post('carts/');
-    cartId = newCartResponse.data.id;
-    localStorage.setItem('cart_id', cartId);
-  }
-
-  try {
-    // 👈 نام کلید دقیقا به cart_id تغییر کرد
-    await axiosInstance.post('cart-items/', {
-      cart_id: cartId,
-      product_id: productId,
-      quantity: 1,
-    });
+  // ۲. افزودن محصول به سبد خرید
+  const addToCart = async (productId) => {
+    let cartId = localStorage.getItem('cart_id');
     
-    await fetchOrCreateCart();
-  } catch (error) {
-    console.error('خطا در افزودن به سبد خرید:', error.response?.data || error);
-  }
-};
+    if (!cartId) {
+      const newCartResponse = await axiosInstance.post('carts/');
+      cartId = newCartResponse.data.id;
+      localStorage.setItem('cart_id', cartId);
+    }
 
+    try {
+      await axiosInstance.post('cart-items/', {
+        cart_id: cartId,
+        product_id: productId,
+        quantity: 1,
+      });
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error('خطا در افزودن به سبد خرید:', error.response?.data || error);
+    }
+  };
 
+  // ۳. تغییر تعداد محصول در سبد خرید (تغییر با PATCH) 👈 جدید
+  const updateQuantity = async (itemId, newQuantity) => {
+    if (newQuantity < 1) return;
+    try {
+      await axiosInstance.patch(`cart-items/${itemId}/`, {
+        quantity: newQuantity
+      });
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error('خطا در به‌روزرسانی تعداد:', error.response?.data || error);
+    }
+  };
 
+  // ۴. حذف کامل محصول از سبد خرید (حذف با DELETE) 👈 جدید
+  const removeFromCart = async (itemId) => {
+    try {
+      await axiosInstance.delete(`cart-items/${itemId}/`);
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error('خطا در حذف آیتم از سبد خرید:', error.response?.data || error);
+    }
+  };
 
   return (
-    <CartContext.Provider value={{ cart, cartCount, addToCart, refreshCart: fetchOrCreateCart }}>
+    <CartContext.Provider value={{ 
+      cart, 
+      cartCount, 
+      addToCart, 
+      updateQuantity, 
+      removeFromCart, 
+      refreshCart: fetchOrCreateCart 
+    }}>
       {children}
     </CartContext.Provider>
   );
 };
 
 export const useCart = () => useContext(CartContext);
+
 
