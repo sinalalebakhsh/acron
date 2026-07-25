@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../api/axiosInstance';
 
 function Cart() {
-  const { cart, cartCount, updateQuantity, removeFromCart } = useCart();
+  const { cart, cartCount, refreshCart } = useCart();
+  const navigate = useNavigate();
+
+  // وضعیت‌های مربوط به پنجره دریافت آدرس و ثبت سفارش
+  const [showAddressModal, setShowAddressModal] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   if (!cart || !cart.items || cart.items.length === 0) {
     return (
@@ -25,12 +33,52 @@ function Cart() {
     );
   }
 
-  // محاسبه قیمت کل سبد خرید
   const calculateTotalPrice = () => {
     return cart.items.reduce((sum, item) => {
       const price = item.total_price || (item.product?.price ? Number(item.product.price) * item.quantity : 0);
       return sum + price;
     }, 0);
+  };
+
+  // تابع ارسال درخواست ثبت سفارش به بک‌اند
+  const handlePlaceOrder = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+
+    if (shippingAddress.trim().length < 10) {
+      setErrorMessage('آدرس ارسال باید حداقل ۱۰ کاراکتر باشد.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const cartId = localStorage.getItem('cart_id');
+      
+      // ۱. ارسال درخواست به بک‌اند
+      await axiosInstance.post('orders/', {
+        cart_id: cartId,
+        shipping_address: shippingAddress
+      });
+
+      // ۲. پاکسازی سبد خرید از حافظه مرورگر پس از ثبت موفق سفارش
+      localStorage.removeItem('cart_id');
+      await refreshCart();
+
+      alert('🎉 سفارش شما با موفقیت ثبت شد!');
+      setShowAddressModal(false);
+      
+      // انتقال کاربر به صفحه داشبورد یا لیست سفارشات
+      navigate('/');
+    } catch (error) {
+      console.error('خطا در ثبت سفارش:', error.response?.data);
+      const backendError = error.response?.data?.non_field_errors?.[0] 
+        || error.response?.data?.shipping_address?.[0]
+        || error.response?.data?.detail 
+        || 'خطایی در ثبت سفارش رخ داد.';
+      setErrorMessage(backendError);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,90 +94,27 @@ function Cart() {
             padding: '15px 20px',
             border: '1px solid #e2e8f0',
             borderRadius: '8px',
-            backgroundColor: '#fff',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+            backgroundColor: '#fff'
           }}>
-            {/* اطلاعات محصول */}
             <div style={{ flex: 1 }}>
-              <h3 style={{ margin: '0 0 5px 0', fontSize: '18px', color: '#1e293b' }}>
-                {item.product?.name || item.product?.title || `محصول کد ${item.product_id}`}
+              <h3 style={{ margin: '0 0 5px 0', fontSize: '18px' }}>
+                {item.product?.name || `محصول کد ${item.product_id}`}
               </h3>
               <span style={{ color: '#059669', fontWeight: 'bold' }}>
-                {item.product?.price ? `${Number(item.product.price).toLocaleString()} تومان` : ''}
+                تعداد: {item.quantity}
               </span>
             </div>
-
-            {/* کنترلرهای افزایش / کاهش تعداد */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginLeft: '30px' }}>
-              <button 
-                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  backgroundColor: '#e2e8f0',
-                  border: 'none',
-                  borderRadius: '4px',
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
-              >
-                +
-              </button>
-
-              <span style={{ fontWeight: 'bold', fontSize: '16px', minWidth: '20px', textAlign: 'center' }}>
-                {item.quantity}
-              </span>
-
-              <button 
-                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                disabled={item.quantity <= 1}
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  backgroundColor: item.quantity <= 1 ? '#f1f5f9' : '#e2e8f0',
-                  color: item.quantity <= 1 ? '#cbd5e1' : '#000',
-                  border: 'none',
-                  borderRadius: '4px',
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  cursor: item.quantity <= 1 ? 'not-allowed' : 'pointer'
-                }}
-              >
-                -
-              </button>
-            </div>
-
-            {/* قیمت کل آیتم و دکمه حذف */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-              <span style={{ fontWeight: 'bold', fontSize: '16px', color: '#0f172a', minWidth: '100px', textAlign: 'left' }}>
-                {(item.total_price 
-                  ? Number(item.total_price) 
-                  : (Number(item.product?.price || 0) * item.quantity)
-                ).toLocaleString()} تومان
-              </span>
-
-              <button 
-                onClick={() => removeFromCart(item.id)}
-                style={{
-                  padding: '6px 12px',
-                  backgroundColor: '#fee2e2',
-                  color: '#ef4444',
-                  border: '1px solid #fca5a5',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: 'bold'
-                }}
-              >
-                حذف 🗑️
-              </button>
+            <div style={{ fontWeight: 'bold', fontSize: '16px' }}>
+              {(item.total_price 
+                ? Number(item.total_price) 
+                : (Number(item.product?.price || 0) * item.quantity)
+              ).toLocaleString()} تومان
             </div>
           </div>
         ))}
       </div>
 
-      {/* بخش خلاصه فاکتور و جمع کل */}
+      {/* خلاصه فاکتور */}
       <div style={{
         marginTop: '30px',
         padding: '20px',
@@ -148,7 +133,7 @@ function Cart() {
         </div>
 
         <button 
-          onClick={() => alert('مرحله بعدی: اتصال به ثبت سفارش و درگاه پرداخت')}
+          onClick={() => setShowAddressModal(true)}
           style={{
             padding: '12px 24px',
             backgroundColor: '#16a34a',
@@ -163,9 +148,94 @@ function Cart() {
           ادامه جهت ثبت سفارش ➔
         </button>
       </div>
+
+      {/* پنجره مودال دریافت آدرس */}
+      {showAddressModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: '#fff',
+            padding: '30px',
+            borderRadius: '10px',
+            width: '90%',
+            maxWidth: '500px',
+            direction: 'rtl'
+          }}>
+            <h3 style={{ marginTop: 0 }}>تکمیل آدرس ارسال سفارش</h3>
+            <form onSubmit={handlePlaceOrder}>
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+                  آدرس دقیق پستی:
+                </label>
+                <textarea 
+                  rows="4"
+                  value={shippingAddress}
+                  onChange={(e) => setShippingAddress(e.target.value)}
+                  placeholder="مثال: تهران، خیابان آزادی، پلاک ۱۲، واحد ۴ (حداقل ۱۰ کاراکتر)"
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '6px',
+                    border: '1px solid #cbd5e1',
+                    boxSizing: 'border-box'
+                  }}
+                  required
+                />
+              </div>
+
+              {errorMessage && (
+                <div style={{ color: '#dc2626', marginBottom: '15px', fontSize: '14px' }}>
+                  {errorMessage}
+                </div>
+              )}
+
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowAddressModal(false)}
+                  disabled={loading}
+                  style={{
+                    padding: '10px 18px',
+                    backgroundColor: '#e2e8f0',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  انصراف
+                </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  style={{
+                    padding: '10px 20px',
+                    backgroundColor: '#16a34a',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    fontWeight: 'bold',
+                    cursor: loading ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  {loading ? 'در حال ثبت...' : 'تایید و ثبت سفارش نهایی'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export default Cart;
-
