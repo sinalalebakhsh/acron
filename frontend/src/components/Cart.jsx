@@ -68,7 +68,7 @@ function Cart() {
       setShowAddressModal(false);
       
       // انتقال کاربر به صفحه داشبورد یا لیست سفارشات
-      navigate('/');
+      navigate('/orders');
     } catch (error) {
       console.error('خطا در ثبت سفارش:', error.response?.data);
       const backendError = error.response?.data?.non_field_errors?.[0] 

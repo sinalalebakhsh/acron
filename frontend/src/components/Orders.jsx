@@ -18,7 +18,14 @@ function Orders() {
     const fetchOrders = async () => {
       try {
         const response = await axiosInstance.get('orders/');
-        setOrders(response.data);
+        
+        // گارد امنیتی: استخراج آرایه سفارشات چه با پجینیشن چه بدون آن
+        const rawData = response.data;
+        const ordersArray = Array.isArray(rawData) 
+          ? rawData 
+          : (rawData?.results || []);
+
+        setOrders(ordersArray);
       } catch (err) {
         console.error('خطا در دریافت سفارشات:', err);
         setError('خطا در دریافت لیست سفارش‌ها. لطفاً مجدداً تلاش کنید.');
@@ -72,8 +79,16 @@ function Orders() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {orders.map((order) => {
-          const status = statusConfig[order.status] || { label: order.status, color: '#475569', bgColor: '#f1f5f9' };
-          const formattedDate = new Date(order.created_at).toLocaleDateString('fa-IR');
+          const status = statusConfig[order.status] || { label: order.status || 'نامشخص', color: '#475569', bgColor: '#f1f5f9' };
+          
+          let formattedDate = '---';
+          if (order.created_at) {
+            try {
+              formattedDate = new Date(order.created_at).toLocaleDateString('fa-IR');
+            } catch {
+              formattedDate = order.created_at;
+            }
+          }
 
           return (
             <div key={order.id} style={{
@@ -94,7 +109,9 @@ function Orders() {
               }}>
                 <div>
                   <span style={{ fontSize: '13px', color: '#64748b' }}>شناسه سفارش: </span>
-                  <strong style={{ fontSize: '14px', color: '#1e293b' }}>{order.id.substring(0, 8)}...</strong>
+                  <strong style={{ fontSize: '14px', color: '#1e293b' }}>
+                    {order.id ? String(order.id).substring(0, 8) : '---'}...
+                  </strong>
                   <span style={{ margin: '0 10px', color: '#cbd5e1' }}>|</span>
                   <span style={{ fontSize: '13px', color: '#64748b' }}>تاریخ: {formattedDate}</span>
                 </div>
@@ -115,7 +132,7 @@ function Orders() {
               <div style={{ padding: '20px' }}>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', color: '#334155' }}>اقلام سفارش:</h4>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {order.items?.map((item) => (
+                  {order.items && order.items.map((item) => (
                     <li key={item.id} style={{
                       padding: '8px 0',
                       borderBottom: '1px dashed #f1f5f9',
@@ -123,11 +140,34 @@ function Orders() {
                       justifyContent: 'space-between',
                       alignItems: 'center'
                     }}>
-                      <span style={{ color: '#0f172a' }}>{item.product_name}</span>
-                      <span style={{ fontSize: '14px', color: '#64748b' }}>تعداد: {item.quantity}</span>
+                      <span style={{ color: '#0f172a' }}>
+                        {item.product_name || `محصول کد ${item.product}`}
+                      </span>
+                      <div style={{ fontSize: '14px', color: '#64748b' }}>
+                        <span style={{ marginLeft: '15px' }}>تعداد: {item.quantity}</span>
+                        {item.unit_price && (
+                          <span style={{ fontWeight: 'bold', color: '#0f172a' }}>
+                            {Number(item.unit_price).toLocaleString()} تومان
+                          </span>
+                        )}
+                      </div>
                     </li>
                   ))}
                 </ul>
+
+                {/* مجموع کل فاکتور */}
+                {order.total_price !== undefined && (
+                  <div style={{
+                    marginTop: '15px',
+                    paddingTop: '12px',
+                    borderTop: '1px solid #e2e8f0',
+                    textAlign: 'left',
+                    fontWeight: 'bold',
+                    color: '#059669'
+                  }}>
+                    مجموع فاکتور: {Number(order.total_price).toLocaleString()} تومان
+                  </div>
+                )}
               </div>
             </div>
           );
@@ -138,4 +178,5 @@ function Orders() {
 }
 
 export default Orders;
+
 

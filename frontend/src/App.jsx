@@ -4,9 +4,11 @@ import { AuthContext } from './context/AuthContext';
 import axiosInstance from './api/axiosInstance'; // وارد کردن نمونه اکسپوس خودمان
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
-import Cart from './components/Cart'; // 👈 اضافه شد
-
-
+import Cart from './components/Cart'; 
+import Orders from './components/Orders'; //
+import { useAuth } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import Products from './components/Products';
 
 
 
@@ -52,26 +54,10 @@ function Dashboard() {
       </div>
 
       <br />
-      {/* <button 
-        onClick={logout} 
-        style={{ padding: '10px 20px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '30px', fontWeight: 'bold' }}
-      >
-        خروج از حساب
-      </button> */}
+
     </div>
   );
 }
-
-
-// ...........
-
-
-
-import { useAuth } from './context/AuthContext';
-import Navbar from './components/Navbar';
-import Products from './components/Products';
-
-
 
 function App() {
   const { user } = useAuth();
@@ -80,34 +66,11 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route 
-          path="/login" 
-          element={user ? <Navigate to="/" replace /> : <Login />} 
-        />
-        <Route 
-          path="/" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/products" 
-          element={
-            <ProtectedRoute>
-              <Products />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/cart" 
-          element={
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          } 
-        />
+        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

@@ -41,6 +41,7 @@ function Navbar() {
               🛒 سبد خرید: {cartCount}
             </span>
         </Link>
+        <Link to="/orders" style={{ color: 'white', textDecoration: 'none', marginLeft: '15px' }}> سفارش‌های من </Link>
       </div>
 
       <div>
