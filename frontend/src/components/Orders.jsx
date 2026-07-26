@@ -6,36 +6,50 @@ function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [payingOrderId, setPayingOrderId] = useState(null);
 
-  // فرهنگ‌لغت نگاشت وضعیت‌های بک‌اند به عنوان و رنگ
+  // وضعیت‌های سفارش
   const statusConfig = {
     P: { label: 'در انتظار پرداخت', color: '#d97706', bgColor: '#fef3c7' },
     C: { label: 'پرداخت موفق', color: '#16a34a', bgColor: '#dcfce7' },
     X: { label: 'لغو شده', color: '#dc2626', bgColor: '#fee2e2' },
   };
 
+  const fetchOrders = async () => {
+    try {
+      const response = await axiosInstance.get('orders/');
+      const rawData = response.data;
+      const ordersArray = Array.isArray(rawData) 
+        ? rawData 
+        : (rawData?.results || []);
+
+      setOrders(ordersArray);
+    } catch (err) {
+      console.error('خطا در دریافت سفارشات:', err);
+      setError('خطا در دریافت لیست سفارش‌ها. لطفاً مجدداً تلاش کنید.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axiosInstance.get('orders/');
-        
-        // گارد امنیتی: استخراج آرایه سفارشات چه با پجینیشن چه بدون آن
-        const rawData = response.data;
-        const ordersArray = Array.isArray(rawData) 
-          ? rawData 
-          : (rawData?.results || []);
-
-        setOrders(ordersArray);
-      } catch (err) {
-        console.error('خطا در دریافت سفارشات:', err);
-        setError('خطا در دریافت لیست سفارش‌ها. لطفاً مجدداً تلاش کنید.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchOrders();
   }, []);
+
+  // شبیه‌سازی / اجرای پرداخت فاکتور
+  const handlePayment = async (orderId) => {
+    setPayingOrderId(orderId);
+    try {
+      // در مرحله بعد می‌توان این درخواست را به درگاه پرداخت یا اندپوینت مربوطه متصل کرد
+      alert(`در حال انتقال به درگاه پرداخت برای سفارش ${orderId.substring(0, 8)}...`);
+      // فراخوانی مجدد برای به‌روزرسانی وضعیت
+      await fetchOrders();
+    } catch (err) {
+      alert('خطا در پردازش پرداخت');
+    } finally {
+      setPayingOrderId(null);
+    }
+  };
 
   if (loading) {
     return (
@@ -98,7 +112,7 @@ function Orders() {
               overflow: 'hidden',
               boxShadow: '0 2px 4px rgba(0,0,0,0.04)'
             }}>
-              {/* سربرگ کارت سفارش */}
+              {/* سربرگ کارت */}
               <div style={{
                 padding: '15px 20px',
                 backgroundColor: '#f8fafc',
@@ -128,26 +142,37 @@ function Orders() {
                 </span>
               </div>
 
-              {/* اقلام داخلی سفارش */}
+              {/* لیست اقلام */}
               <div style={{ padding: '20px' }}>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', color: '#334155' }}>اقلام سفارش:</h4>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   {order.items && order.items.map((item) => (
                     <li key={item.id} style={{
-                      padding: '8px 0',
+                      padding: '10px 0',
                       borderBottom: '1px dashed #f1f5f9',
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center'
                     }}>
-                      <span style={{ color: '#0f172a' }}>
+                      <span style={{ fontWeight: '500', color: '#0f172a' }}>
                         {item.product_name || `محصول کد ${item.product}`}
                       </span>
-                      <div style={{ fontSize: '14px', color: '#64748b' }}>
-                        <span style={{ marginLeft: '15px' }}>تعداد: {item.quantity}</span>
+
+                      {/* تفکیک شفاف تعداد و قیمت */}
+                      <div style={{ display: 'flex', gap: '15px', alignItems: 'center', fontSize: '14px' }}>
+                        <span style={{
+                          backgroundColor: '#f1f5f9',
+                          padding: '3px 8px',
+                          borderRadius: '5px',
+                          color: '#475569',
+                          fontSize: '13px'
+                        }}>
+                          تعداد: <strong>{item.quantity}</strong>
+                        </span>
+
                         {item.unit_price && (
-                          <span style={{ fontWeight: 'bold', color: '#0f172a' }}>
-                            {Number(item.unit_price).toLocaleString()} تومان
+                          <span style={{ color: '#0f172a' }}>
+                            قیمت واحد: <strong>{Number(item.unit_price).toLocaleString()}</strong> تومان
                           </span>
                         )}
                       </div>
@@ -155,19 +180,42 @@ function Orders() {
                   ))}
                 </ul>
 
-                {/* مجموع کل فاکتور */}
-                {order.total_price !== undefined && (
-                  <div style={{
-                    marginTop: '15px',
-                    paddingTop: '12px',
-                    borderTop: '1px solid #e2e8f0',
-                    textAlign: 'left',
-                    fontWeight: 'bold',
-                    color: '#059669'
-                  }}>
-                    مجموع فاکتور: {Number(order.total_price).toLocaleString()} تومان
-                  </div>
-                )}
+                {/* بخش جمع کل و دکمه اقدام */}
+                <div style={{
+                  marginTop: '15px',
+                  paddingTop: '15px',
+                  borderTop: '1px solid #e2e8f0',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  {order.total_price !== undefined && (
+                    <div style={{ fontWeight: 'bold', color: '#059669', fontSize: '15px' }}>
+                      مجموع فاکتور: {Number(order.total_price).toLocaleString()} تومان
+                    </div>
+                  )}
+
+                  {/* دکمه پرداخت فقط برای سفارش‌های در انتظار پرداخت */}
+                  {order.status === 'P' && (
+                    <button
+                      onClick={() => handlePayment(order.id)}
+                      disabled={payingOrderId === order.id}
+                      style={{
+                        backgroundColor: '#16a34a',
+                        color: 'white',
+                        border: 'none',
+                        padding: '8px 18px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        transition: 'background-color 0.2s'
+                      }}
+                    >
+                      {payingOrderId === order.id ? 'در حال اتصال...' : 'پرداخت فاکتور 💳'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           );
@@ -178,5 +226,6 @@ function Orders() {
 }
 
 export default Orders;
+
 
 
