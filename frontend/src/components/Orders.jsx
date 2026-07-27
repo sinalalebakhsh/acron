@@ -8,7 +8,6 @@ function Orders() {
   const [error, setError] = useState('');
   const [payingOrderId, setPayingOrderId] = useState(null);
 
-  // وضعیت‌های سفارش
   const statusConfig = {
     P: { label: 'در انتظار پرداخت', color: '#d97706', bgColor: '#fef3c7' },
     C: { label: 'پرداخت موفق', color: '#16a34a', bgColor: '#dcfce7' },
@@ -36,16 +35,20 @@ function Orders() {
     fetchOrders();
   }, []);
 
-  // شبیه‌سازی / اجرای پرداخت فاکتور
+  // ارسال درخواست پردازش پرداخت به بک‌اند
   const handlePayment = async (orderId) => {
     setPayingOrderId(orderId);
     try {
-      // در مرحله بعد می‌توان این درخواست را به درگاه پرداخت یا اندپوینت مربوطه متصل کرد
-      alert(`در حال انتقال به درگاه پرداخت برای سفارش ${orderId.substring(0, 8)}...`);
-      // فراخوانی مجدد برای به‌روزرسانی وضعیت
+      await axiosInstance.post(`orders/${orderId}/pay/`);
+      
+      alert('پرداخت با موفقیت انجام شد! 💳✨');
+      
+      // دریافت مجدد اطلاعات سفارشات برای به‌روزرسانی وضعیت روی صفحه
       await fetchOrders();
     } catch (err) {
-      alert('خطا در پردازش پرداخت');
+      console.error('خطا در پرداخت:', err);
+      const serverMessage = err.response?.data?.detail || 'خطایی در پردازش پرداخت رخ داد.';
+      alert(serverMessage);
     } finally {
       setPayingOrderId(null);
     }
@@ -158,7 +161,6 @@ function Orders() {
                         {item.product_name || `محصول کد ${item.product}`}
                       </span>
 
-                      {/* تفکیک شفاف تعداد و قیمت */}
                       <div style={{ display: 'flex', gap: '15px', alignItems: 'center', fontSize: '14px' }}>
                         <span style={{
                           backgroundColor: '#f1f5f9',
@@ -180,7 +182,7 @@ function Orders() {
                   ))}
                 </ul>
 
-                {/* بخش جمع کل و دکمه اقدام */}
+                {/* جمع کل و دکمه پرداخت */}
                 <div style={{
                   marginTop: '15px',
                   paddingTop: '15px',
@@ -195,24 +197,23 @@ function Orders() {
                     </div>
                   )}
 
-                  {/* دکمه پرداخت فقط برای سفارش‌های در انتظار پرداخت */}
                   {order.status === 'P' && (
                     <button
                       onClick={() => handlePayment(order.id)}
                       disabled={payingOrderId === order.id}
                       style={{
-                        backgroundColor: '#16a34a',
+                        backgroundColor: payingOrderId === order.id ? '#94a3b8' : '#16a34a',
                         color: 'white',
                         border: 'none',
                         padding: '8px 18px',
                         borderRadius: '6px',
-                        cursor: 'pointer',
+                        cursor: payingOrderId === order.id ? 'not-allowed' : 'pointer',
                         fontSize: '14px',
                         fontWeight: 'bold',
                         transition: 'background-color 0.2s'
                       }}
                     >
-                      {payingOrderId === order.id ? 'در حال اتصال...' : 'پرداخت فاکتور 💳'}
+                      {payingOrderId === order.id ? 'در حال پرداخت...' : 'پرداخت فاکتور 💳'}
                     </button>
                   )}
                 </div>
@@ -226,6 +227,5 @@ function Orders() {
 }
 
 export default Orders;
-
 
 
