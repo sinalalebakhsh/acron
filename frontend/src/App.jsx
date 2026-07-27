@@ -9,7 +9,7 @@ import Orders from './components/Orders'; //
 import { useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Products from './components/Products';
-
+import Profile from './components/Profile';
 
 
 function Dashboard() {
@@ -72,6 +72,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
