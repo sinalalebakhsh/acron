@@ -12,22 +12,19 @@ class Customer(models.Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 class Address(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='addresses')
-    title = models.CharField(max_length=50, help_text="مثال: خانه، محل کار")
-    receiver_name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=15)
-    province = models.CharField(max_length=50, verbose_name="استان")
-    city = models.CharField(max_length=50, verbose_name="شهر")
-    street = models.TextField(verbose_name="آدرس دقیق (خیابان، پلاک، واحد)")
-    postal_code = models.CharField(max_length=10, verbose_name="کد پستی")
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE,related_name='addresses')
+    title = models.CharField(max_length=50,help_text="مثال: خانه، محل کار",null=True,blank=True)
+    receiver_name = models.CharField(max_length=100,null=True,blank=True)
+    phone_number = models.CharField(max_length=15,null=True,blank=True)
+    province = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    street = models.TextField()
+    postal_code = models.CharField(max_length=10)
     is_default = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-is_default', '-created_at']
-        
-    def __str__(self):
-        return f"{self.province}, {self.city} - {self.postal_code}"
     
-
+    
+    
+    
+    
     
