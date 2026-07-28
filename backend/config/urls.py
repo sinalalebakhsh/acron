@@ -27,7 +27,8 @@ urlpatterns = [
     path('api/carts/', include('apps.carts.urls')),
     path('api/customers/', include('apps.customers.urls')),
     path('api/products/', include('apps.products.urls')),
-
+    path('api/orders/', include('apps.orders.urls')),
+    
     # 🔴 ۲. مسیر عمومی api (باید پایین‌تر باشد تا تداخل ایجاد نکند)
     path('api/', include('apps.api.urls')),
 
