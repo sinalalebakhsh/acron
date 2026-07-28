@@ -6,7 +6,9 @@ import { useCart } from '../context/CartContext'; // 👈 اضافه شد
 function Navbar({ onLogout }) {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const { cartCount } = useCart(); // 👈 دریافت تعداد آیتم‌های سبد خرید
+  // const { cartCount } = useCart(); // 👈 دریافت تعداد آیتم‌های سبد خرید
+  // 🔴 ۲. دریافت تعداد کل آیتم‌ها از Context
+  const { totalItemsCount } = useCart(); 
 
   const handleLogout = () => {
     logout();
@@ -38,7 +40,7 @@ function Navbar({ onLogout }) {
               fontWeight: 'bold',
               cursor: 'pointer'
             }}>
-              🛒 سبد خرید: {cartCount}
+              🛒 سبد خرید: {totalItemsCount}
             </span>
         </Link>
         <Link to="/orders" style={{ color: 'white', textDecoration: 'none', marginLeft: '15px' }}> سفارش‌های من </Link>

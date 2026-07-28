@@ -100,11 +100,38 @@ export const CartProvider = ({ children }) => {
       console.error('خطا در حذف آیتم از سبد خرید:', error.response?.data || error);
     }
   };
+  const [loading, setLoading] = useState(true);
+
+  const fetchCart = async () => {
+    try {
+      const response = await axiosInstance.get('carts/mine/');
+      setCart(response.data);
+    } catch (error) {
+      setCart(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 🔴 تابعی برای صفر کردن سبد خرید در حافظه فرانت‌اند
+  const clearCartState = () => {
+    setCart(null);
+  };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  // محاسبه تعداد کل آیتم‌ها برای نمایش در Navbar
+  const totalItemsCount = cart?.items?.reduce((total, item) => total + item.quantity, 0) || 0;
 
   return (
     <CartContext.Provider
       value={{
         cart,
+        totalItemsCount, 
+        fetchCart, 
+        clearCartState, // 🔴 اضافه شدن متد پاکسازی
         cartCount,
         addToCart,
         updateQuantity,

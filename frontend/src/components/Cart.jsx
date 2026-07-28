@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { useNavigate, Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext'; // 🔴 ۱. اضافه کردن ایمپورت
 
 function Cart() {
+  // 🔴 ۲. فراخوانی هوک در بالاترین سطح کامپوننت (قبل از هر شرط و return)
+  const { clearCartState } = useCart();
+
   const [cart, setCart] = useState(null);
   const [addresses, setAddresses] = useState([]);
   const [selectedAddressId, setSelectedAddressId] = useState('');
@@ -13,11 +17,11 @@ function Cart() {
 
   const fetchCartAndAddresses = async () => {
     try {
-      // 1. دریافت اطلاعات سبد خرید
+      // ۱. دریافت اطلاعات سبد خرید
       const cartRes = await axiosInstance.get('carts/mine/');
       setCart(cartRes.data);
 
-      // 2. دریافت لیست آدرس‌های ذخیره‌شده کاربر
+      // ۲. دریافت لیست آدرس‌های ذخیره‌شده کاربر
       const addrRes = await axiosInstance.get('customers/addresses/');
       const addrList = Array.isArray(addrRes.data) ? addrRes.data : (addrRes.data?.results || []);
       setAddresses(addrList);
@@ -64,6 +68,9 @@ function Cart() {
         cart_id: cart.id,
         shipping_address: formattedAddress,
       });
+
+      // 🔴 ۳. پاکسازی عدد و اطلاعات سبد خرید در Navbar
+      clearCartState();
 
       alert('سفارش شما با موفقیت ثبت شد! 🎉');
       navigate('/orders');
