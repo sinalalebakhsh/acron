@@ -53,7 +53,7 @@ class AddressSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'created_at']
 
-class ProfileSerializer(serializers.ModelSerializer):
+class CustomerProfileSerializer(serializers.ModelSerializer):
     addresses = serializers.SerializerMethodField()
     customer_phone = serializers.CharField(source='customer.phone_number', read_only=True)
     birth_date = serializers.DateField(source='customer.birth_date', read_only=True)
@@ -71,3 +71,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             addresses = obj.customer.addresses.all()
             return AddressSerializer(addresses, many=True).data
         return []   
+
+
+
+
