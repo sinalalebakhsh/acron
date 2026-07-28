@@ -7,14 +7,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // بررسی وضعیت ورود با فراخوانی مسیر /api/me/
   useEffect(() => {
     const checkAuthStatus = async () => {
       const token = localStorage.getItem('access_token');
       if (token) {
         try {
-          // 👈 دریافت اطلاعات کاربر از مسیر دقیق /api/me/
-          const response = await axiosInstance.get('me/');
+          const response = await axiosInstance.get('customers/profile/');
           setUser(response.data);
         } catch (error) {
           console.error('توکن نامعتبر است:', error);
@@ -28,28 +26,28 @@ export const AuthProvider = ({ children }) => {
     checkAuthStatus();
   }, []);
 
-  // تابع ورود به حساب
   const login = async (username, password) => {
-    // 👈 ارسال درخواست لاگین به مسیر دقیق /api/token/
+    // ارسال مستقیم اطلاعات ورودی به اندپوینت token/
     const response = await axiosInstance.post('token/', { 
-      username: username, 
-      password: password 
+      username, 
+      password 
     });
     
     const { access, refresh } = response.data;
 
-    // ذخیره توکن‌ها در Local Storage
     localStorage.setItem('access_token', access);
     localStorage.setItem('refresh_token', refresh);
     
-    // دریافت اطلاعات پروفایل کاربر بلافاصله پس از لاگین
-    const userProfile = await axiosInstance.get('me/');
-    setUser(userProfile.data);
+    try {
+      const userProfile = await axiosInstance.get('customers/profile/');
+      setUser(userProfile.data);
+    } catch (e) {
+      console.warn('پروفایل کاربر دریافت نشد:', e);
+    }
     
     return response.data;
   };
 
-  // تابع خروج
   const logout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
@@ -65,4 +63,3 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => useContext(AuthContext);
 export { AuthContext };
-

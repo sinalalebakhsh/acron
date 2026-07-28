@@ -23,24 +23,20 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+# 🔴 ۱. مسیرهای اختصاصی اپلیکیشن‌ها (باید بالاتر قرار گیرند)
+    path('api/carts/', include('apps.carts.urls')),
+    path('api/customers/', include('apps.customers.urls')),
+    path('api/products/', include('apps.products.urls')),
+
+    # 🔴 ۲. مسیر عمومی api (باید پایین‌تر باشد تا تداخل ایجاد نکند)
     path('api/', include('apps.api.urls')),
 
 
-
-    # ------------------- Swagger URLs ------------------- #
-    # ۱. تولید فایل خام 
-    # OpenAPI
-    #  (به فرمت YAML/JSON)
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    
-    # ۲. رابط کاربری گرافیکی 
-    # Swagger
-    #  (توسعه‌دهندگان بک‌اند و فرانت‌اند)
+
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     
-    # ۳. رابط کاربری 
-    # Redoc
-    #  (جایگزین Swagger، مناسب برای ارائه به مدیران)
+
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
 ]

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext'; // 👈 اضافه شد
 
-function Navbar() {
+function Navbar({ onLogout }) {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { cartCount } = useCart(); // 👈 دریافت تعداد آیتم‌های سبد خرید
@@ -44,7 +44,7 @@ function Navbar() {
         <Link to="/orders" style={{ color: 'white', textDecoration: 'none', marginLeft: '15px' }}> سفارش‌های من </Link>
       </div>
 
-      <div>
+      {/* <div>
         {isAuthenticated ? (
           <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
             <span>خوش آمدی، <strong>{user?.username}</strong></span>
@@ -58,7 +58,43 @@ function Navbar() {
         ) : (
           <Link to="/login" style={{ color: '#38bdf8', textDecoration: 'none' }}>ورود به حساب</Link>
         )}
+      </div> */}
+       <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+        {user ? (
+          <>
+            {/* لینک به صفحه پروفایل کاربر */}
+            <Link to="/profile" style={{
+              color: '#38bdf8',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+              backgroundColor: '#1e293b',
+              padding: '6px 12px',
+              borderRadius: '6px'
+            }}>
+              پروفایل {user.username || user} 👤
+            </Link>
+
+            <button
+              onClick={onLogout}
+              style={{
+                backgroundColor: '#dc2626',
+                color: '#fff',
+                border: 'none',
+                padding: '6px 12px',
+                borderRadius: '6px',
+                cursor: 'pointer'
+              }}
+            >
+              خروج
+            </button>
+          </>
+        ) : (
+          <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>
+            ورود / ثبت‌نام
+          </Link>
+        )}
       </div>
+      
     </nav>
   );
 }

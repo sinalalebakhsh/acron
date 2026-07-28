@@ -17,6 +17,10 @@ from . import views
 
 
 urlpatterns = [
+    # JWT
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
     # API
     path('', include('apps.carts.urls')), 
     # orders
@@ -24,9 +28,6 @@ urlpatterns = [
     # اضافه کردن مسیرهای مشاور هوشمند جدید
     path('', include('apps.advisor.urls')),
     # 🔑 JWT Authentication
-    # JWT
-    path('token/', TokenObtainPairView.as_view()),
-    path('token/refresh/', TokenRefreshView.as_view()),
     # 🔐 protected route
     path('me/', views.me),
     #  customers
