@@ -292,6 +292,7 @@ const inputStyle = {
   boxSizing: 'border-box'
 };
 
+
 export default Profile;
 
 
