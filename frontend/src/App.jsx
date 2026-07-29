@@ -73,6 +73,9 @@ function App() {
         <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/profile" element={<Profile />} />
+        
+        {/* 🔴 هدایت مسیر قدیمی /dashboard به /profile */}
+        <Route path="/dashboard" element={<Navigate to="/profile" replace />} />
       </Routes>
     </Router>
   );
