@@ -4,7 +4,8 @@ from pathlib import Path
 # فایل‌ها و پوشه‌هایی که نباید در خروجی نهایی بیایند
 EXCLUDE_DIRS = {
     '.git', '__pycache__', 'migrations', 'staticfiles', 'media', 
-    'venv', '.venv', 'env', '.pytest_cache', '.idea', '.vscode', '.html'
+    'venv', '.venv', 'env', '.pytest_cache', '.idea', '.vscode', '.html', 'node_modules',
+    'tests', 'docs', 'build', 'dist', '.eggs', '.tox', '.mypy_cache'
 }
 EXCLUDE_FILES = {
     'db.sqlite3', 'exporter.py', 'Pipfile.lock', 'poetry.lock', 
