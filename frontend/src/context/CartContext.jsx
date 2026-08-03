@@ -1,14 +1,19 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axiosInstance from '../api/axiosInstance';
+import { useAuth } from './AuthContext';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(null);
-  const [cartCount, setCartCount] = useState(0);
+  // 🔴 با گوش‌دادن به وضعیت لاگین، سبد خرید همیشه هماهنگ با کاربر جاری می‌ماند
+  const { isAuthenticated } = useAuth();
 
-  // ۱. دریافت یا ایجاد سبد خرید (پشتیبانی هوشمند از کاربر لاگین‌شده و مهمان)
+  const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // دریافت یا ایجاد سبد خرید (پشتیبانی هوشمند از کاربر لاگین‌شده و مهمان)
   const fetchOrCreateCart = async () => {
+    setLoading(true);
     const token = localStorage.getItem('access_token');
 
     try {
@@ -19,8 +24,6 @@ export const CartProvider = ({ children }) => {
         if (response.data?.id) {
           localStorage.setItem('cart_id', response.data.id);
         }
-        const totalItems = response.data.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
-        setCartCount(totalItems);
         return;
       }
 
@@ -36,23 +39,24 @@ export const CartProvider = ({ children }) => {
 
       const response = await axiosInstance.get(`carts/${cartId}/`);
       setCart(response.data);
-
-      const totalItems = response.data.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
-      setCartCount(totalItems);
     } catch (error) {
       console.error('خطا در دریافت سبد خرید:', error);
       // اگر سبد خرید در دیتابیس یافت نشد (مثلاً پاک شده بود)، آی‌دی محلی را حذف کن
       if (error.response?.status === 404) {
         localStorage.removeItem('cart_id');
       }
+      setCart(null);
+    } finally {
+      setLoading(false);
     }
   };
 
+  // 🔴 هر بار وضعیت isAuthenticated تغییر کند (لاگین یا خروج)، سبد خرید درست دوباره واکشی می‌شود
   useEffect(() => {
     fetchOrCreateCart();
-  }, []);
+  }, [isAuthenticated]);
 
-  // ۲. افزودن محصول به سبد خرید
+  // افزودن محصول به سبد خرید
   const addToCart = async (productId) => {
     try {
       let cartId = cart?.id || localStorage.getItem('cart_id');
@@ -65,11 +69,31 @@ export const CartProvider = ({ children }) => {
       }
 
       // ارسال درخواست افزودن آیتم به اندپوینت درست در جنگو
-      await axiosInstance.post('carts/cart-items/', {
-        cart_id: cartId,
-        product_id: productId,
-        quantity: 1,
-      });
+      try {
+        await axiosInstance.post('carts/cart-items/', {
+          cart_id: cartId,
+          product_id: productId,
+          quantity: 1,
+        });
+      } catch (err) {
+        // 🔴 اگر cart_id ذخیره‌شده در localStorage دیگر در دیتابیس معتبر نیست
+        // (مثلاً به‌خاطر پاک شدن دیتابیس یا قطعی موقت سرور)، یک سبد جدید بساز و دوباره تلاش کن
+        const isInvalidCart = err.response?.status === 400 && err.response?.data?.cart_id;
+        if (isInvalidCart) {
+          localStorage.removeItem('cart_id');
+          const newCartResponse = await axiosInstance.post('carts/');
+          cartId = newCartResponse.data.id;
+          localStorage.setItem('cart_id', cartId);
+
+          await axiosInstance.post('carts/cart-items/', {
+            cart_id: cartId,
+            product_id: productId,
+            quantity: 1,
+          });
+        } else {
+          throw err;
+        }
+      }
 
       // به‌روزرسانی وضعیت سبد خرید
       await fetchOrCreateCart();
@@ -78,7 +102,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ۳. تغییر تعداد محصول در سبد خرید (با استفاده از PATCH)
+  // تغییر تعداد محصول در سبد خرید (با استفاده از PATCH)
   const updateQuantity = async (itemId, newQuantity) => {
     if (newQuantity < 1) return;
     try {
@@ -91,7 +115,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ۴. حذف کامل محصول از سبد خرید (با استفاده از DELETE)
+  // حذف کامل محصول از سبد خرید (با استفاده از DELETE)
   const removeFromCart = async (itemId) => {
     try {
       await axiosInstance.delete(`carts/cart-items/${itemId}/`);
@@ -100,27 +124,11 @@ export const CartProvider = ({ children }) => {
       console.error('خطا در حذف آیتم از سبد خرید:', error.response?.data || error);
     }
   };
-  const [loading, setLoading] = useState(true);
 
-  const fetchCart = async () => {
-    try {
-      const response = await axiosInstance.get('carts/mine/');
-      setCart(response.data);
-    } catch (error) {
-      setCart(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 🔴 تابعی برای صفر کردن سبد خرید در حافظه فرانت‌اند
+  // تابعی برای صفر کردن سبد خرید در حافظه فرانت‌اند (مثلاً بعد از ثبت سفارش)
   const clearCartState = () => {
     setCart(null);
   };
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
 
   // محاسبه تعداد کل آیتم‌ها برای نمایش در Navbar
   const totalItemsCount = cart?.items?.reduce((total, item) => total + item.quantity, 0) || 0;
@@ -129,10 +137,9 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        totalItemsCount, 
-        fetchCart, 
-        clearCartState, // 🔴 اضافه شدن متد پاکسازی
-        cartCount,
+        loading,
+        totalItemsCount,
+        clearCartState,
         addToCart,
         updateQuantity,
         removeFromCart,

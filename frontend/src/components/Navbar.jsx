@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext'; // 👈 اضافه شد
 
-function Navbar({ onLogout }) {
+function Navbar() {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   // const { cartCount } = useCart(); // 👈 دریافت تعداد آیتم‌های سبد خرید
@@ -63,7 +63,7 @@ function Navbar({ onLogout }) {
             </Link>
 
             <button
-              onClick={onLogout}
+              onClick={handleLogout}
               style={{
                 backgroundColor: '#dc2626',
                 color: '#fff',
