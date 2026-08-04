@@ -5,7 +5,8 @@ from pathlib import Path
 EXCLUDE_DIRS = {
     '.git', '__pycache__', 'migrations', 'staticfiles', 'media', 
     'venv', '.venv', 'env', '.pytest_cache', '.idea', '.vscode', '.html', 'node_modules',
-    'tests', 'docs', 'build', 'dist', '.eggs', '.tox', '.mypy_cache'
+    'tests', 'docs', 'build', 'dist', '.eggs', '.tox', '.mypy_cache', 'html document',
+    'Markdown document', 'Vision', 'word'
 }
 EXCLUDE_FILES = {
     'db.sqlite3', 'exporter.py', 'Pipfile.lock', 'poetry.lock', 
