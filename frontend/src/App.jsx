@@ -1,86 +1,60 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthContext } from './context/AuthContext';
-import axiosInstance from './api/axiosInstance'; // وارد کردن نمونه اکسپوس خودمان
-import Login from './components/Login';
-import ProtectedRoute from './components/ProtectedRoute';
-import Cart from './components/Cart'; 
-import Orders from './components/Orders'; //
-import { useAuth } from './context/AuthContext';
-import Navbar from './components/Navbar';
-import Products from './components/Products';
-import Profile from './components/Profile';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
+import Navbar from "./components/layout/Navbar";
 
-function Dashboard() {
-  const { user, logout } = useContext(AuthContext);
-  const [profileData, setProfileData] = useState(null);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    // ارسال درخواست به اِندپوینت واقعی پروفایل در جنگو
-    axiosInstance.get('customers/profile/') 
-      .then((response) => {
-        // ذخیره اطلاعات واقعی مشتری (مانند تلفن، کد ملی یا هر چه در سریالایزر هست)
-        setProfileData(response.data);
-      })
-      .catch((err) => {
-        console.error("API Call Error:", err);
-        setError('خطا در دریافت اطلاعات واقعی پروفایل از دیتابیس.');
-      });
-  }, []);
-
-  return (
-    <div style={{ textAlign: 'center', marginTop: '80px', fontFamily: 'sans-serif', direction: 'rtl' }}>
-      <h1>به پنل اصلی پروژه Acron خوش آمدید!</h1>
-      <p style={{ color: '#555', fontSize: '18px' }}>کاربر جاری سیستم: <strong>{user?.username}</strong></p>
-      
-      <hr style={{ width: '50%', margin: '20px auto', borderColor: '#eee' }} />
-
-      <div style={{ padding: '20px', backgroundColor: error ? '#ffebee' : '#e8f5e9', display: 'inline-block', borderRadius: '6px', minWidth: '350px', textAlign: 'right' }}>
-        <h4 style={{ margin: '0 0 10px 0', color: error ? '#c62828' : '#2e7d32', textAlign: 'center' }}>
-          {error ? 'خطا در ارتباط' : 'مشخصات واقعی شما از دیتابیس جنگو:'}
-        </h4>
-        
-        {error ? (
-          <p style={{ color: '#333', textAlign: 'center' }}>{error}</p>
-        ) : profileData ? (
-          <pre style={{ direction: 'ltr', backgroundColor: '#fff', padding: '10px', borderRadius: '4px', overflowX: 'auto' }}>
-            {JSON.stringify(profileData, null, 2)}
-          </pre>
-        ) : (
-          <p style={{ textAlign: 'center' }}>در حال بارگذاری اطلاعات...</p>
-        )}
-      </div>
-
-      <br />
-
-    </div>
-  );
-}
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 
 function App() {
-  const { user } = useAuth();
-
   return (
-    <Router>
+    <BrowserRouter>
+
       <Navbar />
+
       <Routes>
-        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
-        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/profile" element={<Profile />} />
-        
-        {/* 🔴 هدایت مسیر قدیمی /dashboard به /profile */}
-        <Route path="/dashboard" element={<Navigate to="/profile" replace />} />
+
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/products"
+          element={<Products />}
+        />
+
+        <Route
+          path="/products/:slug"
+          element={<ProductDetail />}
+        />
+
+        <Route
+          path="/cart"
+          element={<Cart />}
+        />
+
+        <Route
+          path="/orders"
+          element={<Orders />}
+        />
+
       </Routes>
-    </Router>
+
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-
