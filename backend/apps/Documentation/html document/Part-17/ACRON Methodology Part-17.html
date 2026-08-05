@@ -1,0 +1,1508 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-17</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3adda1eb-8b9d-80ce-8f49-f9001684483e" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-17</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3adda1eb-8b9d-8094-a314-ce245c157e40" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="3adda1eb-8b9d-80be-96d0-e6a46bd34569" class="" dir="auto">در Part-13 ، <strong>فاز 11:   </strong> Frontend - Presentation Layer  تا قدم 97 توسعه داده شد</p></div></aside><h1 id="3adda1eb-8b9d-80a4-94aa-d01a7f4c75e8" class="" dir="auto">فاز 11<strong>:  </strong> Frontend - Presentation Layer  </h1><p id="3adda1eb-8b9d-8079-8a35-c48eaf3af58e" class="" dir="auto">شروع قدم 98</p><hr id="3adda1eb-8b9d-80d5-9132-d6db8f257563" dir="auto"/><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3afda1eb-8b9d-80eb-9c7f-cde4df4df8c6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3afda1eb-8b9d-807c-8829-cf0b570c221d" class="" dir="auto"><strong>الف: Audit کامل Frontend فعلی</strong></p></div></aside><ul id="3b0da1eb-8b9d-8089-8851-c3b17ceff57c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">هر فایل چه کاری انجام می‌دهد؟</li></ul><ul id="3b0da1eb-8b9d-80f6-a33f-c5abc2a53fee" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چرا این فایل وجود دارد؟</li></ul><ul id="3b0da1eb-8b9d-80ba-9ae0-c96e0f9e87aa" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ارتباط فایل‌ها با یکدیگر چیست؟</li></ul><ul id="3b0da1eb-8b9d-80be-b5b6-c48435bce80c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چه قسمت‌هایی نوشته شده؟</li></ul><ul id="3b0da1eb-8b9d-80ee-be2e-fae6cd91516e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">چه قسمت‌هایی ناقص است؟</li></ul><ul id="3b0da1eb-8b9d-8070-925c-ce91aa0be421" class="bulleted-list" dir="auto"><li style="list-style-type:disc">کدام قسمت‌ها باید اصلاح شوند؟</li></ul><ul id="3b0da1eb-8b9d-80bf-94a3-da276efca583" class="bulleted-list" dir="auto"><li style="list-style-type:disc">کجاها معماری فعلی نیاز به تغییر دارد؟</li></ul><ul id="3b0da1eb-8b9d-801a-b058-dea92a8cfe4f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دقیقاً اولین قدم توسعه چیست؟</li></ul><h2 id="3b0da1eb-8b9d-8064-877c-e4a35e215775" class="" dir="auto">1. وضعیت فعلی Frontend</h2><p id="3b0da1eb-8b9d-80d0-a495-db824a4f6cdf" class="" dir="auto">در <code>frontend/package.json</code> این تکنولوژی‌ها واقعاً در پروژه نصب شده‌اند:</p><ul id="3b0da1eb-8b9d-80d8-9f75-ca0512b7e2a4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">React <code>19.2.7</code></li></ul><ul id="3b0da1eb-8b9d-803e-8eb1-fba230364a41" class="bulleted-list" dir="auto"><li style="list-style-type:disc">React DOM <code>19.2.7</code></li></ul><ul id="3b0da1eb-8b9d-804b-84dc-d09998d6a253" class="bulleted-list" dir="auto"><li style="list-style-type:disc">React Router DOM <code>7.18.1</code></li></ul><ul id="3b0da1eb-8b9d-8046-9b3c-e35dcddf6860" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Axios <code>1.18.1</code></li></ul><ul id="3b0da1eb-8b9d-8087-ba5d-cb7d1bd084c2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Vite <code>8.1.1</code></li></ul><ul id="3b0da1eb-8b9d-80fc-9acc-dd3da06607b2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ESLint <code>10.6.0</code></li></ul><p id="3b0da1eb-8b9d-807a-9045-fc6706137e5e" class="" dir="auto">و Scriptهای اصلی هم <code>dev</code>، <code>build</code>، <code>lint</code> و <code>preview</code> هستند.</p><p id="3b0da1eb-8b9d-80d0-9eab-edd29181bb24" class="" dir="auto">الف: Frontend دارای مفاهیم زیر میباشد:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3b0da1eb-8b9d-80a0-bf1e-f814d89ba577" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Login
+   ↓
+AuthContext
+   ↓
+JWT
+   ↓
+localStorage
+   ↓
+ProtectedRoute</code></pre><p id="3b0da1eb-8b9d-8079-8ebd-c79fcb8632b6" class="" dir="auto"><code>AuthContext</code> وظیفه‌ی نگهداری وضعیت کاربر، Login، Logout و بررسی وضعیت Authentication را دارد. همچنین در مستندات، دریافت <code>me/</code> برای بررسی کاربر فعلی و ذخیره‌ی Access/Refresh Token پیاده‌سازی شده است. </p><p id="3b0da1eb-8b9d-804b-99a7-f4f9d06b43e1" class="" dir="auto"><code>Login.jsx</code> هم فرم Username/Password و مدیریت loading/error را دارد. </p><h2 id="3b0da1eb-8b9d-80ec-9aa2-e42ffec51109" class="" dir="auto">2.ا- Routing هم وجود دارد</h2><p id="3b0da1eb-8b9d-8080-9d49-e096897afd1e" class="" dir="auto">در <code>App.jsx</code> ساختار Routing پیاده شده است:</p><pre id="3b0da1eb-8b9d-805f-b4dd-d1e13644630a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">/login
+   ↓
+Login
+
+/
+   ↓
+ProtectedRoute
+   ↓
+Dashboard
+
+unknown route
+   ↓
+/</code></pre><p id="3b0da1eb-8b9d-80b1-aad2-f0c370ea2e41" class="" dir="auto">یعنی اگر کاربر Login نکرده باشد، مسیر اصلی محافظت می‌شود و به Login هدایت می‌شود.</p><h2 id="3b0da1eb-8b9d-8070-8bc7-d8d0d26d98aa" class="" dir="auto">3.ا Axios و ارتباط با Backend</h2><p id="3b0da1eb-8b9d-807a-9a4b-c94869c943ce" class="" dir="auto">یک <code>axiosInstance</code> هم در معماری فعلی وجود دارد.</p><p id="3b0da1eb-8b9d-802b-9989-ca35fb51abad" class="" dir="auto">مستندات پروژه حتی Interceptor برای JWT را پیاده کرده‌اند؛ یعنی اگر Access Token منقضی شود، سیستم تلاش می‌کند Refresh Token را استفاده کند و Access Token جدید بگیرد. در صورت شکست نیز Tokenها پاک شده و کاربر به <code>/login</code> منتقل می‌شود.</p><h4 id="3b0da1eb-8b9d-80d1-a7a2-e539e49d96da" class="" dir="auto">معماری فعلی تقریباً این است:</h4><pre id="3b0da1eb-8b9d-8028-b594-ef18d2b865a1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">React Component
+       │
+       ▼
+axiosInstance
+       │
+       ▼
+JWT Access Token
+       │
+       ▼
+Django REST API</code></pre><h2 id="3b0da1eb-8b9d-80b8-a1d7-c1efb1caa97d" class="" dir="auto">4.ا Cart هم ساخته شده</h2><p id="3b0da1eb-8b9d-80f5-8e71-eeaec484f17a" class="" dir="auto">این قسمت بسیار مهم است.</p><p id="3b0da1eb-8b9d-8024-8774-c2cdf60bc675" class="" dir="auto">طبق Documentation، Cart Management فقط یک UI ساده نیست.</p><p id="3b0da1eb-8b9d-800a-a314-f04ead47b70a" class="" dir="auto">الف: Frontend توانایی زیر را پیدا کرده است.:</p><ul id="3b0da1eb-8b9d-80a8-9fd9-cbf463c7cc28" class="bulleted-list" dir="auto"><li style="list-style-type:disc">نمایش Cart</li></ul><ul id="3b0da1eb-8b9d-8027-872b-d6b4a70d810a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">افزایش تعداد</li></ul><ul id="3b0da1eb-8b9d-807a-88b8-e9dfebd96345" class="bulleted-list" dir="auto"><li style="list-style-type:disc">کاهش تعداد</li></ul><ul id="3b0da1eb-8b9d-809b-a566-ea826d3b852f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">حذف Item</li></ul><ul id="3b0da1eb-8b9d-8020-a164-de8f19eff762" class="bulleted-list" dir="auto"><li style="list-style-type:disc">محاسبه‌ی قیمت</li></ul><ul id="3b0da1eb-8b9d-80dd-bbed-e70c280697e2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">نمایش تعداد Cart در Navbar</li></ul><p id="3b0da1eb-8b9d-80bf-b5cd-ee49d79aa414" class="" dir="auto">و Backend هم Endpointهای Cart و CartItem را دارد. مثلاً <code>CartViewSet</code> برای دریافت Cart و <code>CartItemViewSet</code> برای افزودن، تغییر تعداد و حذف Item تعریف شده است.</p><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b0da1eb-8b9d-80b8-ae55-ee1c7a9da196" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h2 id="3b0da1eb-8b9d-80cf-99ea-e2f061c5e5b0" class="" dir="auto">برنامه Frontend ما</h2></div></aside><pre id="3b0da1eb-8b9d-80f5-ae00-de2319c5b7b6" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">                ACRON FRONTEND
+                      │
+                      ▼
+             ┌─────────────────┐
+             │ Current Audit   │
+             └────────┬────────┘
+                      │
+                      ▼
+             Architecture Cleanup
+                      │
+                      ▼
+              Authentication [already done]
+                      │
+                      ▼
+                API Layer [continue]
+                      │
+                      ▼
+                Components
+                      │
+                      ▼
+                  Pages
+                      │
+                      ▼
+                 Routing
+                      │
+                      ▼
+              Global State
+                      │
+                      ▼
+              Backend APIs
+                      │
+                      ▼
+             Product / Cart [done]
+                      │
+                      ▼
+                 Orders [done-ish]
+                      │
+                      ▼
+              Notifications
+                      │
+                      ▼
+                   Chat
+                      │
+                      ▼
+                 Explore
+                      │
+                      ▼
+             Recommendation
+                      │
+                      ▼
+                    AI</code></pre><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b0da1eb-8b9d-8098-b903-f061402e9957" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3b0da1eb-8b9d-80c6-a543-f709a08990b7" class="" dir="auto">مرحله بعد: فهمیدن <code>main.jsx</code></h3></div></aside><p id="3b0da1eb-8b9d-809d-b92e-cdab644901aa" class="" dir="auto">مستندات ACRON، <code>main.jsx</code> جایی است که <code>ReactDOM</code> برنامه را روی عنصر <code>root</code> قرار می‌دهد و <code>AuthProvider</code> را دور <code>App</code> قرار می‌دهد.</p><p id="3b0da1eb-8b9d-809a-8a70-d9c74d3596bf" class="" dir="auto">نسخه‌ای که در methodology پروژه برای این قسمت آمده:</p><pre id="3b0da1eb-8b9d-8051-80fa-e8ad632c814a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import React from &#x27;react&#x27;;
+import ReactDOM from &#x27;react-dom/client&#x27;;
+import App from &#x27;./App.jsx&#x27;;
+import { AuthProvider } from &#x27;./context/AuthContext.jsx&#x27;;
+
+ReactDOM.createRoot(document.getElementById(&#x27;root&#x27;)).render(
+  &lt;React.StrictMode&gt;
+    &lt;AuthProvider&gt;
+      &lt;App /&gt;
+    &lt;/AuthProvider&gt;
+  &lt;/React.StrictMode&gt;
+);</code></pre><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b1da1eb-8b9d-8079-a889-e2a677b7abfd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3b1da1eb-8b9d-8073-86e3-c163f5c300f5" class="" dir="auto">پیاده‌سازی منطق خروج (Logout Logic)</h3></div></aside><blockquote id="3afda1eb-8b9d-8077-a521-dd893293d9f5" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">98- در این مرحله، کدهای لازم برای حذف توکن‌های JWT از <code>localStorage</code> و آپدیت استیت برنامه را آماده می‌کنیم:<pre id="3afda1eb-8b9d-802a-b43e-cb6945265a67" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">// src/context/AuthContext.jsx (یا هوک اختصاصی مدیریت احراز هویت)
+import { createContext, useContext, useState } from &#x27;react&#x27;;
+import { useNavigate } from &#x27;react-router-dom&#x27;;
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) =&gt; {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  const logout = () =&gt; {
+    // ۱. پاکسازی توکن‌ها از حافظه مرورگر
+    localStorage.removeItem(&#x27;accessToken&#x27;);
+    localStorage.removeItem(&#x27;refreshToken&#x27;);
+    
+    // ۲. بازنشانی استیت کاربر
+    setUser(null);
+    
+    // ۳. هدایت کاربر به صفحه ورود
+    navigate(&#x27;/login&#x27;);
+  };
+
+  return (
+    &lt;AuthContext.Provider value={{ user, logout }}&gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  );
+};
+
+export const useAuth = () =&gt; useContext(AuthContext);
+
+
+</code></pre></blockquote><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b0da1eb-8b9d-8056-a4b0-d685e92f5640" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b0da1eb-8b9d-8098-90e2-e80f92eb3ede" class="" dir="auto">بازطراحی کامپوننت پروفایل و دکمه خروج</p></div></aside><p id="3b0da1eb-8b9d-8028-93a7-ddb99a141b78" class="" dir="auto"> در این کامپوننت، از ترکیب <strong>Tailwind CSS</strong> برای زیباسازی، رنگ‌بندی استاندارد (طیف سرخ ملایم برای دکمه خروج جهت نشان دادن اکشن تخریبی/Sensitive Action) و آیکون اختصاصی استفاده شده است:</p><blockquote id="3b0da1eb-8b9d-8066-b5e4-f8939fb71da8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">99- در مسیر src/components/UserProfileCard.jsx<pre id="3b0da1eb-8b9d-800f-b3e6-fb9fdfa521e0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">// src/components/UserProfileCard.jsx
+import React from &#x27;react&#x27;;
+import { useAuth } from &#x27;../context/AuthContext&#x27;;
+import { LogOut, User } from &#x27;lucide-react&#x27;; // در صورت عدم استفاده از lucide، از آیکون SVG استفاده کنید
+
+const UserProfileCard = () =&gt; {
+  const { user, logout } = useAuth();
+
+  return (
+    &lt;div className=&quot;flex items-center justify-between p-4 bg-slate-900 border border-slate-800 rounded-2xl shadow-lg font-sans&quot;&gt;
+      
+      {/* بخش اطلاعات کاربر */}
+      &lt;div className=&quot;flex items-center gap-3&quot;&gt;
+        &lt;div className=&quot;w-11 h-11 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400&quot;&gt;
+          &lt;User className=&quot;w-6 h-6&quot; /&gt;
+        &lt;/div&gt;
+        
+        &lt;div className=&quot;flex flex-col&quot;&gt;
+          &lt;span className=&quot;text-sm font-semibold text-slate-100 tracking-wide&quot;&gt;
+            {user?.name || &#x27;کاربر گرامی&#x27;}
+          &lt;/span&gt;
+          &lt;span className=&quot;text-xs text-slate-400 font-normal&quot;&gt;
+            {user?.email || &#x27;user@acron.local&#x27;}
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      {/* دکمه خروج بهبود یافته */}
+      &lt;button
+        onClick={logout}
+        className=&quot;flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium 
+                   text-rose-400 hover:text-rose-300 
+                   bg-rose-500/10 hover:bg-rose-500/20 
+                   border border-rose-500/20 hover:border-rose-500/40 
+                   transition-all duration-200 ease-in-out 
+                   focus:outline-none focus:ring-2 focus:ring-rose-500/30&quot;
+        title=&quot;خروج از حساب کاربری&quot;
+      &gt;
+        &lt;LogOut className=&quot;w-4 h-4&quot; /&gt;
+        &lt;span&gt;خروج&lt;/span&gt;
+      &lt;/button&gt;
+
+    &lt;/div&gt;
+  );
+};
+
+export default UserProfileCard;</code></pre></blockquote><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b0da1eb-8b9d-80f9-94fc-c6312fd02ded" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b0da1eb-8b9d-80a7-b0f8-dd41284b153a" class="" dir="auto">مسیر توسعه‌</p></div></aside><p id="3b3da1eb-8b9d-8085-b7ff-d0dfa1a03c89" class="" dir="auto">ساختار نهایی Frontend را به این شکل می‌بریم:</p><pre id="3b3da1eb-8b9d-80f1-a56f-c83dcab5ef41" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">frontend/
+│
+├── public/
+│
+└── src/
+    │
+    ├── api/
+    │   ├── axiosInstance.js
+    │   └── endpoints.js
+    │
+    ├── assets/
+    │   ├── images/
+    │   └── icons/
+    │
+    ├── components/
+    │   ├── layout/
+    │   │   ├── Navbar.jsx
+    │   │   ├── Footer.jsx
+    │   │   └── PageContainer.jsx
+    │   │
+    │   ├── common/
+    │   │   ├── Button.jsx
+    │   │   ├── Input.jsx
+    │   │   ├── Loader.jsx
+    │   │   ├── ErrorMessage.jsx
+    │   │   └── EmptyState.jsx
+    │   │
+    │   ├── products/
+    │   ├── cart/
+    │   ├── orders/
+    │   ├── profile/
+    │   ├── auth/
+    │   └── advisor/
+    │
+    ├── context/
+    │   ├── AuthContext.jsx
+    │   └── CartContext.jsx
+    │
+    ├── pages/
+    │   ├── Home.jsx
+    │   ├── Products.jsx
+    │   ├── ProductDetail.jsx
+    │   ├── Cart.jsx
+    │   ├── Orders.jsx
+    │   ├── Profile.jsx
+    │   ├── Login.jsx
+    │   └── Advisor.jsx
+    │
+    ├── services/
+    │   ├── authService.js
+    │   ├── productService.js
+    │   ├── cartService.js
+    │   ├── orderService.js
+    │   └── advisorService.js
+    │
+    ├── App.jsx
+    ├── main.jsx
+    └── index.css</code></pre><h3 id="3b3da1eb-8b9d-80e1-bf8a-ecc0215592fc" class="" dir="auto">ترتیب کار</h3><p id="3b3da1eb-8b9d-8056-98ce-f7c33ed29c27" class="" dir="auto"><strong>مرحله 1 — Frontend Foundation</strong></p><ul id="3b3da1eb-8b9d-8044-ab3d-da48e57be7e0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">تم اصلی ACRON</li></ul><ul id="3b3da1eb-8b9d-80d7-a848-f9688f8fd0d7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>App</code></li></ul><ul id="3b3da1eb-8b9d-8003-8f42-c9ac5418b52b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Routing</li></ul><ul id="3b3da1eb-8b9d-806f-bea7-ed0ddc0a12b4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Layout</li></ul><ul id="3b3da1eb-8b9d-80ca-8c77-d8216712bc67" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Navbar</li></ul><ul id="3b3da1eb-8b9d-8075-9686-c4cf993e0c3b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">طراحی Responsive</li></ul><ul id="3b3da1eb-8b9d-807f-8f49-ca6e2437deed" class="bulleted-list" dir="auto"><li style="list-style-type:disc">حذف استایل‌های Inline پراکنده</li></ul><ul id="3b3da1eb-8b9d-80ab-94e8-d2b3c57a42be" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ساخت Componentهای عمومی</li></ul><p id="3b3da1eb-8b9d-8084-a79d-caf3ad97ecbe" class="" dir="auto"><strong>مرحله 2 — Authentication</strong></p><ul id="3b3da1eb-8b9d-8043-898e-d65ae27797d6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Login</li></ul><ul id="3b3da1eb-8b9d-8074-b047-defc295441f7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">JWT</li></ul><ul id="3b3da1eb-8b9d-80f6-b4f9-cb1f6f5e5675" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Refresh Token</li></ul><ul id="3b3da1eb-8b9d-803e-9173-efcfb6f3b950" class="bulleted-list" dir="auto"><li style="list-style-type:disc">AuthContext</li></ul><ul id="3b3da1eb-8b9d-80bc-91a5-c4ac91a6595e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Protected Routes</li></ul><ul id="3b3da1eb-8b9d-803b-abb5-c17d51b7ffd6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Logout</li></ul><p id="3b3da1eb-8b9d-8092-83cd-ed29eac1e600" class="" dir="auto">این قسمت از قبل در مستندات پروژه تا حد زیادی طراحی شده و Interceptor برای قرار دادن JWT و Refresh Token نیز پیش‌بینی شده است.</p><p id="3b3da1eb-8b9d-801e-9318-cf5cd4b3a8d5" class="" dir="auto"><strong>مرحله 3 — Product Domain</strong></p><ul id="3b3da1eb-8b9d-8094-bcf9-c65c37e793b8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Product List</li></ul><ul id="3b3da1eb-8b9d-80d3-9c88-ea8eb86bc316" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Product Card</li></ul><ul id="3b3da1eb-8b9d-8077-8378-d778d60779a8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Product Detail</li></ul><ul id="3b3da1eb-8b9d-80e6-9c64-d62d38f6c761" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Loading</li></ul><ul id="3b3da1eb-8b9d-8061-9300-e3e2c7b34d6a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Error</li></ul><ul id="3b3da1eb-8b9d-80a7-a1ec-e0374bb9f245" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Pagination</li></ul><ul id="3b3da1eb-8b9d-800c-9f63-f8e794edf924" class="bulleted-list" dir="auto"><li style="list-style-type:disc">اتصال واقعی به <code>/api/products/</code></li></ul><p id="3b3da1eb-8b9d-803b-98d2-f8d1c7391730" class="" dir="auto"><strong>مرحله 4 — Cart Domain</strong></p><ul id="3b3da1eb-8b9d-80f9-99af-c364b8003047" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Cart Context</li></ul><ul id="3b3da1eb-8b9d-80b9-a57c-d0ab64e655a5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Add to Cart</li></ul><ul id="3b3da1eb-8b9d-80c0-9be8-fb9aae30de40" class="bulleted-list" dir="auto"><li style="list-style-type:disc">افزایش/کاهش تعداد</li></ul><ul id="3b3da1eb-8b9d-802b-ac0e-eb6df1a77620" class="bulleted-list" dir="auto"><li style="list-style-type:disc">حذف</li></ul><ul id="3b3da1eb-8b9d-80b2-b599-ea48e0c6bbac" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Total</li></ul><ul id="3b3da1eb-8b9d-80a1-afd6-cfb5f2bb3cae" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Checkout</li></ul><p id="3b3da1eb-8b9d-800e-9f50-f41adb955be4" class="" dir="auto">ساختار فعلی Backend برای Cart هم UUID و APIهای مربوط به Cart/CartItem را در نظر گرفته و در مستندات Frontend نیز اتصال آن مشخص شده است.</p><p id="3b3da1eb-8b9d-8054-8a29-d833f8bd03a1" class="" dir="auto"><strong>مرحله 5 — Order Domain</strong></p><ul id="3b3da1eb-8b9d-8077-9f3e-f6a8a2e29ec9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Checkout</li></ul><ul id="3b3da1eb-8b9d-806d-afb4-d7ecfcf419b8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دریافت آدرس</li></ul><ul id="3b3da1eb-8b9d-8059-8251-cbbaaca05ec0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ثبت Order</li></ul><ul id="3b3da1eb-8b9d-80ae-9deb-c1185984ae23" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Orders List</li></ul><ul id="3b3da1eb-8b9d-80e4-87cc-e864d10fffc6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Order Detail</li></ul><ul id="3b3da1eb-8b9d-8003-9657-dbe8fb11b1cb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">وضعیت سفارش</li></ul><p id="3b3da1eb-8b9d-808e-a627-d9ddb81f2e50" class="" dir="auto">قرارداد فعلی ثبت سفارش <code>POST /api/orders/</code> با <code>cart_id</code> و <code>shipping_address</code> است.</p><p id="3b3da1eb-8b9d-8000-ab3b-da12e23a5c2d" class="" dir="auto"><strong>مرحله 6 — Profile</strong></p><ul id="3b3da1eb-8b9d-8011-96b7-c8218a1cd85b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">اطلاعات کاربر</li></ul><ul id="3b3da1eb-8b9d-8014-a354-e0041f893903" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Customer</li></ul><ul id="3b3da1eb-8b9d-80b8-baeb-cdee6cab85fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Address</li></ul><ul id="3b3da1eb-8b9d-803d-b5ec-fcabd09e3f85" class="bulleted-list" dir="auto"><li style="list-style-type:disc">مدیریت آدرس‌ها</li></ul><p id="3b3da1eb-8b9d-8018-bb66-cbbb4d68744f" class="" dir="auto">این قسمت هم در مسیر قبلی پروژه تا اتصال <code>/profile</code> پیش رفته است.</p><p id="3b3da1eb-8b9d-8009-9eb6-dde322cd6418" class="" dir="auto"><strong>مرحله 7 — ACRON Advisor</strong></p><p id="3b3da1eb-8b9d-8034-97fb-fe1e299f431c" class="" dir="auto">اینجا بخش جذاب پروژه را می‌سازیم:</p><pre id="3b3da1eb-8b9d-807a-b306-f715128cae40" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">┌──────────────────────────────────────┐
+│              ACRON                   │
+│                                      │
+│  Products   Orders   Cart   Profile  │
+│                                      │
+├──────────────────────────────────────┤
+│                                      │
+│        ACRON AI ADVISOR              │
+│                                      │
+│   User: پروژه ACRON چیست؟            │
+│                                      │
+│   AI: پروژه ACRON یک معماری ...      │
+│                                      │
+│   [ سوال خود را بنویسید ... ]   ➤    │
+│                                      │
+└──────────────────────────────────────┘</code></pre><p id="3b3da1eb-8b9d-80ed-9db2-e061f9766014" class="" dir="auto">Backend همین الان <code>advisor</code> را به صورت یک Domain مستقل دارد و endpoint اختصاصی <code>ask</code> نیز برای آن طراحی شده است. </p><p id="3b3da1eb-8b9d-805a-b1b3-f60aed0b431f" class="" dir="auto"><strong>هر چیزی که در Frontend ساخته می‌شود باید جای مشخصی در معماری ACRON داشته باشد.</strong></p><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b1da1eb-8b9d-809c-9f84-e3f6b71b2b21" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b1da1eb-8b9d-8011-b40b-e6fa31ad333b" class="" dir="auto">مرحله ۱ — ساخت Foundation فرانت‌اند</p></div></aside><p id="3b0da1eb-8b9d-80a7-8f7c-ff193f95335e" class="" dir="auto"> فعلاً فقط این بخش را انجام می‌دهیم: این مرحله باید قبل از Product و Cart کامل شود.</p><pre id="3b3da1eb-8b9d-802b-9d67-c490ee292058" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">frontend/src/
+│
+├── api/
+│   └── axiosInstance.js
+│
+├── context/
+│   └── AuthContext.jsx
+│
+├── components/
+│   └── layout/
+│       └── Navbar.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   └── Login.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css</code></pre><blockquote id="3b0da1eb-8b9d-80b0-8764-cf31a82a533d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">100- الف <code>src/api/axiosInstance.js</code><pre id="3b0da1eb-8b9d-8035-949f-fb452bf910fd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import axios from &quot;axios&quot;;
+
+const axiosInstance = axios.create({
+  baseURL: &quot;http://127.0.0.1:8000/api/&quot;,
+  headers: {
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+});
+
+axiosInstance.interceptors.request.use(
+  (config) =&gt; {
+    const token = localStorage.getItem(&quot;access_token&quot;);
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) =&gt; Promise.reject(error)
+);
+
+axiosInstance.interceptors.response.use(
+  (response) =&gt; response,
+
+  async (error) =&gt; {
+    const originalRequest = error.config;
+
+    if (
+      error.response?.status === 401 &amp;&amp;
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+
+      const refreshToken = localStorage.getItem(&quot;refresh_token&quot;);
+
+      if (!refreshToken) {
+        localStorage.removeItem(&quot;access_token&quot;);
+        return Promise.reject(error);
+      }
+
+      try {
+        const response = await axios.post(
+          &quot;http://127.0.0.1:8000/api/token/refresh/&quot;,
+          {
+            refresh: refreshToken,
+          }
+        );
+
+        const newAccessToken = response.data.access;
+
+        localStorage.setItem(
+          &quot;access_token&quot;,
+          newAccessToken
+        );
+
+        originalRequest.headers.Authorization =
+          `Bearer ${newAccessToken}`;
+
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        localStorage.removeItem(&quot;access_token&quot;);
+        localStorage.removeItem(&quot;refresh_token&quot;);
+
+        window.location.href = &quot;/login&quot;;
+
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;</code></pre></blockquote><p id="3b3da1eb-8b9d-808f-a5b1-c87b4d1df009" class="" dir="auto">نکته مهم: در معماری فعلی پروژه هم تأکید شده که کل ارتباط Frontend با Backend از یک <code>axiosInstance</code> عبور کند و JWT توسط Interceptor مدیریت شود. </p><blockquote id="3afda1eb-8b9d-80b6-b04b-c2e46f11a61b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">101- نسخه قبلی AuthContext در کدبیس وجود دارد، ولی حالا آن را تمیزتر و قابل توسعه می‌کنیم. <code>src/context/AuthContext.jsx</code> <br/>این همان الگوی Context است که در مستندات فعلی ACRON نیز برای مدیریت وضعیت احراز هویت تعریف شده است.<pre id="3afda1eb-8b9d-8023-9040-f3c566a59dbc" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from &quot;react&quot;;
+
+import axiosInstance from &quot;../api/axiosInstance&quot;;
+
+const AuthContext = createContext(null);
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const isAuthenticated = Boolean(user);
+
+  const loadUser = async () =&gt; {
+    const token = localStorage.getItem(&quot;access_token&quot;);
+
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.get(&quot;me/&quot;);
+      setUser(response.data);
+    } catch (error) {
+      console.error(&quot;Authentication error:&quot;, error);
+
+      localStorage.removeItem(&quot;access_token&quot;);
+      localStorage.removeItem(&quot;refresh_token&quot;);
+
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() =&gt; {
+    loadUser();
+  }, []);
+
+  const login = async (username, password) =&gt; {
+    const response = await axiosInstance.post(
+      &quot;token/&quot;,
+      {
+        username,
+        password,
+      }
+    );
+
+    const { access, refresh } = response.data;
+
+    localStorage.setItem(&quot;access_token&quot;, access);
+    localStorage.setItem(&quot;refresh_token&quot;, refresh);
+
+    const userResponse = await axiosInstance.get(&quot;me/&quot;);
+
+    setUser(userResponse.data);
+
+    return userResponse.data;
+  };
+
+  const logout = () =&gt; {
+    localStorage.removeItem(&quot;access_token&quot;);
+    localStorage.removeItem(&quot;refresh_token&quot;);
+
+    setUser(null);
+  };
+
+  return (
+    &lt;AuthContext.Provider
+      value={{
+        user,
+        loading,
+        isAuthenticated,
+        login,
+        logout,
+      }}
+    &gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
+}</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80b9-a111-d92314639c9d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">102- پ  <code>src/components/layout/Navbar.jsx</code><p id="3b3da1eb-8b9d-80b8-b154-cb72156f1c84" class="" dir="auto">حالا اولین Component واقعی UI را می‌سازیم. اینجا یک تغییر معماری مهم داریم:</p><p id="3b3da1eb-8b9d-80b7-bcec-c0ecbe89ac01" class="" dir="auto">قبلاً <code>Navbar</code> صرفاً یک Component بود که اطلاعات را از بیرون می‌گرفت؛ حالا خودش از <code>AuthContext</code> وضعیت Authentication را دریافت می‌کند.</p><pre id="3b3da1eb-8b9d-808b-953d-e5e846665a07" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { Link, NavLink } from &quot;react-router-dom&quot;;
+import { useAuth } from &quot;../../context/AuthContext&quot;;
+
+function Navbar() {
+  const {
+    user,
+    isAuthenticated,
+    logout,
+  } = useAuth();
+
+  const navLinkClass = ({ isActive }) =&gt;
+    `navbar__link ${isActive ? &quot;navbar__link--active&quot; : &quot;&quot;}`;
+
+  return (
+    &lt;header className=&quot;navbar&quot;&gt;
+      &lt;div className=&quot;navbar__container&quot;&gt;
+
+        &lt;Link to=&quot;/&quot; className=&quot;navbar__brand&quot;&gt;
+          ACRON
+        &lt;/Link&gt;
+
+        &lt;nav className=&quot;navbar__navigation&quot;&gt;
+          &lt;NavLink to=&quot;/&quot; className={navLinkClass}&gt;
+            Home
+          &lt;/NavLink&gt;
+
+          &lt;NavLink
+            to=&quot;/products&quot;
+            className={navLinkClass}
+          &gt;
+            Products
+          &lt;/NavLink&gt;
+
+          &lt;NavLink
+            to=&quot;/cart&quot;
+            className={navLinkClass}
+          &gt;
+            Cart
+          &lt;/NavLink&gt;
+
+          {isAuthenticated &amp;&amp; (
+            &lt;NavLink
+              to=&quot;/orders&quot;
+              className={navLinkClass}
+            &gt;
+              Orders
+            &lt;/NavLink&gt;
+          )}
+        &lt;/nav&gt;
+
+        &lt;div className=&quot;navbar__account&quot;&gt;
+
+          {isAuthenticated ? (
+            &lt;&gt;
+              &lt;span className=&quot;navbar__user&quot;&gt;
+                {user?.username}
+              &lt;/span&gt;
+
+              &lt;button
+                className=&quot;navbar__logout&quot;
+                onClick={logout}
+              &gt;
+                Logout
+              &lt;/button&gt;
+            &lt;/&gt;
+          ) : (
+            &lt;Link
+              to=&quot;/login&quot;
+              className=&quot;navbar__login&quot;
+            &gt;
+              Login
+            &lt;/Link&gt;
+          )}
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/header&gt;
+  );
+}
+
+export default Navbar;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80ad-ac44-c4bce17a9dc5" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">103- ت  <code>src/pages/Home.jsx</code><p id="3b3da1eb-8b9d-80a3-88a0-d32aa7398dd1" class="" dir="auto">فعلاً Home را ساده ولی قابل توسعه می‌سازیم:</p><pre id="3b3da1eb-8b9d-80a1-a717-ce1d2e139520" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">function Home() {
+  return (
+    &lt;main className=&quot;home&quot;&gt;
+
+      &lt;section className=&quot;hero&quot;&gt;
+
+        &lt;div className=&quot;hero__content&quot;&gt;
+
+          &lt;span className=&quot;hero__eyebrow&quot;&gt;
+            ACRON PLATFORM
+          &lt;/span&gt;
+
+          &lt;h1 className=&quot;hero__title&quot;&gt;
+            Build. Scale. Evolve.
+          &lt;/h1&gt;
+
+          &lt;p className=&quot;hero__description&quot;&gt;
+            A modern e-commerce platform powered by
+            Django, Django REST Framework and React.
+          &lt;/p&gt;
+
+        &lt;/div&gt;
+
+      &lt;/section&gt;
+
+    &lt;/main&gt;
+  );
+}
+
+export default Home;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80b2-8197-e640d9a02c96" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">104- ف  <code>src/pages/Login.jsx</code> <br/>این قسمت با اصلاح قبلی پروژه هم هماهنگ است: مسئولیت ارسال Username/Password باید در <code>AuthContext</code> باشد و <code>Login</code> فقط UI و interaction را مدیریت کند.<pre id="3b3da1eb-8b9d-805f-8fb7-c50d509cce4a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { useState } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+
+import { useAuth } from &quot;../context/AuthContext&quot;;
+
+function Login() {
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
+
+  const [username, setUsername] = useState(&quot;&quot;);
+  const [password, setPassword] = useState(&quot;&quot;);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(&quot;&quot;);
+
+  const handleSubmit = async (event) =&gt; {
+    event.preventDefault();
+
+    setLoading(true);
+    setError(&quot;&quot;);
+
+    try {
+      await login(username, password);
+
+      navigate(&quot;/&quot;);
+    } catch (error) {
+      console.error(error);
+
+      setError(
+        &quot;نام کاربری یا رمز عبور صحیح نیست.&quot;
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    &lt;main className=&quot;auth-page&quot;&gt;
+
+      &lt;div className=&quot;auth-card&quot;&gt;
+
+        &lt;div className=&quot;auth-card__header&quot;&gt;
+          &lt;span&gt;ACRON&lt;/span&gt;
+
+          &lt;h1&gt;
+            Welcome back
+          &lt;/h1&gt;
+
+          &lt;p&gt;
+            Sign in to continue.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;form
+          className=&quot;auth-form&quot;
+          onSubmit={handleSubmit}
+        &gt;
+
+          &lt;label&gt;
+            Username
+
+            &lt;input
+              type=&quot;text&quot;
+              value={username}
+              onChange={(event) =&gt;
+                setUsername(event.target.value)
+              }
+              required
+            /&gt;
+          &lt;/label&gt;
+
+          &lt;label&gt;
+            Password
+
+            &lt;input
+              type=&quot;password&quot;
+              value={password}
+              onChange={(event) =&gt;
+                setPassword(event.target.value)
+              }
+              required
+            /&gt;
+          &lt;/label&gt;
+
+          {error &amp;&amp; (
+            &lt;div className=&quot;auth-form__error&quot;&gt;
+              {error}
+            &lt;/div&gt;
+          )}
+
+          &lt;button
+            type=&quot;submit&quot;
+            disabled={loading}
+          &gt;
+            {loading
+              ? &quot;Signing in...&quot;
+              : &quot;Sign in&quot;}
+          &lt;/button&gt;
+
+        &lt;/form&gt;
+
+      &lt;/div&gt;
+
+    &lt;/main&gt;
+  );
+}
+
+export default Login;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-8021-b429-ec25f46760c8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">105- حالا تمام این قطعات را به هم وصل می‌کنیم:  <code>src/App.jsx</code><p id="3b3da1eb-8b9d-80d0-8e69-cfdb6d907b87" class="" dir="auto">فعلاً عمدی است که Products و Cart و Orders را وارد نکردیم.</p><p id="3b3da1eb-8b9d-807f-b7eb-f1c8659dfd8e" class="" dir="auto">اول Foundation باید سالم شود.</p><pre id="3b3da1eb-8b9d-80b3-abbd-c0787fe321bc" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from &quot;react-router-dom&quot;;
+
+import Navbar from &quot;./components/layout/Navbar&quot;;
+
+import Home from &quot;./pages/Home&quot;;
+import Login from &quot;./pages/Login&quot;;
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+
+      &lt;Navbar /&gt;
+
+      &lt;Routes&gt;
+
+        &lt;Route
+          path=&quot;/&quot;
+          element={&lt;Home /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/login&quot;
+          element={&lt;Login /&gt;}
+        /&gt;
+
+      &lt;/Routes&gt;
+
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-801d-a827-de9ce5cd767e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">106- این فایل را کامل جایگزین کنید:  <code>src/main.jsx</code> <pre id="3b3da1eb-8b9d-80d6-a622-ce43f774cc03" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { StrictMode } from &quot;react&quot;;
+import { createRoot } from &quot;react-dom/client&quot;;
+
+import App from &quot;./App.jsx&quot;;
+import { AuthProvider } from &quot;./context/AuthContext.jsx&quot;;
+
+import &quot;./index.css&quot;;
+
+createRoot(
+  document.getElementById(&quot;root&quot;)
+).render(
+  &lt;StrictMode&gt;
+    &lt;AuthProvider&gt;
+      &lt;App /&gt;
+    &lt;/AuthProvider&gt;
+  &lt;/StrictMode&gt;
+);</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-803d-8759-fb659c3d8a27" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">107- حالا یک Design Foundation ساده برای ACRON: <br/><code>src/index.css</code><figure id="3b3da1eb-8b9d-8056-865a-cfa76cb424d0" dir="ltr"><div class="source"><a href="index.css" data-notion-file="index.css" data-notion-file-alias="index.css">index.css</a></div></figure></blockquote><h2 id="3b3da1eb-8b9d-8021-850f-ddb4052d33cc" class="" dir="auto">نتیجه این مرحله</h2><p id="3b3da1eb-8b9d-8014-8ac8-c16038df950a" class="" dir="auto">بعد از اجرای:</p><pre id="3b3da1eb-8b9d-8009-ac5c-f73ebb4850dd" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">cd frontend
+npm run dev</code></pre><p id="3b3da1eb-8b9d-80ba-9be4-d2c696f87203" class="" dir="auto">باید این معماری را داشته باشیم:</p><pre id="3b3da1eb-8b9d-8052-a541-c9832cbf99f5" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">                 React
+                   │
+                   ▼
+                 App
+                   │
+          ┌────────┴────────┐
+          ▼                 ▼
+       Navbar            Routes
+                            │
+                    ┌───────┴───────┐
+                    ▼               ▼
+                  Home            Login
+                                    │
+                                    ▼
+                              AuthContext
+                                    │
+                                    ▼
+                              axiosInstance
+                                    │
+                                    ▼
+                              Django REST
+                                    │
+                                    ▼
+                               JWT / me</code></pre><p id="3b3da1eb-8b9d-80c9-82c3-d00af0fd1c54" class="" dir="auto">و این نکته مهم است: <strong>هنوز CartContext را وارد نکردیم.</strong></p><p id="3b3da1eb-8b9d-8032-9e0a-f77db3836a05" class="" dir="auto">چون نسخه قبلی CartContext در پروژه چند بار تغییر کرده و حتی خطای 405 ناشی از مسیرهای Cart داشته‌ایم؛ آخرین نسخه مستندشده از <code>carts/mine/</code> و مسیرهای <code>carts/cart-items/</code> استفاده می‌کند.  بنابراین قبل از اتصال مجدد Cart، باید قرارداد نهایی Backend را یک‌بار دقیق تثبیت کنیم.</p><blockquote id="3b3da1eb-8b9d-8049-85f9-e58e09e37b3e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">108- ف  <code>src/pages/Login.jsx</code> <pre id="3b3da1eb-8b9d-8066-b2ef-dad22888ba85" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"></code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3adda1eb-8b9d-8016-9f5a-e092c5fd772c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="3adda1eb-8b9d-806e-80bb-e06171191cbc" class="" dir="auto">پایان Part-17</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
