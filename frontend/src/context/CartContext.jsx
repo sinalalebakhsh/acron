@@ -1,137 +1,198 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import axiosInstance from '../api/axiosInstance';
-import { useAuth } from './AuthContext';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-const CartContext = createContext();
+import { useAuth } from "./AuthContext";
+import cartService from "../services/cartService";
+
+const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
-  // 🔴 با گوش‌دادن به وضعیت لاگین، سبد خرید همیشه هماهنگ با کاربر جاری می‌ماند
   const { isAuthenticated } = useAuth();
 
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // دریافت یا ایجاد سبد خرید (پشتیبانی هوشمند از کاربر لاگین‌شده و مهمان)
   const fetchOrCreateCart = async () => {
     setLoading(true);
-    const token = localStorage.getItem('access_token');
 
     try {
-      // سناریو اول: کاربر لاگین است -> دریافت سبد خرید اختصاصی کاربر از جنگو
-      if (token) {
-        const response = await axiosInstance.get('carts/mine/');
-        setCart(response.data);
-        if (response.data?.id) {
-          localStorage.setItem('cart_id', response.data.id);
+      // کاربر لاگین شده
+      if (isAuthenticated) {
+        const cartData = await cartService.getMyCart();
+
+        setCart(cartData);
+
+        if (cartData?.id) {
+          localStorage.setItem("cart_id", cartData.id);
         }
+
         return;
       }
 
-      // سناریو دوم: کاربر مهمان است -> استفاده از UUID ذخیره‌شده در localStorage
-      let cartId = localStorage.getItem('cart_id');
+      // کاربر مهمان
+      let cartId = localStorage.getItem("cart_id");
 
-      // اگر کاربر مهمان هنوز آی‌دی سبد ندارد، یک سبد جدید در بک‌اند می‌سازیم
       if (!cartId) {
-        const response = await axiosInstance.post('carts/');
-        cartId = response.data.id;
-        localStorage.setItem('cart_id', cartId);
+        const newCart = await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem("cart_id", cartId);
+
+        setCart(newCart);
+
+        return;
       }
 
-      const response = await axiosInstance.get(`carts/${cartId}/`);
-      setCart(response.data);
-    } catch (error) {
-      console.error('خطا در دریافت سبد خرید:', error);
-      // اگر سبد خرید در دیتابیس یافت نشد (مثلاً پاک شده بود)، آی‌دی محلی را حذف کن
-      if (error.response?.status === 404) {
-        localStorage.removeItem('cart_id');
+      try {
+        const cartData = await cartService.getCart(cartId);
+
+        setCart(cartData);
+      } catch (error) {
+        if (error.response?.status === 404) {
+          localStorage.removeItem("cart_id");
+
+          const newCart = await cartService.createCart();
+
+          localStorage.setItem("cart_id", newCart.id);
+
+          setCart(newCart);
+        } else {
+          throw error;
+        }
       }
+    } catch (error) {
+      console.error(
+        "Failed to fetch cart:",
+        error.response?.data || error
+      );
+
       setCart(null);
     } finally {
       setLoading(false);
     }
   };
 
-  // 🔴 هر بار وضعیت isAuthenticated تغییر کند (لاگین یا خروج)، سبد خرید درست دوباره واکشی می‌شود
   useEffect(() => {
     fetchOrCreateCart();
   }, [isAuthenticated]);
 
-  // افزودن محصول به سبد خرید
   const addToCart = async (productId) => {
     try {
-      let cartId = cart?.id || localStorage.getItem('cart_id');
+      let cartId =
+        cart?.id ||
+        localStorage.getItem("cart_id");
 
-      // اگر آی‌دی سبد خرید وجود نداشت، ابتدا یک سبد می‌سازیم
       if (!cartId) {
-        const newCartResponse = await axiosInstance.post('carts/');
-        cartId = newCartResponse.data.id;
-        localStorage.setItem('cart_id', cartId);
+        const newCart = await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          "cart_id",
+          cartId
+        );
       }
 
-      // ارسال درخواست افزودن آیتم به اندپوینت درست در جنگو
       try {
-        await axiosInstance.post('carts/cart-items/', {
-          cart_id: cartId,
-          product_id: productId,
-          quantity: 1,
-        });
-      } catch (err) {
-        // 🔴 اگر cart_id ذخیره‌شده در localStorage دیگر در دیتابیس معتبر نیست
-        // (مثلاً به‌خاطر پاک شدن دیتابیس یا قطعی موقت سرور)، یک سبد جدید بساز و دوباره تلاش کن
-        const isInvalidCart = err.response?.status === 400 && err.response?.data?.cart_id;
-        if (isInvalidCart) {
-          localStorage.removeItem('cart_id');
-          const newCartResponse = await axiosInstance.post('carts/');
-          cartId = newCartResponse.data.id;
-          localStorage.setItem('cart_id', cartId);
+        await cartService.addItem(
+          cartId,
+          productId,
+          1
+        );
+      } catch (error) {
+        const invalidCart =
+          error.response?.status === 400 &&
+          error.response?.data?.cart_id;
 
-          await axiosInstance.post('carts/cart-items/', {
-            cart_id: cartId,
-            product_id: productId,
-            quantity: 1,
-          });
-        } else {
-          throw err;
+        if (!invalidCart) {
+          throw error;
         }
+
+        localStorage.removeItem("cart_id");
+
+        const newCart =
+          await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          "cart_id",
+          cartId
+        );
+
+        await cartService.addItem(
+          cartId,
+          productId,
+          1
+        );
       }
 
-      // به‌روزرسانی وضعیت سبد خرید
       await fetchOrCreateCart();
     } catch (error) {
-      console.error('خطا در افزودن به سبد خرید:', error.response?.data || error);
+      console.error(
+        "Failed to add item to cart:",
+        error.response?.data || error
+      );
+
+      throw error;
     }
   };
 
-  // تغییر تعداد محصول در سبد خرید (با استفاده از PATCH)
-  const updateQuantity = async (itemId, newQuantity) => {
-    if (newQuantity < 1) return;
+  const updateQuantity = async (
+    itemId,
+    newQuantity
+  ) => {
+    if (newQuantity < 1) {
+      return;
+    }
+
     try {
-      await axiosInstance.patch(`carts/cart-items/${itemId}/`, {
-        quantity: newQuantity,
-      });
+      await cartService.updateItem(
+        itemId,
+        newQuantity
+      );
+
       await fetchOrCreateCart();
     } catch (error) {
-      console.error('خطا در به‌روزرسانی تعداد:', error.response?.data || error);
+      console.error(
+        "Failed to update cart item:",
+        error.response?.data || error
+      );
+
+      throw error;
     }
   };
 
-  // حذف کامل محصول از سبد خرید (با استفاده از DELETE)
   const removeFromCart = async (itemId) => {
     try {
-      await axiosInstance.delete(`carts/cart-items/${itemId}/`);
+      await cartService.removeItem(itemId);
+
       await fetchOrCreateCart();
     } catch (error) {
-      console.error('خطا در حذف آیتم از سبد خرید:', error.response?.data || error);
+      console.error(
+        "Failed to remove cart item:",
+        error.response?.data || error
+      );
+
+      throw error;
     }
   };
 
-  // تابعی برای صفر کردن سبد خرید در حافظه فرانت‌اند (مثلاً بعد از ثبت سفارش)
   const clearCartState = () => {
     setCart(null);
   };
 
-  // محاسبه تعداد کل آیتم‌ها برای نمایش در Navbar
-  const totalItemsCount = cart?.items?.reduce((total, item) => total + item.quantity, 0) || 0;
+  const totalItemsCount =
+    cart?.items?.reduce(
+      (total, item) =>
+        total + item.quantity,
+      0
+    ) || 0;
 
   return (
     <CartContext.Provider
@@ -139,10 +200,10 @@ export const CartProvider = ({ children }) => {
         cart,
         loading,
         totalItemsCount,
-        clearCartState,
         addToCart,
         updateQuantity,
         removeFromCart,
+        clearCartState,
         refreshCart: fetchOrCreateCart,
       }}
     >
@@ -151,4 +212,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export const useCart = () => useContext(CartContext);
+export const useCart = () =>
+  useContext(CartContext);

@@ -1,7 +1,35 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useCart } from "../../../context/CartContext";
+
 function ProductCard({ product }) {
-  const isAvailable = product.inventory > 0;
+  const isAvailable =
+    product.inventory > 0;
+
+  const { addToCart } = useCart();
+
+  const [addingToCart, setAddingToCart] =
+    useState(false);
+
+  const handleAddToCart = async () => {
+    if (!isAvailable) {
+      return;
+    }
+
+    setAddingToCart(true);
+
+    try {
+      await addToCart(product.id);
+    } catch (error) {
+      console.error(
+        "Failed to add product to cart:",
+        error
+      );
+    } finally {
+      setAddingToCart(false);
+    }
+  };
 
   return (
     <article className="product-card">
@@ -67,6 +95,20 @@ function ProductCard({ product }) {
           </span>
 
         </div>
+
+        <button
+          type="button"
+          className="product-card__cart-button"
+          disabled={
+            !isAvailable ||
+            addingToCart
+          }
+          onClick={handleAddToCart}
+        >
+          {addingToCart
+            ? "Adding..."
+            : "Add to cart"}
+        </button>
 
       </div>
 

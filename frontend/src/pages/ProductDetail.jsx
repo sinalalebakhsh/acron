@@ -1,16 +1,24 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { useCart } from "../context/CartContext";
+
 import { getProductBySlug } from "../features/products/services/productService";
 
 function ProductDetail() {
   const { slug } = useParams();
+
+  const { addToCart } = useCart();
 
   const [product, setProduct] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState("");
+
+  const [addingToCart, setAddingToCart] = useState(false);
+
+  const [cartMessage, setCartMessage] = useState("");
 
   useEffect(() => {
     let isMounted = true;
@@ -52,6 +60,34 @@ function ProductDetail() {
       isMounted = false;
     };
   }, [slug]);
+
+  const handleAddToCart = async () => {
+    if (!product || product.inventory <= 0) {
+      return;
+    }
+
+    setAddingToCart(true);
+    setCartMessage("");
+
+    try {
+      await addToCart(product.id);
+
+      setCartMessage(
+        "Product added to cart."
+      );
+    } catch (error) {
+      console.error(
+        "Failed to add product to cart:",
+        error
+      );
+
+      setCartMessage(
+        "Unable to add this product to cart."
+      );
+    } finally {
+      setAddingToCart(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -165,10 +201,22 @@ function ProductDetail() {
             <button
               type="button"
               className="product-detail__cart-button"
-              disabled={!isAvailable}
+              disabled={
+                !isAvailable ||
+                addingToCart
+              }
+              onClick={handleAddToCart}
             >
-              Add to cart
+              {addingToCart
+                ? "Adding..."
+                : "Add to cart"}
             </button>
+
+            {cartMessage && (
+              <p className="product-detail__cart-message">
+                {cartMessage}
+              </p>
+            )}
 
           </div>
 
