@@ -1,5 +1,3 @@
-# apps/orders/services.py
-
 from django.db import transaction
 from rest_framework.exceptions import ValidationError
 from apps.carts.models import Cart
@@ -10,15 +8,12 @@ class OrderService:
     """
     سرویس ارشد مدیریت و پردازش فرآیند ثبت سفارش در پروژه ACRON.
     """
-
     @classmethod
     def place_order(cls, user, cart_id: str, shipping_address: str) -> Order:
         """
         متد ثبت سفارش با رعایت کامل ساختار مدل‌های Order و OrderItem.
         """
-        
-        with transaction.atomic():
-            
+        with transaction.atomic(): 
             # ۱. یافتن پروفایل مشتری (Customer) متصل به کاربر جاری
             try:
                 customer = Customer.objects.get(user=user)
