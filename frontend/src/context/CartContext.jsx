@@ -11,7 +11,10 @@ import cartService from "../services/cartService";
 const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const {
+    isAuthenticated,
+    loading: authLoading,
+  } = useAuth();
 
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,102 +23,88 @@ export const CartProvider = ({ children }) => {
   // دریافت یا ایجاد Cart
   // --------------------------------------------------
 
-  const fetchOrCreateCart = async () => {
-    setLoading(true);
+const fetchOrCreateCart = async () => {
+  setLoading(true);
 
-    try {
-      // ==================================================
-      // کاربر authenticated
-      // ==================================================
+  try {
+    // ---------------------------------------------
+    // Authenticated user
+    // ---------------------------------------------
 
-      if (isAuthenticated) {
-        // Cart مربوط به Guest دیگر نباید استفاده شود.
-        localStorage.removeItem("cart_id");
+    if (isAuthenticated) {
+      const cartData = await cartService.getMyCart();
 
-        const cartData = await cartService.getMyCart();
+      setCart(cartData);
 
-        setCart(cartData);
-
-        if (cartData?.id) {
-          localStorage.setItem(
-            "cart_id",
-            cartData.id
-          );
-        }
-
-        return;
+      if (cartData?.id) {
+        localStorage.setItem("cart_id", cartData.id);
       }
 
-      // ==================================================
-      // کاربر Guest
-      // ==================================================
+      return;
+    }
 
-      let cartId =
-        localStorage.getItem("cart_id");
+    // ---------------------------------------------
+    // Guest user
+    // ---------------------------------------------
 
-      // اگر Guest هنوز Cart ندارد
-      if (!cartId) {
-        const newCart =
-          await cartService.createCart();
+    let cartId = localStorage.getItem("cart_id");
 
-        cartId = newCart.id;
+    if (!cartId) {
+      const newCart = await cartService.createCart();
+
+      cartId = newCart.id;
+
+      localStorage.setItem("cart_id", cartId);
+
+      setCart(newCart);
+
+      return;
+    }
+
+    try {
+      const cartData = await cartService.getCart(cartId);
+
+      setCart(cartData);
+    } catch (error) {
+      if (error.response?.status === 404) {
+        localStorage.removeItem("cart_id");
+
+        const newCart = await cartService.createCart();
 
         localStorage.setItem(
           "cart_id",
-          cartId
+          newCart.id
         );
 
         setCart(newCart);
-
-        return;
+      } else {
+        throw error;
       }
-
-      // ==================================================
-      // تلاش برای دریافت Cart موجود
-      // ==================================================
-
-      try {
-        const cartData =
-          await cartService.getCart(cartId);
-
-        setCart(cartData);
-      } catch (error) {
-        // Cart قبلی دیگر وجود ندارد
-        if (error.response?.status === 404) {
-          localStorage.removeItem("cart_id");
-
-          const newCart =
-            await cartService.createCart();
-
-          localStorage.setItem(
-            "cart_id",
-            newCart.id
-          );
-
-          setCart(newCart);
-        } else {
-          throw error;
-        }
-      }
-    } catch (error) {
-      console.error(
-        "Failed to fetch cart:",
-        error.response?.data || error
-      );
-
-      setCart(null);
-    } finally {
-      setLoading(false);
     }
-  };
 
+  } catch (error) {
+    console.error(
+      "Failed to fetch cart:",
+      error.response?.data || error
+    );
+
+    setCart(null);
+
+  } finally {
+    setLoading(false);
+  }
+};
   // --------------------------------------------------
   // اجرای Cart loading هنگام تغییر وضعیت Authentication
   // --------------------------------------------------
 
-  useEffect(() => {
-    fetchOrCreateCart();
-  }, [isAuthenticated]);
+useEffect(() => {
+  if (authLoading) {
+    return;
+  }
+
+  fetchOrCreateCart();
+}, [isAuthenticated, authLoading]);
 
   // --------------------------------------------------
   // افزودن محصول به Cart
