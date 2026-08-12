@@ -1,43 +1,48 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import cartService from "../features/cart/services/cartService";
+import { useCart } from "../context/CartContext";
+import customerService from "../features/customers/services/customerService";
 import orderService from "../features/orders/services/orderService";
 
 function Checkout() {
   const navigate = useNavigate();
 
-  const [cart, setCart] = useState(null);
+  const {
+    cart,
+    loading: cartLoading,
+  } = useCart();
+
   const [addresses, setAddresses] = useState([]);
+  const [selectedAddressId, setSelectedAddressId] =
+    useState("");
 
-  const [selectedAddressId, setSelectedAddressId] = useState("");
+  const [loadingAddresses, setLoadingAddresses] =
+    useState(true);
 
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
+  const [submitting, setSubmitting] =
+    useState(false);
 
   const [error, setError] = useState("");
 
   useEffect(() => {
     let isMounted = true;
 
-    async function loadCheckoutData() {
-      setLoading(true);
+    async function loadAddresses() {
+      setLoadingAddresses(true);
       setError("");
 
       try {
-        const [cartData, addressData] = await Promise.all([
-          cartService.getCart(),
-          fetchAddresses(),
-        ]);
+        const data =
+          await customerService.getAddresses();
 
         if (!isMounted) {
           return;
         }
 
-        setCart(cartData);
-        setAddresses(addressData);
+        setAddresses(data);
 
-        const defaultAddress = addressData.find(
+        const defaultAddress = data.find(
           (address) => address.is_default
         );
 
@@ -45,54 +50,37 @@ function Checkout() {
           setSelectedAddressId(
             String(defaultAddress.id)
           );
+        } else if (data.length > 0) {
+          setSelectedAddressId(
+            String(data[0].id)
+          );
         }
       } catch (err) {
         console.error(
-          "Failed to load checkout data:",
+          "Failed to load addresses:",
           err
         );
 
         if (isMounted) {
           setError(
-            "Unable to load checkout information."
+            "Unable to load your addresses."
           );
         }
       } finally {
         if (isMounted) {
-          setLoading(false);
+          setLoadingAddresses(false);
         }
       }
     }
 
-    async function fetchAddresses() {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/customers/addresses/",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem(
-              "access_token"
-            )}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(
-          "Failed to load addresses."
-        );
-      }
-
-      return response.json();
-    }
-
-    loadCheckoutData();
+    loadAddresses();
 
     return () => {
       isMounted = false;
     };
   }, []);
 
-  async function handlePlaceOrder() {
+  const handlePlaceOrder = async () => {
     if (!selectedAddressId) {
       setError(
         "Please select a shipping address."
@@ -102,7 +90,7 @@ function Checkout() {
 
     if (!cart?.id) {
       setError(
-        "Your cart could not be found."
+        "Your cart could not be identified."
       );
       return;
     }
@@ -111,10 +99,16 @@ function Checkout() {
     setError("");
 
     try {
-      const order = await orderService.createOrder({
-        cart_id: cart.id,
-        address_id: Number(selectedAddressId),
-      });
+      const order =
+        await orderService.createOrder(
+          cart.id,
+          Number(selectedAddressId)
+        );
+
+      console.log(
+        "Order created successfully:",
+        order
+      );
 
       navigate("/orders");
     } catch (err) {
@@ -124,75 +118,68 @@ function Checkout() {
       );
 
       setError(
-        "Unable to place your order."
+        err.response?.data?.detail ||
+          "Unable to place your order."
       );
     } finally {
       setSubmitting(false);
     }
-  }
+  };
 
-  if (loading) {
+  if (cartLoading || loadingAddresses) {
     return (
       <main className="page">
         <div className="page__container">
+
           <div className="page__header">
+
             <span className="page__eyebrow">
               ACRON STORE
             </span>
 
-            <h1>Checkout</h1>
+            <h1>
+              Checkout
+            </h1>
 
             <p>
               Loading checkout information...
             </p>
+
           </div>
+
         </div>
       </main>
     );
   }
 
-  if (error && !cart) {
+  const items = cart?.items || [];
+
+  if (items.length === 0) {
     return (
       <main className="page">
         <div className="page__container">
+
           <div className="page__header">
+
             <span className="page__eyebrow">
               ACRON STORE
             </span>
 
-            <h1>Checkout</h1>
-
-            <p>{error}</p>
-
-            <Link to="/cart">
-              Back to cart
-            </Link>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  if (!cart?.items?.length) {
-    return (
-      <main className="page">
-        <div className="page__container">
-          <div className="page__header">
-            <span className="page__eyebrow">
-              ACRON STORE
-            </span>
-
-            <h1>Your cart is empty</h1>
+            <h1>
+              Your cart is empty
+            </h1>
 
             <p>
-              Add products to your cart before
-              checking out.
+              Add products to your cart
+              before checking out.
             </p>
 
             <Link to="/products">
               Continue shopping
             </Link>
+
           </div>
+
         </div>
       </main>
     );
@@ -200,19 +187,24 @@ function Checkout() {
 
   return (
     <main className="page">
+
       <div className="page__container">
 
         <div className="page__header">
+
           <span className="page__eyebrow">
             ACRON STORE
           </span>
 
-          <h1>Checkout</h1>
+          <h1>
+            Checkout
+          </h1>
 
           <p>
-            Review your order and select a
-            shipping address.
+            Review your order and select
+            a shipping address.
           </p>
+
         </div>
 
         {error && (
@@ -231,14 +223,17 @@ function Checkout() {
 
             {addresses.length === 0 ? (
               <div className="checkout__no-address">
+
                 <p>
                   You do not have a shipping
                   address yet.
                 </p>
 
-                <Link to="/profile">
-                  Add an address
-                </Link>
+                <p>
+                  Please add an address before
+                  placing your order.
+                </p>
+
               </div>
             ) : (
               <div className="checkout__addresses">
@@ -248,6 +243,7 @@ function Checkout() {
                     key={address.id}
                     className="checkout__address-card"
                   >
+
                     <input
                       type="radio"
                       name="shipping-address"
@@ -264,6 +260,7 @@ function Checkout() {
                     />
 
                     <div>
+
                       <strong>
                         {address.title ||
                           "Address"}
@@ -285,7 +282,19 @@ function Checkout() {
                       <p>
                         {address.postal_code}
                       </p>
+
+                      <p>
+                        {address.phone_number}
+                      </p>
+
+                      {address.is_default && (
+                        <span>
+                          Default address
+                        </span>
+                      )}
+
                     </div>
+
                   </label>
                 ))}
 
@@ -302,30 +311,37 @@ function Checkout() {
 
             <div className="checkout__items">
 
-              {cart.items.map((item) => (
+              {items.map((item) => (
                 <div
                   key={item.id}
                   className="checkout__item"
                 >
+
                   <div>
+
                     <strong>
-                      {item.product_name}
+                      {item.product?.name ||
+                        item.product_name}
                     </strong>
 
                     <span>
                       Quantity: {item.quantity}
                     </span>
+
                   </div>
 
                   <span>
-                    {item.subtotal}
+                    {item.total_price ||
+                      item.subtotal}
                   </span>
+
                 </div>
               ))}
 
             </div>
 
             <div className="checkout__total">
+
               <span>
                 Total
               </span>
@@ -333,6 +349,7 @@ function Checkout() {
               <strong>
                 {cart.total_price}
               </strong>
+
             </div>
 
             <button
@@ -350,11 +367,16 @@ function Checkout() {
                 : "Place order"}
             </button>
 
+            <Link to="/cart">
+              Back to cart
+            </Link>
+
           </div>
 
         </section>
 
       </div>
+
     </main>
   );
 }

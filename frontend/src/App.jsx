@@ -12,6 +12,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -51,6 +52,11 @@ function App() {
           element={<Orders />}
         />
 
+        <Route
+          path="/checkout"
+          element={<Checkout />}
+        />
+        
       </Routes>
 
     </BrowserRouter>

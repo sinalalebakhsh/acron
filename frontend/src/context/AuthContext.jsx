@@ -5,7 +5,7 @@ import {
   useState,
 } from "react";
 
-import axiosInstance from "../api/axiosInstance";
+import apiClient from "../services/apiClient";
 
 const AuthContext = createContext(null);
 
@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     }
 
     try {
-      const response = await axiosInstance.get("me/");
+      const response = await apiClient.get("/me/");
       setUser(response.data);
     } catch (error) {
       console.error("Authentication error:", error);
@@ -43,8 +43,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (username, password) => {
-    const response = await axiosInstance.post(
-      "token/",
+    const response = await apiClient.post(
+      "/token/",
       {
         username,
         password,
@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
     localStorage.setItem("access_token", access);
     localStorage.setItem("refresh_token", refresh);
 
-    const userResponse = await axiosInstance.get("me/");
+    const userResponse = await apiClient.get("me/");
 
     setUser(userResponse.data);
 
