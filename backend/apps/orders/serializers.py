@@ -14,14 +14,27 @@ class OrderSerializer(serializers.ModelSerializer):
     total_price = serializers.SerializerMethodField()
     class Meta:
         model = Order
-        fields = ['id', 'customer', 'status', 'created_at', 'items', 'total_price']
+        fields = [
+            'id',
+            'customer',
+            'status',
+            'created_at',
+            'items',
+            'total_price',
+            'shipping_receiver_name',
+            'shipping_phone_number',
+            'shipping_province',
+            'shipping_city',
+            'shipping_street',
+            'shipping_postal_code',
+        ]
     def get_total_price(self, obj):
         # محاسبه مجموع قیمت فاکتور بر اساس اقلام
         return sum(item.quantity * item.unit_price for item in obj.items.all())
 
 class OrderCreateInputSerializer(serializers.Serializer):
     cart_id = serializers.UUIDField()
-    shipping_address = serializers.CharField(min_length=10)
+    address_id = serializers.IntegerField()
 
 
     

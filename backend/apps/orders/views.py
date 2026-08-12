@@ -18,15 +18,22 @@ class OrderViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
         cart_id = serializer.validated_data['cart_id']
-        shipping_address = serializer.validated_data['shipping_address']
+        address_id = serializer.validated_data['address_id']
+
         order = OrderService.place_order(
             user=request.user,
             cart_id=cart_id,
-            shipping_address=shipping_address
+            address_id=address_id,
         )
+
         output_serializer = OrderSerializer(order)
-        return Response(output_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(
+            output_serializer.data,
+            status=status.HTTP_201_CREATED
+        )
     # ----------------------------------------------------
     # اندپوینت سفارشی: POST /api/orders/{id}/pay/
     # ----------------------------------------------------
