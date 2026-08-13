@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
+
 
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -80,3 +82,10 @@ if not settings.TESTING:
     urlpatterns = [
         *urlpatterns,
     ] + debug_toolbar_urls()
+
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    )
+
+    
