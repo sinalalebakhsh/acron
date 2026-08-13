@@ -18,6 +18,7 @@
 * [Part-15](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-15-3a7da1eb8b9d8064bdaee01ac27bc2a8)
 * [Part-16](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-16-3abda1eb8b9d80f38103c9ebe28af117)
 * [Part-17](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-17-3adda1eb8b9d80ce8f49f9001684483e)
+* [Part-18](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-18-3b3da1eb8b9d8006869def6a3006ec18)
 
 
 

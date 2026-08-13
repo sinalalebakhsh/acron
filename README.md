@@ -1,17 +1,171 @@
-# 🚀 ACRON — Enterprise Django Reference Architecture
+# 🌱 ACRON
 
-> **Plant the acorn seed, and it will grow into a mighty oak.**
+> **Should I buy this?**
 
-**ACRON** is an open-source e-commerce reference project built to demonstrate how a Django application can evolve from a simple CRUD application into a structured, production-oriented system.
+ACRON is an AI-powered shopping assistant designed to help people make better purchasing decisions.
 
-The project is intentionally developed as a **domain-based modular monolith**, with a clear separation between HTTP/API concerns and business logic.
+You find a product.
 
-The goal is not simply to make an online store work.  
-The goal is to demonstrate **how to engineer the system behind it**.
+You have questions.
+
+You are not sure whether it is actually worth buying.
+
+Ask ACRON.
+
+> **"Is this good to buy?"**
+
+ACRON is being built to make product decisions simpler, clearer, and more useful — without requiring users to be experts.
 
 ---
 
-## ✨ What is ACRON?
+## 🤖 What is ACRON?
+
+Buying something online is often harder than it should be.
+
+A product may have:
+
+- Hundreds of reviews
+- Dozens of specifications
+- Different prices
+- Competing products
+- Technical terminology
+- Marketing claims
+- Different versions and models
+
+Most people don't want to become experts before buying a product.
+
+They simply want to know:
+
+> **"Is this a good choice for me?"**
+
+That's where ACRON comes in.
+
+ACRON aims to turn product information into a simple conversation.
+
+Instead of spending hours researching:
+
+```text
+Product
+   ↓
+Specifications
+   ↓
+Reviews
+   ↓
+Comparisons
+   ↓
+Research
+   ↓
+Confusion
+```
+
+## 🏗️ Technology:
+Although ACRON is designed around a simple consumer experience, the system underneath it is being developed as a serious software engineering project.
+
+Current technology includes:
+
+### Backend
+
+- Python
+- Django
+- Django REST Framework
+- MySQL
+- JWT Authentication
+- OpenAPI / Swagger
+- Domain-based modular architecture
+
+### Frontend
+
+- React
+- Vite
+- React Router
+- Axios
+- Context API
+
+### AI
+
+The project includes an `Advisor` domain for the development of AI-assisted product and decision-making features
+
+## 🧠 AI Advisor
+The AI Advisor is one of the most important future components of ACRON.
+<br>
+The goal is not simply to add a chatbot to an online store.
+<br>
+The goal is to build an assistant that can help users make better purchasing decisions.
+<br>
+For example:
+
+```text
+User:
+
+"I need a laptop for programming.
+My budget is $1,000.
+Should I buy this one?"
+```
+
+## 🗺️ Roadmap
+✅ Foundation
+-  Django backend
+-  Django REST Framework
+-  Custom user system
+-  Customer domain
+-  Address management
+-  Product domain
+-  Product API
+-  Cart domain
+-  Order domain
+-  Order items
+-  Transactional order creation
+-  Historical price freezing
+-  Shipping snapshots
+-  React + Vite frontend
+-  Product pages
+-  Cart page
+-  Orders page
+-  API service layer
+-  OpenAPI / Swagger / ReDoc
+- 🚧 Current Development
+-  Authentication hardening
+-  Frontend authentication flow
+-  Product image integration
+-  Frontend UI refinement
+-  Checkout flow
+-  Payment integration
+-  AI Advisor foundation
+-  AI Advisor homepage experience
+- 🔮 Future
+-  Product comparison
+-  Personalized recommendations
+-  AI-powered product analysis
+-  Alternative product discovery
+-  Price/value analysis
+-  Product review analysis
+-  User preference understanding
+-  Background AI processing
+-  Notifications
+-  Production infrastructure
+-  Monitoring and observability
+-  Performance optimization
+-  Large-scale architecture
+
+## 🌍 Open Source
+
+## 👨‍💻 Author
+Sina Lalehbakhsh
+<br>
+Backend-focused software developer working with:
+
+- Python
+- Django
+- Django REST Framework
+- Go
+- JavaScript / React
+- Linux
+- Git
+- Docker
+- Database systems
+
+
+### ✨ What is ACRON? Technically 
 
 ACRON is designed to bridge the gap between:
 
