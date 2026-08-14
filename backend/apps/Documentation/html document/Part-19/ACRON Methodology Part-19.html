@@ -1,0 +1,2128 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-19</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3bbda1eb-8b9d-80f7-bcb2-c7a7e4d42276" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-19</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="cc8da1eb-8b9d-83d6-93c0-815e21523433" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="4e5da1eb-8b9d-829e-8eac-01b22aaf8ba8" class="" dir="auto">در Part-18 ، <strong>فاز 11:   </strong> Frontend - Presentation Layer  تا قدم 139 توسعه داده شد</p></div></aside><h1 id="4a8da1eb-8b9d-838d-b01c-01f9c70e0242" class="" dir="auto">فاز 11<strong>:  </strong> Frontend - Presentation Layer  </h1><p id="f3fda1eb-8b9d-8325-816c-815512c09996" class="" dir="auto">شروع قدم 140</p><hr id="7dada1eb-8b9d-8201-bd96-01fba10b8684" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="c30da1eb-8b9d-82f2-ba25-01c10639402b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="cf6da1eb-8b9d-83e9-94b2-81c03fdc91ae" class="" dir="auto">قدم بعدی ما</h4></div></aside><p id="3bbda1eb-8b9d-80c9-98ef-df39c306b3b3" class="" dir="auto">حالا Orders Page</p><p id="3bbda1eb-8b9d-8001-9e57-f8e0373acb52" class="" dir="auto">فعلاً فقط <strong>نمایش سفارش‌های قبلی</strong> را پیاده می‌کنیم. Checkout را هنوز وارد این صفحه نمی‌کنیم.</p><p id="3bbda1eb-8b9d-8050-89ca-f9b1f632f9b5" class="" dir="auto">فایل:</p><blockquote id="c6cda1eb-8b9d-822b-aeae-015e8c249b8f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">140- فایل <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3bbda1eb-8b9d-8008-a6a7-fb442ae81753" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">frontend/src/pages/Orders.jsx</code></pre><p id="3bbda1eb-8b9d-809c-ad24-cbeedd2c3b1c" class="" dir="auto">را با این نسخه جایگزین کن:</p><pre id="4c4da1eb-8b9d-83d2-91ca-01ebe701e781" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { useEffect, useState } from &quot;react&quot;;
+
+import orderService from &quot;../features/orders/services/orderService&quot;;
+
+function Orders() {
+  const [orders, setOrders] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState(&quot;&quot;);
+
+  useEffect(() =&gt; {
+    let isMounted = true;
+
+    async function loadOrders() {
+      setLoading(true);
+      setError(&quot;&quot;);
+
+      try {
+        const data =
+          await orderService.getOrders();
+
+        if (isMounted) {
+          setOrders(data);
+        }
+      } catch (error) {
+        console.error(
+          &quot;Failed to load orders:&quot;,
+          error
+        );
+
+        if (isMounted) {
+          setError(
+            &quot;Unable to load your orders.&quot;
+          );
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadOrders();
+
+    return () =&gt; {
+      isMounted = false;
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      &lt;main className=&quot;page&quot;&gt;
+        &lt;div className=&quot;page__container&quot;&gt;
+
+          &lt;div className=&quot;page__header&quot;&gt;
+            &lt;span className=&quot;page__eyebrow&quot;&gt;
+              ACRON STORE
+            &lt;/span&gt;
+
+            &lt;h1&gt;Your Orders&lt;/h1&gt;
+
+            &lt;p&gt;
+              Loading your orders...
+            &lt;/p&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+      &lt;/main&gt;
+    );
+  }
+
+  if (error) {
+    return (
+      &lt;main className=&quot;page&quot;&gt;
+        &lt;div className=&quot;page__container&quot;&gt;
+
+          &lt;div className=&quot;page__header&quot;&gt;
+            &lt;span className=&quot;page__eyebrow&quot;&gt;
+              ACRON STORE
+            &lt;/span&gt;
+
+            &lt;h1&gt;Your Orders&lt;/h1&gt;
+
+            &lt;p&gt;
+              {error}
+            &lt;/p&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+      &lt;/main&gt;
+    );
+  }
+
+  if (orders.length === 0) {
+    return (
+      &lt;main className=&quot;page&quot;&gt;
+        &lt;div className=&quot;page__container&quot;&gt;
+
+          &lt;div className=&quot;page__header&quot;&gt;
+            &lt;span className=&quot;page__eyebrow&quot;&gt;
+              ACRON STORE
+            &lt;/span&gt;
+
+            &lt;h1&gt;Your Orders&lt;/h1&gt;
+
+            &lt;p&gt;
+              You don&#x27;t have any orders yet.
+            &lt;/p&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+      &lt;/main&gt;
+    );
+  }
+
+  return (
+    &lt;main className=&quot;page&quot;&gt;
+
+      &lt;div className=&quot;page__container&quot;&gt;
+
+        &lt;div className=&quot;page__header&quot;&gt;
+          &lt;span className=&quot;page__eyebrow&quot;&gt;
+            ACRON STORE
+          &lt;/span&gt;
+
+          &lt;h1&gt;Your Orders&lt;/h1&gt;
+
+          &lt;p&gt;
+            Review your previous orders.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;section className=&quot;orders&quot;&gt;
+
+          {orders.map((order) =&gt; (
+            &lt;article
+              key={order.id}
+              className=&quot;order&quot;
+            &gt;
+
+              &lt;div className=&quot;order__header&quot;&gt;
+
+                &lt;div&gt;
+                  &lt;span className=&quot;order__label&quot;&gt;
+                    Order
+                  &lt;/span&gt;
+
+                  &lt;strong className=&quot;order__id&quot;&gt;
+                    {order.id}
+                  &lt;/strong&gt;
+                &lt;/div&gt;
+
+                &lt;span className=&quot;order__status&quot;&gt;
+                  {order.status}
+                &lt;/span&gt;
+
+              &lt;/div&gt;
+
+              &lt;div className=&quot;order__date&quot;&gt;
+                {new Date(
+                  order.created_at
+                ).toLocaleDateString()}
+              &lt;/div&gt;
+
+              &lt;div className=&quot;order__items&quot;&gt;
+
+                {order.items.map((item) =&gt; (
+                  &lt;div
+                    key={item.id}
+                    className=&quot;order__item&quot;
+                  &gt;
+
+                    &lt;div&gt;
+                      &lt;strong&gt;
+                        {item.product_name}
+                      &lt;/strong&gt;
+
+                      &lt;span&gt;
+                        Quantity: {item.quantity}
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+
+                    &lt;div&gt;
+                      {item.unit_price}
+                    &lt;/div&gt;
+
+                  &lt;/div&gt;
+                ))}
+
+              &lt;/div&gt;
+
+              &lt;div className=&quot;order__total&quot;&gt;
+
+                &lt;span&gt;
+                  Total
+                &lt;/span&gt;
+
+                &lt;strong&gt;
+                  {order.total_price}
+                &lt;/strong&gt;
+
+              &lt;/div&gt;
+
+            &lt;/article&gt;
+          ))}
+
+        &lt;/section&gt;
+
+      &lt;/div&gt;
+
+    &lt;/main&gt;
+  );
+}
+
+export default Orders;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8066-bf98-eac4143c23f7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3bbda1eb-8b9d-800f-ae08-c877ddf6203d" class="" dir="auto">یک نکته درباره Status</p></div></aside><p id="3bbda1eb-8b9d-80c6-8c12-f12193f57205" class="" dir="auto">از Backend این مقادیر را می‌فرستد:</p><pre id="3bbda1eb-8b9d-8074-930c-e7cb54f3743e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">P = Pending
+C = Completed
+X = Canceled</code></pre><p id="3bbda1eb-8b9d-8064-8adb-f27bfe95e6e5" class="" dir="auto">پس الان Frontend احتمالاً نشان می‌دهد:</p><pre id="3bbda1eb-8b9d-80a5-882d-d18d286f2bb9" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">P
+C
+X</code></pre><p id="3bbda1eb-8b9d-807f-b42b-d0e0b91f79d1" class="" dir="auto">فعلاً این را تبدیل نمی‌کنیم.</p><p id="3bbda1eb-8b9d-806f-b9cb-dedee90d2650" class="" dir="auto">در UI نهایی بهتر است چیزی شبیه:</p><pre id="3bbda1eb-8b9d-8053-b87a-ea7ac5723912" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">P → Pending Payment
+C → Paid
+X → Canceled</code></pre><p id="3bbda1eb-8b9d-80ab-8bac-e989e4398086" class="" dir="auto">نمایش داده شود.</p><p id="3bbda1eb-8b9d-8088-9873-e34753203ba3" class="" dir="auto">این هم جزو <strong>UI Polish</strong> است و بعداً انجامش می‌دهیم.</p><hr id="3bbda1eb-8b9d-809c-aa2b-ecb8a424cd6a" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80e5-b62a-dd136403bf1b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3bbda1eb-8b9d-800f-bec8-e07e17b122b2" class="" dir="auto">نکته مهم درباره Order Detail</p></div></aside><p id="3bbda1eb-8b9d-8081-adc7-cad0050b4f52" class="" dir="auto">الان API شما این قابلیت را دارد:</p><pre id="3bbda1eb-8b9d-8026-afda-f5adc5fd23bb" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">GET /api/orders/&lt;id&gt;/</code></pre><p id="3bbda1eb-8b9d-80d9-af4f-ff6c886b72ce" class="" dir="auto">ولی فعلاً صفحه‌ای برای آن نداریم.</p><p id="3bbda1eb-8b9d-8003-80ad-f9fefb54802b" class="" dir="auto">من پیشنهاد می‌کنم <strong>هنوز Order Detail را نسازیم</strong>.</p><p id="3bbda1eb-8b9d-8082-b2a2-f16d0cae9889" class="" dir="auto">چرا؟</p><p id="3bbda1eb-8b9d-800f-8d11-f5b92e5b1e03" class="" dir="auto">چون مرحله بعدی ما Checkout است و جریان طبیعی فروشگاه باید این باشد:</p><pre id="3bbda1eb-8b9d-80c8-ad0f-ca3857c7ed08" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Cart
+ ↓
+Checkout
+ ↓
+Create Order
+ ↓
+Order Detail
+ ↓
+Payment
+ ↓
+Orders</code></pre><p id="3bbda1eb-8b9d-80d4-bc24-e4e9be32175e" class="" dir="auto">اگر الان Order Detail را کامل کنیم، احتمالاً بعداً بخشی از آن را هنگام Checkout دوباره تغییر خواهیم داد.</p><p id="3bbda1eb-8b9d-80b6-b125-e00e56b128cf" class="" dir="auto">پس فعلاً فقط Order List را متصل می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80cd-9024-c6c77d4d7da7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3bbda1eb-8b9d-807a-a42e-ca54225d5787" class="" dir="auto">نکته بسیار مهم در Backend</p></div></aside><p id="3bbda1eb-8b9d-80a6-a973-c53ccb1c7c36" class="" dir="auto">در مدل:</p><pre id="3bbda1eb-8b9d-80f3-a471-c6f607dcf5c1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class Order(models.Model):</code></pre><p id="3bbda1eb-8b9d-80b6-a2a4-db3b0c7de164" class="" dir="auto">داریم:</p><pre id="3bbda1eb-8b9d-80ca-84ff-d631a9aece65" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer = models.ForeignKey(
+    Customer,
+    on_delete=models.PROTECT,
+    related_name=&#x27;orders&#x27;
+)</code></pre><p id="3bbda1eb-8b9d-8060-977f-f67ce96b76d5" class="" dir="auto">این درست است.</p><p id="3bbda1eb-8b9d-80a8-8844-ff4463727efb" class="" dir="auto">و ViewSet هم:</p><pre id="3bbda1eb-8b9d-8014-a4c6-f6790253efe7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">def get_queryset(self):
+    return Order.objects.filter(
+        customer__user=self.request.user
+    )</code></pre><p id="3bbda1eb-8b9d-8090-9ef5-e28b31aaf9ed" class="" dir="auto">این قسمت <strong>خوب و امن‌تر</strong> طراحی شده.</p><p id="3bbda1eb-8b9d-8012-83b3-d7094036e4a0" class="" dir="auto">یعنی کاربر:</p><pre id="3bbda1eb-8b9d-80fb-9f2a-c7476e274b53" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">GET /api/orders/</code></pre><p id="3bbda1eb-8b9d-80b1-a450-da8feeb4a707" class="" dir="auto">باشد، User B نمی‌تواند با GET لیست سفارش‌ها Order 1 و 2 را ببیند.</p><p id="3bbda1eb-8b9d-80e4-b4c5-ebb71590f8c6" class="" dir="auto">این بخش را فعلاً دست نمی‌زنیم.</p><p id="3bbda1eb-8b9d-802a-928e-d6f4182fefba" class="" dir="auto">اما <code>place_order</code> یک مشکل جدی دارد</p><p id="3bbda1eb-8b9d-8092-9280-edee38fdcee1" class="" dir="auto">این قسمت:</p><pre id="3bbda1eb-8b9d-8004-85d7-f22d5f78e123" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">cart = Cart.objects.prefetch_related(
+    &#x27;items__product&#x27;
+).get(id=cart_id)</code></pre><p id="3bbda1eb-8b9d-80e3-a5d7-dc45d5ac527d" class="" dir="auto">فقط می‌گوید:</p><blockquote id="3bbda1eb-8b9d-8035-b684-c802c91aee6f" class="" dir="auto">آیا چنین Cartای وجود دارد؟</blockquote><p id="3bbda1eb-8b9d-805a-aa28-e02a1dfd4888" class="" dir="auto">ولی نمی‌گوید:</p><blockquote id="3bbda1eb-8b9d-8030-866d-dd19ac94f043" class="" dir="auto">آیا این Cart متعلق به همین User است؟</blockquote><p id="3bbda1eb-8b9d-8013-87f7-fbe835d182f8" class="" dir="auto">بنابراین در Security Hardening باید چیزی در این مفهوم داشته باشیم:</p><pre id="3bbda1eb-8b9d-80f6-991b-ed05e5e2f0aa" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Current User
+      ↓
+Customer
+      ↓
+Cart
+      ↓
+Order</code></pre><p id="3bbda1eb-8b9d-807f-9209-ea1a227b986a" class="" dir="auto">نه اینکه:</p><pre id="3bbda1eb-8b9d-80d8-acff-f5340dd6dcaf" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Current User
+      ↓
+هر cart_id دلخواه
+      ↓
+Order</code></pre><p id="3bbda1eb-8b9d-80a6-bb50-e7d04a61e9fb" class="" dir="auto">فعلاً <strong>این را تغییر نمی‌دهیم</strong> چون در حال تکمیل مسیر معماری هستیم و خودت هم مشخص کردی که Security را بعداً یک‌جا بررسی کنیم.</p><p id="3bbda1eb-8b9d-8097-b573-c8182bc3f00f" class="" dir="auto">این مورد را در Backlog شماره ۴ ثبت می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80bd-b795-f9017085b6f7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3bbda1eb-8b9d-80d8-8455-db5fd81cb4b7" class="" dir="auto">یک مشکل دیگر که Checkout آن را حل می‌کند</p></div></aside><p id="3bbda1eb-8b9d-8017-8c52-ec809329a065" class="" dir="auto">در Serializer:</p><pre id="3bbda1eb-8b9d-80a5-b9d2-dc383cfe0858" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    shipping_address = serializers.CharField(min_length=10)</code></pre><p id="3bbda1eb-8b9d-8094-a1e0-e5b778ccaefb" class="" dir="auto">اما در Service:</p><pre id="3bbda1eb-8b9d-808e-8f32-d863aa1a50b5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address = ...</code></pre><p id="3bbda1eb-8b9d-801c-a0d7-f83179979799" class="" dir="auto">گرفته می‌شود و بعد استفاده نمی‌شود.</p><p id="3bbda1eb-8b9d-80b8-ba7c-e2576f9b0160" class="" dir="auto">یعنی الان کاربر می‌تواند بفرستد:</p><pre id="3bbda1eb-8b9d-80da-a1de-eb6b9f68a298" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;cart_id&quot;: &quot;...&quot;,
+  &quot;shipping_address&quot;: &quot;Tehran...&quot;
+}</code></pre><p id="3bbda1eb-8b9d-8001-a4e7-f11ef2e34f44" class="" dir="auto">ولی Order هیچ فیلدی برای ذخیره این Address ندارد.</p><p id="3bbda1eb-8b9d-8042-8875-ecc6ab1c5afc" class="" dir="auto">این نشان می‌دهد که <strong>Checkout هنوز نباید الان پیاده‌سازی شود</strong>.</p><p id="3bbda1eb-8b9d-8033-8b88-d1afa8263d80" class="" dir="auto">ابتدا باید Domain مربوط به Address/Customer را با جریان Checkout هماهنگ کنیم.</p><p id="3bbda1eb-8b9d-803f-a4cb-fbac01c85ad5" class="" dir="auto">پس مسیر درست:</p><pre id="3bbda1eb-8b9d-80ce-9959-ffdf30a07a68" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Orders List          ← الان
+       ↓
+Checkout Architecture
+       ↓
+Shipping Address
+       ↓
+Create Order
+       ↓
+Payment</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8052-8b71-c0caee03010e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-80d6-aa76-d0d24277d32d" class="" dir="auto"><strong>وضعیت فعلی پروژه</strong></h3></div></aside><pre id="3bbda1eb-8b9d-802a-bbf1-e69426529723" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">CART
+────────────────────────
+Cart API             ✅
+Cart Context         ✅
+Add to Cart          ✅
+Cart Page            ✅
+Quantity             ✅
+Remove Item          ✅
+Cart Summary         ✅
+
+ORDERS
+────────────────────────
+Backend Domain       ✅
+Order Service        ✅
+Order API            ✅
+Order Service Client ✅
+Orders Page          ✅
+Order Detail         ⏳
+Checkout             ⏳
+Payment              ⏳</code></pre><p id="3bbda1eb-8b9d-80cb-96d2-cf669474739c" class="" dir="auto">و Backlog ما همچنان:</p><pre id="3bbda1eb-8b9d-8054-8246-c0d4b5b10758" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">1. Authentication / Login
+2. Product Images
+3. Cart UI / Visual Design
+4. Security Hardening
+5. Bug &amp; Edge Case Review</code></pre><p id="3bbda1eb-8b9d-800d-ac53-da50f864a5f2" class="" dir="auto">را نگه می‌داریم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8019-8716-d92deca184ab" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-808e-a687-e75b6083a2ad" class="" dir="auto">قدم بعدی</h3></div></aside><p id="3bbda1eb-8b9d-80ea-8300-eef20df981d6" class="" dir="auto">حالا <strong>قبل از Checkout</strong> باید Domain مربوط به Customer/Address را بررسی کنیم؛ چون Checkout قرار است آدرس ارسال را دریافت کند و Order فعلی هم <code>shipping_address</code> را به‌صورت ناقص دریافت می‌کند.</p><p id="3bbda1eb-8b9d-809d-891e-d291ce50777c" class="" dir="auto">مسیر را این‌طور ادامه می‌دهیم:</p><pre id="3bbda1eb-8b9d-8057-946e-c2f5f51f97aa" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Cart
+  ↓
+Checkout Page
+  ↓
+Load Customer Addresses
+  ↓
+Select / Add Address
+  ↓
+Review Order
+  ↓
+Create Order
+  ↓
+Payment
+  ↓
+Order Detail
+  ↓
+Orders</code></pre><p id="3bbda1eb-8b9d-8028-9add-cec91548a743" class="" dir="auto">و یک تصمیم معماری مهم هم از الان مشخص است:</p><p id="3bbda1eb-8b9d-80ff-92e0-edfc8f391b3b" class="" dir="auto">آدرس را داخل Order به شکل متن خام ذخیره نمی‌کنیم</p><p id="3bbda1eb-8b9d-804e-8540-d7f09d519516" class="" dir="auto">مدل فعلی:</p><pre id="3bbda1eb-8b9d-80fd-9250-e3a8551d3f41" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class Order(models.Model):
+    ...</code></pre><p id="3bbda1eb-8b9d-80cf-b533-d153c38d7365" class="" dir="auto">فعلاً هیچ <code>shipping_address</code> ندارد، در حالی که <code>OrderCreateInputSerializer</code> آن را دریافت می‌کند.</p><p id="3bbda1eb-8b9d-80da-a407-da3441cfa3e2" class="" dir="auto">در مرحله Checkout باید این را اصولی حل کنیم؛ چون اگر کاربر بعداً آدرسش را تغییر دهد، <strong>سفارش قدیمی نباید آدرس ارسال قدیمی خودش را از دست بدهد</strong>.</p><p id="3bbda1eb-8b9d-8065-9901-d2c2deb042de" class="" dir="auto">بنابراین احتمالاً به یک Snapshot از اطلاعات آدرس در زمان ثبت سفارش نیاز خواهیم داشت، نه اینکه صرفاً Order را به Address فعلی متصل کنیم. این دقیقاً از همان مواردی است که باید قبل از نوشتن Checkout تصمیم بگیریم.</p><p id="3bbda1eb-8b9d-804f-aeb7-d13609d8bbb1" class="" dir="auto">پس فعلاً <strong>هیچ کدی از Orders یا Customers را تغییر نده</strong>.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80c3-bd2d-e1a125652ed9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3bbda1eb-8b9d-80ad-bef4-ef93980e0175" class="" dir="auto">نکته مهم این است که <code>AddressViewSet</code> از قبل درست طراحی شده:</p></div></aside><pre id="3bbda1eb-8b9d-8032-a69e-efbf9b8904f7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">GET    /api/customers/addresses/
+POST   /api/customers/addresses/
+PATCH  /api/customers/addresses/&lt;id&gt;/
+DELETE /api/customers/addresses/&lt;id&gt;/
+POST   /api/customers/addresses/&lt;id&gt;/set-default/</code></pre><p id="3bbda1eb-8b9d-8047-bfdc-fd7f08ad583a" class="" dir="auto">باعث می‌شود کاربر فقط آدرس‌های خودش را ببیند. این قسمت را فعلاً تغییر نمی‌دهیم.</p><p id="3bbda1eb-8b9d-8008-971a-c4a622ba605b" class="" dir="auto">اما حالا به یک تصمیم معماری مهم می‌رسیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8075-9195-faf605043477" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-809e-96f8-ce6de1d60e2e" class="" dir="auto">مشکل <code>shipping_address</code> را قبل از Checkout حل کنیم</h3></div></aside><p id="3bbda1eb-8b9d-80c2-a252-c1f5d0e126e0" class="" dir="auto">در حال حاضر Order این را ندارد:</p><pre id="3bbda1eb-8b9d-80ac-8c8d-eece089185a8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address</code></pre><p id="3bbda1eb-8b9d-8032-8756-c40ff34295f9" class="" dir="auto">ولی هنگام ساخت Order این مقدار را می‌گیریم:</p><pre id="3bbda1eb-8b9d-80d3-a81e-d00459671230" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address = serializer.validated_data[&#x27;shipping_address&#x27;]</code></pre><p id="3bbda1eb-8b9d-8063-9632-c87a676245ea" class="" dir="auto">و سپس هیچ‌جا استفاده نمی‌شود.</p><p id="3bbda1eb-8b9d-8012-91c3-e736933151d6" class="" dir="auto">این را نباید در Frontend دور بزنیم.</p><p id="3bbda1eb-8b9d-8022-81e9-f4dc8c37d2b0" class="" dir="auto">چرا؟</p><p id="3bbda1eb-8b9d-8074-8dc7-f2c31cc077a1" class="" dir="auto">فرض کن کاربر امروز سفارش شماره 100 را در این آدرس ثبت کند:</p><pre id="3bbda1eb-8b9d-8066-acdc-d69f39696060" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">تهران
+خیابان X
+پلاک 10</code></pre><p id="3bbda1eb-8b9d-809c-b7ce-eca79d901946" class="" dir="auto">و فردا Address خودش را تغییر دهد:</p><pre id="3bbda1eb-8b9d-8090-8174-c378bce99899" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">تهران
+خیابان Y
+پلاک 20</code></pre><p id="3bbda1eb-8b9d-8069-b822-d8ba7fea3511" class="" dir="auto">در اصل ، Order شماره 100 باید همچنان آدرس زمان ثبت سفارش را داشته باشد.</p><p id="3bbda1eb-8b9d-80de-970d-e398af7842bd" class="" dir="auto">بنابراین صرفاً این کار را هم نمی‌کنیم:</p><pre id="3bbda1eb-8b9d-80cd-8810-d36b132ddde2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address = models.ForeignKey(Address, ...)</code></pre><p id="3bbda1eb-8b9d-809d-81ad-db239ddad3b7" class="" dir="auto">چون Order باید <strong>Snapshot آدرس در لحظه سفارش</strong> را داشته باشد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-807e-a349-f10158f70a07" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8008-8c47-f98bc8c26b01" class="" dir="auto">طراحی پیشنهادی Order</h3></div></aside><p id="3bbda1eb-8b9d-80f5-8cb0-df243fa274de" class="" dir="auto">به جای ذخیره یک رشته، یک Snapshot واقعی از آدرس ایجاد می‌کنیم.</p><blockquote id="3bbda1eb-8b9d-806f-9f1b-d83c89f3fef9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">141- مدل Order را به این شکل توسعه می‌دهیم:<pre id="3bbda1eb-8b9d-809d-a203-d64768c85c4d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class Order(models.Model):
+
+    class OrderStatus(models.TextChoices):
+        PENDING = &#x27;P&#x27;, &#x27;در انتظار پرداخت&#x27;
+        COMPLETED = &#x27;C&#x27;, &#x27;پرداخت موفق&#x27;
+        CANCELED = &#x27;X&#x27;, &#x27;لغو شده&#x27;
+
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.PROTECT,
+        related_name=&#x27;orders&#x27;
+    )
+
+    status = models.CharField(
+        max_length=1,
+        choices=OrderStatus.choices,
+        default=OrderStatus.PENDING
+    )
+
+    shipping_receiver_name = models.CharField(
+        max_length=100
+    )
+
+    shipping_phone_number = models.CharField(
+        max_length=15
+    )
+
+    shipping_province = models.CharField(
+        max_length=50
+    )
+
+    shipping_city = models.CharField(
+        max_length=50
+    )
+
+    shipping_street = models.TextField()
+
+    shipping_postal_code = models.CharField(
+        max_length=10
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        return f&quot;Order {self.id} - {self.customer.user.username}&quot;</code></pre></blockquote><p id="3bbda1eb-8b9d-80de-b212-c4f3a79177cb" class="" dir="auto">در این طراحی دیگر نیازی به:</p><pre id="3bbda1eb-8b9d-80d1-a850-e6111eea8e8e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address = serializers.CharField(...)</code></pre><p id="3bbda1eb-8b9d-8026-a344-fd81da1da8e5" class="" dir="auto">نداریم.</p><p id="3bbda1eb-8b9d-8003-8da6-ecbf8bbb334f" class="" dir="auto">حالا ، Checkout فقط <code>address_id</code> را می‌فرستد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-809b-b078-d26fca541a95" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8060-890a-cc3ede9b76ff" class="" dir="auto">ورودی Create Order را تغییر می‌دهیم</h3></div></aside><p id="3bbda1eb-8b9d-803d-a8d1-cd6e2993d468" class="" dir="auto">به جای:</p><pre id="3bbda1eb-8b9d-8047-b869-d5e6da8deb91" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    shipping_address = serializers.CharField(min_length=10)</code></pre><p id="3bbda1eb-8b9d-801b-86c5-de53f1863635" class="" dir="auto">داریم:</p><pre id="3bbda1eb-8b9d-80a1-ac5f-fadc8edd08c1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    address_id = serializers.IntegerField()</code></pre><p id="3bbda1eb-8b9d-8042-9ba7-dc407bbe70e1" class="" dir="auto">یعنی Frontend فقط می‌گوید:</p><pre id="3bbda1eb-8b9d-809e-b0dd-e54fece3720e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;cart_id&quot;: &quot;....&quot;,
+  &quot;address_id&quot;: 5
+}</code></pre><p id="3bbda1eb-8b9d-8085-8939-deeb68e29c49" class="" dir="auto">و Backend خودش Address شماره 5 را پیدا می‌کند.</p><p id="3bbda1eb-8b9d-80d6-9bf3-cee25c1cb4b2" class="" dir="auto">این خیلی بهتر است چون Frontend نباید اطلاعات آدرس را دوباره برای Backend ارسال کند و Backend هم باید خودش مالکیت Address را بررسی کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8016-9208-f6c14ca48399" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-807c-a4aa-c3c0b83a786b" class="" dir="auto">OrderService</h3></div></aside><p id="3bbda1eb-8b9d-8003-87ca-d99878985b4c" class="" dir="auto">اینجا Checkout واقعاً شکل می‌گیرد.</p><p id="3bbda1eb-8b9d-8051-85d2-e18c49c9b96a" class="" dir="auto">منطق باید این باشد:</p><pre id="3bbda1eb-8b9d-804c-93cc-d99dad4d6006" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">User
+ ↓
+Customer
+ ↓
+Address متعلق به Customer؟
+ ↓
+Cart متعلق به Customer؟
+ ↓
+Cart خالی نیست؟
+ ↓
+Create Order
+ ↓
+Snapshot Address
+ ↓
+Create OrderItems
+ ↓
+Delete Cart</code></pre><blockquote id="3bbda1eb-8b9d-8089-9144-f0e3d55546d4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">142- پس Service را باید به سمت این ساختار ببریم.<p id="3bbda1eb-8b9d-80cd-b851-fb948bc82bda" class="" dir="auto">نسخه پیشنهادی:</p><pre id="3bbda1eb-8b9d-80a4-9557-e0f38b06f984" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import transaction
+from rest_framework.exceptions import ValidationError
+
+from apps.carts.models import Cart
+from apps.customers.models import Customer, Address
+from apps.orders.models import Order, OrderItem
+
+
+class OrderService:
+
+    @classmethod
+    def place_order(
+        cls,
+        user,
+        cart_id: str,
+        address_id: int
+    ) -&gt; Order:
+
+        with transaction.atomic():
+
+            customer = Customer.objects.filter(
+                user=user
+            ).first()
+
+            if not customer:
+                raise ValidationError(
+                    &quot;پروفایل مشتری برای این کاربر یافت نشد.&quot;
+                )
+
+            address = Address.objects.filter(
+                id=address_id,
+                customer=customer
+            ).first()
+
+            if not address:
+                raise ValidationError(
+                    &quot;آدرس انتخاب‌شده معتبر نیست.&quot;
+                )
+
+            cart = (
+                Cart.objects
+                .prefetch_related(&#x27;items__product&#x27;)
+                .filter(
+                    id=cart_id,
+                    customer=customer
+                )
+                .first()
+            )
+
+            if not cart:
+                raise ValidationError(
+                    &quot;سبد خرید معتبر نیست.&quot;
+                )
+
+            cart_items = list(
+                cart.items.all()
+            )
+
+            if not cart_items:
+                raise ValidationError(
+                    &quot;سبد خرید شما خالی است.&quot;
+                )
+
+            order = Order.objects.create(
+                customer=customer,
+                status=Order.OrderStatus.PENDING,
+
+                shipping_receiver_name=(
+                    address.receiver_name
+                    or f&quot;{customer.user.first_name} &quot;
+                       f&quot;{customer.user.last_name}&quot;
+                ),
+
+                shipping_phone_number=(
+                    address.phone_number
+                    or customer.phone_number
+                    or &quot;&quot;
+                ),
+
+                shipping_province=address.province,
+                shipping_city=address.city,
+                shipping_street=address.street,
+                shipping_postal_code=address.postal_code,
+            )
+
+            for item in cart_items:
+
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity,
+                    unit_price=item.product.price,
+                )
+
+            cart.delete()
+
+            return order</code></pre></blockquote><p id="3bbda1eb-8b9d-8053-820f-f905e6dc0495" class="" dir="auto">یک نکته</p><p id="3bbda1eb-8b9d-809c-8394-e4deaa3d0097" class="" dir="auto">در این مرحله ، <strong>امنیت Cart را همزمان با Checkout</strong> درست کردم:</p><pre id="3bbda1eb-8b9d-80df-9ca5-dea1d190704f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">.filter(
+    id=cart_id,
+    customer=customer
+)</code></pre><p id="3bbda1eb-8b9d-802a-ae98-f83bc9dbed6e" class="" dir="auto">یعنی دیگر نمی‌توانیم یک <code>cart_id</code> متعلق به کاربر دیگری را برای ایجاد Order استفاده کنیم.</p><p id="3bbda1eb-8b9d-8041-a1db-fb2f114f3bfe" class="" dir="auto">این همان مشکلی بود که قبلاً در Backlog Security داشتیم.</p><p id="3bbda1eb-8b9d-8018-a71f-ce4566ca835c" class="" dir="auto">اما این به معنی انجام کامل Security Hardening نیست؛ فقط یک گارد ضروری Checkout است. در مرحله Security دوباره کل سیستم را بررسی می‌کنیم.</p><blockquote id="3bbda1eb-8b9d-8069-b98f-ffe9ba7115b9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">143- حالا ، View را هم هماهنگ می‌کنیم<p id="3bbda1eb-8b9d-80a9-befa-d1c6b6612d8e" class="" dir="auto">در <code>OrderViewSet</code>:</p><pre id="3bbda1eb-8b9d-80ad-a482-fea1920947fd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">def create(self, request, *args, **kwargs):
+
+    serializer = self.get_serializer(
+        data=request.data
+    )
+
+    serializer.is_valid(
+        raise_exception=True
+    )
+
+    order = OrderService.place_order(
+        user=request.user,
+        cart_id=serializer.validated_data[&#x27;cart_id&#x27;],
+        address_id=serializer.validated_data[&#x27;address_id&#x27;],
+    )
+
+    output_serializer = OrderSerializer(order)
+
+    return Response(
+        output_serializer.data,
+        status=status.HTTP_201_CREATED
+    )</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-80a3-90f9-f26e43f9ffd1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">144- حالا ، OrderSerializer<p id="3bbda1eb-8b9d-80b2-b175-c1d7b6aa5469" class="" dir="auto">اطلاعات Snapshot آدرس را هم باید به خروجی Order اضافه کنیم:</p><pre id="3bbda1eb-8b9d-802e-8c6a-e5855b0807ed" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderSerializer(serializers.ModelSerializer):
+
+    items = OrderItemSerializer(
+        many=True,
+        read_only=True
+    )
+
+    total_price = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Order
+        fields = [
+            &#x27;id&#x27;,
+            &#x27;customer&#x27;,
+            &#x27;status&#x27;,
+            &#x27;created_at&#x27;,
+            &#x27;shipping_receiver_name&#x27;,
+            &#x27;shipping_phone_number&#x27;,
+            &#x27;shipping_province&#x27;,
+            &#x27;shipping_city&#x27;,
+            &#x27;shipping_street&#x27;,
+            &#x27;shipping_postal_code&#x27;,
+            &#x27;items&#x27;,
+            &#x27;total_price&#x27;,
+        ]
+
+    def get_total_price(self, obj):
+        return sum(
+            item.quantity * item.unit_price
+            for item in obj.items.all()
+        )</code></pre><p id="3bbda1eb-8b9d-80a9-8397-fc4b702f47d6" class="" dir="auto">حالا Order واقعاً یک فاکتور مستقل است.</p></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80ab-ae2e-e0a3119021df" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-800b-a621-d5d063a1680f" class="" dir="auto">حالا Checkout در Frontend</h3></div></aside><p id="3bbda1eb-8b9d-806d-b176-d45a8cb6301c" class="" dir="auto">بعد از این تغییر Backend، ساختار Frontend ما خواهد شد:</p><pre id="3bbda1eb-8b9d-808d-a42e-e79df2485c72" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">frontend/src/
+│
+├── features/
+│   ├── products/
+│   │
+│   ├── orders/
+│   │   ├── components/
+│   │   └── services/
+│   │       └── orderService.js
+│   │
+│   └── checkout/
+│       ├── components/
+│       └── services/
+│
+└── pages/
+    ├── Cart.jsx
+    ├── Checkout.jsx
+    └── Orders.jsx</code></pre><p id="3bbda1eb-8b9d-80e4-be93-fd51faf65688" class="" dir="auto">اما فعلاً لازم نیست Checkout را با ده‌ها component خرد کنیم.</p><p id="3bbda1eb-8b9d-8050-b99d-e465c219a7ac" class="" dir="auto">اول جریان اصلی را برقرار می‌کنیم:</p><pre id="3bbda1eb-8b9d-8085-a6f4-ee0eabe11790" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Cart
+ ↓
+Proceed to Checkout
+ ↓
+Checkout
+ ↓
+Load Addresses
+ ↓
+Select Address
+ ↓
+Order Summary
+ ↓
+Place Order
+ ↓
+Order Created
+ ↓
+Payment</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8082-a2b6-e0814d268b21" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8052-b371-fcd820fc1770" class="" dir="auto">یک تغییر کوچک در Cart لازم داریم</h3></div></aside><p id="3bbda1eb-8b9d-8037-8f53-c66f13ec3dee" class="" dir="auto">در Cart فعلی پروژه ، دکمه: Proceed to Checkout داریم.</p><p id="3bbda1eb-8b9d-80ef-a1e6-fb40e51a949c" class="" dir="auto">باید هدایت شود به:</p><pre id="3bbda1eb-8b9d-80fc-bcde-fd031a10f5e2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">/checkout</code></pre><blockquote id="3bbda1eb-8b9d-8086-93f1-c32c009975f8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">145- در <code>App.jsx</code> هم Route جدید: اضافه خواهد شد.<pre id="3bbda1eb-8b9d-807d-b6f3-c1fc977661be" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import Checkout from &quot;./pages/Checkout&quot;;
+
+
+&lt;Route
+  path=&quot;/checkout&quot;
+  element={&lt;Checkout /&gt;}
+/&gt;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8076-be14-f0f780e9fad4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3bbda1eb-8b9d-8039-8f23-e734d719f43c" class="" dir="auto">وضعیت معماری الان</p></div></aside><pre id="3bbda1eb-8b9d-8024-9bd2-d5252fb8f409" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">                    ACRON
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+        Cart                    Orders
+          │                       │
+          ▼                       ▼
+     Cart Context           Order Service
+          │                       │
+          ▼                       ▼
+       Cart API                Order API
+                                  │
+                                  ▼
+                              Checkout
+                                  │
+                                  ▼
+                              Address
+                                  │
+                                  ▼
+                           Create Order
+                                  │
+                                  ▼
+                              Payment</code></pre><p id="3bbda1eb-8b9d-80af-92f8-c0b31e89b483" class="" dir="auto">و پنج مورد باز قبلی همچنان وجود دارند:</p><pre id="3bbda1eb-8b9d-80a1-97a6-f9141b9e4ef0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">1. Login / Authentication
+2. Product Images
+3. Cart UI / Layout
+4. Security Hardening
+5. Bug / Edge Cases</code></pre><p id="3bbda1eb-8b9d-808c-b3a7-f2d0f7883021" class="" dir="auto">فقط <strong>Security مربوط به مالکیت Cart</strong> را الان مجبور شدیم برای Checkout اصلاح کنیم، چون اگر آن را اصلاح نمی‌کردیم، خود Checkout از ابتدا مشکل امنیتی داشت.</p><p id="3bbda1eb-8b9d-8021-a915-f9dc571c3767" class="" dir="auto">قدم عملی بعدی</p><p id="3bbda1eb-8b9d-80b3-99bb-ee2d4b492746" class="" dir="auto">قبل از اینکه کد Frontend Checkout را بنویسیم، این تغییرات Backend باید اعمال شوند:</p><pre id="3bbda1eb-8b9d-804d-9e88-c4c1b8fe6058" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order model
+      ↓
+Migration
+      ↓
+Order Serializer
+      ↓
+OrderCreateInputSerializer
+      ↓
+OrderService
+      ↓
+OrderViewSet
+      ↓
+تست API</code></pre><p id="3bbda1eb-8b9d-8043-bd53-e1f6ccf6998f" class="" dir="auto">بعد از اینکه Migration و API بدون خطا بالا آمدند، می‌رویم سراغ <code>Checkout.jsx</code> و اتصال آن به <code>Address API</code> و <code>Order API</code>.</p><p id="3bbda1eb-8b9d-809d-9bfe-e399563121b7" class="" dir="auto">این مسیر با همان معماری Domain-based پروژه ACRON ادامه پیدا می‌کند و فعلاً وارد زیباسازی Cart، تصاویر یا Login نمی‌شویم.</p><p id="3bbda1eb-8b9d-80df-83f8-e35cb22074ba" class="" dir="auto">این قسمت بعد از تغییرات نیاز به makemigrations و migrate خواهد داشت که احتمالا به ارور میخوریم.</p><p id="3bbda1eb-8b9d-80f5-b217-ce4678a1d919" class="" dir="auto">اتفاقاً <strong>قبل از اینکه آن تغییرات را روی </strong><code><strong>Order</strong></code><strong> اعمال کنیم، باید نحوه‌ی Migration را مشخص کنیم</strong>. </p><p id="3bbda1eb-8b9d-80e4-9b75-c82069c9ebfa" class="" dir="auto">چون اگر دیتابیس پروژه ، الان <code>Order</code> داشته باشد، اضافه کردن چند فیلد <code>null=False</code> بدون مقدار پیش‌فرض، احتمالاً همان مشکلی را ایجاد می‌کند که قبلاً در <code>customers</code> با آن برخورد کردیم.</p><p id="3bbda1eb-8b9d-808c-a8ea-fef209e4bb69" class="" dir="auto">مشکل چیست؟</p><p id="3bbda1eb-8b9d-8060-86df-d1976d924ac9" class="" dir="auto">اگر این‌ها را اضافه کنیم:</p><pre id="3bbda1eb-8b9d-8010-bb2a-d6272807ec09" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_receiver_name = models.CharField(max_length=100)
+shipping_phone_number = models.CharField(max_length=15)
+shipping_province = models.CharField(max_length=50)
+shipping_city = models.CharField(max_length=50)
+shipping_street = models.TextField()
+shipping_postal_code = models.CharField(max_length=10)</code></pre><p id="3bbda1eb-8b9d-8050-b4e1-c8b119410876" class="" dir="auto">و قبلاً Orderهایی در دیتابیس وجود داشته باشند، Django هنگام:</p><pre id="3bbda1eb-8b9d-8055-9643-dd1954d11988" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations</code></pre><p id="3bbda1eb-8b9d-8021-a3da-e67c1dc5c293" class="" dir="auto">می‌پرسد:</p><blockquote id="3bbda1eb-8b9d-80cf-9aba-f8e3811f740e" class="" dir="auto">برای رکوردهای قبلی چه مقداری قرار بدهم؟</blockquote><p id="3bbda1eb-8b9d-8039-bf74-e0f241a9d87b" class="" dir="auto">و اگر migration اشتباه ساخته شود، ممکن است هنگام <code>migrate</code> به مشکل بخوریم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8062-9efe-eeaa4604ddc3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8012-91ce-f24e1d70a16f" class="" dir="auto">اما یک نکته مهم‌تر</h3></div></aside><p id="3bbda1eb-8b9d-80be-be06-e8e5bf8d1035" class="" dir="auto">پیشنهاد قبلی‌ام را کمی اصلاح می‌کنم.</p><p id="3bbda1eb-8b9d-804d-9687-e00642438cef" class="" dir="auto"><strong>الان نباید عجولانه این ۶ فیلد را به </strong><code><strong>Order</strong></code><strong> اضافه کنیم.</strong></p><p id="3bbda1eb-8b9d-805f-b35d-dfdffd8d9499" class="" dir="auto">چون هنوز در مرحله طراحی Checkout هستیم و باید ابتدا مشخص کنیم:</p><blockquote id="3bbda1eb-8b9d-800a-97a6-dd8f8a6aa788" class="" dir="auto">آیا واقعاً می‌خواهیم Snapshot آدرس را به صورت ۶ ستون در <code>Order</code> ذخیره کنیم؟</blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8061-8756-d1c511f4daf0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-80b5-8457-d460edb5bfc4" class="" dir="auto">کاری که الان باید انجام دهیم</h3></div></aside><p id="3bbda1eb-8b9d-8014-b021-c494dfc5250b" class="" dir="auto">اول وضعیت واقعی دیتابیس را بررسی کنیم.</p><blockquote id="3bbda1eb-8b9d-807d-951e-cda68b69d8c9" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">146- در پروژه Backend این دستور را اجرا کن:<pre id="3bbda1eb-8b9d-8062-a629-f48b3a17f4b9" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py showmigrations orders</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-800d-8de9-d804e8985be0" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">147- سپس<pre id="3bbda1eb-8b9d-80f3-ba7d-f01987ecb88e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations orders --dry-run</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-803a-9dc1-c5ef8b56cb86" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">148- اگر نسخه Django شما اجازه بدهد، این هم مفید است:<pre id="3bbda1eb-8b9d-8037-95da-c4f4053d6af8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations orders --dry-run --verbosity 3</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-803f-bd53-d112073d93ad" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">149- فعلاً <code>migrate</code> نزن.<p id="3bbda1eb-8b9d-80d5-8b99-d6421a006fc7" class="" dir="auto">همچنین اگر در دیتابیس Order واقعی داری، تعدادشان را بررسی کن:</p><pre id="3bbda1eb-8b9d-808e-b5c9-d6594ab06d85" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py shell</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-801c-84be-e143d196ca76" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">150- و داخل shell:<pre id="3bbda1eb-8b9d-8061-b50b-c9d19379653e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from apps.orders.models import Order
+
+Order.objects.count()</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-800c-8317-c2c26af99a79" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">151- سپس<pre id="3bbda1eb-8b9d-80c6-89f0-c007cd65c390" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order.objects.values(
+    &quot;id&quot;,
+    &quot;status&quot;,
+    &quot;created_at&quot;
+)[:5]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80af-b05d-c91b176013a9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8041-bae3-c69269739526" class="" dir="auto">چرا این کار بهتر است؟</h3></div></aside><p id="3bbda1eb-8b9d-80ba-b425-ca7454727e0e" class="" dir="auto">ما نمی‌خواهیم مثل تجربه قبلی Migrationها را حدس بزنیم و بعد وسط کار با:</p><pre id="3bbda1eb-8b9d-8048-b8c2-cee390eebb80" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">You are trying to add a non-nullable field...</code></pre><p id="3bbda1eb-8b9d-80f7-ba63-d992a2868689" class="" dir="auto">یا Migration خراب مواجه شویم.</p><p id="3bbda1eb-8b9d-80c0-b8fe-efade88edc8d" class="" dir="auto">ابتدا می‌فهمیم:</p><pre id="3bbda1eb-8b9d-80b0-b6bf-d418b18c41a3" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Orders موجود؟
+        ↓
+تعداد رکورد؟
+        ↓
+Migration فعلی؟
+        ↓
+تغییر Model
+        ↓
+Migration امن
+        ↓
+migrate</code></pre><p id="3bbda1eb-8b9d-8083-a013-e2fe74719726" class="" dir="auto">و اگر Orderهای موجود داشته باشی، <strong>migration را طوری طراحی می‌کنیم که اطلاعات قبلی آسیب نبیند</strong>.</p><h3 id="3bbda1eb-8b9d-8048-a68c-dbd723c464ba" class="" dir="auto">پس فعلاً:</h3><p id="3bbda1eb-8b9d-8007-8b1a-ce3abc805eb0" class="" dir="auto"><strong>هیچ تغییری در </strong><code><strong>models.py</strong></code><strong> نده.</strong></p><p id="3bbda1eb-8b9d-803e-9314-ea0e99c4395d" class="" dir="auto">فقط خروجی این سه مورد را بررسی کن :</p><pre id="3bbda1eb-8b9d-80c9-b83d-ef6dc595308e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py showmigrations orders</code></pre><pre id="3bbda1eb-8b9d-8099-8eee-c03b64cf3935" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations orders --dry-run --verbosity 3</code></pre><pre id="3bbda1eb-8b9d-808c-ba62-e3e28df34d7d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order.objects.count()</code></pre><p id="3bbda1eb-8b9d-80a3-88d3-ebc9b187596e" class="" dir="auto">چیزی شبیه به این خواهد بود :</p><pre id="3bbda1eb-8b9d-8040-bc02-e8312684b500" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py showmigrations orders
+orders
+ [X] 0001_initial
+ $ python manage.py makemigrations orders --dry-run --verbosity 3
+Migrations for &#x27;orders&#x27;:
+  apps\orders\migrations\0002_order_shipping_city_order_shipping_phone_number_and_more.py
+    + Add field shipping_city to order
+    + Add field shipping_phone_number to order
+    + Add field shipping_postal_code to order
+    + Add field shipping_province to order
+    + Add field shipping_receiver_name to order
+    + Add field shipping_street to order
+Full migrations file &#x27;0002_order_shipping_city_order_shipping_phone_number_and_more.py&#x27;:
+# Generated by Django 6.0.7 on 2026-08-07 22:12
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        (&#x27;orders&#x27;, &#x27;0001_initial&#x27;),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name=&#x27;order&#x27;,
+            name=&#x27;shipping_city&#x27;,
+            field=models.CharField(default=None, max_length=50),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name=&#x27;order&#x27;,
+            name=&#x27;shipping_phone_number&#x27;,
+            field=models.CharField(default=None, max_length=15),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name=&#x27;order&#x27;,
+            name=&#x27;shipping_postal_code&#x27;,
+            field=models.CharField(default=None, max_length=10),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name=&#x27;order&#x27;,
+            name=&#x27;shipping_province&#x27;,
+            field=models.CharField(default=None, max_length=50),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name=&#x27;order&#x27;,
+            name=&#x27;shipping_receiver_name&#x27;,
+            field=models.CharField(default=None, max_length=100),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name=&#x27;order&#x27;,
+            name=&#x27;shipping_street&#x27;,
+            field=models.TextField(default=None),
+            preserve_default=False,
+        ),
+    ]
+    
+$ python manage.py shell
+26 objects imported automatically (use -v 2 for details).
+
+Python 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+(InteractiveConsole)
+&gt;&gt;&gt; Order.objects.count()
+16
+&gt;&gt;&gt;</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80f9-9105-f293e27ffcad" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-80b2-b361-c952b341aa4d" class="" dir="auto">یک نکته مثبت:</h3></div></aside><p id="3bbda1eb-8b9d-80e9-8d06-e1700cc81508" class="" dir="auto"><strong>فعلاً هیچ Migration جدیدی ساخته نشده</strong> چون <code>--dry-run</code> استفاده کردیم. بنابراین وضعیت دیتابیس خراب نشده است.</p><p id="3bbda1eb-8b9d-8015-b138-e4c92cfa204e" class="" dir="auto">وضعیت فعلی</p><p id="3bbda1eb-8b9d-80be-9319-f10b393fd063" class="" dir="auto">دیتابیس:</p><pre id="3bbda1eb-8b9d-80e4-bedb-d84381e73df6" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">orders
+ [X] 0001_initial</code></pre><p id="3bbda1eb-8b9d-8093-b679-f2194c42f7fc" class="" dir="auto">یعنی فقط Migration اولیه اعمال شده.</p><p id="3bbda1eb-8b9d-8077-bb68-da075be4237e" class="" dir="auto">اما: ( این مورد تنها نمونه است ، چون قبلا محصول فرضی ساخته بودم.)</p><pre id="3bbda1eb-8b9d-802d-a8ea-fe120589d342" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order.objects.count()
+16</code></pre><p id="3bbda1eb-8b9d-8062-a653-ef2fd92e1588" class="" dir="auto">یعنی <strong>۱۶ سفارش موجود در دیتابیس داریم.</strong></p><p id="3bbda1eb-8b9d-80e3-900b-de5006248ab6" class="" dir="auto">مشکل اینجاست که Migration پیشنهادی Django برای هر ۶ فیلد این کار را می‌کند:</p><pre id="3bbda1eb-8b9d-8048-97f0-e02d9107fc03" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">field=models.CharField(default=None, ...)</code></pre><p id="3bbda1eb-8b9d-80eb-9584-cc18ef9bedfb" class="" dir="auto">و بعد:</p><pre id="3bbda1eb-8b9d-80e5-b0f1-ee7a1b21ea62" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">preserve_default=False</code></pre><p id="3bbda1eb-8b9d-80dc-b292-fb8e81b1df04" class="" dir="auto">این برای Migration فعلی مناسب نیست، چون فیلدها در مدل ما <code>null=False</code> هستند و رکوردهای قبلی باید مقداری داشته باشند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-805f-8864-d51d4ca3af40" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-80e9-9bd3-e1fca03e2c33" class="" dir="auto">مهم‌تر: اطلاعات آدرس ۱۶ سفارش قدیمی را نداریم</h3></div></aside><p id="3bbda1eb-8b9d-80cd-a631-cdc25a13a55a" class="" dir="auto">این موضوع معماری را مشخص می‌کند.</p><p id="3bbda1eb-8b9d-8053-b449-c1cda87f9df4" class="" dir="auto">همچنین ، Orderهای قبلی پروژه در مدل فعلی فقط این اطلاعات را دارند:</p><pre id="3bbda1eb-8b9d-804f-9487-d162b5defebb" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order
+├── customer
+├── status
+├── created_at
+└── OrderItems</code></pre><p id="3bbda1eb-8b9d-8000-94ff-dc1b8ac96206" class="" dir="auto">و آدرس هنگام ایجاد سفارش قبلاً ذخیره نشده است.</p><p id="3bbda1eb-8b9d-80db-98a9-f6bfadf0f741" class="" dir="auto">بنابراین نمی‌توانیم برای ۱۶ سفارش قدیمی بگوییم:</p><blockquote id="3bbda1eb-8b9d-803d-afe2-e8ede0e5b172" class="" dir="auto">آدرسشان را از Address فعلی کاربر بردار.</blockquote><p id="3bbda1eb-8b9d-80c6-8e55-ec5528c9c87c" class="" dir="auto">چون ممکن است کاربر بعداً آدرسش را تغییر داده باشد.</p><p id="3bbda1eb-8b9d-80a6-9e82-f612b813af43" class="" dir="auto">مثلاً:</p><pre id="3bbda1eb-8b9d-80c8-a1cf-fc7c6c6acdc4" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order #1
+    زمان خرید:
+    Tehran / Street A
+
+Customer Address فعلی:
+    Tehran / Street B</code></pre><p id="3bbda1eb-8b9d-803d-ae04-fdecd55b11a4" class="" dir="auto">اگر الان Address فعلی را روی Order قدیمی کپی کنیم، <strong>اطلاعات تاریخی سفارش را جعل کرده‌ایم.</strong></p><p id="3bbda1eb-8b9d-8019-983d-df66ca7565aa" class="" dir="auto">این کار را انجام نمی‌دهیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80bc-b0fe-d094f902d833" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8057-88b5-dc56df09968d" class="" dir="auto">راه درست برای پروژه فعلی</h3></div></aside><blockquote id="3bbda1eb-8b9d-80eb-a4a7-ec6c88e20877" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">152- من پیشنهاد می‌کنم فعلاً فیلدهای Snapshot را <code>nullable</code> کنیم:<br/>در <code>backend/apps/orders/models.py</code> فقط ۶ فیلد را این‌طور اضافه/اصلاح کن:<pre id="3bbda1eb-8b9d-8029-a25a-e4567bf9186c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># backend/apps/orders/models.py
+
+
+shipping_receiver_name = models.CharField(
+    max_length=100,
+    null=True,
+    blank=True
+)
+
+shipping_phone_number = models.CharField(
+    max_length=15,
+    null=True,
+    blank=True
+)
+
+shipping_province = models.CharField(
+    max_length=50,
+    null=True,
+    blank=True
+)
+
+shipping_city = models.CharField(
+    max_length=50,
+    null=True,
+    blank=True
+)
+
+shipping_street = models.TextField(
+    null=True,
+    blank=True
+)
+
+shipping_postal_code = models.CharField(
+    max_length=10,
+    null=True,
+    blank=True
+)</code></pre></blockquote><p id="3bbda1eb-8b9d-8084-bbb4-d16adce3099d" class="" dir="auto">
+</p><p id="3bbda1eb-8b9d-80e2-9aaf-da10e9a7930b" class="" dir="auto">چرا <code>null=True</code>؟</p><p id="3bbda1eb-8b9d-807c-991b-dee26ab1ffe9" class="" dir="auto">برای اینکه:</p><pre id="3bbda1eb-8b9d-8078-bcda-e39801c37a13" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Orders قدیمی
+      ↓
+shipping_* = NULL</code></pre><p id="3bbda1eb-8b9d-80ff-aa53-c45e791df11b" class="" dir="auto">و اطلاعات تاریخی جعلی تولید نمی‌کنیم.</p><p id="3bbda1eb-8b9d-80ff-add2-feccfd2eb92f" class="" dir="auto">اما:</p><pre id="3bbda1eb-8b9d-80ac-9fd5-dd2f1100991d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Orders جدید
+      ↓
+Checkout
+      ↓
+Address معتبر
+      ↓
+Snapshot
+      ↓
+تمام shipping_* ها مقدار واقعی دارند</code></pre><p id="3bbda1eb-8b9d-8049-a81d-f3a97d647b69" class="" dir="auto">یعنی <code>null=True</code> به این معنی نیست که Checkout اجازه دارد سفارش جدید بدون آدرس بسازد.</p><p id="3bbda1eb-8b9d-809c-b5d0-e02b318e7f0a" class="" dir="auto"><strong>همچنین ، Service این الزام را enforce می‌کند.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8003-a858-e617a217455b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-80a9-8af3-fd57f5b976c5" class="" dir="auto">پس Migration کاملاً امن می‌شود</h3></div></aside><blockquote id="3bbda1eb-8b9d-80be-95aa-c2fccf0ce601" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">153- بعد از تغییر Model، دوباره:<pre id="3bbda1eb-8b9d-8088-b5b0-cb5929182d40" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py makemigrations orders</code></pre></blockquote><pre id="3bbda1eb-8b9d-802e-b4b0-e354ff7ede02" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py makemigrations orders
+Migrations for &#x27;orders&#x27;:
+  apps\orders\migrations\0002_order_shipping_city_order_shipping_phone_number_and_more.py
+    + Add field shipping_city to order
+    + Add field shipping_phone_number to order
+    + Add field shipping_postal_code to order
+    + Add field shipping_province to order
+    + Add field shipping_receiver_name to order
+    + Add field shipping_street to order</code></pre><p id="3bbda1eb-8b9d-80d1-92dd-fe0ac29eb465" class="" dir="auto">این خروجی <strong>کاملاً طبیعی و درست</strong> است.</p><p id="3bbda1eb-8b9d-80e2-968c-fe3c8789a951" class="" dir="auto">نکته مهم این است که این بار Django دیگر برای فیلدهای جدید <code>default=None</code> نساخته، چون آن‌ها را <code>null=True</code> تعریف کردیم. بنابراین ۱۶ سفارش قبلی می‌توانند مقدار <code>NULL</code> داشته باشند و اطلاعاتشان دست‌نخورده باقی می‌ماند.</p><p id="3bbda1eb-8b9d-8098-bdef-c2e34341605b" class="" dir="auto">مرحله بعد</p><p id="3bbda1eb-8b9d-80dd-a7a5-f1c0e1e22001" class="" dir="auto">قبل از <code>migrate</code>، فایل Migration ساخته‌شده را بررسی کنیم.</p><p id="3bbda1eb-8b9d-809a-94bd-e5eac84aa67a" class="" dir="auto">این فایل را باز کن:</p><pre id="3bbda1eb-8b9d-8017-b9c7-dabe652c873d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">backend/apps/orders/migrations/0002_order_shipping_city_order_shipping_phone_number_and_more.py</code></pre><p id="3bbda1eb-8b9d-80e9-965b-fe1aad5870b4" class="" dir="auto">احتمالاً Migration چیزی شبیه این تولید خواهد کرد:</p><pre id="3bbda1eb-8b9d-8067-8467-c4ae7178823f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">migrations.AddField(
+    model_name=&#x27;order&#x27;,
+    name=&#x27;shipping_city&#x27;,
+    field=models.CharField(
+        max_length=50,
+        null=True,
+        blank=True
+    ),
+)</code></pre><p id="3bbda1eb-8b9d-805a-a7c3-dd3f7837c622" class="" dir="auto">برای هر ۶ فیلد باید <code>null=True</code> وجود داشته باشد و <strong>نباید</strong> چیزی مثل این داشته باشیم:</p><pre id="3bbda1eb-8b9d-80bf-bd16-e33e5947723c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">default=None</code></pre><p id="3bbda1eb-8b9d-80f9-8941-c767d96e08f7" class="" dir="auto">اگر همین وضعیت را دارد، مرحله بعد:</p><blockquote id="3bbda1eb-8b9d-80c3-92cd-dae7e092b73a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">154- برای پر کردن ۱۶ رکورد قبلی نخواهد بود.<p id="3bbda1eb-8b9d-8091-aa3d-da00b498fabc" class="" dir="auto">بعد:</p><pre id="3bbda1eb-8b9d-8094-91d7-fea3f9fac1b8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py migrate orders</code></pre></blockquote><p id="3bbda1eb-8b9d-8088-8583-fa28b4000d60" class="" dir="auto">باید بتواند بدون نیاز به مقدار برای Orders قبلی، ستون‌ها را اضافه کند.</p><p id="3bbda1eb-8b9d-80c2-8faf-f4ac9069b981" class="" dir="auto">اما یک نکته بسیار مهم</p><p id="3bbda1eb-8b9d-80b4-800a-e6713519c406" class="" dir="auto">فعلاً <strong>OrderService را تغییر نده.</strong></p><p id="3bbda1eb-8b9d-80ff-84d5-cb6942c7785a" class="" dir="auto">اول فقط Model را تغییر بده.</p><p id="3bbda1eb-8b9d-8023-8691-c6a3d04773d0" class="" dir="auto">یعنی فعلاً:</p><pre id="3bbda1eb-8b9d-8075-8a7c-ff3d1526e6e0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">1. Order model
+      ↓
+2. makemigrations
+      ↓
+3. بررسی migration
+      ↓
+4. migrate
+      ↓
+5. بررسی دیتابیس</code></pre><p id="3bbda1eb-8b9d-8042-bad0-e14b531c1795" class="" dir="auto">بعد می رویم سراغ: </p><pre id="3bbda1eb-8b9d-80f4-b7d7-efb2b51e7049" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">1. Order model
+      ↓
+2. makemigrations
+      ↓
+3. بررسی migration
+      ↓
+4. migrate
+      ↓
+5. بررسی دیتابیس</code></pre><blockquote id="3bbda1eb-8b9d-80c9-9243-e28891ce3540" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">155- بعد از اجرای موفق، این را بزن:<pre id="3bbda1eb-8b9d-804b-8edf-c8c47f8d51b1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py showmigrations orders</code></pre></blockquote><p id="3bbda1eb-8b9d-800a-a6af-ec6a3a7c1827" class="" dir="auto">باید ببینیم:</p><pre id="3bbda1eb-8b9d-80a6-8533-e6fc85b8cf01" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">orders
+ [X] 0001_initial
+ [X] 0002_order_shipping_city_order_shipping_phone_number_and_more</code></pre><blockquote id="3bbda1eb-8b9d-8041-838e-cb0173e4e8f8" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">156- و بعد برای اطمینان:<pre id="3bbda1eb-8b9d-8032-a6c7-f483360e171b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py shell</code></pre><p id="3bbda1eb-8b9d-80df-a46e-c4a199b3c3a8" class="" dir="auto">سپس</p><pre id="3bbda1eb-8b9d-8088-a827-c742d9dd8d20" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from apps.orders.models import Order
+
+Order.objects.count()</code></pre></blockquote><p id="3bbda1eb-8b9d-800c-b26f-d8296d9b8ab1" class="" dir="auto">باید همچنان:</p><pre id="3bbda1eb-8b9d-8033-b1bf-cce1c5db1e30" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">16</code></pre><p id="3bbda1eb-8b9d-8007-b3c1-ef6c01599747" class="" dir="auto">باشد.</p><p id="3bbda1eb-8b9d-808b-8251-f33ec69a4f11" class="" dir="auto">بعد از Migration چه کار می‌کنیم؟</p><p id="3bbda1eb-8b9d-802a-85d8-d0eb7b97ab14" class="" dir="auto">اگر Migration موفق بود، <strong>هنوز سراغ Frontend نمی‌رویم</strong>.</p><p id="3bbda1eb-8b9d-80ab-894e-cefd3afed30b" class="" dir="auto">مسیر را این‌طور ادامه می‌دهیم:</p><pre id="3bbda1eb-8b9d-8038-b75a-ee6e38f17e37" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order Model
+     ↓
+Migration ✅
+     ↓
+OrderService
+     ↓
+Checkout API
+     ↓
+Checkout Page
+     ↓
+انتخاب Address
+     ↓
+ثبت Order + Snapshot Address
+     ↓
+Orders API
+     ↓
+Orders Page
+     ↓
+Payment</code></pre><p id="3bbda1eb-8b9d-8007-8c22-e91d9ca2597b" class="" dir="auto">و بعد از تکمیل این بخش‌ها، همان پنج موردی که گفتی را یک‌جا وارد فاز <strong>Hardening / Debugging</strong> می‌کنیم:</p><ol type="1" id="3bbda1eb-8b9d-8087-9cc4-ed9a2088268f" class="numbered-list" start="1" dir="auto"><li>🔐اول Login و <code>/me/</code></li></ol><ol type="1" id="3bbda1eb-8b9d-805d-83e3-e9aaa295b005" class="numbered-list" start="2" dir="auto"><li>🖼️ تصاویر Product</li></ol><ol type="1" id="3bbda1eb-8b9d-8092-bf1a-e94685ef4e2a" class="numbered-list" start="3" dir="auto"><li>🎨 طراحی و Grid صفحه Cart</li></ol><ol type="1" id="3bbda1eb-8b9d-8084-bce1-d272b8c91514" class="numbered-list" start="4" dir="auto"><li>🔒 موارد امنیتی</li></ol><ol type="1" id="3bbda1eb-8b9d-8008-bc6e-e17d314c4d1e" class="numbered-list" start="5" dir="auto"><li>🐛 باگ‌ها و مشکلات باقی‌مانده</li></ol><p id="3bbda1eb-8b9d-8003-866b-ca0b126b3fbb" class="" dir="auto">پس فعلاً مسیر اصلی را قطع نمی‌کنیم و وارد ریزه‌کاری UI نمی‌شویم.</p><p id="3bbda1eb-8b9d-8007-a9c9-d899eebf0ed0" class="" dir="auto">خروجی نهایی:</p><pre id="3bbda1eb-8b9d-8040-a48b-c51d65b6bf2d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py migrate orders
+Operations to perform:
+  Apply all migrations: orders
+Running migrations:
+  Applying orders.0002_order_shipping_city_order_shipping_phone_number_and_more... OK
+  
+$ python manage.py showmigrations orders
+orders
+ [X] 0001_initial
+ [X] 0002_order_shipping_city_order_shipping_phone_number_and_more
+ 
+$ python manage.py shell
+26 objects imported automatically (use -v 2 for details).
+
+Python 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+(InteractiveConsole)
+&gt;&gt;&gt; from apps.orders.models import Order
+&gt;&gt;&gt; Order.objects.count()
+16
+&gt;&gt;&gt; exit()
+now exiting InteractiveConsole...
+</code></pre><p id="3bbda1eb-8b9d-8065-b826-ddeda0938c73" class="" dir="auto"><strong>با موفقیت و بدون هیچ آسیبی به ۱۶ سفارش قبلی</strong> انجام شد. ✅</p><p id="3bbda1eb-8b9d-8098-b38a-e3418dd795f2" class="" dir="auto">وضعیت فعلی:</p><pre id="3bbda1eb-8b9d-800d-9a9b-d2d44f6af65d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">orders
+ [X] 0001_initial
+ [X] 0002_order_shipping_city_order_shipping_phone_number_and_more</code></pre><p id="3bbda1eb-8b9d-80af-bee9-dea2bf2199a5" class="" dir="auto">و همچنین:</p><pre id="3bbda1eb-8b9d-808c-89a0-c8ec50f9ffa0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Order.objects.count()
+16</code></pre><h3 id="3bbda1eb-8b9d-8028-a551-e5855a0a2aee" class="" dir="auto">پس مرحله‌ی Migration تمام شد و می‌توانیم وارد <strong>Checkout Architecture</strong> شویم.</h3><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80e2-b300-c304424a9ebd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-80d3-8036-ed955dd644d3" class="" dir="auto">مرحله بعد: اصلاح OrderService</h3></div></aside><p id="3bbda1eb-8b9d-8091-b07f-f36261fdede3" class="" dir="auto">الان یک مشکل مهم در کد فعلی داریم.</p><p id="3bbda1eb-8b9d-8061-9875-ef58b350e5ef" class="" dir="auto">در <code>OrderCreateInputSerializer</code> نوشته‌ای:</p><pre id="3bbda1eb-8b9d-80ee-9db8-da47d17818cd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address = serializers.CharField(min_length=10)</code></pre><p id="3bbda1eb-8b9d-8041-b66e-ff124a078075" class="" dir="auto">یعنی Frontend فعلاً باید یک رشته‌ی آزاد بفرستد:</p><pre id="3bbda1eb-8b9d-8006-af01-eceebc1de584" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;cart_id&quot;: &quot;...&quot;,
+  &quot;shipping_address&quot;: &quot;Tehran, ...&quot;
+}</code></pre><p id="3bbda1eb-8b9d-80d5-b159-dd7664422d29" class="" dir="auto">اما ما الان در <code>Order</code> شش فیلد مشخص برای Snapshot آدرس داریم.</p><p id="3bbda1eb-8b9d-8035-822e-c62186efbd80" class="" dir="auto">بنابراین باید معماری را تبدیل کنیم به:</p><pre id="3bbda1eb-8b9d-805d-9939-d279d4eb19d5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Customer
+   │
+   ├── Address 1
+   ├── Address 2
+   └── Address 3
+          │
+          ↓
+      Checkout
+          │
+          ↓
+    selected address
+          │
+          ↓
+      OrderService
+          │
+          ↓
+       Order
+          │
+          ├── shipping_receiver_name
+          ├── shipping_phone_number
+          ├── shipping_province
+          ├── shipping_city
+          ├── shipping_street
+          └── shipping_postal_code</code></pre><p id="3bbda1eb-8b9d-8088-b03f-d9e38aa3b1cc" class="" dir="auto">این دقیقاً همان چیزی است که برای سفارش واقعی می‌خواهیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80b8-b9e8-f995629bd9b7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8077-a2d9-dace7f323ab7" class="" dir="auto">یک نکته امنیتی مهم</h3></div></aside><p id="3bbda1eb-8b9d-8031-ae96-d0d0607dcd24" class="" dir="auto"><code>cart_id</code> را از Frontend می‌گیریم، اما نباید صرفاً به این اعتماد کنیم که این Cart متعلق به کاربر است.</p><p id="3bbda1eb-8b9d-8057-a934-d02b92295c79" class="" dir="auto">در کد فعلی:</p><pre id="3bbda1eb-8b9d-8049-a4a7-c222e49a3d9e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">cart = Cart.objects.prefetch_related(
+    &#x27;items__product&#x27;
+).get(id=cart_id)</code></pre><p id="3bbda1eb-8b9d-807f-895e-d3d9bb0db0ae" class="" dir="auto">هیچ بررسی‌ای وجود ندارد که:</p><pre id="3bbda1eb-8b9d-80c1-a2f6-db82c3ea95b3" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">این Cart
+    ↓
+متعلق به همین Customer است؟</code></pre><p id="3bbda1eb-8b9d-8057-bbc5-ed4b1336de7d" class="" dir="auto">چون <strong>Checkout الان در حال توسعه است</strong>، بهتر است از همین الان طراحی درستش کنیم و بعداً لازم نباشد معماری را دوباره بشکنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-80ba-bc10-e0d2f867df2b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-806e-9008-e8cfd6465282" class="" dir="auto">قدم بعدی ما</h3></div></aside><p id="3bbda1eb-8b9d-80da-87f7-db9b79a747ce" class="" dir="auto">قبل از تغییر <code>OrderService</code>، باید <code>OrderCreateInputSerializer</code> را اصلاح کنیم.</p><p id="3bbda1eb-8b9d-80f0-a383-d54f639a5448" class="" dir="auto">در:</p><pre id="3bbda1eb-8b9d-8010-ae26-c9916108f19e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">backend/apps/orders/serializers.py</code></pre><p id="3bbda1eb-8b9d-80c0-ae1f-da3f93ba7858" class="" dir="auto">این:</p><pre id="3bbda1eb-8b9d-808f-9689-ebfd86ff7428" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    shipping_address = serializers.CharField(min_length=10)</code></pre><p id="3bbda1eb-8b9d-8044-930b-e977eab8326b" class="" dir="auto">باید تبدیل شود به:</p><pre id="3bbda1eb-8b9d-80b4-b75a-dba688c5d3e3" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    address_id = serializers.IntegerField()</code></pre><p id="3bbda1eb-8b9d-8055-96f2-e56c245b7b94" class="" dir="auto">یعنی Checkout به جای ارسال متن آزاد آدرس، شناسه‌ی Address انتخاب‌شده را می‌فرستد:</p><pre id="3bbda1eb-8b9d-8038-b3ec-d34660037579" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+    &quot;cart_id&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;address_id&quot;: 3
+}</code></pre><p id="3bbda1eb-8b9d-8057-8b85-ef2df5ce5672" class="" dir="auto">سپس Backend:</p><pre id="3bbda1eb-8b9d-8034-a586-f56d8faa806b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">address_id
+    ↓
+Address.objects.get(...)
+    ↓
+بررسی مالکیت
+    ↓
+کپی اطلاعات Address
+    ↓
+Order.shipping_*</code></pre><p id="3bbda1eb-8b9d-8045-b629-c1a8ccb96408" class="" dir="auto">چرا این بهتر است؟</p><p id="3bbda1eb-8b9d-808c-8233-e8cf2f309f78" class="" dir="auto">فرض کنیم Customer این آدرس‌ها را دارد:</p><pre id="3bbda1eb-8b9d-80ca-8bbb-e82f135cbe14" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">1 → Home
+2 → Office
+3 → Parents</code></pre><p id="3bbda1eb-8b9d-8062-a886-df0126e644ff" class="" dir="auto">کاربر در Checkout می‌زند:</p><pre id="3bbda1eb-8b9d-80ef-94df-c8ebc8210362" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Home</code></pre><p id="3bbda1eb-8b9d-800d-b17f-fcc7f29dffb3" class="" dir="auto">و در Frontend فقط می‌فرستد:</p><pre id="3bbda1eb-8b9d-80b9-8467-f813e9a89493" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+    &quot;cart_id&quot;: &quot;...&quot;,
+    &quot;address_id&quot;: 1
+}</code></pre><p id="3bbda1eb-8b9d-80ed-b535-d4e1605b5e3f" class="" dir="auto">ولی در Backend خودش اطلاعات واقعی را از دیتابیس می‌گیرد.</p><p id="3bbda1eb-8b9d-8042-99ca-cd11b739a422" class="" dir="auto">در نتیجه کاربر نمی‌تواند مثلاً در Request بنویسد:</p><pre id="3bbda1eb-8b9d-8075-99a2-f7d742273f24" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">{
+    &quot;address_id&quot;: 1,
+    &quot;shipping_city&quot;: &quot;London&quot;,
+    &quot;shipping_postal_code&quot;: &quot;...&quot;
+}</code></pre><p id="3bbda1eb-8b9d-8042-9e94-f3ed13aaa27a" class="" dir="auto">و اطلاعات جعلی وارد Order کند.</p><p id="3bbda1eb-8b9d-8028-99c8-ce16b6ca5455" class="" dir="auto">بعد از این مرحله</p><p id="3bbda1eb-8b9d-8051-844a-f4493d650e9b" class="" dir="auto">ترتیب دقیق کارمان این خواهد بود:</p><h3 id="3bbda1eb-8b9d-800e-be97-c8a37a62095a" class="" dir="auto">1. Serializer</h3><pre id="3bbda1eb-8b9d-804e-a9fb-f315c2dcd851" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart_id
+address_id</code></pre><h3 id="3bbda1eb-8b9d-802f-88f1-c801b1749e9a" class="" dir="auto">2. OrderService</h3><p id="3bbda1eb-8b9d-80ce-a73a-fdfdff9c146e" class="" dir="auto">بررسی:</p><pre id="3bbda1eb-8b9d-80aa-a7ee-df3aa147f9e5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Customer
+   ↓
+Cart
+   ↓
+Cart مالک همین Customer؟
+   ↓
+Address
+   ↓
+Address مالک همین Customer؟
+   ↓
+Cart خالی نیست؟
+   ↓
+Create Order
+   ↓
+Snapshot Address
+   ↓
+Create OrderItems
+   ↓
+Delete Cart</code></pre><h3 id="3bbda1eb-8b9d-802e-a742-e5640aaa6419" class="" dir="auto">3. Orders API</h3><p id="3bbda1eb-8b9d-800f-aeed-fd02b8de5547" class="" dir="auto">API ثبت سفارش آماده می‌شود.</p><h3 id="3bbda1eb-8b9d-8011-8fc1-d72cf9798bdf" class="" dir="auto">4. Checkout Frontend</h3><p id="3bbda1eb-8b9d-8093-be89-c05b60e88282" class="" dir="auto">صفحه Checkout را می‌سازیم.</p><h3 id="3bbda1eb-8b9d-8034-8846-d099bf83dc47" class="" dir="auto">5. Orders Page</h3><p id="3bbda1eb-8b9d-80c6-9c94-df517c4e889e" class="" dir="auto">صفحه‌ای که الان فقط:</p><pre id="3bbda1eb-8b9d-8045-8c0f-e29580f08171" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Your Orders
+Your orders will appear here.</code></pre><p id="3bbda1eb-8b9d-80eb-ba53-fe450ebbb312" class="" dir="auto">است، به API واقعی وصل می‌شود.</p><blockquote id="3bbda1eb-8b9d-80b1-8456-d9a9054ac25b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">157- فعلاً فقط یک تغییر بده در:<pre id="3bbda1eb-8b9d-80a2-96d9-efe1ec1442bd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># backend/apps/orders/serializers.py</code></pre><p id="3bbda1eb-8b9d-80dc-979c-d52d2efbdf2a" class="" dir="auto">این کلاس را:</p><pre id="3bbda1eb-8b9d-8029-a1db-c791c082db48" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    shipping_address = serializers.CharField(min_length=10)</code></pre><p id="3bbda1eb-8b9d-80e8-91d4-f5ccd41eb6d1" class="" dir="auto">به این تبدیل کن:</p><pre id="3bbda1eb-8b9d-80e7-8303-c9af8521b063" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class OrderCreateInputSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    address_id = serializers.IntegerField()</code></pre></blockquote><p id="3bbda1eb-8b9d-808a-aa10-c4bbf4f8710a" class="" dir="auto">حالا می‌رویم سراغ <strong>OrderService</strong>؛ اینجا بخش مهم Checkout در Backend را اصولی می‌سازیم.</p><p id="3bbda1eb-8b9d-809a-a4c2-dd8811924712" class="" dir="auto">در وضعیت فعلی <code>OrderService</code> سه مشکل دارد:</p><ol type="1" id="3bbda1eb-8b9d-80eb-99ab-f0cecf939b67" class="numbered-list" start="1" dir="auto"><li>هنوز <code>shipping_address</code> می‌گیرد.</li></ol><ol type="1" id="3bbda1eb-8b9d-80dd-97dc-eda4b492d832" class="numbered-list" start="2" dir="auto"><li>مالکیت <code>Cart</code> را بررسی نمی‌کند.</li></ol><ol type="1" id="3bbda1eb-8b9d-80f1-b1fb-e56358589625" class="numbered-list" start="3" dir="auto"><li>مالکیت <code>Address</code> را بررسی نمی‌کند.</li></ol><p id="3bbda1eb-8b9d-80bb-a095-d0f736f0a889" class="" dir="auto">ما هر سه را هم‌زمان اصلاح می‌کنیم.</p><blockquote id="3bbda1eb-8b9d-800d-b0bc-ca5b1c41dd72" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">158- فایل: <code>backend/apps/orders/services.py</code><p id="3bbda1eb-8b9d-80bc-81b8-ddc2a186b498" class="" dir="auto">کل محتوای فعلی <code>OrderService</code> را با این نسخه جایگزین کن:</p><pre id="3bbda1eb-8b9d-8030-affc-ee77032473a2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.db import transaction
+from rest_framework.exceptions import ValidationError
+
+from apps.carts.models import Cart
+from apps.customers.models import Customer, Address
+from apps.orders.models import Order, OrderItem
+
+
+class OrderService:
+    &quot;&quot;&quot;
+    سرویس اصلی ثبت سفارش در پروژه ACRON.
+    &quot;&quot;&quot;
+
+    @classmethod
+    @transaction.atomic
+    def place_order(
+        cls,
+        user,
+        cart_id: str,
+        address_id: int,
+    ) -&gt; Order:
+
+        # --------------------------------------------------
+        # 1. پیدا کردن Customer مربوط به کاربر جاری
+        # --------------------------------------------------
+
+        try:
+            customer = Customer.objects.get(user=user)
+        except Customer.DoesNotExist:
+            raise ValidationError(
+                &quot;پروفایل مشتری برای این کاربر یافت نشد.&quot;
+            )
+
+        # --------------------------------------------------
+        # 2. دریافت Cart
+        # --------------------------------------------------
+
+        try:
+            cart = (
+                Cart.objects
+                .prefetch_related(&quot;items__product&quot;)
+                .get(id=cart_id)
+            )
+        except Cart.DoesNotExist:
+            raise ValidationError(
+                &quot;سبد خرید معتبری یافت نشد.&quot;
+            )
+
+        # --------------------------------------------------
+        # 3. بررسی مالکیت Cart
+        # --------------------------------------------------
+
+        if cart.customer_id != customer.id:
+            raise ValidationError(
+                &quot;این سبد خرید متعلق به شما نیست.&quot;
+            )
+
+        # --------------------------------------------------
+        # 4. بررسی خالی نبودن Cart
+        # --------------------------------------------------
+
+        cart_items = list(cart.items.all())
+
+        if not cart_items:
+            raise ValidationError(
+                &quot;سبد خرید شما خالی است و امکان ثبت سفارش وجود ندارد.&quot;
+            )
+
+        # --------------------------------------------------
+        # 5. دریافت Address
+        # --------------------------------------------------
+
+        try:
+            address = Address.objects.get(
+                id=address_id,
+                customer=customer,
+            )
+        except Address.DoesNotExist:
+            raise ValidationError(
+                &quot;آدرس انتخاب‌شده یافت نشد.&quot;
+            )
+
+        # --------------------------------------------------
+        # 6. ایجاد Order
+        # --------------------------------------------------
+
+        order = Order.objects.create(
+            customer=customer,
+            status=Order.OrderStatus.PENDING,
+
+            # Snapshot آدرس در لحظه ثبت سفارش
+            shipping_receiver_name=address.receiver_name,
+            shipping_phone_number=address.phone_number,
+            shipping_province=address.province,
+            shipping_city=address.city,
+            shipping_street=address.street,
+            shipping_postal_code=address.postal_code,
+        )
+
+        # --------------------------------------------------
+        # 7. انتقال محصولات به OrderItem
+        # --------------------------------------------------
+
+        for item in cart_items:
+
+            product = item.product
+
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                quantity=item.quantity,
+                unit_price=product.price,
+            )
+
+        # --------------------------------------------------
+        # 8. حذف Cart پس از ایجاد موفق Order
+        # --------------------------------------------------
+
+        cart.delete()
+
+        return order</code></pre></blockquote><p id="3bbda1eb-8b9d-80b3-ae6c-dd59f6c6c525" class="" dir="auto">چرا این نسخه بهتر است؟</p><p id="3bbda1eb-8b9d-806a-b640-db8730b64b55" class="" dir="auto">جریان حالا این است:</p><pre id="3bbda1eb-8b9d-80c6-b5bc-eb8205a518f5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Frontend
+   │
+   │ cart_id + address_id
+   ↓
+OrderCreateInputSerializer
+   │
+   ↓
+OrderService
+   │
+   ├── Customer متعلق به user؟
+   │
+   ├── Cart وجود دارد؟
+   │
+   ├── Cart متعلق به Customer است؟
+   │
+   ├── Cart خالی است؟
+   │
+   ├── Address وجود دارد؟
+   │
+   ├── Address متعلق به Customer است؟
+   │
+   ↓
+Create Order
+   │
+   ├── Snapshot Address
+   │
+   └── Freeze Product Prices
+   │
+   ↓
+Create OrderItems
+   │
+   ↓
+Delete Cart</code></pre><p id="3bbda1eb-8b9d-8080-b8ea-cb44bef44c6c" class="" dir="auto">یک نکته مهم امنیتی هم اینجاست:</p><pre id="3bbda1eb-8b9d-80ce-8dea-fb6c3a3040f1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Address.objects.get(
+    id=address_id,
+    customer=customer,
+)</code></pre><p id="3bbda1eb-8b9d-8062-85f1-e0ab1eadeb71" class="" dir="auto">یعنی کاربر نمی‌تواند <code>address_id</code> متعلق به کاربر دیگری را بفرستد و از آن استفاده کند.</p><p id="3bbda1eb-8b9d-807f-895c-fe18fab1c624" class="" dir="auto">همین منطق را برای Cart هم اعمال کردیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bbda1eb-8b9d-8069-a8dd-d74c55daf9d1" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bbda1eb-8b9d-8023-88c6-e14cc59ea055" class="" dir="auto">یک نکته درباره <code>cart.customer</code></h3></div></aside><p id="3bbda1eb-8b9d-801e-9cd0-fa7ccf972768" class="" dir="auto">این بررسی:</p><pre id="3bbda1eb-8b9d-8045-b740-d51f239e6908" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">if cart.customer_id != customer.id:</code></pre><p id="3bbda1eb-8b9d-80a3-b61f-e7fb6dc3c393" class="" dir="auto">برای <strong>کاربر لاگین‌شده</strong> کاملاً ضروری است.</p><p id="3bbda1eb-8b9d-8015-9a34-d7ae7497166d" class="" dir="auto">چون در حال حاضر Backend اجازه دارد Cartهایی داشته باشد که:</p><pre id="3bbda1eb-8b9d-8092-b5bb-db5f4cc7fdef" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer = NULL</code></pre><p id="3bcda1eb-8b9d-803a-8fcc-d6e52d4cf949" class="" dir="auto">این‌ها همان Cartهای مهمان هستند.</p><p id="3bcda1eb-8b9d-8046-8a72-ffdca0823d6c" class="" dir="auto">اما Checkout در معماری فعلی فقط برای:</p><pre id="3bcda1eb-8b9d-8014-96bb-ea2d75380fb3" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Authenticated User</code></pre><p id="3bcda1eb-8b9d-808a-8d67-d06ff0aabf79" class="" dir="auto">است؛ بنابراین Cart باید حتماً متعلق به Customer باشد.</p><p id="3bcda1eb-8b9d-80d5-93d3-f377f5795ded" class="" dir="auto">مرحله بعد <strong>وصل کردن </strong><code><strong>OrderViewSet</strong></code><strong> به قرارداد جدید Checkout</strong> است.</p><p id="3bcda1eb-8b9d-800a-ba69-f7db10b7ab14" class="" dir="auto">در حال حاضر <code>views.py</code> هنوز این را دارد:</p><pre id="3bcda1eb-8b9d-8036-b0ec-e7a2235d0a4c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">shipping_address=serializer.validated_data[&#x27;shipping_address&#x27;]</code></pre><p id="3bcda1eb-8b9d-80b5-ab9b-f175530da132" class="" dir="auto">که دیگر با Serializer جدید سازگار نیست.</p><blockquote id="3bbda1eb-8b9d-80e3-9210-d3e186152992" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">159- فایل <code>backend/apps/orders/views.py</code><p id="3bcda1eb-8b9d-80ea-abe1-d0911c1ba528" class="" dir="auto">این بخش متد <code>create</code> را:</p><pre id="3bcda1eb-8b9d-80cf-977b-f83427628c16" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">def create(self, request, *args, **kwargs):
+    serializer = self.get_serializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    cart_id = serializer.validated_data[&#x27;cart_id&#x27;]
+    address_id = serializer.validated_data[&#x27;address_id&#x27;]
+
+    order = OrderService.place_order(
+        user=request.user,
+        cart_id=cart_id,
+        address_id=address_id,
+    )
+
+    output_serializer = OrderSerializer(order)
+
+    return Response(
+        output_serializer.data,
+        status=status.HTTP_201_CREATED
+    )</code></pre><p id="3bcda1eb-8b9d-8043-981f-fef5fca79260" class="" dir="auto">با این جایگزین کن:</p><pre id="3bcda1eb-8b9d-80ac-810b-c0622f264814" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">def create(self, request, *args, **kwargs):
+    serializer = self.get_serializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    cart_id = serializer.validated_data[&#x27;cart_id&#x27;]
+    address_id = serializer.validated_data[&#x27;address_id&#x27;]
+
+    order = OrderService.place_order(
+        user=request.user,
+        cart_id=cart_id,
+        address_id=address_id,
+    )
+
+    output_serializer = OrderSerializer(order)
+
+    return Response(
+        output_serializer.data,
+        status=status.HTTP_201_CREATED
+    )</code></pre></blockquote><h3 id="3bcda1eb-8b9d-80ae-b9da-f17f98aedc3b" class="" dir="auto">تفاوت اصلی</h3><p id="3bcda1eb-8b9d-80e2-beab-cbec0fedc1bd" class="" dir="auto">قبلاً:</p><pre id="3bcda1eb-8b9d-806d-a3ee-d24c427ca30b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart_id
+shipping_address</code></pre><p id="3bcda1eb-8b9d-8092-ae39-f67c84e7f102" class="" dir="auto">الان:</p><pre id="3bcda1eb-8b9d-8094-8436-ca04189e40da" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart_id
+address_id</code></pre><p id="3bcda1eb-8b9d-80a4-b7a9-f61834f5245e" class="" dir="auto">و Service خودش Address را پیدا می‌کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-8039-9faa-dd5cb3db2332" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-807a-8012-fe4287b72130" class="" dir="auto">یک اصلاح مهم در <code>OrderSerializer</code></h3></div></aside><p id="3bcda1eb-8b9d-80d6-a6c9-f1c22d1f59d7" class="" dir="auto">الان Serializer سفارش این‌ها را برنمی‌گرداند:</p><pre id="3bcda1eb-8b9d-8024-b7e8-c921ae59812d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">shipping_receiver_name
+shipping_phone_number
+shipping_province
+shipping_city
+shipping_street
+shipping_postal_code</code></pre><p id="3bcda1eb-8b9d-803c-b516-f884aea5e519" class="" dir="auto">ولی وقتی بعداً صفحه Orders و Checkout را می‌سازیم، به این اطلاعات نیاز داریم.</p><blockquote id="3bbda1eb-8b9d-80cf-a1e9-d027c7b7ca84" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">160- پس در:<pre id="3bbda1eb-8b9d-80cb-9eac-ff45b06d5f06" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">backend/apps/orders/serializers.py</code></pre><p id="3bcda1eb-8b9d-80c5-9012-c819cb8e6569" class="" dir="auto">این قسمت را </p><pre id="3bcda1eb-8b9d-80f1-88dc-dd2e2c96f929" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">fields = [
+    &#x27;id&#x27;,
+    &#x27;customer&#x27;,
+    &#x27;status&#x27;,
+    &#x27;created_at&#x27;,
+    &#x27;items&#x27;,
+    &#x27;total_price&#x27;
+]</code></pre><p id="3bcda1eb-8b9d-80ea-87af-cb939a1fa32b" class="" dir="auto">را به این تبدیل کن:</p><pre id="3bcda1eb-8b9d-80ce-a243-cd0a7a779cbc" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">fields = [
+    &#x27;id&#x27;,
+    &#x27;customer&#x27;,
+    &#x27;status&#x27;,
+    &#x27;created_at&#x27;,
+    &#x27;items&#x27;,
+    &#x27;total_price&#x27;,
+    &#x27;shipping_receiver_name&#x27;,
+    &#x27;shipping_phone_number&#x27;,
+    &#x27;shipping_province&#x27;,
+    &#x27;shipping_city&#x27;,
+    &#x27;shipping_street&#x27;,
+    &#x27;shipping_postal_code&#x27;,
+]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-80fd-91f1-e92b975de5d3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-807b-b7ca-ef043a867bba" class="" dir="auto">یک نکته مهم در <code>OrderService</code></h3></div></aside><p id="3bcda1eb-8b9d-80f5-b747-f06cc756d148" class="" dir="auto">ما الان این را داریم:</p><pre id="3bcda1eb-8b9d-8021-8cfe-e0a55c5fbedd" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart.delete()</code></pre><p id="3bcda1eb-8b9d-80f6-92f4-cdc6a3fedaa3" class="" dir="auto">و این تصمیم فعلاً درست است.</p><p id="3bcda1eb-8b9d-8022-a49a-f00319eb464f" class="" dir="auto">چون Cart فعلی یک Cart متعلق به Customer است:</p><pre id="3bcda1eb-8b9d-80ad-b5e9-cf4f29931e7b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Customer
+   │
+   └── Cart</code></pre><p id="3bcda1eb-8b9d-80d9-ae5b-fab61e8705bb" class="" dir="auto">بعد از ثبت سفارش:</p><pre id="3bcda1eb-8b9d-805f-b54b-c8d4c4fdeabc" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart
+ ↓
+Order
+ ↓
+Cart حذف می‌شود</code></pre><p id="3bcda1eb-8b9d-80e8-bc44-f576c6df69be" class="" dir="auto">و سفارش مستقل می‌شود.</p><p id="3bcda1eb-8b9d-80e0-a263-c1df97cf1c3d" class="" dir="auto">اما در مرحله بعد باید درباره یک موضوع مهم تصمیم بگیریم:</p><h3 id="3bcda1eb-8b9d-80ed-8716-ecb3dceb7ba6" class="" dir="auto">آیا بعد از Checkout باید Cart جدید ساخته شود؟</h3><p id="3bcda1eb-8b9d-8028-8ddf-c5093fae68f9" class="" dir="auto">برای معماری فعلی، بله، بهتر است.</p><p id="3bcda1eb-8b9d-8002-a846-dca1a52b37e2" class="" dir="auto">مثلاً:</p><pre id="3bcda1eb-8b9d-806a-bc84-e6e2e54b6c91" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">قبل Checkout:
+
+Customer
+   │
+   └── Cart #A
+        ├── Product A
+        └── Product B
+
+ثبت Order
+     ↓
+
+Cart #A → deleted
+
+Order #1 → created
+
+     ↓
+
+Customer
+   │
+   └── Cart #B → empty</code></pre><p id="3bcda1eb-8b9d-804e-a829-c55bd8701196" class="" dir="auto">این موضوع را در مرحله Checkout/Cart به‌صورت تمیز حل می‌کنیم.</p><p id="3bcda1eb-8b9d-80fc-b5e1-db755a86e67a" class="" dir="auto">بعد از این دو تغییر، Backend قرارداد جدیدی دارد:</p><pre id="3bcda1eb-8b9d-809b-84ed-f6c5de878877" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/orders/
+
+{
+    &quot;cart_id&quot;: &quot;...&quot;,
+    &quot;address_id&quot;: 1
+}</code></pre><p id="3bcda1eb-8b9d-808e-adc1-cc0ff3cf69ab" class="" dir="auto">و Backend خودش:</p><pre id="3bcda1eb-8b9d-807a-afca-e04d115ef645" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">address_id
+     ↓
+Address
+     ↓
+مالکیت
+     ↓
+Snapshot
+     ↓
+Order</code></pre><p id="3bcda1eb-8b9d-80f1-89eb-ccc12e5daf36" class="" dir="auto">را انجام می‌دهد.</p><p id="3bcda1eb-8b9d-8056-9e49-d2b0b474942b" class="" dir="auto">حالا Backend مربوط به <strong>Order/Checkout</strong> از نظر ساختار اصلی آماده است. قدم بعدی این است که قبل از رفتن به React، خود API را تست کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-806b-807b-c444aa1d49d6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-8060-89be-debeaced2d7a" class="" dir="auto">مرحله بعد: تست واقعی Checkout API</h3></div></aside><p id="3bcda1eb-8b9d-80ce-ae92-e7002420dc6d" class="" dir="auto">چون <code>OrderService</code> تغییر کرده، باید مطمئن شویم این زنجیره واقعاً درست کار می‌کند:</p><pre id="3bcda1eb-8b9d-80ff-8199-e07c16508e31" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Authenticated User
+       ↓
+Customer
+       ↓
+Cart
+       ↓
+CartItem
+       ↓
+Address
+       ↓
+POST /api/orders/
+       ↓
+Order
+       ↓
+OrderItem
+       ↓
+Cart حذف می‌شود</code></pre><h3 id="3bcda1eb-8b9d-8077-aa09-f84f870c12f1" class="" dir="auto">1. اول وضعیت Migration را بررسی کن</h3><blockquote id="3bbda1eb-8b9d-805e-b0f8-e9b09eea4b5b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">161- این بار فقط برای اطمینان:<pre id="3bbda1eb-8b9d-80b5-86cd-c7e0802d6f7a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py showmigrations orders</code></pre></blockquote><p id="3bcda1eb-8b9d-80d8-b4f9-c06a0e4cfa8b" class="" dir="auto">خروجی باید این باشد:</p><pre id="3bcda1eb-8b9d-8006-ba1e-e28482867664" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">orders
+ [X] 0001_initial
+ [X] 0002_order_shipping_city_order_shipping_phone_number_and_more</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-8033-ac98-d8f3ffd44864" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-80b0-9097-ee7368000951" class="" dir="auto">یک نکته مهم قبل از تست</h3></div></aside><p id="3bcda1eb-8b9d-80ab-bbc0-c6d0041929cb" class="" dir="auto">در <code>OrderService</code> این شرط را اضافه کردیم:</p><pre id="3bcda1eb-8b9d-80b0-9ed5-fea880aac34e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">if cart.customer_id != customer.id:
+    raise ValidationError(
+        &quot;این سبد خرید متعلق به شما نیست.&quot;
+    )</code></pre><p id="3bcda1eb-8b9d-8001-bc37-fdabac200340" class="" dir="auto">پس برای تست Checkout باید از <strong>Cart متعلق به همان User لاگین‌شده</strong> استفاده کنیم.</p><p id="3bcda1eb-8b9d-80d7-8a7b-d777ac3236f9" class="" dir="auto">پس Cartهای قدیمی که به‌صورت Guest ساخته شده‌اند و:</p><pre id="3bcda1eb-8b9d-809a-831c-d09605f4d7da" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">customer = NULL</code></pre><p id="3bcda1eb-8b9d-80e7-8bf7-e91a25bbad37" class="" dir="auto">برای این تست مناسب نیستند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-807a-8755-c3b4c91ad04f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-8037-81f8-e9f1d0b81fe5" class="" dir="auto">تست را فعلاً از Django Shell انجام بدهیم</h3></div></aside><p id="3bcda1eb-8b9d-805a-a33e-dc74cecdbb9e" class="" dir="auto">من ترجیح می‌دهم قبل از اینکه React Checkout را بسازیم، Backend را مستقیم تست کنیم. این کار باعث می‌شود اگر مشکلی وجود داشت، ندانیم مشکل از React است یا Django.</p><blockquote id="3bbda1eb-8b9d-804b-8311-c2e7b662f414" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">162- وارد Shell شو:<pre id="3bbda1eb-8b9d-80f3-b96c-d34d033593af" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">python manage.py shell</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-80c9-b0b3-cb01c51eb016" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">163- سپس:<pre id="3bbda1eb-8b9d-808b-a2c7-f16c7f439f1e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.contrib.auth import get_user_model
+from apps.customers.models import Customer, Address
+from apps.carts.models import Cart, CartItem
+from apps.products.models import Product
+from apps.orders.models import Order</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-803d-a7b0-fb754558e4d6" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">164- کاربر فعلی را پیدا کن<pre id="3bbda1eb-8b9d-807f-ab26-d48645fc3874" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">User = get_user_model()
+
+User.objects.all()</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-80a5-9509-c10a409d4a58" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">165- اگر مثلاً username کاربر تستی تو <code>sina</code> است:<br/>اگر username متفاوت است، همان username خودت را بگذار.<pre id="3bbda1eb-8b9d-801d-85b2-d1fffe987c9f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">user = User.objects.get(username=&quot;sina&quot;)</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-8062-9ca0-decf39427a56" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">166- سپس Customer را بررسی کن<pre id="3bbda1eb-8b9d-805f-bef5-c4fc4fa51473" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">customer, created = Customer.objects.get_or_create(
+    user=user
+)
+
+customer</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-8081-a432-d7aac8333aab" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">167- سپس Cart را پیدا کن یا بساز:<br/>اگر <code>None</code> برگشت، یعنی Product نداریم و باید ابتدا یک محصول تستی ایجاد کنیم.<pre id="3bbda1eb-8b9d-8087-a553-e4f0d42fdd12" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">cart, created = Cart.objects.get_or_create(
+    customer=customer
+)
+
+cart</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-805f-8170-da9e6344c466" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">168- اگر Cart خالی است، یک محصول اضافه کن<pre id="3bbda1eb-8b9d-80a0-8e31-e17796592cea" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">CartItem.objects.get_or_create(
+    cart=cart,
+    product=product,
+    defaults={
+        &quot;quantity&quot;: 2
+    }
+)</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-8062-9c08-dfc3e8ae0a44" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">169- بعد:<pre id="3bbda1eb-8b9d-8044-8617-d663f96d76df" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">cart.items.all()</code></pre></blockquote><blockquote id="3bbda1eb-8b9d-8015-bdea-ef3afb6cf876" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">170- حالا Address بساز<p id="3bcda1eb-8b9d-805d-b1f8-c1cb8802efc9" class="" dir="auto">این قسمت برای تست Checkout بسیار مهم است.</p><pre id="3bbda1eb-8b9d-80d9-961e-c8c94b474ec7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">address = Address.objects.filter(
+    customer=customer
+).first()</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-807b-9f31-ee93d022baec" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">171- اگر <code>None</code> بود:<pre id="3bcda1eb-8b9d-8053-a03f-e26662c81fb8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">address = Address.objects.create(
+    customer=customer,
+    title=&quot;Home&quot;,
+    receiver_name=&quot;Sina&quot;,
+    phone_number=&quot;09120000000&quot;,
+    province=&quot;Tehran&quot;,
+    city=&quot;Tehran&quot;,
+    street=&quot;Test Street&quot;,
+    postal_code=&quot;1234567890&quot;,
+    is_default=True,
+)</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-80c1-be82-caf6b6e86e01" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">172- بعد:<pre id="3bcda1eb-8b9d-80d9-bbd4-e86fa2369a66" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">address</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-80a9-af58-e0b0a51a543d" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">173- حالا خود OrderService را مستقیماً تست کن<pre id="3bcda1eb-8b9d-8039-842c-d6b46387cc4e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from apps.orders.services import OrderService</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-8078-90e7-e4e173d82548" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">174- سپس<pre id="3bcda1eb-8b9d-80ae-81d8-efb66799ac0a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">order = OrderService.place_order(
+    user=user,
+    cart_id=cart.id,
+    address_id=address.id,
+)</code></pre></blockquote><p id="3bcda1eb-8b9d-80f0-8f4c-f5f0cc68c8e6" class="" dir="auto">اگر همه چیز درست باشد، باید یک <code>Order</code> برگردد.</p><p id="3bcda1eb-8b9d-802e-a6c8-f4d78b172990" class="" dir="auto">مثلاً:</p><pre id="3bcda1eb-8b9d-80c7-b5bd-c287ddfc07bb" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">&lt;Order: Order ...&gt;</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-806e-8437-e2c4d5baabf3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-801e-9bd3-dd9ea2c58222" class="" dir="auto">سفارش را بررسی کن</h3></div></aside><pre id="3bcda1eb-8b9d-8081-a6b9-d5d4f5f4950d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">order.status</code></pre><p id="3bcda1eb-8b9d-80dd-9c8c-d08cdd817b4e" class="" dir="auto">باید:</p><pre id="3bcda1eb-8b9d-80e0-8720-e94ce198f8e6" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">&#x27;P&#x27;</code></pre><p id="3bcda1eb-8b9d-80c9-a3da-eb33310072f9" class="" dir="auto">باشد.</p><p id="3bcda1eb-8b9d-806c-b8c2-f502ecd45d07" class="" dir="auto">یعنی:</p><pre id="3bcda1eb-8b9d-80df-bcbc-c4d62a5ff897" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">PENDING</code></pre><blockquote id="3bcda1eb-8b9d-80a4-9aeb-cd206760b9bf" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">175- اقلام سفارش<pre id="3bcda1eb-8b9d-8045-afc2-f642decd0230" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">order.items.all()</code></pre></blockquote><p id="3bcda1eb-8b9d-8034-ae0b-db3ad82e03d1" class="" dir="auto">باید محصولی که در Cart داشتیم، به <code>OrderItem</code> منتقل شده باشد.</p><p id="3bcda1eb-8b9d-807b-93c4-c9ee12e56518" class="" dir="auto">مثلاً:</p><pre id="3bcda1eb-8b9d-8014-905e-dbf1a53c80bd" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">order.items.first().quantity</code></pre><p id="3bcda1eb-8b9d-8029-a57e-fa40852cf391" class="" dir="auto">و:</p><pre id="3bcda1eb-8b9d-800c-8a48-dd82c6330d39" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">order.items.first().unit_price</code></pre><p id="3bcda1eb-8b9d-800d-8db0-c3b2aab18a49" class="" dir="auto">را بررسی کن.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-8051-81d0-f20eba08744c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-8060-bb5b-dbda2744197f" class="" dir="auto">مهم‌ترین تست: قیمت Freeze شده</h3></div></aside><p id="3bcda1eb-8b9d-8053-b611-d39bbe94a8e1" class="" dir="auto">فرض کنیم قیمت محصول قبل از سفارش:</p><pre id="3bcda1eb-8b9d-80e7-a088-fbb679a251b4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">product.price</code></pre><p id="3bcda1eb-8b9d-807c-9687-c4747590446c" class="" dir="auto">مثلاً:</p><pre id="3bcda1eb-8b9d-800b-a7b7-d34d8f6d67ea" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">12.00</code></pre><p id="3bcda1eb-8b9d-809b-9f0e-fce8dc484113" class="" dir="auto">باشد.</p><p id="3bcda1eb-8b9d-807d-8a23-c90052b14b3e" class="" dir="auto">بعد:</p><pre id="3bcda1eb-8b9d-8005-ab75-c7c02d00c2d9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">order_item = order.items.first()
+
+order_item.unit_price</code></pre><p id="3bcda1eb-8b9d-803f-b00d-d9e4d5b1f79c" class="" dir="auto">باید همان قیمت زمان ثبت سفارش باشد.</p><p id="3bcda1eb-8b9d-80b8-a3fc-d66df3a28a1b" class="" dir="auto">این بخش معماری بسیار مهمی است:</p><pre id="3bcda1eb-8b9d-805a-b094-f3f34086ff17" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Product.price
+      ↓
+ثبت سفارش
+      ↓
+OrderItem.unit_price</code></pre><p id="3bcda1eb-8b9d-8012-bcc4-d1dfe75324aa" class="" dir="auto">بعداً اگر:</p><pre id="3bcda1eb-8b9d-80c0-86a5-ea5e6a6af11e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Product.price = 15</code></pre><p id="3bcda1eb-8b9d-8043-aa13-d738e992281f" class="" dir="auto">شود، سفارش قبلی نباید به 15 تغییر کند.</p><blockquote id="3bcda1eb-8b9d-806b-ae4c-cb65e25070d1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">176- تست Snapshot آدرس<p id="3bcda1eb-8b9d-8031-b33e-fd7339d903b7" class="" dir="auto">این قسمت هم مهم است.</p><pre id="3bcda1eb-8b9d-8060-8ece-daecb8934159" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">order.shipping_city</code></pre></blockquote><p id="3bcda1eb-8b9d-8017-bef4-e6adef78ba88" class="" dir="auto">باید:</p><pre id="3bcda1eb-8b9d-8085-b558-d6916da47cc5" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Tehran</code></pre><p id="3bcda1eb-8b9d-80ca-b20d-f90c005e552d" class="" dir="auto">باشد.</p><p id="3bcda1eb-8b9d-80df-8a0b-c6da9bb3c46b" class="" dir="auto">همچنین:</p><pre id="3bcda1eb-8b9d-802a-99f3-fb8c2e8c3088" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">order.shipping_receiver_name
+order.shipping_phone_number
+order.shipping_province
+order.shipping_street
+order.shipping_postal_code</code></pre><p id="3bcda1eb-8b9d-80fa-b8f6-f4a5dea58242" class="" dir="auto">باید اطلاعات Address را داشته باشند.</p><p id="3bcda1eb-8b9d-8002-9828-d16533f0eda4" class="" dir="auto">یعنی:</p><pre id="3bcda1eb-8b9d-80b9-ada8-fb196d075f24" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Address
+   │
+   │ هنگام Checkout
+   ↓
+Order
+   │
+   ├── shipping_receiver_name
+   ├── shipping_phone_number
+   ├── shipping_province
+   ├── shipping_city
+   ├── shipping_street
+   └── shipping_postal_code</code></pre><p id="3bcda1eb-8b9d-8020-8204-fcd29415fe58" class="" dir="auto">این <strong>Snapshot</strong> است و برای سیستم فروشگاهی ضروری است.</p><p id="3bcda1eb-8b9d-806b-9ace-c236e1862f71" class="" dir="auto">اگر کاربر بعداً آدرسش را تغییر دهد، سفارش قبلی نباید تغییر کند.</p><blockquote id="3bcda1eb-8b9d-802b-9005-f94dd5f4d037" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">177- تست حذف Cart<p id="3bcda1eb-8b9d-803f-9e77-ee304667bdc5" class="" dir="auto">بعد از:</p><pre id="3bcda1eb-8b9d-80c4-bc2c-f8fb19de7e5d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">OrderService.place_order(...)</code></pre></blockquote><p id="3bcda1eb-8b9d-8064-8ec6-c32a611a112f" class="" dir="auto">باید Cart قبلی دیگر وجود نداشته باشد.</p><p id="3bcda1eb-8b9d-8015-9950-c9839b7f736d" class="" dir="auto">مثلاً:</p><pre id="3bcda1eb-8b9d-8027-b121-c64aaad5e11c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart.objects.filter(id=cart.id).exists()</code></pre><p id="3bcda1eb-8b9d-80e7-bbc4-e45c570e2362" class="" dir="auto">باید:</p><pre id="3bcda1eb-8b9d-801d-acbd-c6a1da022d02" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">False</code></pre><p id="3bcda1eb-8b9d-8051-acbf-fd489995931d" class="" dir="auto">باشد.</p><p id="3bcda1eb-8b9d-8054-958c-ff44f78c91f6" class="" dir="auto">و:</p><pre id="3bcda1eb-8b9d-8078-9afe-d06e3b41f359" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Order.objects.filter(id=order.id).exists()</code></pre><p id="3bcda1eb-8b9d-8012-b504-f3487607a4d7" class="" dir="auto">باید:</p><pre id="3bcda1eb-8b9d-800a-ac9b-e632dded407d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">True</code></pre><p id="3bcda1eb-8b9d-80c4-a28b-d76fb4a87124" class="" dir="auto">باشد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-8098-9fcb-e6ebf500c105" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-80dd-a3c6-c8b2035e14f5" class="" dir="auto">یک نکته مهم</h3></div></aside><p id="3bcda1eb-8b9d-80ec-931f-fa65061bf71e" class="" dir="auto">اگر این تست موفق شود، ما <strong>هنوز Checkout در React را نمی‌سازیم</strong>.</p><p id="3bcda1eb-8b9d-8048-a6b0-f414f6ce2965" class="" dir="auto">مرحله منطقی بعدی:</p><pre id="3bcda1eb-8b9d-8010-8c03-c6d195915d43" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Order Backend
+      ↓
+Orders API
+      ↓
+Frontend Orders Service
+      ↓
+Orders Page
+      ↓
+Checkout Page
+      ↓
+Address Selection
+      ↓
+Place Order
+      ↓
+Payment</code></pre><p id="3bcda1eb-8b9d-80e4-aceb-dee3a6d9088b" class="" dir="auto">یعنی ابتدا <strong>Orders را در Frontend کامل می‌کنیم</strong> و بعد وارد Checkout می‌شویم.</p><p id="3bcda1eb-8b9d-80d1-a8b9-ee43c7c4e8a8" class="" dir="auto">این با همان مسیر Domain-based که از ابتدا انتخاب کردیم سازگار است.</p><p id="3bcda1eb-8b9d-80f8-9f6f-d4e016b0a0f9" class="" dir="auto">این خطا:</p><pre id="3bcda1eb-8b9d-804f-8c79-c92cb4e6f636" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart.DoesNotExist
+سبد خرید معتبری یافت نشد.</code></pre><p id="3bcda1eb-8b9d-8041-9e89-d2090a13a001" class="" dir="auto"><strong>باگ نیست.</strong></p><p id="3bcda1eb-8b9d-80dc-b92b-e7e22bd4605c" class="" dir="auto">چون بعد از اولین Checkout عمداً این اتفاق افتاده:</p><pre id="3bcda1eb-8b9d-8028-b4a7-dea0ee58ab85" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart
+ ↓
+Order ساخته شد
+ ↓
+Cart حذف شد</code></pre><p id="3bcda1eb-8b9d-8018-ab77-cc76800cecff" class="" dir="auto">بنابراین وقتی دوباره همان <code>cart.id</code> را به Service دادی، طبیعی است که Cart وجود نداشته باشد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-80e1-a1e6-eab362b1f15d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-801b-b4d6-ca47bbbec029" class="" dir="auto">وضعیت فعلی ACRON</h3></div></aside><p id="3bcda1eb-8b9d-80ae-84fb-c8458181e72d" class="" dir="auto">الان معماری ما تقریباً اینجا قرار دارد:</p><pre id="3bcda1eb-8b9d-80e9-8f71-e15bb60b19ac" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">PRODUCT
+   │
+   ↓
+CART DOMAIN
+   │
+   ├── Cart
+   ├── CartItem
+   ├── Add Item
+   ├── Update Quantity
+   └── Remove Item
+          │
+          ↓
+ORDER DOMAIN
+   │
+   ├── Order
+   ├── OrderItem
+   ├── Frozen Price
+   ├── Address Snapshot
+   ├── Ownership Validation
+   ├── Transaction
+   └── Cart Cleanup</code></pre><p id="3bcda1eb-8b9d-8015-9496-eec6ffdf2cc9" class="" dir="auto">و حالا وقت آن است که <strong>Orders را در Frontend پیاده کنیم.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bcda1eb-8b9d-800c-abcc-df53933ce9f9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bcda1eb-8b9d-80e8-9987-c950dd9f02f9" class="" dir="auto">مرحله بعد: Orders Frontend</h3></div></aside><p id="3bcda1eb-8b9d-80bf-b2ee-c4bce16c0b9c" class="" dir="auto">در حال حاضر:</p><pre id="3bcda1eb-8b9d-803b-9d79-c083b8d89a12" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/pages/Orders.jsx</code></pre><p id="3bcda1eb-8b9d-8097-a9a6-ea573ebfc78d" class="" dir="auto">فقط یک Placeholder است:</p><pre id="3bcda1eb-8b9d-80e8-9e60-f845ea31ca12" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Yourorderswillappearhere.</code></pre><p id="3bcda1eb-8b9d-807a-b309-d746ee46c55b" class="" dir="auto">این را تبدیل می‌کنیم به صفحه واقعی سفارش‌ها.</p><p id="3bcda1eb-8b9d-8036-832b-c3b7eb434df1" class="" dir="auto">اما مثل قبل، نمی‌خواهیم مستقیم همه چیز را داخل <code>Orders.jsx</code> بنویسیم.</p><p id="3bcda1eb-8b9d-803e-919f-e0bc0728863e" class="" dir="auto">ساختار را Domain-based نگه می‌داریم:</p><pre id="3bcda1eb-8b9d-80a3-9c42-c17e44e59122" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">features/
+   orders/
+      components/
+      services/</code></pre><blockquote id="3bcda1eb-8b9d-804e-bdee-d17e90f4a67a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">178- پس ابتدا این دو مسیر را ایجاد کن:<pre id="3bcda1eb-8b9d-80f7-8296-c65a415b66b5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">frontend/src/features/orders/components/
+frontend/src/features/orders/services/</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-80d4-b0ca-e4c903f41394" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">180- ساخت <code>orderService.js</code><p id="3bcda1eb-8b9d-80f7-aede-c1f076549f71" class="" dir="auto">فایل زیر را بساز:</p><pre id="3bcda1eb-8b9d-80ed-ae8f-e9a86cbd37e6" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/features/orders/services/orderService.js</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-80fb-9bc7-fec6914c0c70" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">181- محتوای فایل ساخته شده:<pre id="3bcda1eb-8b9d-80af-9a94-e165ef544d74" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import axiosInstance from &quot;../../../api/axiosInstance&quot;;
+
+const orderService = {
+  getOrders: async () =&gt; {
+    const response = await axiosInstance.get(&quot;orders/&quot;);
+    return response.data;
+  },
+
+  getOrder: async (orderId) =&gt; {
+    const response = await axiosInstance.get(
+      `orders/${orderId}/`
+    );
+
+    return response.data;
+  },
+
+  createOrder: async (cartId, addressId) =&gt; {
+    const response = await axiosInstance.post(
+      &quot;orders/&quot;,
+      {
+        cart_id: cartId,
+        address_id: addressId,
+      }
+    );
+
+    return response.data;
+  },
+
+  payOrder: async (orderId) =&gt; {
+    const response = await axiosInstance.post(
+      `orders/${orderId}/pay/`
+    );
+
+    return response.data;
+  },
+};
+
+export default orderService;</code></pre></blockquote><blockquote id="3bcda1eb-8b9d-80aa-8026-d27606d5bfff" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">182- س<pre id="3bcda1eb-8b9d-8002-adce-dbd449c8ba16" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"></code></pre></blockquote><blockquote id="3bcda1eb-8b9d-80cf-a608-cb6def08c8db" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">183- س<pre id="3bcda1eb-8b9d-8031-a029-fa78cf74def8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"></code></pre></blockquote><blockquote id="3bcda1eb-8b9d-8056-a4eb-df76a9e4d80e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">184- س<pre id="3bcda1eb-8b9d-80e2-a9b9-dad2fbf3e07f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"></code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="e07da1eb-8b9d-8220-9e09-0152a3efd845" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="3fada1eb-8b9d-826f-a782-0132342a6db7" class="" dir="auto">پایان Part-19</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
