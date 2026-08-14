@@ -1,0 +1,2521 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-18</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3b3da1eb-8b9d-8006-869d-ef6a3006ec18" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-18</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-804f-9610-c1f544c27c8d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="3b3da1eb-8b9d-8098-ad73-fce2147b3445" class="" dir="auto">در Part-17 ، <strong>فاز 11:   </strong> Frontend - Presentation Layer  تا قدم 107 توسعه داده شد</p></div></aside><h1 id="3b3da1eb-8b9d-802f-8dde-d258ff117e7f" class="" dir="auto">فاز 11<strong>:  </strong> Frontend - Presentation Layer  </h1><p id="3b3da1eb-8b9d-80ae-bf55-d10245168b85" class="" dir="auto">شروع قدم 108</p><hr id="3b3da1eb-8b9d-809d-bc06-e25ba9fdab94" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-803a-8ad4-ece8d5d02e4c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-80eb-bdda-e9bb29ee9ce1" class="" dir="auto">قدم بعدی ما</h4></div></aside><p id="3b3da1eb-8b9d-80dd-8fda-f87ffd86ac42" class="" dir="auto">بعد از اینکه این Foundation را اجرا کردیم، می‌رویم سراغ: <br/><code><strong>Products Domain → Product List → Product Card → Product Detail → API → Pagination → Add to Cart</strong></code></p><p id="3b3da1eb-8b9d-807e-86fa-d9b488f7595e" class="" dir="auto">و در آن مرحله، به جای Componentهای بزرگ قبلی، ساختار را به صورت زیر پیش می‌بریم؛ این با ایده اصلی ACRON که Frontend هم Domainهای Backend مثل <code>products</code>، <code>carts</code> و <code>orders</code> را آینه کند، هماهنگ‌تر است. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3b3da1eb-8b9d-80ed-8bc3-f83d7d2b9542" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">features/
+└── products/
+    ├── components/
+    │   ├── ProductCard.jsx
+    │   ├── ProductGrid.jsx
+    │   └── ProductSkeleton.jsx
+    │
+    ├── pages/
+    │   ├── ProductsPage.jsx
+    │   └── ProductDetailPage.jsx
+    │
+    └── services/
+        └── productService.js</code></pre><blockquote id="3b3da1eb-8b9d-806f-83c4-f14dc52f4bf4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">108- ساخت صفحات اولیه داخل : <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3b3da1eb-8b9d-80bd-a948-e629028796a2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/pages/</code></pre><p id="3b3da1eb-8b9d-8034-a12f-c3d53562b377" class="" dir="auto">این سه فایل را بساز:<br/>این صفحات موقتی نیستند به معنای «دور ریختنی»؛ ما آنها را به عنوان <strong>Page Shell</strong> می‌سازیم و بعد داخلشان Featureهای واقعی را قرار می‌دهیم.</p><pre id="3b3da1eb-8b9d-804d-9af4-d7cc9947c412" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Products.jsx
+Cart.jsx
+Orders.jsx</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-803a-b97e-d8683c6abc27" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">109- فعلاً: <code>Products.jsx</code><pre id="3b3da1eb-8b9d-807a-a635-fa31b6bdd9ce" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">function Products() {
+  return (
+    &lt;main className=&quot;page&quot;&gt;
+      &lt;div className=&quot;page__container&quot;&gt;
+        &lt;div className=&quot;page__header&quot;&gt;
+          &lt;span className=&quot;page__eyebrow&quot;&gt;
+            ACRON STORE
+          &lt;/span&gt;
+
+          &lt;h1&gt;Products&lt;/h1&gt;
+
+          &lt;p&gt;
+            Explore our products.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;products-grid&quot;&gt;
+          &lt;div className=&quot;product-placeholder&quot;&gt;
+            Products will appear here.
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  );
+}
+
+export default Products;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80e1-8855-f137fd0544ab" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">110- فایل <code>Cart.jsx</code><pre id="3b3da1eb-8b9d-8041-a5e7-d684d876ce8f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">function Cart() {
+  return (
+    &lt;main className=&quot;page&quot;&gt;
+      &lt;div className=&quot;page__container&quot;&gt;
+        &lt;div className=&quot;page__header&quot;&gt;
+          &lt;span className=&quot;page__eyebrow&quot;&gt;
+            ACRON STORE
+          &lt;/span&gt;
+
+          &lt;h1&gt;Your Cart&lt;/h1&gt;
+
+          &lt;p&gt;
+            Your selected products will appear here.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  );
+}
+
+export default Cart;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-8097-afef-fd93c57a060f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">111- فایل <code>Orders.jsx</code><pre id="3b3da1eb-8b9d-8064-9a63-ffb712867000" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">function Orders() {
+  return (
+    &lt;main className=&quot;page&quot;&gt;
+      &lt;div className=&quot;page__container&quot;&gt;
+        &lt;div className=&quot;page__header&quot;&gt;
+          &lt;span className=&quot;page__eyebrow&quot;&gt;
+            ACRON STORE
+          &lt;/span&gt;
+
+          &lt;h1&gt;Your Orders&lt;/h1&gt;
+
+          &lt;p&gt;
+            Your orders will appear here.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  );
+}
+
+export default Orders;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-8027-88b1-f705167f1d97" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">112- فایل  <code>App.jsx</code> را توسعه بده<pre id="3b3da1eb-8b9d-80d2-a34f-f62faa2db8a7" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from &quot;react-router-dom&quot;;
+
+import Navbar from &quot;./components/layout/Navbar&quot;;
+
+import Home from &quot;./pages/Home&quot;;
+import Login from &quot;./pages/Login&quot;;
+import Products from &quot;./pages/Products&quot;;
+import Cart from &quot;./pages/Cart&quot;;
+import Orders from &quot;./pages/Orders&quot;;
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+
+      &lt;Navbar /&gt;
+
+      &lt;Routes&gt;
+
+        &lt;Route
+          path=&quot;/&quot;
+          element={&lt;Home /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/login&quot;
+          element={&lt;Login /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/products&quot;
+          element={&lt;Products /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/cart&quot;
+          element={&lt;Cart /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/orders&quot;
+          element={&lt;Orders /&gt;}
+        /&gt;
+
+      &lt;/Routes&gt;
+
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-806b-a08d-d95a4f334ba4" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">113- استایل Pageها<p id="3b3da1eb-8b9d-8022-ac4f-f2e19a996701" class="" dir="auto">به انتهای <code>index.css</code> اضافه کن:</p><figure id="3b3da1eb-8b9d-8099-83c2-d489d69fe9e4" dir="ltr"><div class="source"><a href="index.css" data-notion-file="index.css" data-notion-file-alias="index.css">index.css</a></div></figure></blockquote><aside class="block-color-pink callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="pink" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80d5-8d16-dc50d24ad145" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b3da1eb-8b9d-8015-9cde-ef0012091e7b" class="" dir="auto">حالا می‌رسیم به بخش مهم‌تر: Products</p></div></aside><p id="3b3da1eb-8b9d-80cc-b9d6-f354269ce08b" class="" dir="auto">  در Backend فعلی ACRON endpoint زیر را دارد:</p><pre id="3b3da1eb-8b9d-80d0-b519-f1ee47c7a40a" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">GET /api/products/</code></pre><p id="3b3da1eb-8b9d-8094-a62d-d2c2affa8778" class="" dir="auto">و مستندات پروژه نیز همین endpoint را برای دریافت لیست محصولات مشخص کرده‌اند.</p><p id="3b3da1eb-8b9d-80e7-bee8-eebafc38a940" class="" dir="auto">پس ساختار Frontend را از اینجا به بعد به شکل Domain-based می‌بریم:</p><pre id="3b3da1eb-8b9d-8092-bf58-c90a8d6733bc" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">src/
+│
+├── api/
+│   └── axiosInstance.js
+│
+├── components/
+│   └── layout/
+│       └── Navbar.jsx
+│
+├── context/
+│   └── AuthContext.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── Login.jsx
+│   ├── Products.jsx
+│   ├── Cart.jsx
+│   └── Orders.jsx
+│
+└── features/
+    │
+    └── products/
+        │
+        ├── components/
+        │   ├── ProductCard.jsx
+        │   ├── ProductGrid.jsx
+        │   └── ProductSkeleton.jsx
+        │
+        └── services/
+            └── productService.js</code></pre><p id="3b3da1eb-8b9d-8060-95b0-f7686fc94749" class="" dir="auto">این قسمت برای من خیلی مهم است.</p><p id="3b3da1eb-8b9d-8090-86e1-fab6d6f3e806" class="" dir="auto">دیگر نمی‌خواهم برگردیم به ساختار قبلی مثل:</p><pre id="3b3da1eb-8b9d-80ed-9d26-f456de9ffe9d" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">components/
+    Products.jsx
+    Cart.jsx
+    Orders.jsx
+    Login.jsx
+    ...</code></pre><p id="3b3da1eb-8b9d-80be-870d-f91c3e717a86" class="" dir="auto">چون خود مستندات معماری ACRON هم Frontend را به شکل <code>features</code> و Domainهای هم‌راستا با Backend پیشنهاد کرده‌اند. </p><blockquote id="3b3da1eb-8b9d-806f-be55-cb450ab46783" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">114- شروع Product Service<p id="3b3da1eb-8b9d-8037-ad56-d09fe66f5f42" class="" dir="auto">فایل زیر را بساز:</p><pre id="3b3da1eb-8b9d-8091-8fe9-cd3e74a9a8c2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/features/products/services/productService.js</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-8081-994e-d19aa5535e52" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">115- داخل فایل قدم قبلی این رو اضافه کن<pre id="3b3da1eb-8b9d-800c-becc-cd96ed04b6ff" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import axiosInstance from &quot;../../../api/axiosInstance&quot;;
+
+export async function getProducts() {
+  const response = await axiosInstance.get(&quot;products/&quot;);
+
+  return response.data;
+}</code></pre></blockquote><p id="3b3da1eb-8b9d-80a4-add1-c567fe67ca5e" class="" dir="auto">فعلاً Service فقط مسئول ارتباط با API است.</p><p id="3b3da1eb-8b9d-803c-9f07-ecf1dba1b88a" class="" dir="auto">یعنی:</p><pre id="3b3da1eb-8b9d-8090-814c-f039761a08d9" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Products.jsx
+     │
+     ▼
+productService.js
+     │
+     ▼
+axiosInstance
+     │
+     ▼
+GET /api/products/
+     │
+     ▼
+Django</code></pre><p id="3b3da1eb-8b9d-8067-aaec-fdcdf760d300" class="" dir="auto">این دقیقاً همان جداسازی مسئولیت‌هایی است که در معماری ACRON می‌خواهیم.</p><blockquote id="3b3da1eb-8b9d-8040-99ed-ed01b9785374" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">116- شروع  ProductCard<p id="3b3da1eb-8b9d-80d9-b6a5-f8273b93caf1" class="" dir="auto">فایل زیر را بساز:</p><pre id="3b3da1eb-8b9d-800b-8b3f-fc1b0541cf75" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/features/products/components/ProductCard.jsx</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-809d-810f-d2a138d428fe" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">117- محتوای فایلی که قدم قبل ساختی:<pre id="3b3da1eb-8b9d-8015-99c5-f6a08b9ad09d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">function ProductCard({ product }) {
+  return (
+    &lt;article className=&quot;product-card&quot;&gt;
+
+      &lt;div className=&quot;product-card__image&quot;&gt;
+        {product.image ? (
+          &lt;img
+            src={product.image}
+            alt={product.name}
+          /&gt;
+        ) : (
+          &lt;span&gt;
+            No image
+          &lt;/span&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;div className=&quot;product-card__content&quot;&gt;
+
+        &lt;h3&gt;
+          {product.name}
+        &lt;/h3&gt;
+
+        &lt;p className=&quot;product-card__description&quot;&gt;
+          {product.description}
+        &lt;/p&gt;
+
+        &lt;div className=&quot;product-card__footer&quot;&gt;
+
+          &lt;strong&gt;
+            {product.price}
+          &lt;/strong&gt;
+
+          &lt;button&gt;
+            Add to cart
+          &lt;/button&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+    &lt;/article&gt;
+  );
+}
+
+export default ProductCard;</code></pre></blockquote><p id="3b3da1eb-8b9d-8099-a462-c25ed504b2b8" class="" dir="auto">ولی <strong>هنوز ProductCard را نهایی نمی‌کنیم</strong>.</p><p id="3b3da1eb-8b9d-802d-886f-fea5d522d620" class="" dir="auto">چرا؟</p><p id="3b3da1eb-8b9d-8053-8cda-ef4c955d4fd1" class="" dir="auto">چون قبل از نهایی کردن آن باید Response واقعی <code>/api/products/</code> را ببینیم تا مثلاً بفهمیم Backend دقیقاً چه چیزی برمی‌گرداند:</p><pre id="3b3da1eb-8b9d-807d-bd92-ea7407251f92" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;id&quot;: &quot;...&quot;,
+  &quot;name&quot;: &quot;...&quot;,
+  &quot;price&quot;: &quot;...&quot;,
+  &quot;description&quot;: &quot;...&quot;,
+  &quot;images&quot;: [...]
+}</code></pre><p id="3b3da1eb-8b9d-803d-b83b-f266bc82dad7" class="" dir="auto">یا مثلا:</p><pre id="3b3da1eb-8b9d-807b-a331-f9a14f0e775a" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;id&quot;: &quot;...&quot;,
+  &quot;name&quot;: &quot;...&quot;,
+  &quot;price&quot;: &quot;...&quot;,
+  &quot;image&quot;: &quot;...&quot;
+}</code></pre><p id="3b3da1eb-8b9d-80ee-bc3c-f28f51b81caf" class="" dir="auto">و بر اساس حدس UI نمی‌سازیم.</p><p id="3b3da1eb-8b9d-8066-9ba0-fc3d1be0ee2a" class="" dir="auto">در Backend پروژه برای Product ساختار نسبتاً کامل‌تری شامل <code>Product</code>، <code>ProductImage</code>، <code>Brand</code> و <code>Category</code> دارد.</p><p id="3b3da1eb-8b9d-8031-abcb-c614b432eee0" class="" dir="auto">بنابراین الان وضعیت پروژه این است</p><pre id="3b3da1eb-8b9d-8002-a8a3-c2d0ba72e027" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">                    ACRON FRONTEND
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+         Foundation                Routing
+              │                       │
+        ┌─────┴─────┐          ┌──────┴──────┐
+        │           │          │      │      │
+      Navbar      Auth       Home Products Cart Orders
+                              │
+                              ▼
+                       PRODUCT DOMAIN
+                              │
+                       productService
+                              │
+                              ▼
+                       Django API
+                              │
+                     GET /api/products/</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80e6-9584-def6ac9dbd1c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-80c6-b323-f9cc5db39b20" class="" dir="auto">مرحله فعلی: Product Domain</h4></div></aside><p id="3b3da1eb-8b9d-80f6-8e37-dbfc9f317057" class="" dir="auto">ساختار را به این شکل جلو می‌بریم:</p><pre id="3b3da1eb-8b9d-8023-a825-c189aa3a31a5" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">frontend/
+└── src/
+    ├── api/
+    │   └── axiosInstance.js
+    │
+    ├── context/
+    │   └── AuthContext.jsx
+    │
+    ├── components/
+    │   └── layout/
+    │       └── Navbar.jsx
+    │
+    ├── features/
+    │   └── products/
+    │       ├── components/
+    │       │   ├── ProductCard.jsx
+    │       │   ├── ProductGrid.jsx
+    │       │   └── ProductSkeleton.jsx
+    │       │
+    │       └── services/
+    │           └── productService.js
+    │
+    ├── pages/
+    │   ├── Home.jsx
+    │   ├── Login.jsx
+    │   ├── Products.jsx
+    │   ├── ProductDetail.jsx
+    │   ├── Cart.jsx
+    │   └── Orders.jsx
+    │
+    ├── App.jsx
+    └── index.css</code></pre><p id="3b3da1eb-8b9d-8023-b171-f4c8035a0935" class="" dir="auto">این با معماری Domain-based که برای ACRON تعریف کرده‌ایم هماهنگ است؛ در مستندات پروژه نیز <code>features/products</code> به‌عنوان دامنه محصولات در کنار <code>carts</code> و <code>orders</code> در نظر گرفته شده است.</p><blockquote id="3b3da1eb-8b9d-8004-aeb4-cdb937ab2157" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">118- شروع  Product Service<p id="3b3da1eb-8b9d-806e-898d-fbada3bd62c2" class="" dir="auto">فایل زیر را بساز:</p><pre id="3b3da1eb-8b9d-803d-ba88-c9010a8c03dd" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/features/products/services/productService.js</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80e6-8c6f-c59af156b1cf" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">119- در فایل قدم قبلی که ساختی این را بنویس:<pre id="3b3da1eb-8b9d-80b4-a324-c91e49a1b77f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import axiosInstance from &quot;../../../api/axiosInstance&quot;;
+
+export async function getProducts(page = 1) {
+  const response = await axiosInstance.get(&quot;products/&quot;, {
+    params: {
+      page,
+    },
+  });
+
+  return response.data;
+}
+
+export async function getProductBySlug(slug) {
+  const response = await axiosInstance.get(
+    `products/${slug}/`
+  );
+
+  return response.data;
+}</code></pre></blockquote><p id="3b3da1eb-8b9d-8032-9e64-f10d43400ee7" class="" dir="auto">نکته مهم اینجاست که Backend از <code>ReadOnlyModelViewSet</code> استفاده می‌کند و <code>lookup_field = &#x27;slug&#x27;</code> دارد؛ بنابراین جزئیات محصول باید با:</p><pre id="3b3da1eb-8b9d-80db-ab08-e4551c145328" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">GET /api/products/&lt;slug&gt;/</code></pre><p id="3b3da1eb-8b9d-8045-811b-f74030c75ec2" class="" dir="auto">گرفته شود، نه ID.</p><blockquote id="3b3da1eb-8b9d-803f-ba7c-cd32f27ba821" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">120- شروع ProductSkeleton<br/>فایل زیر را بساز:<pre id="3b3da1eb-8b9d-8045-abf7-ff85c905e180" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/features/products/components/ProductSkeleton.jsx</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80b9-8284-da023d2ed14f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">121- در فایلی که ساختی در قدم قبلی بنویس :<pre id="3b3da1eb-8b9d-8098-ac04-d9f95b1faace" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">function ProductSkeleton() {
+  return (
+    &lt;article className=&quot;product-card product-card--skeleton&quot;&gt;
+      &lt;div className=&quot;product-card__image skeleton-block&quot; /&gt;
+
+      &lt;div className=&quot;product-card__content&quot;&gt;
+
+        &lt;div className=&quot;skeleton-line skeleton-line--title&quot; /&gt;
+
+        &lt;div className=&quot;skeleton-line&quot; /&gt;
+
+        &lt;div className=&quot;skeleton-line skeleton-line--short&quot; /&gt;
+
+        &lt;div className=&quot;product-card__footer&quot;&gt;
+          &lt;div className=&quot;skeleton-line skeleton-line--price&quot; /&gt;
+          &lt;div className=&quot;skeleton-button&quot; /&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/article&gt;
+  );
+}
+
+export default ProductSkeleton;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80e8-bd85-e729330df3e1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">122- شروع ProductCard<br/>فایل زیر را بساز:<pre id="3b3da1eb-8b9d-80d3-b201-f5ccb570e8ed" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/features/products/components/ProductCard.jsx</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-8091-af7e-f3fa7a33feeb" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">123- داخلش این رو بنویس:<pre id="3b3da1eb-8b9d-8082-88ec-fc4d59594b8d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># src/features/products/components/ProductCard.jsx
+import { Link } from &quot;react-router-dom&quot;;
+
+function ProductCard({ product }) {
+  const isAvailable = product.inventory &gt; 0;
+
+  return (
+    &lt;article className=&quot;product-card&quot;&gt;
+
+      &lt;Link
+        to={`/products/${product.slug}`}
+        className=&quot;product-card__image-link&quot;
+      &gt;
+        &lt;div className=&quot;product-card__image&quot;&gt;
+
+          {product.main_image ? (
+            &lt;img
+              src={product.main_image}
+              alt={product.name}
+              loading=&quot;lazy&quot;
+            /&gt;
+          ) : (
+            &lt;div className=&quot;product-card__no-image&quot;&gt;
+              No image
+            &lt;/div&gt;
+          )}
+
+        &lt;/div&gt;
+      &lt;/Link&gt;
+
+      &lt;div className=&quot;product-card__content&quot;&gt;
+
+        {product.brand?.name &amp;&amp; (
+          &lt;span className=&quot;product-card__brand&quot;&gt;
+            {product.brand.name}
+          &lt;/span&gt;
+        )}
+
+        &lt;Link
+          to={`/products/${product.slug}`}
+          className=&quot;product-card__title&quot;
+        &gt;
+          {product.name}
+        &lt;/Link&gt;
+
+        &lt;p className=&quot;product-card__description&quot;&gt;
+          {product.description}
+        &lt;/p&gt;
+
+        &lt;div className=&quot;product-card__footer&quot;&gt;
+
+          &lt;div&gt;
+            &lt;span className=&quot;product-card__price&quot;&gt;
+              {product.price}
+            &lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;span
+            className={
+              isAvailable
+                ? &quot;product-card__stock product-card__stock--available&quot;
+                : &quot;product-card__stock product-card__stock--unavailable&quot;
+            }
+          &gt;
+            {isAvailable
+              ? &quot;In stock&quot;
+              : &quot;Out of stock&quot;}
+          &lt;/span&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+    &lt;/article&gt;
+  );
+}
+
+export default ProductCard;</code></pre></blockquote><p id="3b3da1eb-8b9d-80f7-8f37-c8eb5d20c571" class="" dir="auto">فعلاً دکمه <strong>Add to Cart</strong> نمی‌گذاریم.</p><p id="3b3da1eb-8b9d-8071-8399-f72eb52eb005" class="" dir="auto">چرا؟</p><p id="3b3da1eb-8b9d-8083-b699-f4d15fbbd4b6" class="" dir="auto">چون Cart هنوز Domain بعدی ماست. نمی‌خواهم ProductCard به Cart API وابسته شود و بعد معماری را دوباره تغییر دهیم.</p><blockquote id="3b3da1eb-8b9d-80a5-a4b1-e7c0e26a6388" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">124- ساخت ProductGrid<br/>فایل زیر را بساز:<pre id="3b3da1eb-8b9d-8080-b386-e9a34707552e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/features/products/components/ProductGrid.jsx</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80a2-a4ca-c05be5cae2b2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">125- داخلش این رو بنویس:<pre id="3b3da1eb-8b9d-804b-87a4-e2f53e452c1d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import ProductCard from &quot;./ProductCard&quot;;
+import ProductSkeleton from &quot;./ProductSkeleton&quot;;
+
+function ProductGrid({
+  products,
+  loading,
+}) {
+  if (loading) {
+    return (
+      &lt;div className=&quot;products-grid&quot;&gt;
+        {Array.from({ length: 8 }).map((_, index) =&gt; (
+          &lt;ProductSkeleton key={index} /&gt;
+        ))}
+      &lt;/div&gt;
+    );
+  }
+
+  if (!products.length) {
+    return (
+      &lt;div className=&quot;products-empty&quot;&gt;
+        &lt;h2&gt;No products found&lt;/h2&gt;
+
+        &lt;p&gt;
+          There are currently no products available.
+        &lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;products-grid&quot;&gt;
+      {products.map((product) =&gt; (
+        &lt;ProductCard
+          key={product.id}
+          product={product}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+export default ProductGrid;</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-80d5-a018-ecfac4342ecc" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">126- فایل Products.jsx را واقعی می‌کنیم<br/>کل محتوای قبلی را با این جایگزین کن:<pre id="3b3da1eb-8b9d-8018-9041-dd7155e87eec" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># src/pages/Products.jsx
+
+import { useEffect, useState } from &quot;react&quot;;
+
+import ProductGrid from &quot;../features/products/components/ProductGrid&quot;;
+import { getProducts } from &quot;../features/products/services/productService&quot;;
+
+function Products() {
+  const [products, setProducts] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState(&quot;&quot;);
+
+  const [page, setPage] = useState(1);
+
+  const [pagination, setPagination] = useState({
+    count: 0,
+    next: null,
+    previous: null,
+  });
+
+  useEffect(() =&gt; {
+    let isMounted = true;
+
+    async function loadProducts() {
+      setLoading(true);
+      setError(&quot;&quot;);
+
+      try {
+        const data = await getProducts(page);
+
+        if (!isMounted) {
+          return;
+        }
+
+        /*
+         * Django REST Framework pagination normally
+         * returns:
+         *
+         * {
+         *   count,
+         *   next,
+         *   previous,
+         *   results
+         * }
+         *
+         * If pagination is ever disabled and the API
+         * returns an array, we support that too.
+         */
+
+        if (Array.isArray(data)) {
+          setProducts(data);
+
+          setPagination({
+            count: data.length,
+            next: null,
+            previous: null,
+          });
+        } else {
+          setProducts(data.results ?? []);
+
+          setPagination({
+            count: data.count ?? 0,
+            next: data.next ?? null,
+            previous: data.previous ?? null,
+          });
+        }
+      } catch (err) {
+        if (!isMounted) {
+          return;
+        }
+
+        console.error(
+          &quot;Failed to load products:&quot;,
+          err
+        );
+
+        setError(
+          &quot;Unable to load products. Please try again.&quot;
+        );
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadProducts();
+
+    return () =&gt; {
+      isMounted = false;
+    };
+  }, [page]);
+
+  const hasNextPage = Boolean(pagination.next);
+  const hasPreviousPage = Boolean(
+    pagination.previous
+  );
+
+  return (
+    &lt;main className=&quot;page&quot;&gt;
+
+      &lt;div className=&quot;page__container&quot;&gt;
+
+        &lt;header className=&quot;page__header&quot;&gt;
+
+          &lt;span className=&quot;page__eyebrow&quot;&gt;
+            ACRON STORE
+          &lt;/span&gt;
+
+          &lt;h1&gt;Products&lt;/h1&gt;
+
+          &lt;p&gt;
+            Explore the ACRON product catalog.
+          &lt;/p&gt;
+
+        &lt;/header&gt;
+
+        {error ? (
+          &lt;div className=&quot;products-error&quot;&gt;
+
+            &lt;h2&gt;
+              Something went wrong
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+              {error}
+            &lt;/p&gt;
+
+            &lt;button
+              type=&quot;button&quot;
+              onClick={() =&gt; setPage(1)}
+            &gt;
+              Try again
+            &lt;/button&gt;
+
+          &lt;/div&gt;
+        ) : (
+          &lt;&gt;
+            &lt;ProductGrid
+              products={products}
+              loading={loading}
+            /&gt;
+
+            {!loading &amp;&amp;
+              (hasPreviousPage ||
+                hasNextPage) &amp;&amp; (
+                &lt;div className=&quot;pagination&quot;&gt;
+
+                  &lt;button
+                    type=&quot;button&quot;
+                    disabled={!hasPreviousPage}
+                    onClick={() =&gt;
+                      setPage((current) =&gt;
+                        Math.max(
+                          1,
+                          current - 1
+                        )
+                      )
+                    }
+                  &gt;
+                    Previous
+                  &lt;/button&gt;
+
+                  &lt;span&gt;
+                    Page {page}
+                  &lt;/span&gt;
+
+                  &lt;button
+                    type=&quot;button&quot;
+                    disabled={!hasNextPage}
+                    onClick={() =&gt;
+                      setPage(
+                        (current) =&gt;
+                          current + 1
+                      )
+                    }
+                  &gt;
+                    Next
+                  &lt;/button&gt;
+
+                &lt;/div&gt;
+              )}
+          &lt;/&gt;
+        )}
+
+      &lt;/div&gt;
+
+    &lt;/main&gt;
+  );
+}
+
+export default Products;</code></pre></blockquote><p id="3b3da1eb-8b9d-8031-a942-d32d39fdf284" class="" dir="auto">اینجا عمداً Response را هم به شکل Array و هم Response صفحه‌بندی‌شده پشتیبانی کردم؛ چون Backend پروژه <code>PageNumberPagination</code> با <code>PAGE_SIZE = 10</code> دارد. </p><blockquote id="3b3da1eb-8b9d-80c2-95a1-fc39c8968cfa" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">127- ساخت Product Detail<p id="3b3da1eb-8b9d-8026-af02-debc794a8f84" class="" dir="auto">حالا صفحه جزئیات محصول را می‌سازیم.</p><pre id="3b3da1eb-8b9d-80cf-b480-c14cd5931ff6" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">src/pages/ProductDetail.jsx</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-803b-9649-d10990ad9ac2" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">128- داخلش این رو بنویس:<pre id="3b3da1eb-8b9d-80b5-8f82-e0f7d0f0b2f0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># src/pages/ProductDetail.jsx
+
+import { Link, useParams } from &quot;react-router-dom&quot;;
+import { useEffect, useState } from &quot;react&quot;;
+
+import { getProductBySlug } from &quot;../features/products/services/productService&quot;;
+
+function ProductDetail() {
+  const { slug } = useParams();
+
+  const [product, setProduct] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState(&quot;&quot;);
+
+  useEffect(() =&gt; {
+    let isMounted = true;
+
+    async function loadProduct() {
+      setLoading(true);
+      setError(&quot;&quot;);
+
+      try {
+        const data =
+          await getProductBySlug(slug);
+
+        if (isMounted) {
+          setProduct(data);
+        }
+      } catch (err) {
+        console.error(
+          &quot;Failed to load product:&quot;,
+          err
+        );
+
+        if (isMounted) {
+          setError(
+            &quot;Unable to load this product.&quot;
+          );
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    if (slug) {
+      loadProduct();
+    }
+
+    return () =&gt; {
+      isMounted = false;
+    };
+  }, [slug]);
+
+  if (loading) {
+    return (
+      &lt;main className=&quot;page&quot;&gt;
+        &lt;div className=&quot;page__container&quot;&gt;
+          &lt;div className=&quot;product-detail-loading&quot;&gt;
+            Loading product...
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/main&gt;
+    );
+  }
+
+  if (error || !product) {
+    return (
+      &lt;main className=&quot;page&quot;&gt;
+        &lt;div className=&quot;page__container&quot;&gt;
+
+          &lt;div className=&quot;product-detail-error&quot;&gt;
+
+            &lt;h1&gt;
+              Product not found
+            &lt;/h1&gt;
+
+            &lt;p&gt;
+              {error ||
+                &quot;This product does not exist.&quot;}
+            &lt;/p&gt;
+
+            &lt;Link to=&quot;/products&quot;&gt;
+              Back to products
+            &lt;/Link&gt;
+
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+      &lt;/main&gt;
+    );
+  }
+
+  const isAvailable =
+    product.inventory &gt; 0;
+
+  return (
+    &lt;main className=&quot;page&quot;&gt;
+
+      &lt;div className=&quot;page__container&quot;&gt;
+
+        &lt;Link
+          to=&quot;/products&quot;
+          className=&quot;product-detail__back&quot;
+        &gt;
+          ← Back to products
+        &lt;/Link&gt;
+
+        &lt;section className=&quot;product-detail&quot;&gt;
+
+          &lt;div className=&quot;product-detail__media&quot;&gt;
+
+            {product.main_image ? (
+              &lt;img
+                src={product.main_image}
+                alt={product.name}
+              /&gt;
+            ) : (
+              &lt;div className=&quot;product-detail__no-image&quot;&gt;
+                No image
+              &lt;/div&gt;
+            )}
+
+          &lt;/div&gt;
+
+          &lt;div className=&quot;product-detail__content&quot;&gt;
+
+            {product.brand?.name &amp;&amp; (
+              &lt;span className=&quot;product-detail__brand&quot;&gt;
+                {product.brand.name}
+              &lt;/span&gt;
+            )}
+
+            &lt;h1&gt;
+              {product.name}
+            &lt;/h1&gt;
+
+            {product.category?.name &amp;&amp; (
+              &lt;span className=&quot;product-detail__category&quot;&gt;
+                {product.category.name}
+              &lt;/span&gt;
+            )}
+
+            &lt;p className=&quot;product-detail__description&quot;&gt;
+              {product.description}
+            &lt;/p&gt;
+
+            &lt;div className=&quot;product-detail__price&quot;&gt;
+              {product.price}
+            &lt;/div&gt;
+
+            &lt;div
+              className={
+                isAvailable
+                  ? &quot;product-detail__stock product-detail__stock--available&quot;
+                  : &quot;product-detail__stock product-detail__stock--unavailable&quot;
+              }
+            &gt;
+              {isAvailable
+                ? `${product.inventory} available`
+                : &quot;Out of stock&quot;}
+            &lt;/div&gt;
+
+            &lt;button
+              type=&quot;button&quot;
+              className=&quot;product-detail__cart-button&quot;
+              disabled={!isAvailable}
+            &gt;
+              Add to cart
+            &lt;/button&gt;
+
+          &lt;/div&gt;
+
+        &lt;/section&gt;
+
+      &lt;/div&gt;
+
+    &lt;/main&gt;
+  );
+}
+
+export default ProductDetail;</code></pre></blockquote><p id="3b3da1eb-8b9d-80d8-90a7-c569da01df03" class="" dir="auto">دکمه Add to cart فعلاً فقط UI است و هنوز درخواست نمی‌فرستد. در مرحله Cart آن را به Cart Context و API واقعی متصل می‌کنیم.</p><blockquote id="3b3da1eb-8b9d-805c-a893-e6a0e3044ef1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">129- حالا Route جدید<p id="3b3da1eb-8b9d-808f-96b0-c0732eb56ad0" class="" dir="auto">حالا <code>App.jsx</code> را تغییر بده.</p><pre id="3b3da1eb-8b9d-800a-8915-d4bfc44ea0a5" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from &quot;react-router-dom&quot;;
+
+import Navbar from &quot;./components/layout/Navbar&quot;;
+
+import Home from &quot;./pages/Home&quot;;
+import Login from &quot;./pages/Login&quot;;
+import Products from &quot;./pages/Products&quot;;
+import ProductDetail from &quot;./pages/ProductDetail&quot;;
+import Cart from &quot;./pages/Cart&quot;;
+import Orders from &quot;./pages/Orders&quot;;
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+
+      &lt;Navbar /&gt;
+
+      &lt;Routes&gt;
+
+        &lt;Route
+          path=&quot;/&quot;
+          element={&lt;Home /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/login&quot;
+          element={&lt;Login /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/products&quot;
+          element={&lt;Products /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/products/:slug&quot;
+          element={&lt;ProductDetail /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/cart&quot;
+          element={&lt;Cart /&gt;}
+        /&gt;
+
+        &lt;Route
+          path=&quot;/orders&quot;
+          element={&lt;Orders /&gt;}
+        /&gt;
+
+      &lt;/Routes&gt;
+
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre></blockquote><p id="3b3da1eb-8b9d-801e-8826-dfa0e1b8efe1" class="" dir="auto">حالا <code>/products</code> لیست محصولات را نشان می‌دهد. و مثلاً جزئیات محصول با slug را می‌گیرد.</p><pre id="3b3da1eb-8b9d-8008-a0c8-c608adee8437" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">/products/macbook-pro</code></pre><blockquote id="3b3da1eb-8b9d-801c-a662-e56c8b9fbc88" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">130- حالا CSS محصولات<p id="3b3da1eb-8b9d-806c-bbec-d213838abf77" class="" dir="auto">به <code>index.css</code> اضافه کن:</p><figure id="3b3da1eb-8b9d-8070-ba42-c52e66da1e56" dir="ltr"><div class="source"><a href="index%201.css" data-notion-file="index%201.css" data-notion-file-alias="index.css">index.css</a></div></figure></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8005-a911-d01c32b6a55a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3b3da1eb-8b9d-80f7-a61a-c46f26eac276" class="" dir="auto">الان چه چیزی ساخته‌ایم؟</h3></div></aside><p id="3b3da1eb-8b9d-80fb-a59b-c9c387d9da32" class="" dir="auto">مسیر واقعی داده اکنون این است:</p><pre id="3b3da1eb-8b9d-804a-911d-f31d8db8e474" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">                    React
+                      │
+                      ▼
+              Products.jsx
+                      │
+                      ▼
+             productService.js
+                      │
+                      ▼
+              axiosInstance
+                      │
+                      ▼
+          GET /api/products/?page=1
+                      │
+                      ▼
+                  Django
+                      │
+                      ▼
+             ProductViewSet
+                      │
+                      ▼
+              ProductSerializer
+                      │
+                      ▼
+        ┌─────────────┴─────────────┐
+        │                           │
+      results                    pagination
+        │
+        ▼
+   ProductGrid
+        │
+        ▼
+   ProductCard
+        │
+        ▼
+ /products/&lt;slug&gt;
+        │
+        ▼
+ ProductDetail</code></pre><p id="3b3da1eb-8b9d-8057-a468-d9f59c5b8beb" class="" dir="auto">و Backend واقعاً برای Product همین داده‌های nested را ارائه می‌کند: <code>category</code>، <code>brand</code> و <code>media_gallery</code>.</p><p id="3b3da1eb-8b9d-80ec-af65-c97dacb60591" class="" dir="auto"><strong>پس الان هدف این مرحله این است:</strong></p><ol type="1" id="3b3da1eb-8b9d-80ba-b68d-f131ea9d3ba4" class="numbered-list" start="1" dir="auto"><li>باید <code>/products/</code> باز شود.</li></ol><ol type="1" id="3b3da1eb-8b9d-8049-a80f-c39aa9565ca2" class="numbered-list" start="2" dir="auto"><li>درخواست <code>GET /api/products/</code> در Network ثبت شود.</li></ol><ol type="1" id="3b3da1eb-8b9d-809e-b930-f5f8cbfcd5ed" class="numbered-list" start="3" dir="auto"><li>کارت‌های واقعی محصولات نمایش داده شوند.</li></ol><ol type="1" id="3b3da1eb-8b9d-809b-9be3-edbc357c7306" class="numbered-list" start="4" dir="auto"><li>کلیک روی محصول → <code>/products/&lt;slug&gt;/</code></li></ol><ol type="1" id="3b3da1eb-8b9d-8071-b71e-fcbc0db9e164" class="numbered-list" start="5" dir="auto"><li>جزئیات واقعی محصول نمایش داده شود.</li></ol><ol type="1" id="3b3da1eb-8b9d-8005-b841-f15d9ad4db92" class="numbered-list" start="6" dir="auto"><li>باید Pagination کار کند.</li></ol><ol type="1" id="3b3da1eb-8b9d-80e8-ab41-dc1d3fdd0922" class="numbered-list" start="7" dir="auto"><li>باید Loading و Error State داشته باشیم.</li></ol><ol type="1" id="3b3da1eb-8b9d-8055-a388-e79b6ebc8429" class="numbered-list" start="8" dir="auto"><li>هیچ Mock Product در Frontend نداشته باشیم.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80c8-a4b6-c0aab2dae607" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b3da1eb-8b9d-8033-8744-ec27b86cea2f" class="" dir="auto">قدم بعدی ما:</p></div></aside><pre id="3b3da1eb-8b9d-80f5-bb1e-dd1a0a9054ff" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+   ↓
+Cart API
+   ↓
+Cart Context
+   ↓
+Add to Cart
+   ↓
+Cart Page
+   ↓
+Quantity
+   ↓
+Remove Item
+   ↓
+Cart Summary</code></pre><p id="3b3da1eb-8b9d-80d1-8958-f42521e7f33b" class="" dir="auto">مسیر فعلی Frontend</p><pre id="3b3da1eb-8b9d-8096-8d9d-ea4a0d198f5c" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+    ↓
+Cart API
+    ↓
+Cart Context
+    ↓
+Add to Cart
+    ↓
+Cart Page
+    ↓
+Quantity
+    ↓
+Remove Item
+    ↓
+Cart Summary
+    ↓
+Orders
+    ↓
+Checkout
+    ↓
+Authentication Hardening
+    ↓
+Fix Product Images
+    ↓
+Complete Login
+    ↓
+جمع‌کردن Open Issues</code></pre><p id="3b3da1eb-8b9d-80f7-bac4-c7375f499fef" class="" dir="auto">نکته مهم این است که <strong>مشکلات Images و Login حذف نشده‌اند</strong>؛ فقط در Backlog باقی می‌مانند تا معماری اصلی Frontend به ترتیب Domainها کامل شود. از اینجا قدم‌به‌قدم جلو می‌رویم و مثل قبل <strong>کدها را بر اساس ساختار فعلی پروژه ACRON</strong> می‌نویسیم، نه اینکه یک معماری جدید و جداگانه اختراع کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-805d-ba48-ce4b069f25cc" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-80ce-ae71-ea1696591dea" class="" dir="auto">قدم اول</h4></div></aside><p id="3b3da1eb-8b9d-80aa-a7ce-ef9602d5fb2f" class="" dir="auto"><strong>Cart Domain → Cart API</strong></p><p id="3b3da1eb-8b9d-8095-86f1-f0a1ccfdab4c" class="" dir="auto">ابتدا Service مربوط به Cart را می‌سازیم و APIهای موردنیاز Backend را به Frontend متصل می‌کنیم. بعد از اینکه این لایه درست شد، سراغ <code>CartContext</code> می‌رویم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80f5-a51f-f35dd16b4bbb" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-807f-bc31-c3adeef39d4d" class="" dir="auto">قدم فعلی: Cart API</h4></div></aside><p id="3b3da1eb-8b9d-8025-b18f-fb76a3ed815c" class="" dir="auto">ترتیب اجرایی ما همچنان این است:</p><pre id="3b3da1eb-8b9d-805d-a211-e87889eac012" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+   ↓
+Cart API        ← الان اینجا هستیم
+   ↓
+Cart Context
+   ↓
+Add to Cart
+   ↓
+Cart Page
+   ↓
+Quantity
+   ↓
+Remove Item
+   ↓
+Cart Summary</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8090-937b-e193461c4fd1" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b3da1eb-8b9d-8047-b1ac-db5ce5de2108" class="" dir="auto"><br/>مهم‌ترین نکته این است که الان <code>CartContext.jsx</code> مستقیماً با <code>axiosInstance</code> به API وصل شده. این دقیقاً جایی است که باید مرحله‌ی <strong>Cart API</strong> را از <strong>Cart Context</strong> جدا کنیم.<br/><br/><br/>پس چیزی را دوباره از صفر نمی‌سازیم؛ کد موجود را <strong>Refactor اصولی</strong> می‌کنیم.<br/><br/></p></div></aside><p id="3b3da1eb-8b9d-8044-a5b0-e817da3c1b0b" class="" dir="auto">وضعیت فعلی</p><p id="3b3da1eb-8b9d-80a8-8bd6-e54e8af51d5c" class="" dir="auto">الان این اتفاق افتاده:</p><pre id="3b3da1eb-8b9d-8043-9e5e-fc16c08cf3ab" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">CartContext
+    ↓
+axiosInstance
+    ↓
+Django Cart API</code></pre><p id="3b3da1eb-8b9d-80ac-a562-ce9afa3d820a" class="" dir="auto">اما معماری هدف ما این است: این جداسازی بعداً برای Orders و Checkout هم خیلی مهم خواهد بود.</p><pre id="3b3da1eb-8b9d-80c6-936c-eb73f36d0b36" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">CartContext
+    ↓
+cartService
+    ↓
+axiosInstance
+    ↓
+Django Cart API</code></pre><blockquote id="3b3da1eb-8b9d-808e-be38-c594c33f8b2a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">131- تغییر فایل زیر:  frontend/src/services/cartService.js<br/>کامل جایگزین کن<pre id="3b3da1eb-8b9d-80b8-b6e0-c30f56a9eb62" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># frontend/src/services/cartService.js
+import axiosInstance from &quot;../api/axiosInstance&quot;;
+
+const cartService = {
+  // دریافت سبد خرید کاربر لاگین‌شده
+  getMyCart: async () =&gt; {
+    const response = await axiosInstance.get(&quot;carts/mine/&quot;);
+    return response.data;
+  },
+
+  // ایجاد سبد خرید جدید
+  createCart: async () =&gt; {
+    const response = await axiosInstance.post(&quot;carts/&quot;);
+    return response.data;
+  },
+
+  // دریافت سبد خرید با ID
+  getCart: async (cartId) =&gt; {
+    const response = await axiosInstance.get(`carts/${cartId}/`);
+    return response.data;
+  },
+
+  // افزودن محصول به سبد خرید
+  addItem: async (cartId, productId, quantity = 1) =&gt; {
+    const response = await axiosInstance.post(&quot;carts/cart-items/&quot;, {
+      cart_id: cartId,
+      product_id: productId,
+      quantity,
+    });
+
+    return response.data;
+  },
+
+  // تغییر تعداد یک آیتم
+  updateItem: async (itemId, quantity) =&gt; {
+    const response = await axiosInstance.patch(
+      `carts/cart-items/${itemId}/`,
+      {
+        quantity,
+      }
+    );
+
+    return response.data;
+  },
+
+  // حذف آیتم
+  removeItem: async (itemId) =&gt; {
+    await axiosInstance.delete(
+      `carts/cart-items/${itemId}/`
+    );
+  },
+};
+
+export default cartService;</code></pre></blockquote><p id="3b3da1eb-8b9d-805c-99b8-fa1c268a018c" class="" dir="auto">حالا تمام ارتباطات Cart با Backend در یک نقطه قرار گرفته‌اند.</p><blockquote id="3b3da1eb-8b9d-8002-9ae3-e3ba69377021" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">132- اصلاح <code>CartContext.jsx</code><p id="3b3da1eb-8b9d-803c-9672-dcbb0a793f42" class="" dir="auto">حالا <code>CartContext</code> نباید مستقیماً Axios را بشناسد: کامل جایگزین کن</p><pre id="3b3da1eb-8b9d-8063-aa57-e2b700ab8b3b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># frontend/src/context/CartContext.jsx
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from &quot;react&quot;;
+
+import { useAuth } from &quot;./AuthContext&quot;;
+import cartService from &quot;../services/cartService&quot;;
+
+const CartContext = createContext(null);
+
+export const CartProvider = ({ children }) =&gt; {
+  const { isAuthenticated } = useAuth();
+
+  const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchOrCreateCart = async () =&gt; {
+    setLoading(true);
+
+    try {
+      // کاربر لاگین شده
+      if (isAuthenticated) {
+        const cartData = await cartService.getMyCart();
+
+        setCart(cartData);
+
+        if (cartData?.id) {
+          localStorage.setItem(&quot;cart_id&quot;, cartData.id);
+        }
+
+        return;
+      }
+
+      // کاربر مهمان
+      let cartId = localStorage.getItem(&quot;cart_id&quot;);
+
+      if (!cartId) {
+        const newCart = await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(&quot;cart_id&quot;, cartId);
+
+        setCart(newCart);
+
+        return;
+      }
+
+      try {
+        const cartData = await cartService.getCart(cartId);
+
+        setCart(cartData);
+      } catch (error) {
+        if (error.response?.status === 404) {
+          localStorage.removeItem(&quot;cart_id&quot;);
+
+          const newCart = await cartService.createCart();
+
+          localStorage.setItem(&quot;cart_id&quot;, newCart.id);
+
+          setCart(newCart);
+        } else {
+          throw error;
+        }
+      }
+    } catch (error) {
+      console.error(
+        &quot;Failed to fetch cart:&quot;,
+        error.response?.data || error
+      );
+
+      setCart(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() =&gt; {
+    fetchOrCreateCart();
+  }, [isAuthenticated]);
+
+  const addToCart = async (productId) =&gt; {
+    try {
+      let cartId =
+        cart?.id ||
+        localStorage.getItem(&quot;cart_id&quot;);
+
+      if (!cartId) {
+        const newCart = await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          &quot;cart_id&quot;,
+          cartId
+        );
+      }
+
+      try {
+        await cartService.addItem(
+          cartId,
+          productId,
+          1
+        );
+      } catch (error) {
+        const invalidCart =
+          error.response?.status === 400 &amp;&amp;
+          error.response?.data?.cart_id;
+
+        if (!invalidCart) {
+          throw error;
+        }
+
+        localStorage.removeItem(&quot;cart_id&quot;);
+
+        const newCart =
+          await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          &quot;cart_id&quot;,
+          cartId
+        );
+
+        await cartService.addItem(
+          cartId,
+          productId,
+          1
+        );
+      }
+
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(
+        &quot;Failed to add item to cart:&quot;,
+        error.response?.data || error
+      );
+
+      throw error;
+    }
+  };
+
+  const updateQuantity = async (
+    itemId,
+    newQuantity
+  ) =&gt; {
+    if (newQuantity &lt; 1) {
+      return;
+    }
+
+    try {
+      await cartService.updateItem(
+        itemId,
+        newQuantity
+      );
+
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(
+        &quot;Failed to update cart item:&quot;,
+        error.response?.data || error
+      );
+
+      throw error;
+    }
+  };
+
+  const removeFromCart = async (itemId) =&gt; {
+    try {
+      await cartService.removeItem(itemId);
+
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(
+        &quot;Failed to remove cart item:&quot;,
+        error.response?.data || error
+      );
+
+      throw error;
+    }
+  };
+
+  const clearCartState = () =&gt; {
+    setCart(null);
+  };
+
+  const totalItemsCount =
+    cart?.items?.reduce(
+      (total, item) =&gt;
+        total + item.quantity,
+      0
+    ) || 0;
+
+  return (
+    &lt;CartContext.Provider
+      value={{
+        cart,
+        loading,
+        totalItemsCount,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        clearCartState,
+        refreshCart: fetchOrCreateCart,
+      }}
+    &gt;
+      {children}
+    &lt;/CartContext.Provider&gt;
+  );
+};
+
+export const useCart = () =&gt;
+  useContext(CartContext);</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8044-9656-fe00e3c3b6fc" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-80cd-9437-e46801f2dead" class="" dir="auto">چرا این تغییر مهم است؟</h4></div></aside><p id="3b3da1eb-8b9d-8045-bcb3-df479e603292" class="" dir="auto">قبلاً:</p><pre id="3b3da1eb-8b9d-80a5-b50a-e9ff55caab56" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">CartContext.jsx
+ ├── Axios GET
+ ├── Axios POST
+ ├── Axios PATCH
+ ├── Axios DELETE
+ ├── مدیریت token
+ ├── مدیریت cart
+ └── مدیریت state</code></pre><p id="3b3da1eb-8b9d-8028-929d-c4f07e925254" class="" dir="auto">یعنی Context بیش از حد مسئولیت داشت.</p><p id="3b3da1eb-8b9d-802e-bb56-efd8605c9fa6" class="" dir="auto">حالا:</p><pre id="3b3da1eb-8b9d-808b-b0b3-f1e40dd27d09" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">cartService.js
+ └── ارتباط با API
+
+CartContext.jsx
+ └── مدیریت State و Business Flow
+
+Cart.jsx
+ └── نمایش UI</code></pre><p id="3b3da1eb-8b9d-80a0-802e-c7858abb5e0f" class="" dir="auto">این دقیقاً همان تفکیکی است که در ادامه برای:</p><pre id="3b3da1eb-8b9d-80b0-83f9-cba74a507688" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Orders
+Checkout
+Payments</code></pre><p id="3b3da1eb-8b9d-800a-ae57-eee71222c786" class="" dir="auto">هم استفاده خواهیم کرد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8015-80b7-f00699ac949f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-8035-a525-d21d38b381e2" class="" dir="auto">یک نکته مهم در Backend</h4></div></aside><p id="3b3da1eb-8b9d-80da-940a-f55b72329edc" class="" dir="auto">Backend فعلی Cart API این endpointها را در اختیار Frontend گذاشته:</p><pre id="3b3da1eb-8b9d-804d-a635-f001fb4c33dd" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET     /api/carts/mine/
+POST    /api/carts/
+GET     /api/carts/&lt;cart_id&gt;/
+
+POST    /api/carts/cart-items/
+PATCH   /api/carts/cart-items/&lt;item_id&gt;/
+DELETE  /api/carts/cart-items/&lt;item_id&gt;/</code></pre><p id="3b3da1eb-8b9d-8095-9c70-ce798bccbc51" class="" dir="auto">بنابراین <code>cartService.js</code> که بالا ساختیم دقیقاً با API فعلی Backend هماهنگ است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-809c-8f97-f4c4ad96e89e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-8031-a6fa-ec7332a25076" class="" dir="auto">یک نکته معماری مهم‌تر</h4></div></aside><p id="3b3da1eb-8b9d-8063-a7c6-c27e58e8416e" class="" dir="auto">در Backend این قسمت را داریم:</p><pre id="3b3da1eb-8b9d-8079-baa3-fa26b49e2662" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">classCartViewSet(...):permission_classes= [AllowAny]</code></pre><p id="3b3da1eb-8b9d-8032-9a8d-e52840af1124" class="" dir="auto">و:</p><pre id="3b3da1eb-8b9d-8030-80e2-d915093f077b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">classCartItemViewSet(ModelViewSet):permission_classes= [AllowAny]</code></pre><p id="3b3da1eb-8b9d-8073-adea-dbddf27edc42" class="" dir="auto">این برای <strong>Guest Cart</strong> فعلی قابل درک است، اما یک مسئله امنیتی مهم ایجاد می‌کند:</p><p id="3b3da1eb-8b9d-80e6-9271-e7e466374ce3" class="" dir="auto">هر کسی که <code>cart_id</code> یک Cart را داشته باشد، می‌تواند بالقوه روی آن Cart عملیات انجام دهد.</p><p id="3b3da1eb-8b9d-8066-9e16-e10dc812a478" class="" dir="auto">مثلاً:</p><pre id="3b3da1eb-8b9d-80b0-9c4a-d03eee7212ac" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /cart-items/
+PATCH /cart-items/&lt;id&gt;/
+DELETE /cart-items/&lt;id&gt;/</code></pre><p id="3b3da1eb-8b9d-8091-8875-c134e0bddee6" class="" dir="auto">هیچ بررسی‌ای وجود ندارد که آیا این Cart واقعاً متعلق به همان کاربر است یا نه.</p><p id="3b3da1eb-8b9d-804e-82d0-c1b2469e29bc" class="" dir="auto"><strong>فعلاً این را دست نمی‌زنیم.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8046-843e-f52e4b8dd67a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-8028-93e1-ed6db3241a95" class="" dir="auto">مرحله فعلی ما</h4></div></aside><p id="3b3da1eb-8b9d-80fa-b2ab-daa9a1f22a06" class="" dir="auto">در نتیجه الان:</p><pre id="3b3da1eb-8b9d-8065-a157-c5e572ab44d8" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+    ↓
+Cart API        ✅
+    ↓
+Cart Context    ✅ Refactored
+    ↓
+Add to Cart     ← مرحله بعد</code></pre><p id="3b3da1eb-8b9d-802d-87a7-f8a01ad9c0fe" class="" dir="auto">اما قبل از اینکه وارد <code>Cart.jsx</code> شویم، یک چیز مهم باقی مانده:</p><h4 id="3b3da1eb-8b9d-80ce-867f-cdb915cc2c8e" class="" dir="auto">باید <code>CartProvider</code> واقعاً در Root اپلیکیشن قرار گرفته باشد.</h4><p id="3b3da1eb-8b9d-804d-83db-f3d826d80f8a" class="" dir="auto">چون <code>CartContext</code> از <code>AuthContext</code> استفاده می‌کند:</p><pre id="3b3da1eb-8b9d-805c-a7d2-f93adf7567fb" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const { isAuthenticated }=useAuth();</code></pre><p id="3b3da1eb-8b9d-80e2-94d1-dc1699b96594" class="" dir="auto">بنابراین ترتیب Providerها باید تقریباً این‌طور باشد:</p><pre id="3b3da1eb-8b9d-80ab-a713-fd71ccef016c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">AuthProvider
+    ↓
+CartProvider
+    ↓
+App</code></pre><p id="3b3da1eb-8b9d-8010-92c5-c2d9f6679bc1" class="" dir="auto"><br/>مشخص شد که <code><strong>CartProvider</strong></code><strong> هنوز در </strong><code><strong>main.jsx</strong></code><strong> قرار نگرفته</strong>. پس قبل از رفتن به <code>Add to Cart</code> باید این لایه را درست کنیم.<br/><br/></p><p id="3b3da1eb-8b9d-80a2-a350-fa7103665774" class="" dir="auto">الان ساختار شما این است:</p><pre id="3b3da1eb-8b9d-807c-9a21-ce96742af54e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">AuthProvider
+    ↓
+App</code></pre><p id="3b3da1eb-8b9d-80d7-9929-ef2f78ee601d" class="" dir="auto">ولی چون <code>CartContext</code> از <code>useAuth()</code> استفاده می‌کند، باید:</p><pre id="3b3da1eb-8b9d-806f-b27b-cfe7b378d71a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">AuthProvider
+    ↓
+CartProvider
+    ↓
+App</code></pre><p id="3b3da1eb-8b9d-807c-87d5-c76ab847b6cc" class="" dir="auto">باشد.</p><blockquote id="3b3da1eb-8b9d-80de-88da-fc4dc006f7fa" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">133- این فایل را اصلاح کن <code>main.jsx</code> <br/>فایل <code>frontend/src/main.jsx</code> را به این شکل تغییر بده:<pre id="3b3da1eb-8b9d-8029-8850-d5717be94aa2" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { StrictMode } from &quot;react&quot;;
+import { createRoot } from &quot;react-dom/client&quot;;
+
+import App from &quot;./App.jsx&quot;;
+
+import { AuthProvider } from &quot;./context/AuthContext.jsx&quot;;
+import { CartProvider } from &quot;./context/CartContext.jsx&quot;;
+
+import &quot;./index.css&quot;;
+
+createRoot(
+  document.getElementById(&quot;root&quot;)
+).render(
+  &lt;StrictMode&gt;
+    &lt;AuthProvider&gt;
+      &lt;CartProvider&gt;
+        &lt;App /&gt;
+      &lt;/CartProvider&gt;
+    &lt;/AuthProvider&gt;
+  &lt;/StrictMode&gt;
+);</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8097-8082-f0ca4733173c" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-803b-849c-ebb426b1b67f" class="" dir="auto">چرا این ترتیب؟</h4></div></aside><p id="3b3da1eb-8b9d-80c7-ad27-d227569beec7" class="" dir="auto">چون داخل <code>CartContext.jsx</code> داریم:</p><pre id="3b3da1eb-8b9d-8002-811d-f502b3705df4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const { isAuthenticated }=useAuth();</code></pre><p id="3b3da1eb-8b9d-8079-aab8-e69ce2d32268" class="" dir="auto">پس <code>CartProvider</code> باید <strong>داخل</strong> <code>AuthProvider</code> باشد.</p><p id="3b3da1eb-8b9d-80c5-a070-c8864f143357" class="" dir="auto">اگر برعکس بنویسیم:</p><pre id="3b3da1eb-8b9d-8064-975d-db7870779075" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">CartProvider
+    ↓
+AuthProvider</code></pre><p id="3b3da1eb-8b9d-80c6-939b-e10658c15da2" class="" dir="auto"><code>CartProvider</code> به Context احراز هویت دسترسی نخواهد داشت.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80a7-b005-cc41b5d460ec" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-80a3-ad14-ebfb5727acfc" class="" dir="auto">حالا یک نکته مهم درباره <code>StrictMode</code></h4></div></aside><p id="3b3da1eb-8b9d-8032-a3cf-c41d204d7ce4" class="" dir="auto">در محیط Development، React با:</p><pre id="3b3da1eb-8b9d-8002-ace6-ccddf37b899b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">&lt;StrictMode&gt;</code></pre><p id="3b3da1eb-8b9d-80ef-8aed-ee53187ed73a" class="" dir="auto">ممکن است بعضی lifecycle/effectها را عمداً دوبار اجرا کند تا side effectهای مشکل‌دار را پیدا کند.</p><p id="3b3da1eb-8b9d-80a1-aab9-c8ffc29a32a2" class="" dir="auto">ما در <code>CartContext</code> این را داریم:</p><pre id="3b3da1eb-8b9d-800b-8ea9-c7e03baac9ae" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">useEffect(() =&gt; {fetchOrCreateCart();
+}, [isAuthenticated]);</code></pre><p id="3b3da1eb-8b9d-8065-8c29-c80f16a17663" class="" dir="auto">بنابراین ممکن است هنگام اجرای Development ببینی درخواست Cart بیش از یک بار ارسال شده است.</p><p id="3b3da1eb-8b9d-804f-b27a-d99bc3815577" class="" dir="auto"><strong>فعلاً </strong><code><strong>StrictMode</strong></code><strong> را حذف نمی‌کنیم.</strong></p><p id="3b3da1eb-8b9d-8062-8128-ea365684e66a" class="" dir="auto">این رفتار در Development است و حذف StrictMode راه‌حل معماری مناسبی نیست. اگر بعداً دیدیم درخواست‌های duplicate واقعاً مشکل ایجاد می‌کنند، همان منطق fetch را اصلاح می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80dd-a561-ee2bf8677f52" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b3da1eb-8b9d-80a4-ad4c-e575e576e95b" class="" dir="auto">حالا Cart Provider آماده است</p></div></aside><p id="3b3da1eb-8b9d-8011-9116-d94d9eeb176b" class="" dir="auto">معماری فعلی ما:</p><pre id="3b3da1eb-8b9d-808a-a08b-f92306c96c07" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">main.jsx
+│
+├── AuthProvider
+│     │
+│     └── CartProvider
+│             │
+│             └── App
+│
+└── index.css</code></pre><p id="3b3da1eb-8b9d-80e1-914b-d3058da7d330" class="" dir="auto">و داخل Cart:</p><pre id="3b3da1eb-8b9d-80ad-b6d5-c2dcacfb5586" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart.jsx
+   │
+   └── useCart()
+          │
+          └── CartContext
+                  │
+                  └── cartService
+                          │
+                          └── axiosInstance
+                                  │
+                                  └── Django API</code></pre><p id="3b3da1eb-8b9d-808f-9a97-e351a65db7c0" class="" dir="auto">این ساختار الان خیلی تمیزتر شده.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80b7-8012-e10dfb40259d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-80ba-85d6-e5bdf38a6ec4" class="" dir="auto">مرحله بعد: Add to Cart</h4></div></aside><p id="3b3da1eb-8b9d-80a9-87e6-ec729fb17320" class="" dir="auto">حالا می‌رسیم به اولین قابلیت واقعی Cart:</p><pre id="3b3da1eb-8b9d-806d-8546-ede7dcef2f12" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">ProductCard
+     ↓
+Add to Cart
+     ↓
+useCart()
+     ↓
+addToCart(productId)
+     ↓
+cartService.addItem()
+     ↓
+POST /api/carts/cart-items/
+     ↓
+Django</code></pre><blockquote id="3b3da1eb-8b9d-8027-a53b-c85469205848" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">134- نسخه کامل <code>ProductDetail.jsx</code><p id="3b3da1eb-8b9d-8017-9ad9-eb42ccc9815d" class="" dir="auto">برای اینکه اشتباه در جابه‌جایی قسمت‌ها پیش نیاید، نسخه‌ی کامل فایل بعد از تغییر این است:<br/><code>acron/frontend/src/pages/ProductDetail.jsx</code> </p><figure id="3b3da1eb-8b9d-806a-8de8-d35a44340455" dir="ltr"><div class="source"><a href="ProductDetail.jsx" data-notion-file="ProductDetail.jsx" data-notion-file-alias="ProductDetail.jsx">ProductDetail.jsx</a></div></figure></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80df-b233-fb6295b0b6be" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-808d-8419-e65c6a8e8a1c" class="" dir="auto">حالا <code>ProductCard</code></h4></div></aside><p id="3b3da1eb-8b9d-800b-84e8-f78db6170b7a" class="" dir="auto">اینجا یک تصمیم معماری کوچک داریم.</p><p id="3b3da1eb-8b9d-8021-a7d4-e1cd859b8191" class="" dir="auto">در <code>ProductCard</code> فعلی، تمام کارت یک محصول است ولی هیچ actionای ندارد. برای فروشگاه، منطقی است که کاربر بتواند <strong>مستقیماً از لیست محصولات هم محصول را به Cart اضافه کند</strong>.</p><blockquote id="3b3da1eb-8b9d-80cd-a5b9-cc6bee5950ae" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">135- نسخه کامل <code>ProductCard.jsx</code><pre id="3b3da1eb-8b9d-8027-bd60-da4eb1d48dc0" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { useState } from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+
+import { useCart } from &quot;../../../context/CartContext&quot;;
+
+function ProductCard({ product }) {
+  const isAvailable =
+    product.inventory &gt; 0;
+
+  const { addToCart } = useCart();
+
+  const [addingToCart, setAddingToCart] =
+    useState(false);
+
+  const handleAddToCart = async () =&gt; {
+    if (!isAvailable) {
+      return;
+    }
+
+    setAddingToCart(true);
+
+    try {
+      await addToCart(product.id);
+    } catch (error) {
+      console.error(
+        &quot;Failed to add product to cart:&quot;,
+        error
+      );
+    } finally {
+      setAddingToCart(false);
+    }
+  };
+
+  return (
+    &lt;article className=&quot;product-card&quot;&gt;
+
+      &lt;Link
+        to={`/products/${product.slug}`}
+        className=&quot;product-card__image-link&quot;
+      &gt;
+        &lt;div className=&quot;product-card__image&quot;&gt;
+
+          {product.main_image ? (
+            &lt;img
+              src={product.main_image}
+              alt={product.name}
+              loading=&quot;lazy&quot;
+            /&gt;
+          ) : (
+            &lt;div className=&quot;product-card__no-image&quot;&gt;
+              No image
+            &lt;/div&gt;
+          )}
+
+        &lt;/div&gt;
+      &lt;/Link&gt;
+
+      &lt;div className=&quot;product-card__content&quot;&gt;
+
+        {product.brand?.name &amp;&amp; (
+          &lt;span className=&quot;product-card__brand&quot;&gt;
+            {product.brand.name}
+          &lt;/span&gt;
+        )}
+
+        &lt;Link
+          to={`/products/${product.slug}`}
+          className=&quot;product-card__title&quot;
+        &gt;
+          {product.name}
+        &lt;/Link&gt;
+
+        &lt;p className=&quot;product-card__description&quot;&gt;
+          {product.description}
+        &lt;/p&gt;
+
+        &lt;div className=&quot;product-card__footer&quot;&gt;
+
+          &lt;div&gt;
+            &lt;span className=&quot;product-card__price&quot;&gt;
+              {product.price}
+            &lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;span
+            className={
+              isAvailable
+                ? &quot;product-card__stock product-card__stock--available&quot;
+                : &quot;product-card__stock product-card__stock--unavailable&quot;
+            }
+          &gt;
+            {isAvailable
+              ? &quot;In stock&quot;
+              : &quot;Out of stock&quot;}
+          &lt;/span&gt;
+
+        &lt;/div&gt;
+
+        &lt;button
+          type=&quot;button&quot;
+          className=&quot;product-card__cart-button&quot;
+          disabled={
+            !isAvailable ||
+            addingToCart
+          }
+          onClick={handleAddToCart}
+        &gt;
+          {addingToCart
+            ? &quot;Adding...&quot;
+            : &quot;Add to cart&quot;}
+        &lt;/button&gt;
+
+      &lt;/div&gt;
+
+    &lt;/article&gt;
+  );
+}
+
+export default ProductCard;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-804a-a867-dde2952c2a85" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-8038-a6a5-faf337e29d5e" class="" dir="auto">یک نکته خیلی مهم درباره مسیر import</h4></div></aside><p id="3b3da1eb-8b9d-80ad-9914-f72bbf60774e" class="" dir="auto">چون <code>ProductCard.jsx</code> اینجاست:</p><pre id="3b3da1eb-8b9d-80d2-b4a2-d5d48d9714cb" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">src/
+└── features/
+    └── products/
+        └── components/
+            └── ProductCard.jsx</code></pre><p id="3b3da1eb-8b9d-80c6-ba32-c1f7cbe7f47d" class="" dir="auto">برای رسیدن به:</p><pre id="3b3da1eb-8b9d-80bb-a99b-dbb56f86061e" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">src/context/CartContext.jsx</code></pre><p id="3b3da1eb-8b9d-804a-9add-c802d83dd458" class="" dir="auto">باید سه مرحله به عقب برویم:</p><pre id="3b3da1eb-8b9d-80f0-8b26-e0f0a785c9b6" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">components
+   ↓ ..
+products
+   ↓ ..
+features
+   ↓ ..
+src
+   ↓
+context</code></pre><p id="3b3da1eb-8b9d-80d5-acc8-fe42ce29729d" class="" dir="auto">بنابراین:</p><pre id="3b3da1eb-8b9d-80eb-9d42-fdfe194e3e36" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">import { useCart } from &quot;../../../context/CartContext&quot;;</code></pre><p id="3b3da1eb-8b9d-80ef-af44-d8480b565ba7" class="" dir="auto">درست است.</p><p id="3b3da1eb-8b9d-80db-b090-c4fa981f427d" class="" dir="auto">اما <code>ProductDetail.jsx</code> مستقیماً داخل <code>pages</code> است:</p><pre id="3b3da1eb-8b9d-80a1-9174-cc3489b63169" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">src/pages/ProductDetail.jsx</code></pre><p id="3b3da1eb-8b9d-8029-a64c-c403d871a647" class="" dir="auto">پس فقط یک مرحله به <code>src</code> برمی‌گردیم:</p><pre id="3b3da1eb-8b9d-8057-a572-f8ca11c1bf1e" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">import { useCart } from &quot;../context/CartContext&quot;;</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-8017-9b3f-c6b463d078d3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-804c-a7d1-c2eb1d0a98cd" class="" dir="auto">حالا چه اتفاقی می‌افتد؟</h4></div></aside><p id="3b3da1eb-8b9d-80b7-a468-d1be32a2e9cd" class="" dir="auto">اگر کاربر در Product Detail روی:</p><pre id="3b3da1eb-8b9d-803a-811d-fb30f2c64f74" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Add to cart</code></pre><p id="3b3da1eb-8b9d-8049-94f5-cce8d653dcb9" class="" dir="auto">کلیک کند:</p><pre id="3b3da1eb-8b9d-8048-90c5-f0e69ea40963" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">ProductDetail
+      ↓
+handleAddToCart()
+      ↓
+addToCart(product.id)
+      ↓
+CartContext
+      ↓
+cartService.addItem()
+      ↓
+axiosInstance
+      ↓
+POST /api/carts/cart-items/
+      ↓
+CartItemSerializer
+      ↓
+CartItem</code></pre><p id="3b3da1eb-8b9d-8030-9bef-e4cfe326cfe0" class="" dir="auto">و بعد:</p><pre id="3b3da1eb-8b9d-80a7-9bfb-fc888f8e86b4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">awaitfetchOrCreateCart();</code></pre><p id="3b3da1eb-8b9d-8097-8a37-e032d2f7a0d8" class="" dir="auto">اجرا می‌شود.</p><p id="3b3da1eb-8b9d-8089-b13b-c771cab3104c" class="" dir="auto">پس <code>cart</code> داخل Context نیز بلافاصله به‌روز می‌شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80e3-9798-e793a5a71232" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-8055-9def-d1afc7111f6b" class="" dir="auto">تست این مرحله</h4></div></aside><p id="3b3da1eb-8b9d-8095-b348-ece102c703b7" class="" dir="auto">حالا این کارها را انجام بده:</p><h4 id="3b3da1eb-8b9d-80ce-ad32-ff9c52eeb338" class="" dir="auto">1. Backend</h4><pre id="3b3da1eb-8b9d-805e-8e0d-e2a3323f390a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><h4 id="3b3da1eb-8b9d-809c-ac81-db041df0e5fa" class="" dir="auto">2. Frontend</h4><pre id="3b3da1eb-8b9d-8032-a0e1-feed91704c19" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">npm run dev</code></pre><h4 id="3b3da1eb-8b9d-80b4-a148-ffff98558eb7" class="" dir="auto">3. وارد Products شو</h4><pre id="3b3da1eb-8b9d-809b-9966-d3cbfb6a159c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products</code></pre><p id="3b3da1eb-8b9d-8038-891c-f222ca7e804d" class="" dir="auto">یک محصولی که <code>inventory &gt; 0</code> دارد انتخاب کن.</p><h4 id="3b3da1eb-8b9d-80c5-8171-c17221cc55ea" class="" dir="auto">4. از Product Detail</h4><p id="3b3da1eb-8b9d-802b-9ef9-c48dfb6a2649" class="" dir="auto">روی:</p><pre id="3b3da1eb-8b9d-80da-adcf-f67992905294" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Add to cart</code></pre><p id="3b3da1eb-8b9d-807c-90f5-cf8a3eafc9b9" class="" dir="auto">کلیک کن.</p><p id="3b3da1eb-8b9d-80ed-9226-f63ecaf18613" class="" dir="auto">باید درخواست زیر را در Network ببینی:</p><pre id="3b3da1eb-8b9d-80bc-820a-f56aaa48d06e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST
+/api/carts/cart-items/</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-80a9-9ab8-c6405d439b6a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-805c-9e41-e34e3758e241" class="" dir="auto">وضعیت معماری الان</h4></div></aside><pre id="3b3da1eb-8b9d-8013-8dca-c395f98ebca4" class="code code-wrap" data-notion-code-syntax="powershell"><code class="language-powershell" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+    │
+    ├── Cart API              ✅
+    │
+    ├── cartService           ✅
+    │
+    ├── CartContext           ✅
+    │
+    └── Add to Cart           ✅
+          │
+          ├── ProductCard     ✅
+          └── ProductDetail   ✅</code></pre><p id="3b3da1eb-8b9d-8015-84c6-d47715e2d8f2" class="" dir="auto">پس <strong>مرحله بعدی دیگر API نیست</strong>.</p><p id="3b3da1eb-8b9d-8037-88db-e1e690dd7717" class="" dir="auto">مرحله بعد:</p><pre id="3b3da1eb-8b9d-8007-931f-d8ae8b09e19c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart Page
+   ↓
+نمایش Cart Items
+   ↓
+Product
+Quantity
+Price
+Total</code></pre><p id="3b3da1eb-8b9d-8039-b115-e7a955a880f2" class="" dir="auto">و بعد از آن:</p><pre id="3b3da1eb-8b9d-8070-ae53-c28e09984f86" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Quantity
+   ↓
+Remove Item
+   ↓
+Cart Summary</code></pre><p id="3b3da1eb-8b9d-804f-8558-d7d7e240a0dd" class="" dir="auto"><strong>فعلاً سراغ Orders نمی‌رویم</strong>؛ ابتدا همین Cart را کامل و قابل استفاده می‌کنیم.</p><blockquote id="3b3da1eb-8b9d-809e-88d6-f81112316d38" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">136- فایل<code>Cart.jsx</code> را کامل کنیم<p id="3b3da1eb-8b9d-8097-8b5b-c3f0c89887cd" class="" dir="auto">فایل:   <code>frontend/src/pages/Cart.jsx</code> </p><p id="3b3da1eb-8b9d-8002-9cdc-eb85c1b0786d" class="" dir="auto">را با این نسخه جایگزین کن:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3b3da1eb-8b9d-80d0-8546-c4ee794b6865" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">// frontend/src/pages/Cart.jsx
+import {Link }from&quot;react-router-dom&quot;;import {useCart }from&quot;../context/CartContext&quot;;functionCart() {const {
+    cart,
+    loading,
+    updateQuantity,
+    removeFromCart,
+  }=useCart();if (loading) {return (&lt;mainclassName=&quot;page&quot;&gt;&lt;divclassName=&quot;page__container&quot;&gt;&lt;divclassName=&quot;page__header&quot;&gt;&lt;spanclassName=&quot;page__eyebrow&quot;&gt;
+              ACRON STORE&lt;/span&gt;&lt;h1&gt;Your Cart&lt;/h1&gt;&lt;p&gt;
+              Loading your cart...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/main&gt;
+    );
+  }constitems=cart?.items|| [];if (items.length===0) {return (&lt;mainclassName=&quot;page&quot;&gt;&lt;divclassName=&quot;page__container&quot;&gt;&lt;divclassName=&quot;page__header&quot;&gt;&lt;spanclassName=&quot;page__eyebrow&quot;&gt;
+              ACRON STORE&lt;/span&gt;&lt;h1&gt;Your Cart&lt;/h1&gt;&lt;p&gt;
+              Your cart is currently empty.&lt;/p&gt;&lt;/div&gt;&lt;Linkto=&quot;/products&quot;className=&quot;cart__continue-shopping&quot;&gt;
+            Continue Shopping&lt;/Link&gt;&lt;/div&gt;&lt;/main&gt;
+    );
+  }return (&lt;mainclassName=&quot;page&quot;&gt;&lt;divclassName=&quot;page__container&quot;&gt;&lt;divclassName=&quot;page__header&quot;&gt;&lt;spanclassName=&quot;page__eyebrow&quot;&gt;
+            ACRON STORE&lt;/span&gt;&lt;h1&gt;Your Cart&lt;/h1&gt;&lt;p&gt;
+            Review your selected products
+            before continuing.&lt;/p&gt;&lt;/div&gt;&lt;sectionclassName=&quot;cart&quot;&gt;&lt;divclassName=&quot;cart__items&quot;&gt;
+
+            {items.map((item) =&gt; (&lt;articlekey={item.id}className=&quot;cart-item&quot;&gt;&lt;divclassName=&quot;cart-item__image&quot;&gt;
+
+                  {item.product?.main_image? (&lt;imgsrc={item.product.main_image}alt={item.product.name}/&gt;
+                  ): (&lt;divclassName=&quot;cart-item__no-image&quot;&gt;
+                      No image&lt;/div&gt;
+                  )}&lt;/div&gt;&lt;divclassName=&quot;cart-item__content&quot;&gt;&lt;Linkto={`/products/${item.product?.slug||&quot;&quot;}`}className=&quot;cart-item__name&quot;&gt;
+                    {item.product?.name}&lt;/Link&gt;&lt;pclassName=&quot;cart-item__price&quot;&gt;
+                    {item.product?.price}&lt;/p&gt;&lt;divclassName=&quot;cart-item__actions&quot;&gt;&lt;divclassName=&quot;cart-item__quantity&quot;&gt;&lt;buttontype=&quot;button&quot;onClick={() =&gt;updateQuantity(item.id,item.quantity-1
+                          )
+                        }disabled={item.quantity&lt;=1
+                        }aria-label=&quot;Decrease quantity&quot;&gt;
+                        −&lt;/button&gt;&lt;span&gt;
+                        {item.quantity}&lt;/span&gt;&lt;buttontype=&quot;button&quot;onClick={() =&gt;updateQuantity(item.id,item.quantity+1
+                          )
+                        }aria-label=&quot;Increase quantity&quot;&gt;
+                        +&lt;/button&gt;&lt;/div&gt;&lt;buttontype=&quot;button&quot;className=&quot;cart-item__remove&quot;onClick={() =&gt;removeFromCart(item.id)
+                      }&gt;
+                      Remove&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;divclassName=&quot;cart-item__total&quot;&gt;
+                  {item.total_price}&lt;/div&gt;&lt;/article&gt;
+            ))}&lt;/div&gt;&lt;asideclassName=&quot;cart__summary&quot;&gt;&lt;h2&gt;
+              Cart Summary&lt;/h2&gt;&lt;divclassName=&quot;cart__summary-row&quot;&gt;&lt;span&gt;
+                Subtotal&lt;/span&gt;&lt;strong&gt;
+                {cart.total_price}&lt;/strong&gt;&lt;/div&gt;&lt;divclassName=&quot;cart__summary-divider&quot;/&gt;&lt;divclassName=&quot;cart__summary-row cart__summary-row--total&quot;&gt;&lt;span&gt;
+                Total&lt;/span&gt;&lt;strong&gt;
+                {cart.total_price}&lt;/strong&gt;&lt;/div&gt;&lt;buttontype=&quot;button&quot;className=&quot;cart__checkout-button&quot;&gt;
+              Proceed to Checkout&lt;/button&gt;&lt;Linkto=&quot;/products&quot;className=&quot;cart__continue-shopping&quot;&gt;
+              Continue Shopping&lt;/Link&gt;&lt;/aside&gt;&lt;/section&gt;&lt;/div&gt;&lt;/main&gt;
+  );
+}exportdefaultCart;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-807b-a4dd-f33abef06dcf" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b3da1eb-8b9d-808e-8839-e8dda086dda9" class="" dir="auto">چرا از <code>CartContext</code> استفاده کردیم؟</h4></div></aside><p id="3b3da1eb-8b9d-80f7-a368-da77b928495c" class="" dir="auto">در بالای صفحه:</p><pre id="3b3da1eb-8b9d-80b7-a534-c2e8ec5023a8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const {
+  cart,
+  loading,
+  updateQuantity,
+  removeFromCart,
+}=useCart();</code></pre><p id="3b3da1eb-8b9d-808f-8021-d242c51f7f1d" class="" dir="auto">یعنی <code>Cart.jsx</code> دیگر اصلاً نمی‌داند API کجاست.</p><p id="3b3da1eb-8b9d-80a4-ac5b-fc2a3f66cdb0" class="" dir="auto">ساختار:</p><pre id="3b3da1eb-8b9d-80f7-aa82-d2de2aebc454" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart.jsx
+   ↓
+useCart()
+   ↓
+CartContext
+   ↓
+cartService
+   ↓
+axios
+   ↓
+Django</code></pre><p id="3b3da1eb-8b9d-808d-ae58-e4f50ae82534" class="" dir="auto">این همان separation است که می‌خواستیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b4da1eb-8b9d-806f-9533-c092c3b751ed" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b4da1eb-8b9d-804f-8ad7-c2dc4afece31" class="" dir="auto">اطلاعاتی که Backend به ما می‌دهد</h4></div></aside><p id="3b4da1eb-8b9d-800e-8be1-ed88beed5125" class="" dir="auto">Serializer شما:</p><pre id="3b4da1eb-8b9d-80c8-ab13-ec308b618eb5" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">classCartItemSerializer(serializers.ModelSerializer):</code></pre><p id="3b4da1eb-8b9d-8063-9eef-f37758afc068" class="" dir="auto">این فیلدها را برمی‌گرداند:</p><pre id="3b4da1eb-8b9d-8028-a7e9-e17c5edffaca" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">id
+product
+quantity
+total_price</code></pre><p id="3b4da1eb-8b9d-80d5-9d65-d2b19107c743" class="" dir="auto">و <code>product</code> هم:</p><pre id="3b4da1eb-8b9d-80c5-8e2e-f6d3dd9cedfa" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">id
+name
+price
+main_image</code></pre><p id="3b4da1eb-8b9d-80ed-ad6b-e3ba5316a9d9" class="" dir="auto">بنابراین در Frontend می‌توانیم بنویسیم:</p><pre id="3b4da1eb-8b9d-8055-90ab-f2e7b1be5a82" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">item.product.name</code></pre><p id="3b4da1eb-8b9d-8039-962e-cc619334357f" class="" dir="auto">و:</p><pre id="3b4da1eb-8b9d-8073-b462-f5285b220e9d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">item.product.price</code></pre><p id="3b4da1eb-8b9d-8008-9ddd-e4bc64884043" class="" dir="auto">و:</p><pre id="3b4da1eb-8b9d-80d6-98e7-d4d1333c63b3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">item.total_price</code></pre><p id="3b4da1eb-8b9d-8028-bb93-e8e51a96cc78" class="" dir="auto">این کاملاً با Backend فعلی شما هماهنگ است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-807a-8ad4-e636192da1ce" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b5da1eb-8b9d-800e-907f-d13abbe6ca4f" class="" dir="auto">و Quantity را همین الان هم داریم</h4></div></aside><p id="3b5da1eb-8b9d-809c-b6e4-ec016e091319" class="" dir="auto">در Cart Page:</p><pre id="3b5da1eb-8b9d-80f3-ba3f-cd72ac9ece6c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">updateQuantity(item.id,item.quantity+1
+)</code></pre><p id="3b5da1eb-8b9d-80e2-8538-faa2c57f6299" class="" dir="auto">برای افزایش.</p><p id="3b5da1eb-8b9d-80da-8d94-e190be90a9ac" class="" dir="auto">و:</p><pre id="3b5da1eb-8b9d-802d-a57e-d741318560db" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">updateQuantity(item.id,item.quantity-1
+)</code></pre><p id="3b5da1eb-8b9d-80ae-a376-f6d2f284c989" class="" dir="auto">برای کاهش.</p><p id="3b5da1eb-8b9d-8088-a891-d557c91d06d3" class="" dir="auto">و <code>CartContext</code> این را به:</p><pre id="3b5da1eb-8b9d-8051-8125-ce77ac99076d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">PATCH /api/carts/cart-items/&lt;item_id&gt;/</code></pre><p id="3b5da1eb-8b9d-80b9-849d-e0b4432dd397" class="" dir="auto">تبدیل می‌کند.</p><p id="3b5da1eb-8b9d-80ba-b3b6-e30a0566e11d" class="" dir="auto">Body:</p><pre id="3b5da1eb-8b9d-8088-8ff7-d4269255c6c6" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  &quot;quantity&quot;:2
+}</code></pre><p id="3b5da1eb-8b9d-804f-a8df-f98517166c0c" class="" dir="auto">بنابراین مسیر کامل:</p><pre id="3b5da1eb-8b9d-803c-89b0-f02072345f38" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">+ button
+   ↓
+updateQuantity()
+   ↓
+cartService.updateItem()
+   ↓
+PATCH
+   ↓
+Django
+   ↓
+fetchOrCreateCart()
+   ↓
+UI Update</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-8040-896d-ca1c9e3485dd" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b5da1eb-8b9d-80e1-b26c-c0c5c8a985f5" class="" dir="auto">دکمه  Remove Item</h4></div></aside><pre id="3b5da1eb-8b9d-8074-81f4-f80b3ffecaee" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">&lt;buttontype=&quot;button&quot;className=&quot;cart-item__remove&quot;onClick={() =&gt;removeFromCart(item.id)
+  }&gt;
+  Remove&lt;/button&gt;</code></pre><p id="3b5da1eb-8b9d-8037-a89a-c3a68b1695e8" class="" dir="auto">در نهایت می‌رسد به:</p><pre id="3b5da1eb-8b9d-8043-9428-f9cac9f72d06" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">DELETE /api/carts/cart-items/&lt;item_id&gt;/</code></pre><p id="3b5da1eb-8b9d-80be-81f3-c76e8876f895" class="" dir="auto">و بعد Cart دوباره fetch می‌شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-80e4-873c-e091607ee139" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b5da1eb-8b9d-80a5-971c-f8ccbc158a23" class="" dir="auto">تحلیل Cart Summary</h4></div></aside><p id="3b5da1eb-8b9d-80cd-9ef1-d20841d66106" class="" dir="auto">در Backend این طراحی شده بود:</p><pre id="3b5da1eb-8b9d-80fd-8ecb-da2980549e9d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">defget_total_price(self,cart:Cart):returnsum([item.quantity*item.product.priceforitemincart.items.all()
+    ])</code></pre><p id="3b5da1eb-8b9d-8014-93e1-edac8aaacbef" class="" dir="auto">بنابراین:</p><pre id="3b5da1eb-8b9d-808a-a5f2-d1901e140610" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart.total_price</code></pre><p id="3b5da1eb-8b9d-80de-a8e8-e17dccf15bf4" class="" dir="auto">مجموع قیمت Cart است.</p><p id="3b5da1eb-8b9d-8038-9a93-efa352de314c" class="" dir="auto">و هر <code>CartItem</code> نیز:</p><pre id="3b5da1eb-8b9d-804b-ad1b-eb560cd4fa0d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">item.total_price</code></pre><p id="3b5da1eb-8b9d-8078-afdf-dec552506300" class="" dir="auto">دارد.</p><p id="3b5da1eb-8b9d-8070-b9fa-dcc2376cbd5e" class="" dir="auto">پس محاسبه قیمت را دوباره در Frontend انجام نمی‌دهیم.</p><p id="3b5da1eb-8b9d-80d2-989b-ede45d9d31d0" class="" dir="auto">این تصمیم خوبی است، چون <strong>قیمت نهایی باید منبع معتبر Backend داشته باشد</strong>.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-8074-ba20-d5935ff3c1e0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b5da1eb-8b9d-80b0-9e67-c590b1961c70" class="" dir="auto">یک مشکل کوچک که باید همین الان اصلاح کنیم</h4></div></aside><p id="3b5da1eb-8b9d-809f-a8ea-e6488857cfb0" class="" dir="auto">در <code>CartSerializer</code>، محصول این فیلدها را دارد:</p><pre id="3b5da1eb-8b9d-80e8-ae79-e2213170150f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">fields= [&#x27;id&#x27;,&#x27;name&#x27;,&#x27;price&#x27;,&#x27;main_image&#x27;
+]</code></pre><p id="3b5da1eb-8b9d-8060-82ea-e33657ae5dc5" class="" dir="auto">اما در Cart:</p><pre id="3b5da1eb-8b9d-8090-a094-eb05506fa0ea" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">&lt;Linkto={`/products/${item.product?.slug||&quot;&quot;}`}&gt;</code></pre><p id="3b5da1eb-8b9d-80fa-b655-f20f478e74c3" class="" dir="auto">ما <code>slug</code> نداریم.</p><p id="3b5da1eb-8b9d-80c4-9249-de6963e9b8e7" class="" dir="auto">در نتیجه لینک محصول در Cart فعلاً تبدیل می‌شود به:</p><pre id="3b5da1eb-8b9d-80c4-94e5-cc1b5859864e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products/</code></pre><p id="3b5da1eb-8b9d-8073-8b95-db267fba8cd5" class="" dir="auto">این یک bug واقعی است.</p><h3 id="3b5da1eb-8b9d-8019-a810-f3c80d7a2c96" class="" dir="auto">راه درست</h3><p id="3b5da1eb-8b9d-8019-8c16-e669ad78200d" class="" dir="auto">چون Product Detail شما با:</p><pre id="3b5da1eb-8b9d-80e1-9c76-de8ed19ece1d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products/:slug</code></pre><p id="3b5da1eb-8b9d-804e-ad29-cc4f551b5fd4" class="" dir="auto">کار می‌کند، باید <code>slug</code> را به <code>SimpleProductSerializer</code> اضافه کنیم.</p><p id="3b5da1eb-8b9d-80bb-a5ce-eaf55211ba57" class="" dir="auto">در:</p><pre id="3b5da1eb-8b9d-8011-b99d-e53fa3e6c596" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/apps/carts/serializers.py</code></pre><p id="3b5da1eb-8b9d-803b-bd15-f3ae94237afb" class="" dir="auto">این:</p><pre id="3b5da1eb-8b9d-804c-a525-e65195eecc68" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">fields= [&#x27;id&#x27;,&#x27;name&#x27;,&#x27;price&#x27;,&#x27;main_image&#x27;]</code></pre><p id="3b5da1eb-8b9d-8028-b7be-ec29a01c4db4" class="" dir="auto">را تبدیل کن به:</p><pre id="3b5da1eb-8b9d-8021-92ee-ebd2cfdd60e3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">fields= [&#x27;id&#x27;,&#x27;name&#x27;,&#x27;slug&#x27;,&#x27;price&#x27;,&#x27;main_image&#x27;,
+]</code></pre><p id="3b5da1eb-8b9d-80ae-a581-ce0839ec9b2c" class="" dir="auto">یعنی:</p><p id="3b5da1eb-8b9d-805b-b58c-cbc06f000609" class="" dir="auto">این تغییر کاملاً منطقی است و API Cart همچنان سبک باقی می‌ماند.</p><blockquote id="3b3da1eb-8b9d-807f-94f6-c0bbdeeaec11" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">137- در آدرس backend/apps/carts/serializers.py این را تغییر بده به کد زیر:<pre id="3b5da1eb-8b9d-8067-8f17-c1b956ea064f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">class SimpleProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            &#x27;id&#x27;,
+            &#x27;name&#x27;,
+            &#x27;slug&#x27;,
+            &#x27;price&#x27;,
+            &#x27;main_image&#x27;,
+        ]</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-8008-99c3-d2223d09f9ad" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b5da1eb-8b9d-807a-98d9-c42193af0973" class="" dir="auto">وضعیت پروژه</h4></div></aside><p id="3b5da1eb-8b9d-805f-abf0-cd089d1ae549" class="" dir="auto">الان تقریباً به اینجا رسیده‌ایم:</p><pre id="3b5da1eb-8b9d-8018-a679-e90b5ffa7ccf" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+│
+├── Cart API             ✅
+│
+├── cartService          ✅
+│
+├── Cart Context         ✅
+│
+├── Add to Cart          ✅
+│
+├── Cart Page            ✅
+│
+├── Quantity             ✅
+│
+├── Remove Item          ✅
+│
+└── Cart Summary         ✅</code></pre><p id="3b5da1eb-8b9d-80d5-96d6-f5d4425e2185" class="" dir="auto">اما هنوز <strong>یک مرحله مهم برای کیفیت این Domain داریم</strong>: باید Cart را با سناریوهای واقعی تست کنیم، مخصوصاً:</p><pre id="3b5da1eb-8b9d-8086-ba78-e6433abe4b8f" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Guest
+Login
+Add product
+Add same product again
+Increase quantity
+Decrease quantity
+Remove item
+Empty cart
+Refresh page</code></pre><p id="3b5da1eb-8b9d-802a-958b-f7838ee4b856" class="" dir="auto">بعد از اطمینان از این موارد، می‌رویم سراغ <strong>Orders</strong>.</p><p id="3b5da1eb-8b9d-8004-ac0b-e54dc4f5e0b6" class="" dir="auto">فعلاً <code>Proceed to Checkout</code> را عمداً فعال نمی‌کنیم؛ چون طبق roadmap ما Checkout هنوز نوبتش نرسیده است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-809d-91b8-d29b33ce7442" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3b5da1eb-8b9d-803f-9607-de4bd402c3cd" class="" dir="auto">و ترتیب توسعه اصلی ما همچنان تغییر نمی‌کند:</p></div></aside><p id="3b5da1eb-8b9d-80d6-84ec-c66a9e6fa97a" class="" dir="auto">یک نکته هم مهم است: <strong>Cart را فعلاً تمام‌شده فرض نمی‌کنیم</strong>؛ بلکه Feature اصلی آن پیاده شده و در ادامه، هنگام تست و مرحله‌ی Bug Fixing، مواردی مثل Guest Cart، Login Cart، refresh، موجودی، quantity و رفتارهای مرزی را بررسی می‌کنیم.</p><pre id="3b5da1eb-8b9d-80e5-bf14-cd58cb391809" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Cart Domain
+    ↓
+Cart API                  ✅
+    ↓
+Cart Context              ✅
+    ↓
+Add to Cart               ✅
+    ↓
+Cart Page                 ✅
+    ↓
+Quantity                  ✅
+    ↓
+Remove Item               ✅
+    ↓
+Cart Summary              ✅
+    ↓
+Cart Testing / Integration
+    ↓
+Orders                    ← مرحله بعد
+    ↓
+Checkout
+    ↓
+Authentication Hardening
+    ↓
+Fix Product Images
+    ↓
+Fix Cart UI
+    ↓
+Security Hardening
+    ↓
+Bug / Edge Case Pass</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b5da1eb-8b9d-805c-a666-fd4921a9e015" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h4 id="3b5da1eb-8b9d-8065-b361-c41e1d534f5d" class="" dir="auto">قدم بعدی: Orders</h4></div></aside><p id="3b5da1eb-8b9d-8040-933f-e8c8f610da84" class="" dir="auto">حالا از Cart خارج می‌شویم و وارد:  Orders Domain  می شویم.</p><p id="3b5da1eb-8b9d-8074-bdd6-fbdd0c694856" class="" dir="auto">قبل از اینکه کدی را تغییر دهیم، چون Backend مربوط به Orders از قبل در پروژه وجود دارد، باید قرارداد فعلی آن را با Frontend هماهنگ کنیم.</p><h4 id="3b5da1eb-8b9d-8033-ad93-d34f7ee141a5" class="" dir="auto">مرحله فعلی: Orders</h4><p id="3b5da1eb-8b9d-80dd-9d9f-d8b1a433d608" class="" dir="auto">الف: Backend این APIها را در اختیار ما می‌گذارد:</p><pre id="3b5da1eb-8b9d-8041-acae-d9797feed876" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">GET    /api/orders/
+GET    /api/orders/&lt;order_id&gt;/
+POST   /api/orders/
+POST   /api/orders/&lt;order_id&gt;/pay/</code></pre><p id="3b5da1eb-8b9d-8029-987a-f3bbc7a40231" class="" dir="auto">و چون:</p><pre id="3b5da1eb-8b9d-8094-a958-d64c24067145" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">permission_classes = [permissions.IsAuthenticated]</code></pre><p id="3b5da1eb-8b9d-80fe-8c6d-f73009633916" class="" dir="auto">است، Orders فقط برای کاربر احراز هویت‌شده قابل استفاده است.</p><p id="3b5da1eb-8b9d-80b4-9a6e-fd4b89e7ceb7" class="" dir="auto">معماری Frontend را هم مثل Cart نگه می‌داریم:</p><pre id="3b5da1eb-8b9d-80c1-8dad-e9b210c56c2e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Orders Page
+     ↓
+ordersService
+     ↓
+apiClient
+     ↓
+Django Orders API
+     ↓
+OrderViewSet
+     ↓
+OrderService
+     ↓
+Database</code></pre><blockquote id="3b3da1eb-8b9d-80cc-929c-c32980033c27" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">138- اول Orders Service بسازیم<p id="3b5da1eb-8b9d-80b6-a2d2-f348c2e606da" class="" dir="auto">در Frontend ساختار شما از قبل Service-based است، پس یک فایل جدید ایجاد کن:</p><pre id="3b3da1eb-8b9d-8008-b6e0-fb665518834d" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">frontend/src/features/orders/services/orderService.js</code></pre></blockquote><blockquote id="3b3da1eb-8b9d-8099-89ed-ea8687adc418" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">139- محتوای آن:<pre id="3b3da1eb-8b9d-806d-afa2-cef80f4f6b65" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import apiClient from &quot;../../../services/apiClient&quot;;
+
+const orderService = {
+  getOrders: async () =&gt; {
+    const response = await apiClient.get(&quot;/orders/&quot;);
+    return response.data;
+  },
+
+  getOrderById: async (orderId) =&gt; {
+    const response = await apiClient.get(
+      `/orders/${orderId}/`
+    );
+
+    return response.data;
+  },
+
+  createOrder: async (cartId, shippingAddress) =&gt; {
+    const response = await apiClient.post(
+      &quot;/orders/&quot;,
+      {
+        cart_id: cartId,
+        shipping_address: shippingAddress,
+      }
+    );
+
+    return response.data;
+  },
+
+  payOrder: async (orderId) =&gt; {
+    const response = await apiClient.post(
+      `/orders/${orderId}/pay/`
+    );
+
+    return response.data;
+  },
+};
+
+export default orderService;</code></pre></blockquote><p id="3bbda1eb-8b9d-8002-a904-eef47f23811e" class="" dir="auto">چرا Service جدا؟</p><p id="3bbda1eb-8b9d-80a7-8b82-cf59720ca267" class="" dir="auto">نمی‌خواهیم <code>Orders.jsx</code> مستقیماً بنویسد:</p><pre id="3bbda1eb-8b9d-80a1-b1cb-ed5c6338163c" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">axios.get(...)</code></pre><p id="3bbda1eb-8b9d-80a7-94f0-c78f3d8de112" class="" dir="auto">چون در آن صورت Page تبدیل می‌شود به محل:</p><ul id="3bbda1eb-8b9d-80bd-ba98-cc4a91f98644" class="bulleted-list" dir="auto"><li style="list-style-type:disc">UI</li></ul><ul id="3bbda1eb-8b9d-806d-82dc-d3e82b7dc0e4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">API</li></ul><ul id="3bbda1eb-8b9d-803b-a585-fc440c6ec745" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Authentication</li></ul><ul id="3bbda1eb-8b9d-8061-81ea-e2d10d82d988" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Error handling</li></ul><ul id="3bbda1eb-8b9d-8099-89f3-dcb4a7e93400" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Business logic</li></ul><p id="3bbda1eb-8b9d-805e-a966-ce414dc8a8f4" class="" dir="auto">و با بزرگ شدن پروژه مدیریت آن سخت می‌شود.</p><p id="3bbda1eb-8b9d-80e9-b08f-d6aceb7d7a5a" class="" dir="auto">الگو ، این مدل است:</p><pre id="3bbda1eb-8b9d-807a-828f-dc779d33836e" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">Page
+ ↓
+Service
+ ↓
+apiClient</code></pre><blockquote id="3b3da1eb-8b9d-8057-b7e0-de9de7d36c86" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">140- س<pre id="3b3da1eb-8b9d-8045-b154-e4cbb4b1dfb8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"></code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3b3da1eb-8b9d-804f-8448-e748ff554a0d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="3b3da1eb-8b9d-806a-97c4-dec836ebffbb" class="" dir="auto">پایان Part-18</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
