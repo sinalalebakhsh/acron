@@ -1,0 +1,1480 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-21</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3bdda1eb-8b9d-800f-bf09-c70988106ade" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-21</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="237da1eb-8b9d-824a-9386-011e73b559d7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="e93da1eb-8b9d-8289-bde7-012c336d00bd" class="" dir="auto">در Part-19 ، <strong>فاز 11:   </strong> Frontend - Presentation Layer  تا قدم 213 توسعه داده شد</p></div></aside><h1 id="82fda1eb-8b9d-82e2-ace3-010842fa6b0c" class="" dir="auto">فاز 11<strong>:  </strong> Frontend - Presentation Layer  </h1><p id="261da1eb-8b9d-83ab-9147-8187fbe5eba3" class="" dir="auto">شروع قدم 214</p><hr id="1adda1eb-8b9d-82b5-b0c6-01a591d53d08" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="6d4da1eb-8b9d-83e9-921e-813483746bf8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="c59da1eb-8b9d-83b2-a9c3-01b233c30a17" class="" dir="auto">مرحله ۴ — با کاربر <code>sinaa</code> وارد شو</h3></div></aside><blockquote id="1dfda1eb-8b9d-8339-9095-017c4e3d6023" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">214- اجرا ، Login را انجام بده.<p id="3bdda1eb-8b9d-804c-b6f3-e624aafbd809" class="" dir="auto">بعد بررسی کن:</p><p id="3bdda1eb-8b9d-8027-9ee9-c2c0ca312635" class="" dir="auto"><strong>Products → اضافه کردن محصول به Cart → Cart</strong></p><p id="3bdda1eb-8b9d-80a4-9b0b-e8678cc5b842" class="" dir="auto">باید محصول داخل Cart باشد.</p></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80da-bcff-c934b4103fab" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-807b-a8cf-f001ebb1584c" class="" dir="auto">مرحله ۵ — Checkout</h3></div></aside><blockquote id="912da1eb-8b9d-83f2-adbd-0139e9b3e31e" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">215- در Cart روی:<p id="3bdda1eb-8b9d-8022-a2cf-d745502ac747" class="" dir="auto"><strong>Proceed to Checkout</strong></p><p id="3bdda1eb-8b9d-8061-9658-c8c1475f20c9" class="" dir="auto">کلیک کن.</p><p id="3bdda1eb-8b9d-80bb-9ae2-f552f4b09f03" class="" dir="auto">اینجا سه چیز باید بررسی شود:</p><ol type="1" id="3bdda1eb-8b9d-8072-95ab-c74b7e046fb0" class="numbered-list" start="1" dir="auto"><li>آیا صفحه <code>/checkout</code> باز می‌شود؟</li></ol><ol type="1" id="3bdda1eb-8b9d-80b7-b0a5-d437b9848ec8" class="numbered-list" start="2" dir="auto"><li>آیا Address مربوط به <code>sinaa</code> نمایش داده می‌شود؟</li></ol><ol type="1" id="3bdda1eb-8b9d-8033-84c4-db7a776cb36b" class="numbered-list" start="3" dir="auto"><li>آیا Cart و محصولات داخل Order Summary نمایش داده می‌شوند؟</li></ol></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8053-a0b0-f43bec112bfc" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-801e-b1e7-edfa12185aa3" class="" dir="auto">مرحله ۶ — ایجاد سفارش</h3></div></aside><blockquote id="5feda1eb-8b9d-8306-8695-813cdb540bf1" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">216- یک Address را انتخاب کن و روی:<p id="3bdda1eb-8b9d-8016-b894-d67c82e74fb1" class="" dir="auto"><strong>Place order</strong></p><p id="3bdda1eb-8b9d-8049-86d8-cf0d4e79bf6d" class="" dir="auto">بزن.</p><p id="3bdda1eb-8b9d-80d2-acbf-ca03d5457d4d" class="" dir="auto">اگر همه چیز درست باشد:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3bdda1eb-8b9d-8087-8a3c-c255c61fe946" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/orders/</code></pre><p id="3bdda1eb-8b9d-8019-a660-ccb4d98821ed" class="" dir="auto">باید پاسخ موفق بگیرد و بعد React به:</p><pre id="3bdda1eb-8b9d-809e-b833-d9c70b819264" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/orders</code></pre><p id="3bdda1eb-8b9d-80e1-be0a-dc324c4711bb" class="" dir="auto">منتقل شود.</p></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80e1-934f-cb32f3382fa2" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-8084-9f67-cce1c9095b66" class="" dir="auto">مرحله ۷ — مهم‌ترین تست</h3></div></aside><blockquote id="ed3da1eb-8b9d-82f8-ac88-01043e473515" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">217- بعد از ایجاد سفارش، برو به:<pre id="3bdda1eb-8b9d-80d6-83a9-d89bef69ca4c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/orders</code></pre><p id="3bdda1eb-8b9d-804b-824d-db03ab35241b" class="" dir="auto">باید سفارش جدید را ببینی.</p><p id="3bdda1eb-8b9d-803d-a8a0-ca5d6f1efebe" class="" dir="auto">بعد Cart را بررسی کن.</p><p id="3bdda1eb-8b9d-80ed-97f4-c3b763a4105f" class="" dir="auto">باید Cart قبلی حذف شده باشد؛ چون در Backend خودمان این رفتار را داریم:</p><pre id="3bdda1eb-8b9d-80cc-a814-d4efff3f88cd" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart.delete()</code></pre></blockquote><p id="3bdda1eb-8b9d-80f7-82bc-fb755bdd8e52" class="" dir="auto">یعنی جریان باید این باشد:</p><pre id="3bdda1eb-8b9d-8093-963b-cec965af16c9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart
+  │
+  ▼
+Checkout
+  │
+  ├── Select Address
+  │
+  ▼
+OrderService.place_order()
+  │
+  ├── Customer validation
+  ├── Cart validation
+  ├── Address validation
+  ├── Create Order
+  ├── Create OrderItems
+  └── Delete Cart
+       │
+       ▼
+     Orders</code></pre><h3 id="3bdda1eb-8b9d-8039-8731-c1e16027020a" class="" dir="auto">بعد از موفقیت Checkout چه کار می‌کنیم؟</h3><p id="3bdda1eb-8b9d-803b-8f41-c53628ebd9fe" class="" dir="auto">اگر Checkout بدون خطا کار کرد، توسعه را همین‌جا متوقف نمی‌کنیم. مرحله بعدی منطقی پروژه:</p><p id="3bdda1eb-8b9d-8043-b521-e7b110f3c25e" class="" dir="auto"><strong>Checkout → Order Detail → Payment</strong></p><p id="3bdda1eb-8b9d-80c3-8dee-c6dcee6a2e4c" class="" dir="auto">خواهد بود.</p><p id="3bdda1eb-8b9d-80e1-b0c1-e605de0bdac0" class="" dir="auto">یعنی ابتدا:</p><ol type="1" id="3bdda1eb-8b9d-80aa-baab-eda1b30d1878" class="numbered-list" start="1" dir="auto"><li>تکمیل و تست Checkout</li></ol><ol type="1" id="3bdda1eb-8b9d-8080-89d4-ea875f4df8ba" class="numbered-list" start="2" dir="auto"><li>ساخت صفحه <code>OrderDetail</code></li></ol><ol type="1" id="3bdda1eb-8b9d-8060-a32a-efc8ac6ab0a9" class="numbered-list" start="3" dir="auto"><li>نمایش جزئیات سفارش و Address Snapshot</li></ol><ol type="1" id="3bdda1eb-8b9d-806f-b580-eb269e03b2df" class="numbered-list" start="4" dir="auto"><li>اتصال Order Detail به API</li></ol><ol type="1" id="3bdda1eb-8b9d-80c4-9532-c03e0f0349c8" class="numbered-list" start="5" dir="auto"><li>سپس Payment Domain</li></ol><ol type="1" id="3bdda1eb-8b9d-808d-a038-d92275239518" class="numbered-list" start="6" dir="auto"><li>بعد Authentication hardening</li></ol><ol type="1" id="3bdda1eb-8b9d-80aa-9f08-f814ec0aa48b" class="numbered-list" start="7" dir="auto"><li>بعد برطرف‌کردن مشکل تصاویر محصولات</li></ol><ol type="1" id="3bdda1eb-8b9d-8090-85ba-c00a34cc1a42" class="numbered-list" start="8" dir="auto"><li>سپس بهبود UI</li></ol><p id="3bdda1eb-8b9d-8080-a899-efbfb342a82b" class="" dir="auto">این همان مسیر <strong>Domain-based</strong> پروژه ACRON است و قرار نیست تصادفی بین فایل‌ها جابه‌جا شویم.</p><p id="3bdda1eb-8b9d-800c-a568-fb9666933e18" class="" dir="auto"><strong>پس الان فقط مرحله Checkout را تست کن.</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3bdda1eb-8b9d-8082-9f7e-e35e3e145e29" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">[12/Aug/2026 12:09:57] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:10:00] &quot;OPTIONS /api/carts/cart-items/41/ HTTP/1.1&quot; 200 0
+[12/Aug/2026 12:10:00] &quot;PATCH /api/carts/cart-items/41/ HTTP/1.1&quot; 200 14
+[12/Aug/2026 12:10:01] &quot;GET /api/carts/mine/ HTTP/1.1&quot; 200 508
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+[12/Aug/2026 12:10:01] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:10:01] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:10:04] &quot;OPTIONS /api/customers/addresses/ HTTP/1.1&quot; 200 0
+[12/Aug/2026 12:10:04] &quot;OPTIONS /api/customers/addresses/ HTTP/1.1&quot; 200 0
+C:\Users\sina\.virtualenvs\backend-TBakwqam\Lib\site-packages\rest_framework\pagination.py:198: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: &lt;class &#x27;apps.customers.models.Address&#x27;&gt; QuerySet.
+  paginator = self.django_paginator_class(queryset, page_size)
+[12/Aug/2026 12:10:04] &quot;GET /api/customers/addresses/ HTTP/1.1&quot; 200 1013
+[12/Aug/2026 12:10:04] &quot;GET /api/customers/addresses/ HTTP/1.1&quot; 200 1013
+[12/Aug/2026 12:10:29] &quot;POST /api/orders/ HTTP/1.1&quot; 201 716
+[12/Aug/2026 12:10:29] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+[12/Aug/2026 12:10:29] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:10:37] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:10:37] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:10:55] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+[12/Aug/2026 12:10:55] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:11:01] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:11:01] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:11:02] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+[12/Aug/2026 12:11:02] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+[12/Aug/2026 12:11:05] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:11:05] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:11:45] &quot;GET /api/products/?page=1 HTTP/1.1&quot; 200 2439
+[12/Aug/2026 12:11:45] &quot;GET /api/products/?page=1 HTTP/1.1&quot; 200 2439
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:11:45] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18009
+Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+[12/Aug/2026 12:11:45] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18009
+Bad Request: /api/carts/cart-items/
+[12/Aug/2026 12:11:49] &quot;POST /api/carts/cart-items/ HTTP/1.1&quot; 400 73
+[12/Aug/2026 12:11:49] &quot;OPTIONS /api/carts/ HTTP/1.1&quot; 200 0
+[12/Aug/2026 12:11:50] &quot;POST /api/carts/ HTTP/1.1&quot; 201 72
+[12/Aug/2026 12:11:50] &quot;POST /api/carts/cart-items/ HTTP/1.1&quot; 201 86
+[12/Aug/2026 12:11:50] &quot;GET /api/carts/mine/ HTTP/1.1&quot; 200 72
+[12/Aug/2026 12:11:59] &quot;GET /api/products/?page=1 HTTP/1.1&quot; 200 2439
+[12/Aug/2026 12:11:59] &quot;GET /api/products/?page=1 HTTP/1.1&quot; 200 2439
+Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:11:59] &quot;GET /products/main/2026/07/Samsung-S24_-2.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:11:59] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18009
+[12/Aug/2026 12:12:01] &quot;POST /api/carts/cart-items/ HTTP/1.1&quot; 201 86
+[12/Aug/2026 12:12:01] &quot;GET /api/carts/mine/ HTTP/1.1&quot; 200 297
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:12:05] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:12:21] &quot;OPTIONS /api/carts/cart-items/43/ HTTP/1.1&quot; 200 0
+[12/Aug/2026 12:12:21] &quot;PATCH /api/carts/cart-items/43/ HTTP/1.1&quot; 200 14
+[12/Aug/2026 12:12:21] &quot;GET /api/carts/mine/ HTTP/1.1&quot; 200 297
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:12:21] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:12:33] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+[12/Aug/2026 12:12:33] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5161
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:12:49] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:12:52] &quot;GET /api/customers/addresses/ HTTP/1.1&quot; 200 1013
+[12/Aug/2026 12:12:52] &quot;GET /api/customers/addresses/ HTTP/1.1&quot; 200 1013
+[12/Aug/2026 12:13:25] &quot;POST /api/orders/ HTTP/1.1&quot; 201 624
+[12/Aug/2026 12:13:25] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5296
+[12/Aug/2026 12:13:25] &quot;GET /api/orders/ HTTP/1.1&quot; 200 5296
+Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+[12/Aug/2026 12:13:43] &quot;GET /products/main/2026/07/apple-10-x-jpg.jpg HTTP/1.1&quot; 404 18008
+[12/Aug/2026 12:13:47] &quot;OPTIONS /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/ HTTP/1.1&quot; 200 0
+[12/Aug/2026 12:13:47] &quot;OPTIONS /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/ HTTP/1.1&quot; 200 0
+[12/Aug/2026 12:13:47] &quot;GET /api/me/ HTTP/1.1&quot; 200 96
+Not Found: /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/
+[12/Aug/2026 12:13:47] &quot;GET /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/ HTTP/1.1&quot; 404 45
+[12/Aug/2026 12:13:47] &quot;GET /api/me/ HTTP/1.1&quot; 200 96
+Not Found: /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/
+[12/Aug/2026 12:13:47] &quot;GET /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/ HTTP/1.1&quot; 404 45
+[12/Aug/2026 12:13:47] &quot;GET /api/carts/mine/ HTTP/1.1&quot; 200 72
+[12/Aug/2026 12:13:47] &quot;POST /api/carts/ HTTP/1.1&quot; 201 72</code></pre><p id="3bdda1eb-8b9d-80f3-aace-f3ce9c42ec69" class="" dir="auto"><strong>هسته‌ی اصلی Checkout و Order کاملاً درست کار می‌کند</strong> و الان چند مسئله‌ی جداگانه داریم که باید به‌ترتیب و بدون تغییرات تصادفی بررسی کنیم.</p><h3 id="3bdda1eb-8b9d-8070-b612-d4e42186c62a" class="" dir="auto">1. Checkout و Order موفق هستند ✅</h3><p id="3bdda1eb-8b9d-8058-904c-c95a47008ecf" class="" dir="auto">این بخش بسیار مهم است:</p><pre id="3bdda1eb-8b9d-8029-87ba-ee96eea1250f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/orders/ HTTP/1.1&quot; 201
+GET /api/orders/ HTTP/1.1&quot; 200</code></pre><p id="3bdda1eb-8b9d-8037-8680-c1d82639e151" class="" dir="auto">یعنی:</p><p id="3bdda1eb-8b9d-8059-8abd-d4bdbbdc75b9" class="" dir="auto"><strong>Cart → Checkout → Address → OrderService → Order → Orders</strong></p><p id="3bdda1eb-8b9d-80f6-92d6-ea6444424e9e" class="" dir="auto">با موفقیت کار کرده است.</p><p id="3bdda1eb-8b9d-805c-b1ea-c6b123b79140" class="" dir="auto">حتی پاسخ <code>201</code> برای <code>POST /api/orders/</code> نشان می‌دهد سفارش واقعاً در Backend ساخته شده.</p><hr id="3bdda1eb-8b9d-80a1-9c00-ea6d03c1bfb4" dir="auto"/><h3 id="3bdda1eb-8b9d-8044-ade6-d14b004b3457" class="" dir="auto">2. مشکل تصاویر هنوز باقی است ❌</h3><p id="3bdda1eb-8b9d-806e-9cd1-ffd98e3dca81" class="" dir="auto">چندین بار داریم:</p><pre id="3bdda1eb-8b9d-8069-83b4-f388a58fe3f2" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Not Found: /products/main/2026/07/apple-10-x-jpg.jpg
+404</code></pre><p id="3bdda1eb-8b9d-8069-9fae-d97ff58a2160" class="" dir="auto">و:</p><pre id="3bdda1eb-8b9d-805e-bfcb-fe7159dc2d9f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Not Found: /products/main/2026/07/Samsung-S24_-2.jpg
+404</code></pre><p id="3bdda1eb-8b9d-807f-ac73-d5e7ef398ae4" class="" dir="auto">این همان مشکلی است که قبلاً مشخص کرده بودیم:</p><blockquote id="3bdda1eb-8b9d-8078-850f-fcaa0f646e05" class="" dir="auto">Product images are not being served correctly.</blockquote><p id="3bdda1eb-8b9d-809a-ae0d-c83504a0f9d6" class="" dir="auto">نکته مهم این است که <strong>این مشکل فعلاً مربوط به React نیست</strong>.</p><p id="3bdda1eb-8b9d-8047-9974-cb9cc7c08524" class="" dir="auto">همچنین ، React آدرس تصویر را دریافت کرده و درخواست را ارسال می‌کند، اما Django در آن URL فایل را پیدا نمی‌کند.</p><p id="3bdda1eb-8b9d-8048-a053-fe2793c1ba76" class="" dir="auto">پس فعلاً ProductCard یا Cart را دستکاری نمی‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80dd-937c-f8e86ea87190" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-803c-b842-d08e24bf35c5" class="" dir="auto">الان چه کار کنیم؟</h3></div></aside><p id="3bdda1eb-8b9d-801d-b268-fbeaaa3226a8" class="" dir="auto">الان وضعیت پروژه کاملاً قابل تشخیص است و <strong>نباید تصادفی فایل‌های مختلف را تغییر بدهیم</strong>.</p><p id="3bdda1eb-8b9d-80b3-bc4d-c634a0e2a4b3" class="" dir="auto">خبر خوب این است که بخش‌های اصلی ACRON الان کار می‌کنند:</p><ul id="3bdda1eb-8b9d-80e1-bcee-e0856247dc69" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Login ✅</li></ul><ul id="3bdda1eb-8b9d-8066-91ba-d3fe5eb40c5c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>/api/me/</code> ✅</li></ul><ul id="3bdda1eb-8b9d-8008-be2e-e7c15f4ab619" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Cart API ✅</li></ul><ul id="3bdda1eb-8b9d-8034-9bb1-c64989f6ad5b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">تغییر تعداد Cart Item ✅</li></ul><ul id="3bdda1eb-8b9d-80c8-bfd8-c0b4b61527af" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Address API ✅</li></ul><ul id="3bdda1eb-8b9d-8004-8202-f23dcb17081d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Checkout / ایجاد Order ✅</li></ul><ul id="3bdda1eb-8b9d-805b-a081-f40177569887" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Orders API و صفحه Orders ✅</li></ul><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-807a-9781-f2fdf4ad28b3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80ed-8661-d8b5335647d7" class="" dir="auto">مشکل اصلی Cart: استفاده از <code>cart_id</code> قدیمی</h3></div></aside><p id="3bdda1eb-8b9d-8061-82fb-f677d11f2778" class="" dir="auto">این بخش لاگ خیلی مهم است:</p><pre id="3bdda1eb-8b9d-8014-8ecc-f1942c8aeaed" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/carts/e0adc89f-2c68-4476-b98d-58a7cc290713/ HTTP/1.1&quot; 404</code></pre><p id="3bdda1eb-8b9d-808c-bc99-dc941f3f6fc7" class="" dir="auto">در حالی که بلافاصله بعدش:</p><pre id="3bdda1eb-8b9d-805a-9a0f-da083818da11" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/carts/mine/ HTTP/1.1&quot; 200
+POST /api/carts/ HTTP/1.1&quot; 201
+POST /api/carts/ HTTP/1.1&quot; 201</code></pre><p id="3bdda1eb-8b9d-80cd-8266-d78e8b116b11" class="" dir="auto">یعنی Frontend در یک نقطه هنوز دارد با این شناسه:</p><pre id="3bdda1eb-8b9d-8076-bf31-d4a76c36ffd7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">e0adc89f-2c68-4476-b98d-58a7cc290713</code></pre><p id="3bdda1eb-8b9d-8051-9d09-d9d50989bcfc" class="" dir="auto">به:</p><pre id="3bdda1eb-8b9d-800d-a5d1-f68e79071b71" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/carts/&lt;cart_id&gt;/</code></pre><p id="3bdda1eb-8b9d-8058-9f9a-d780b01f26af" class="" dir="auto">درخواست می‌زند، در حالی که Cart دیگر وجود ندارد.</p><h3 id="3bdda1eb-8b9d-80de-9ad3-edaf5a33bf11" class="" dir="auto">چرا؟</h3><p id="3bdda1eb-8b9d-8078-bf7e-f4906390502f" class="" dir="auto">در <code>CartContext.jsx</code> این منطق را داریم:</p><pre id="3bdda1eb-8b9d-80ca-8d47-f802f80f4357" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">let cartId = localStorage.getItem(&quot;cart_id&quot;);</code></pre><p id="3bdda1eb-8b9d-80b9-b40e-f98af44a9644" class="" dir="auto">و برای کاربر مهمان:</p><pre id="3bdda1eb-8b9d-8092-ac13-cc87357c7629" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const cartData = await cartService.getCart(cartId);</code></pre><p id="3bdda1eb-8b9d-800b-a6a2-f8b0f010ee75" class="" dir="auto">اما وقتی Cart تبدیل به Order می‌شود، در Backend این کار انجام می‌شود:</p><pre id="3bdda1eb-8b9d-8059-bd2b-da833d3d4c6d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart.delete()</code></pre><p id="3bdda1eb-8b9d-8090-96d3-f2a01239f26e" class="" dir="auto">بنابراین:</p><pre id="3bdda1eb-8b9d-80e3-8951-ff6b6f520a93" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart
+ ↓
+Create Order
+ ↓
+Cart deleted</code></pre><p id="3bdda1eb-8b9d-8089-92dc-e2c5ab245825" class="" dir="auto">ولی <code>localStorage</code> هنوز ممکن است این را داشته باشد:</p><pre id="3bdda1eb-8b9d-8003-a7fc-d9fb71a7f6ee" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart_id = e0adc89f-...</code></pre><p id="3bdda1eb-8b9d-80f7-af60-e9bda7487fe6" class="" dir="auto">پس Frontend می‌گوید:</p><blockquote id="3bdda1eb-8b9d-8011-a352-c4c4f7736a2b" class="" dir="auto">من Cart با این ID را می‌خواهم.</blockquote><p id="3bdda1eb-8b9d-8029-9d09-de7a4292c6ad" class="" dir="auto">Django می‌گوید:</p><blockquote id="3bdda1eb-8b9d-8065-be5e-eb17c062bfc4" class="" dir="auto">چنین Cartی وجود ندارد.</blockquote><p id="3bdda1eb-8b9d-80b4-b17c-f2a972b5697a" class="" dir="auto">و نتیجه:</p><pre id="3bdda1eb-8b9d-80bf-be39-eee33143fbde" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">404</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80dd-81e5-c31c37b7a3f1" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-8093-bf4f-c316a583c882" class="" dir="auto">یک مشکل معماری کوچک در <code>CartContext</code></h3></div></aside><p id="3bdda1eb-8b9d-80b7-a1b9-cca16e6c6e6a" class="" dir="auto">الان منطق Cart برای <strong>Guest</strong> و <strong>Authenticated User</strong> با هم مخلوط شده است.</p><p id="3bdda1eb-8b9d-80fd-9718-f27bc0174cdb" class="" dir="auto">این قسمت:</p><pre id="3bdda1eb-8b9d-8003-b852-f89577505de8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">if (isAuthenticated) {
+    const cartData = await cartService.getMyCart();
+
+    setCart(cartData);
+
+    if (cartData?.id) {
+        localStorage.setItem(&quot;cart_id&quot;, cartData.id);
+    }
+
+    return;
+}</code></pre><p id="3bdda1eb-8b9d-8022-9d3a-e10d64394648" class="" dir="auto">درست است.</p><p id="3bdda1eb-8b9d-8095-a33d-cef019f1f76f" class="" dir="auto">اما وقتی کاربر Login می‌کند، بهتر است Cart قدیمی Guest را دیگر به عنوان Cart فعلی نگه نداریم.</p><p id="3bdda1eb-8b9d-80d2-b6ef-e14467b6f28b" class="" dir="auto">یعنی هنگام ورود:</p><pre id="3bdda1eb-8b9d-806e-9c51-ca33c13180ef" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Guest Cart
+    ↓
+Login
+    ↓
+Authenticated Cart</code></pre><p id="3bdda1eb-8b9d-8039-9c91-de8cccfd0322" class="" dir="auto">باید وضعیت Cart کاملاً از Backend کاربر گرفته شود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80de-b6b2-e45f3af0a085" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80f2-bf82-da7582a34ae5" class="" dir="auto">چرا دو بار <code>POST /api/carts/</code> می‌بینیم؟</h3></div></aside><p id="3bdda1eb-8b9d-8080-942f-ce3d3e0793fb" class="" dir="auto">این قسمت:</p><pre id="3bdda1eb-8b9d-80ca-ae15-ec25b3444ce9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/carts/ HTTP/1.1&quot; 201
+POST /api/carts/ HTTP/1.1&quot; 201</code></pre><p id="3bdda1eb-8b9d-8019-bac4-f9e9d8ff10c1" class="" dir="auto">هم مهم است.</p><p id="3bdda1eb-8b9d-80b8-ba2f-fb6ff5ae7ce4" class="" dir="auto">در Development Mode، اگر پروژه React با <code>StrictMode</code> اجرا شود، <code>useEffect</code> ممکن است برای پیدا کردن side-effectهای مشکل‌دار دوبار اجرا شود.</p><p id="3bdda1eb-8b9d-8089-b6b9-f97b60d7c9aa" class="" dir="auto">بنابراین این:</p><pre id="3bdda1eb-8b9d-808a-8fa7-f333409abab8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">useEffect(() =&gt; {
+    fetchOrCreateCart();
+}, [isAuthenticated]);</code></pre><p id="3bdda1eb-8b9d-80a8-b800-f78e132a29a1" class="" dir="auto">می‌تواند در Development باعث اجرای دوباره‌ی منطق شود.</p><p id="3bdda1eb-8b9d-8026-ae42-cd4b6e31fd36" class="" dir="auto">ولی یک نکته مهم‌تر وجود دارد:</p><h3 id="3bdda1eb-8b9d-8045-bbac-d0c146f4aa8e" class="" dir="auto">Backend نباید اجازه دهد <code>POST /api/carts/</code> برای یک کاربر authenticated بی‌جهت Cart جدید بسازد.</h3><p id="3bdda1eb-8b9d-802e-99f0-dde4e2c523bb" class="" dir="auto">این یک مسئله Backend هم هست.</p><p id="3bdda1eb-8b9d-8001-8b4d-efe8a926ee98" class="" dir="auto">در معماری درست، باید تقریباً این رفتار را داشته باشیم:</p><pre id="3bdda1eb-8b9d-809e-9710-ee1e8c695df0" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/carts/mine/
+        ↓
+Cart موجود؟
+   ↙          ↘
+ Yes           No
+ ↓              ↓
+Return       Create
+Cart         Cart</code></pre><p id="3bdda1eb-8b9d-80e7-bd1d-dee6c5ee0bab" class="" dir="auto">نه اینکه Frontend مرتب:</p><pre id="3bdda1eb-8b9d-8048-8843-e5b126e62c92" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/carts/
+POST /api/carts/
+POST /api/carts/</code></pre><p id="3bdda1eb-8b9d-801d-a566-db101cd87a89" class="" dir="auto">انجام دهد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80f2-a1a9-da6b71242857" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-8034-a16f-d89cf79a73f6" class="" dir="auto">اصلاح <code>CartContext.jsx</code></h3></div></aside><p id="3bdda1eb-8b9d-8023-91a0-e5aece7515fc" class="" dir="auto">نسخه فعلی شما این قسمت را دارد:</p><pre id="3bdda1eb-8b9d-80d2-83af-f39dea988858" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">if (isAuthenticated) {
+    const cartData = await cartService.getMyCart();
+
+    setCart(cartData);
+
+    if (cartData?.id) {
+        localStorage.setItem(&quot;cart_id&quot;, cartData.id);
+    }
+
+    return;
+}</code></pre><p id="3bdda1eb-8b9d-80d5-9c44-db48ffc9b5b7" class="" dir="auto">این قسمت را نگه می‌داریم، ولی <strong>قبل از گرفتن Cart کاربر، Cart ID قدیمی Guest را پاک می‌کنیم.</strong></p><p id="3bdda1eb-8b9d-8023-9d13-f66e520e41c4" class="" dir="auto">به این شکل:</p><pre id="3bdda1eb-8b9d-8016-a5cd-c3687ec835b1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">if (isAuthenticated) {
+    localStorage.removeItem(&quot;cart_id&quot;);
+
+    const cartData = await cartService.getMyCart();
+
+    setCart(cartData);
+
+    if (cartData?.id) {
+        localStorage.setItem(&quot;cart_id&quot;, cartData.id);
+    }
+
+    return;
+}</code></pre><h3 id="3bdda1eb-8b9d-807a-87c4-df2ba7d395e8" class="" dir="auto">چرا؟</h3><p id="3bdda1eb-8b9d-80ec-82a9-d54bf5ec9c27" class="" dir="auto">چون بعد از Login دیگر نباید به Cart Guest قبلی وابسته باشیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-808e-b575-eea865e43415" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-8003-a0ad-e35eefdda822" class="" dir="auto">یک اصلاح مهم‌تر</h3></div></aside><p id="3bdda1eb-8b9d-807a-bb94-c5cbef5daedf" class="" dir="auto">وقتی Order ساخته می‌شود، Backend Cart را حذف می‌کند:</p><pre id="3bdda1eb-8b9d-8030-acd1-cbacecfce3ba" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart.delete()</code></pre><p id="3bdda1eb-8b9d-8096-bb62-cfad216b3343" class="" dir="auto">پس بعد از:</p><pre id="3bdda1eb-8b9d-8035-878b-e7243daca352" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const order = await orderService.createOrder(...)</code></pre><p id="3bdda1eb-8b9d-8028-b129-e2c491d9ebbd" class="" dir="auto">باید Cart Context هم بفهمد که Cart قبلی دیگر وجود ندارد.</p><p id="3bdda1eb-8b9d-80a9-bf37-ffe7c807f533" class="" dir="auto">در <code>Checkout.jsx</code> الان احتمالاً این کار را نداریم.</p><p id="3bdda1eb-8b9d-806d-bfe1-ec2de72e9dda" class="" dir="auto">پس بعد از موفقیت Order باید Cart state پاک شود.</p><p id="3bdda1eb-8b9d-80fa-aa1d-da64687ce6b9" class="" dir="auto">ولی قبل از اینکه این را تغییر بدهیم، می‌خواهم معماری را تمیز نگه داریم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8032-ab89-c507108675a8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80c3-a3fc-ca600847e0c8" class="" dir="auto">مشکل تصاویر کاملاً جداست</h3></div></aside><p id="3bdda1eb-8b9d-80a4-8dd9-ec6d8a3ba561" class="" dir="auto">این خط‌ها:</p><pre id="3bdda1eb-8b9d-80ff-8f82-e1474e40f9cf" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Not Found: /products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-801d-aca0-e0023ca11831" class="" dir="auto">هیچ ارتباطی با Login، Cart یا Orders ندارند.</p><p id="3bdda1eb-8b9d-8088-afed-df9d617e5af3" class="" dir="auto">API محصول درست است:</p><pre id="3bdda1eb-8b9d-805c-abcb-d6e5fad9ca14" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/products/?page=1
+200</code></pre><p id="3bdda1eb-8b9d-80e4-a6fc-e504f9353281" class="" dir="auto">ولی Browser برای تصویر می‌رود:</p><pre id="3bdda1eb-8b9d-8026-9234-cc9dc8d50886" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-80da-b333-d4196ffaf8df" class="" dir="auto">و Django:</p><pre id="3bdda1eb-8b9d-80c2-83df-da2efaece59e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">404</code></pre><p id="3bdda1eb-8b9d-80d5-a091-f5063285ab8f" class="" dir="auto">یعنی:</p><blockquote id="3bdda1eb-8b9d-80bd-9362-d745371688de" class="" dir="auto">URL تصویر تولید شده، ولی Django نمی‌تواند فایل Media را از آن URL سرو کند.</blockquote><p id="3bdda1eb-8b9d-809a-a817-e5a5a0abb9ea" class="" dir="auto">این همان یکی از مشکلاتی است که قبلاً هم داشتیم و قرار بود <strong>بعد از تکمیل جریان Cart → Orders → Checkout → Authentication</strong> اصولی اصلاحش کنیم.</p><p id="3bdda1eb-8b9d-8097-8176-c47b0f820b84" class="" dir="auto">الان دقیقاً به همان نقطه رسیده‌ایم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-800a-a175-ed76b1d7d031" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80c9-86f4-e8135cffa01b" class="" dir="auto">الان چه کار کنیم؟</h3></div></aside><p id="3bdda1eb-8b9d-80a2-8b0a-f2a31b8f7171" class="" dir="auto">من پیشنهاد می‌کنم <strong>فعلاً هیچ چیز دیگری را تغییر ندهیم</strong>.</p><p id="3bdda1eb-8b9d-80d9-ac6a-c9a6a7c7aaac" class="" dir="auto">ترتیب ادامه توسعه ACRON این باشد:</p><pre id="3bdda1eb-8b9d-8099-a3f1-c0c264b44cce" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">                    ACRON
+                      │
+                      ▼
+             Authentication ✅
+                      │
+                      ▼
+                Product ✅
+                      │
+                      ▼
+                  Cart ✅
+                      │
+                      ▼
+                 Checkout ✅
+                      │
+                      ▼
+                 Orders ✅
+                      │
+                      ▼
+             Cart State Fix  ← الان اینجاییم
+                      │
+                      ▼
+             Product Images
+                      │
+                      ▼
+          Pagination / API Cleanup
+                      │
+                      ▼
+          Authentication Hardening
+                      │
+                      ▼
+              Payment Domain</code></pre><hr id="3bdda1eb-8b9d-803d-9a7a-cc828fb5e5fa" dir="auto"/><p id="3bdda1eb-8b9d-801a-b244-e26db9181fc5" class="" dir="auto">پیشنهاد می‌کنم <strong>اول Cart state را اصولی اصلاح کنیم</strong>؛ نه اینکه صرفاً خطای 404 را مخفی کنیم.</p><p id="3bdda1eb-8b9d-80fb-bd1d-ebce374294e9" class="" dir="auto">برای این مرحله فقط یک فایل را تغییر می‌دهیم:</p><pre id="3bdda1eb-8b9d-8040-907b-cbfdd4acf966" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/context/CartContext.jsx</code></pre><p id="3bdda1eb-8b9d-805d-bfd6-d387e2fc3fb0" class="" dir="auto">و منطق آن را به این شکل تمیز می‌کنیم:</p><h3 id="3bdda1eb-8b9d-80e2-a289-f8843ca9b15e" class="" dir="auto">Guest</h3><pre id="3bdda1eb-8b9d-80dc-9064-e50a0554c43c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">localStorage cart_id
+        ↓
+Cart موجود؟
+   ↓ No
+Create Cart</code></pre><h3 id="3bdda1eb-8b9d-8055-9d1e-e3450dcb2eaa" class="" dir="auto">Authenticated</h3><pre id="3bdda1eb-8b9d-808c-a942-da67e30576b3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/carts/mine/
+        ↓
+Cart کاربر
+        ↓
+ذخیره ID فعلی</code></pre><h3 id="3bdda1eb-8b9d-808f-8596-d28a260f65a1" class="" dir="auto">بعد از Checkout</h3><pre id="3bdda1eb-8b9d-806d-819d-d19a63c4b9df" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/orders/
+        ↓
+Order created
+        ↓
+Cart deleted by Backend
+        ↓
+Frontend Cart state cleared
+        ↓
+New Cart when needed</code></pre><p id="3bdda1eb-8b9d-804c-b445-c905941ec8cf" class="" dir="auto">این روش از اینکه هر بار با <code>404</code> به Cart قدیمی برخورد کنیم جلوگیری می‌کند.</p><p id="3bdda1eb-8b9d-80a9-93b5-cffee93dd570" class="" dir="auto">هدف این اصلاح:</p><ol type="1" id="3bdda1eb-8b9d-8061-bb70-c9acf9816f77" class="numbered-list" start="1" dir="auto"><li>بعد از Login، <code>cart_id</code> قدیمی Guest باقی نماند.</li></ol><ol type="1" id="3bdda1eb-8b9d-80fd-a295-e23a1df1acc3" class="numbered-list" start="2" dir="auto"><li>بعد از Checkout، Cart حذف‌شده باعث 404 نشود.</li></ol><ol type="1" id="3bdda1eb-8b9d-8011-b1db-d8ab761d2050" class="numbered-list" start="3" dir="auto"><li>Cart کاربر authenticated همیشه از <code>/api/carts/mine/</code> گرفته شود.</li></ol><ol type="1" id="3bdda1eb-8b9d-80a4-b386-f23a8136b800" class="numbered-list" start="4" dir="auto"><li>منطق فعلی <code>addToCart</code>, <code>updateQuantity</code>, <code>removeFromCart</code> حفظ شود.</li></ol><ol type="1" id="3bdda1eb-8b9d-8053-88cb-dca4ad981642" class="numbered-list" start="5" dir="auto"><li>ساختار Domain-based پروژه را به‌هم نزنیم.</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8015-bccb-e794e822850b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80b2-9452-c370646a4322" class="" dir="auto">فایل را جایگزین کن</h3></div></aside><blockquote id="a71da1eb-8b9d-83e3-b593-81701c65201b" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">218- فایل:<pre id="3bdda1eb-8b9d-8075-a37e-f75de7b24340" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/context/CartContext.jsx</code></pre><p id="3bdda1eb-8b9d-8053-bcb9-ea1cb3469c69" class="" dir="auto">کل محتوای فعلی را با این نسخه جایگزین کن:</p><pre id="4f5da1eb-8b9d-83b3-b982-815a6eb7a557" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from &quot;react&quot;;
+
+import { useAuth } from &quot;./AuthContext&quot;;
+import cartService from &quot;../services/cartService&quot;;
+
+const CartContext = createContext(null);
+
+export const CartProvider = ({ children }) =&gt; {
+  const { isAuthenticated } = useAuth();
+
+  const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // --------------------------------------------------
+  // دریافت یا ایجاد Cart
+  // --------------------------------------------------
+
+  const fetchOrCreateCart = async () =&gt; {
+    setLoading(true);
+
+    try {
+      // ==================================================
+      // کاربر authenticated
+      // ==================================================
+
+      if (isAuthenticated) {
+        // Cart مربوط به Guest دیگر نباید استفاده شود.
+        localStorage.removeItem(&quot;cart_id&quot;);
+
+        const cartData = await cartService.getMyCart();
+
+        setCart(cartData);
+
+        if (cartData?.id) {
+          localStorage.setItem(
+            &quot;cart_id&quot;,
+            cartData.id
+          );
+        }
+
+        return;
+      }
+
+      // ==================================================
+      // کاربر Guest
+      // ==================================================
+
+      let cartId =
+        localStorage.getItem(&quot;cart_id&quot;);
+
+      // اگر Guest هنوز Cart ندارد
+      if (!cartId) {
+        const newCart =
+          await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          &quot;cart_id&quot;,
+          cartId
+        );
+
+        setCart(newCart);
+
+        return;
+      }
+
+      // ==================================================
+      // تلاش برای دریافت Cart موجود
+      // ==================================================
+
+      try {
+        const cartData =
+          await cartService.getCart(cartId);
+
+        setCart(cartData);
+      } catch (error) {
+        // Cart قبلی دیگر وجود ندارد
+        if (error.response?.status === 404) {
+          localStorage.removeItem(&quot;cart_id&quot;);
+
+          const newCart =
+            await cartService.createCart();
+
+          localStorage.setItem(
+            &quot;cart_id&quot;,
+            newCart.id
+          );
+
+          setCart(newCart);
+        } else {
+          throw error;
+        }
+      }
+    } catch (error) {
+      console.error(
+        &quot;Failed to fetch cart:&quot;,
+        error.response?.data || error
+      );
+
+      setCart(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // --------------------------------------------------
+  // اجرای Cart loading هنگام تغییر وضعیت Authentication
+  // --------------------------------------------------
+
+  useEffect(() =&gt; {
+    fetchOrCreateCart();
+  }, [isAuthenticated]);
+
+  // --------------------------------------------------
+  // افزودن محصول به Cart
+  // --------------------------------------------------
+
+  const addToCart = async (productId) =&gt; {
+    try {
+      let cartId =
+        cart?.id ||
+        localStorage.getItem(&quot;cart_id&quot;);
+
+      // اگر Cart نداریم، یک Cart ایجاد می‌کنیم
+      if (!cartId) {
+        const newCart =
+          await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          &quot;cart_id&quot;,
+          cartId
+        );
+      }
+
+      try {
+        await cartService.addItem(
+          cartId,
+          productId,
+          1
+        );
+      } catch (error) {
+        /*
+         * ممکن است cart_id موجود در localStorage
+         * دیگر در Backend وجود نداشته باشد.
+         */
+
+        const invalidCart =
+          error.response?.status === 400 &amp;&amp;
+          error.response?.data?.cart_id;
+
+        if (!invalidCart) {
+          throw error;
+        }
+
+        // Cart قدیمی را حذف می‌کنیم
+        localStorage.removeItem(&quot;cart_id&quot;);
+
+        // Cart جدید ایجاد می‌کنیم
+        const newCart =
+          await cartService.createCart();
+
+        cartId = newCart.id;
+
+        localStorage.setItem(
+          &quot;cart_id&quot;,
+          cartId
+        );
+
+        // دوباره محصول را اضافه می‌کنیم
+        await cartService.addItem(
+          cartId,
+          productId,
+          1
+        );
+      }
+
+      // دریافت وضعیت جدید Cart
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(
+        &quot;Failed to add item to cart:&quot;,
+        error.response?.data || error
+      );
+
+      throw error;
+    }
+  };
+
+  // --------------------------------------------------
+  // تغییر تعداد محصول
+  // --------------------------------------------------
+
+  const updateQuantity = async (
+    itemId,
+    newQuantity
+  ) =&gt; {
+    if (newQuantity &lt; 1) {
+      return;
+    }
+
+    try {
+      await cartService.updateItem(
+        itemId,
+        newQuantity
+      );
+
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(
+        &quot;Failed to update cart item:&quot;,
+        error.response?.data || error
+      );
+
+      throw error;
+    }
+  };
+
+  // --------------------------------------------------
+  // حذف محصول از Cart
+  // --------------------------------------------------
+
+  const removeFromCart = async (itemId) =&gt; {
+    try {
+      await cartService.removeItem(itemId);
+
+      await fetchOrCreateCart();
+    } catch (error) {
+      console.error(
+        &quot;Failed to remove cart item:&quot;,
+        error.response?.data || error
+      );
+
+      throw error;
+    }
+  };
+
+  // --------------------------------------------------
+  // پاک کردن وضعیت Cart در Frontend
+  // --------------------------------------------------
+
+  const clearCartState = () =&gt; {
+    setCart(null);
+    localStorage.removeItem(&quot;cart_id&quot;);
+  };
+
+  // --------------------------------------------------
+  // تعداد کل محصولات Cart
+  // --------------------------------------------------
+
+  const totalItemsCount =
+    cart?.items?.reduce(
+      (total, item) =&gt;
+        total + item.quantity,
+      0
+    ) || 0;
+
+  // --------------------------------------------------
+  // Context
+  // --------------------------------------------------
+
+  return (
+    &lt;CartContext.Provider
+      value={{
+        cart,
+        loading,
+        totalItemsCount,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        clearCartState,
+        refreshCart: fetchOrCreateCart,
+      }}
+    &gt;
+      {children}
+    &lt;/CartContext.Provider&gt;
+  );
+};
+
+export const useCart = () =&gt;
+  useContext(CartContext);</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80cb-8c07-ca3aac0cde18" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80fe-8669-c8fd2b87de55" class="" dir="auto">چرا این نسخه بهتر است؟</h3></div></aside><p id="3bdda1eb-8b9d-80de-88b8-d0a579ca831e" class="" dir="auto">تغییر اصلی این قسمت است:</p><pre id="3bdda1eb-8b9d-80d7-a891-ec8463a7ee52" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">if (isAuthenticated) {
+  localStorage.removeItem(&quot;cart_id&quot;);
+
+  const cartData =
+    await cartService.getMyCart();</code></pre><p id="3bdda1eb-8b9d-8089-9985-c7de9a9bd68f" class="" dir="auto">یعنی وقتی کاربر Login شده است، دیگر نمی‌گوییم:</p><blockquote id="3bdda1eb-8b9d-808d-83ed-f6cc910c6664" class="" dir="auto">Cart قبلی داخل <code>localStorage</code> را استفاده کن.</blockquote><p id="3bdda1eb-8b9d-80ed-b800-c2cf5235a0c6" class="" dir="auto">بلکه می‌گوییم:</p><blockquote id="3bdda1eb-8b9d-807d-a4ab-cbebf26698fa" class="" dir="auto">Backend، Cart واقعی این کاربر را به من بده.</blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80ba-b142-d965cb214c80" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-807d-8921-ea7719b4b13b" class="" dir="auto">حالا سرورها را اجرا کن</h3></div></aside><p id="3bdda1eb-8b9d-8017-a9f1-c912f1c9284a" class="" dir="auto">Django:</p><pre id="3bdda1eb-8b9d-80a3-b46d-e1a81294f9ab" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><p id="3bdda1eb-8b9d-80e9-8fd6-fef3e69a18d9" class="" dir="auto">و Frontend:</p><pre id="3bdda1eb-8b9d-80d5-a14c-f7cf03503ff9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">npm run dev</code></pre><p id="3bdda1eb-8b9d-80ce-b564-d4131ed75829" class="" dir="auto">اگر هر دو از قبل اجرا هستند، <strong>لازم نیست خاموش و روشنشان کنی</strong>؛ Vite فایل را Hot Reload می‌کند.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80fb-afc0-ee62c2752881" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80af-8693-fa3dddb197e7" class="" dir="auto">تستی که می‌خواهم انجام بدهی</h3></div></aside><p id="3bdda1eb-8b9d-80fe-87ab-d6ac4ea7f490" class="" dir="auto">قبل از تست، در Browser:</p><p id="3bdda1eb-8b9d-80ea-ab24-ea7f6e8ef1f9" class="" dir="auto"><strong>F12 → Application → Local Storage →</strong></p><p id="3bdda1eb-8b9d-801d-8a08-f284719944ae" class="" dir="auto">برای:</p><pre id="3bdda1eb-8b9d-80be-bdf6-c52ee4489c8d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://localhost:5173</code></pre><p id="3bdda1eb-8b9d-806a-868d-dc3b709f64f4" class="" dir="auto">اگر این مقدار را دیدی:</p><pre id="3bdda1eb-8b9d-80ac-925d-f419a45c4337" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart_id</code></pre><p id="3bdda1eb-8b9d-80f2-81f5-c745240a931f" class="" dir="auto">فعلاً حذفش کن.</p><p id="3bdda1eb-8b9d-80b2-90c8-da3f1cb75916" class="" dir="auto">بعد صفحه را Refresh کن.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8066-9a67-ea6f6102f146" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-806c-8080-c1a3476333f9" class="" dir="auto">تست اول — Cart</h3></div></aside><blockquote id="0abda1eb-8b9d-82eb-ab05-0143538e5df5" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">219- برو:<pre id="3bdda1eb-8b9d-80e1-a4dd-c15d8ccdd76f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products</code></pre><p id="3bdda1eb-8b9d-80fe-a0b8-ef6d2e103568" class="" dir="auto">یک محصول را Add to Cart کن.</p><p id="3bdda1eb-8b9d-8008-8d9a-fafd9ee9ad17" class="" dir="auto">بعد:</p><pre id="3bdda1eb-8b9d-804d-af33-cd2682fabdf2" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/cart</code></pre><p id="3bdda1eb-8b9d-8008-b18b-cf898cbd6528" class="" dir="auto">باید محصول را ببینی.</p><p id="3bdda1eb-8b9d-8037-b753-fcfced98d631" class="" dir="auto">تعداد را با <code>+</code> و <code>−</code> تغییر بده.</p><p id="3bdda1eb-8b9d-8098-aa73-e9f0c1a1c2c7" class="" dir="auto">باید درخواست‌هایی شبیه این ببینیم:</p><pre id="3bdda1eb-8b9d-80b6-8a51-e4df22ba78c6" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">PATCH /api/carts/cart-items/&lt;id&gt;/
+200</code></pre></blockquote><hr id="3bdda1eb-8b9d-80d4-99c0-e5cabd162166" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8030-a9ed-c6fdd62d12d6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80e6-8baf-e7757b79fcfb" class="" dir="auto">تست دوم — Checkout</h3></div></aside><blockquote id="8cbda1eb-8b9d-8361-9544-01c53422fd7a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">220- از Cart برو:<pre id="3bdda1eb-8b9d-8061-b8b5-e5f995b9743f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/checkout</code></pre><p id="3bdda1eb-8b9d-80af-bae2-f2f92bf9c92d" class="" dir="auto">آدرس را انتخاب کن.</p><p id="3bdda1eb-8b9d-801b-8477-ca759bf2544a" class="" dir="auto">روی:</p><pre id="3bdda1eb-8b9d-8093-b1fa-c011a6a1d511" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Place order</code></pre><p id="3bdda1eb-8b9d-808f-aea9-e6ec40fbb65f" class="" dir="auto">بزن.</p><p id="3bdda1eb-8b9d-8005-9a29-f97df62a9f4e" class="" dir="auto">باید:</p><pre id="3bdda1eb-8b9d-80a1-9f6c-f954d5322012" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/orders/
+201</code></pre><p id="3bdda1eb-8b9d-80c8-8aa5-e2bf1d8a6e98" class="" dir="auto">و سپس:</p><pre id="3bdda1eb-8b9d-80e7-bab0-db5bbefb0619" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/orders/
+200</code></pre><p id="3bdda1eb-8b9d-800f-bd4c-ea31acc2c7c2" class="" dir="auto">ببینیم.</p></blockquote><hr id="3bdda1eb-8b9d-80c4-82c2-c51524f52199" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8051-81bf-ca7b7a9c8b4e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80b7-88c2-c5a66867bcd5" class="" dir="auto">تست سوم — Cart بعد از Order</h3></div></aside><blockquote id="32dda1eb-8b9d-8215-8c33-8158d9db5c5f" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">221- بعد از ایجاد سفارش، دوباره برو:<pre id="3bdda1eb-8b9d-8041-9e10-ed50fa5b29de" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/cart</code></pre><p id="3bdda1eb-8b9d-8007-866d-de5f71b33044" class="" dir="auto">اینجا نکته مهم است.</p><p id="3bdda1eb-8b9d-8044-aaef-f3505a75c070" class="" dir="auto">چون Backend در <code>OrderService</code> این کار را انجام می‌دهد:</p><pre id="3bdda1eb-8b9d-809b-a615-d7b710d86b24" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cart.delete()</code></pre><p id="3bdda1eb-8b9d-80c6-acb2-f03ff54c4bd3" class="" dir="auto">Cart قبلی دیگر وجود ندارد.</p><p id="3bdda1eb-8b9d-80c2-8554-d219645e7e4a" class="" dir="auto">نباید دوباره درخواست problematic زیر را ببینیم:</p><pre id="3bdda1eb-8b9d-8020-b2f5-db2017caca4e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/carts/e0adc89f-.../
+404</code></pre><p id="3bdda1eb-8b9d-803a-bc55-d349d87dbea2" class="" dir="auto">و Frontend باید بتواند Cart جدید/وضعیت جدید را مدیریت کند.</p></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80c5-8e8f-c2d9982b1d4b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-804d-9259-e1415e35c1a9" class="" dir="auto">یک نکته مهم درباره Checkout</h3></div></aside><p id="3bdda1eb-8b9d-80c5-8513-cda89acc9db6" class="" dir="auto">در مرحله بعد، باید <code>Checkout.jsx</code> را هم با <code>CartContext</code> هماهنگ کنیم.</p><p id="3bdda1eb-8b9d-802e-b245-e16146bffc0a" class="" dir="auto">الان Checkout خودش Cart را با:</p><pre id="3bdda1eb-8b9d-8017-b9a2-d4bfd0d7d78a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">cartService.getCart()</code></pre><p id="3bdda1eb-8b9d-8064-b73e-daec6de50d54" class="" dir="auto">می‌گیرد.</p><p id="3bdda1eb-8b9d-80ee-b012-da1872e298ae" class="" dir="auto">در حالی که ما یک <code>CartContext</code> داریم که وظیفه‌اش مدیریت Cart است.</p><p id="3bdda1eb-8b9d-8021-8eb3-e8f17fc366b0" class="" dir="auto">بنابراین معماری نهایی بهتر است:</p><pre id="3bdda1eb-8b9d-80f8-b7cc-cc99b26a3b45" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">                  CartContext
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+       Cart.jsx              Checkout.jsx
+          │                       │
+          └───────────┬───────────┘
+                      │
+                cartService
+                      │
+                Django API</code></pre><p id="3bdda1eb-8b9d-80a1-9c54-dd2166c634fb" class="" dir="auto">نه اینکه:</p><pre id="3bdda1eb-8b9d-8022-9e95-e670d38b383c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Cart.jsx ──────────┐
+                   │
+Checkout.jsx ──────┼──&gt; cartService
+                   │
+CartContext ───────┘</code></pre><p id="3bdda1eb-8b9d-804c-a3b3-c66e14dcf110" class="" dir="auto">این یکی از کارهایی است که در مرحله بعد انجام می‌دهیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-804c-8693-f6e83fa47490" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80f3-b828-ea1d8f29f830" class="" dir="auto">اما فعلاً سراغ Checkout نرو</h3></div></aside><p id="3bdda1eb-8b9d-8037-9dc0-c61105c68587" class="" dir="auto">فعلاً فقط:</p><p id="3bdda1eb-8b9d-8034-b075-e0475d083c09" class="" dir="auto"><code><strong>CartContext.jsx</strong></code><strong> را جایگزین کن و تست بالا را انجام بده.</strong></p><pre id="3bdda1eb-8b9d-8097-8b93-e7f519c83b99" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">$ python manage.py runserver
+
+Watching for file changes with StatReloader
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+August 13, 2026 - 00:39:38
+
+Django version 6.0.7, using settings &#x27;config.settings&#x27;
+
+Starting development server at http://127.0.0.1:8000/
+
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+
+[13/Aug/2026 00:39:56] &quot;OPTIONS /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/ HTTP/1.1&quot; 200 0
+
+[13/Aug/2026 00:39:56] &quot;OPTIONS /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/ HTTP/1.1&quot; 200 0
+
+[13/Aug/2026 00:39:56] &quot;OPTIONS /api/me/ HTTP/1.1&quot; 200 0
+
+[13/Aug/2026 00:39:56] &quot;OPTIONS /api/me/ HTTP/1.1&quot; 200 0
+
+Unauthorized: /api/me/
+
+[13/Aug/2026 00:39:56] &quot;GET /api/me/ HTTP/1.1&quot; 401 172
+
+Unauthorized: /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/
+
+[13/Aug/2026 00:39:56] &quot;GET /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/ HTTP/1.1&quot; 401 172
+
+[13/Aug/2026 00:39:56] &quot;OPTIONS /api/token/refresh/ HTTP/1.1&quot; 200 0
+
+Unauthorized: /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/
+
+[13/Aug/2026 00:39:56] &quot;GET /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/ HTTP/1.1&quot; 401 172
+
+Unauthorized: /api/me/
+
+[13/Aug/2026 00:39:57] &quot;OPTIONS /api/token/refresh/ HTTP/1.1&quot; 200 0
+
+[13/Aug/2026 00:39:57] &quot;GET /api/me/ HTTP/1.1&quot; 401 172
+
+[13/Aug/2026 00:39:58] &quot;POST /api/token/refresh/ HTTP/1.1&quot; 200 244
+
+[13/Aug/2026 00:39:58] &quot;POST /api/token/refresh/ HTTP/1.1&quot; 200 244
+
+[13/Aug/2026 00:39:58] &quot;POST /api/token/refresh/ HTTP/1.1&quot; 200 244
+
+[13/Aug/2026 00:39:58] &quot;POST /api/token/refresh/ HTTP/1.1&quot; 200 244
+
+[13/Aug/2026 00:39:58] &quot;GET /api/me/ HTTP/1.1&quot; 200 96
+
+[13/Aug/2026 00:39:58] &quot;GET /api/me/ HTTP/1.1&quot; 200 96
+
+[13/Aug/2026 00:39:58] &quot;OPTIONS /api/carts/mine/ HTTP/1.1&quot; 200 0
+
+[13/Aug/2026 00:39:58] &quot;GET /api/carts/657e794a-6cfc-455f-b66c-36c3392cbd95/ HTTP/1.1&quot; 200 72
+
+[13/Aug/2026 00:39:58] &quot;GET /api/carts/657e794a-6cfc-455f-</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80c9-91b1-f88a3a146404" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-8033-8537-ea6f9a02de72" class="" dir="auto">وضعیت فعلی</h3></div></aside><p id="3bdda1eb-8b9d-801a-b4b7-c2c36491b293" class="" dir="auto">از لاگ مشخص است:</p><ul id="3bdda1eb-8b9d-80e5-9877-fd54c42859fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>POST /api/token/</code> → <code>200</code> ✅</li></ul><ul id="3bdda1eb-8b9d-8017-8731-c2487e6d9648" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>GET /api/me/</code> → بعد از refresh → <code>200</code> ✅</li></ul><ul id="3bdda1eb-8b9d-8006-9a8b-e685390230bc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>GET /api/carts/mine/</code> → <code>200</code> ✅</li></ul><ul id="3bdda1eb-8b9d-8094-ab23-c0737e403f2e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>GET /api/products/</code> → <code>200</code> ✅</li></ul><ul id="3bdda1eb-8b9d-80ff-8273-fbbc32218a53" class="bulleted-list" dir="auto"><li style="list-style-type:disc">افزودن به Cart → <code>201</code> ✅</li></ul><ul id="3bdda1eb-8b9d-80fd-8b6a-fd2b1157b28e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">تغییر تعداد → قبلاً <code>200</code> و الان هم مسیر Cart درست است ✅</li></ul><ul id="3bdda1eb-8b9d-8099-9f4b-c419b5cb342c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دریافت Address → <code>200</code> ✅</li></ul><ul id="3bdda1eb-8b9d-80cd-a8a8-cbb1acc7956f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ایجاد Order → <code>201</code> ✅</li></ul><ul id="3bdda1eb-8b9d-804c-b3c4-fb5a131b4feb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">دریافت Orders → <code>200</code> ✅</li></ul><p id="3bdda1eb-8b9d-8095-9d62-df19a537f3b9" class="" dir="auto">پس این بخش‌ها را <strong>فعلاً دست نمی‌زنیم</strong>.</p><blockquote id="3bdda1eb-8b9d-808e-864b-fce77b4de928" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">222- در:<pre id="3bdda1eb-8b9d-8085-897c-db69ffe10870" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/config/settings/base.py</code></pre><p id="3bdda1eb-8b9d-80e6-947c-f403c05941cc" class="" dir="auto">کنار تنظیمات Static این قسمت را اضافه کن.</p><p id="3bdda1eb-8b9d-8000-9ee3-f6590427bded" class="" dir="auto">الان داری:</p><pre id="3bdda1eb-8b9d-8081-9d0d-ca84cc43b1f2" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">STATIC_URL = &#x27;static/&#x27;</code></pre><p id="3bdda1eb-8b9d-8071-8eee-d09c74c093a9" class="" dir="auto">آن را به این تبدیل کن:</p><pre id="3bdda1eb-8b9d-8086-a8d6-f502304c8712" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">STATIC_URL = &quot;static/&quot;
+
+MEDIA_URL = &quot;media/&quot;
+MEDIA_ROOT = BASE_DIR / &quot;media&quot;</code></pre><p id="3bdda1eb-8b9d-80f5-a361-f78d8e3b894c" class="" dir="auto">یعنی:</p><pre id="3bdda1eb-8b9d-80dd-ae7d-e2f6ccfbb9b8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all"># Static files
+STATIC_URL = &quot;static/&quot;
+
+# Media files
+MEDIA_URL = &quot;media/&quot;
+MEDIA_ROOT = BASE_DIR / &quot;media&quot;</code></pre><pre id="3bdda1eb-8b9d-807a-865e-d0e372eeacc1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"></code></pre></blockquote><h3 id="3bdda1eb-8b9d-8020-9ae4-e1e4b347f86c" class="" dir="auto">چرا؟</h3><p id="3bdda1eb-8b9d-808f-9732-f8809f2af6cc" class="" dir="auto"><code>MEDIA_ROOT</code> می‌گوید:</p><blockquote id="3bdda1eb-8b9d-8066-b0ce-d0a887938ffe" class="" dir="auto">فایل‌های آپلودشده را روی دیسک کجا ذخیره کن.</blockquote><p id="3bdda1eb-8b9d-806c-8ce6-dc9e501ef6b0" class="" dir="auto">و:</p><p id="3bdda1eb-8b9d-805b-9c96-c8830104fe11" class="" dir="auto"><code>MEDIA_URL</code> می‌گوید:</p><blockquote id="3bdda1eb-8b9d-8004-910f-e53c5bcf80f9" class="" dir="auto">مرورگر با چه URLای به این فایل‌ها دسترسی داشته باشد.</blockquote><blockquote id="3bdda1eb-8b9d-8093-b5d8-cf74c6706567" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">223- در <code>config/urls.py</code><p id="3bdda1eb-8b9d-80fc-883b-e62b677d1b49" class="" dir="auto">بالای فایل، این import را اضافه کن:</p><pre id="3bdda1eb-8b9d-80f4-9f16-c2f67a703f3b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">from django.conf.urls.static import static</code></pre><p id="3bdda1eb-8b9d-8011-b452-e9afa6e82aee" class="" dir="auto">سپس <strong>بعد از تعریف اصلی </strong><code><strong>urlpatterns</strong></code>، این را اضافه کن:</p><pre id="3bdda1eb-8b9d-8089-91ab-de4616a7e7a1" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    )</code></pre></blockquote><h3 id="3bdda1eb-8b9d-805f-994b-f9d742a8b0c9" class="" dir="auto">بنابراین انتهای <code>urls.py</code> باید تقریباً این شکلی شود</h3><p id="3bdda1eb-8b9d-80fe-9e5d-f3cc38a8b4bd" class="" dir="auto">بخش فعلی تو:</p><pre id="3bdda1eb-8b9d-80d2-84e2-e7fd082d4686" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">if not settings.TESTING:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+
+    urlpatterns = [
+        *urlpatterns,
+    ] + debug_toolbar_urls()</code></pre><p id="3bdda1eb-8b9d-80f9-8154-e3e52849ab98" class="" dir="auto">را نگه دار.</p><p id="3bdda1eb-8b9d-808e-8cc8-fe0e1e43f496" class="" dir="auto">و <strong>بعد از آن</strong>:</p><pre id="3bdda1eb-8b9d-80d9-9076-f7aeb1d5ace8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    )</code></pre><p id="3bdda1eb-8b9d-80c5-b7a3-ff6b955fa585" class="" dir="auto">پس انتهای فایل:</p><pre id="3bdda1eb-8b9d-80e4-b487-cbaec0132e53" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">if not settings.TESTING:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+
+    urlpatterns = [
+        *urlpatterns,
+    ] + debug_toolbar_urls()
+
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    )</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-805f-b646-d9d946f7fc40" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80dd-86e9-f27c2ec5eb85" class="" dir="auto">یک نکته بسیار مهم</h3></div></aside><p id="3bdda1eb-8b9d-80a2-ac40-cd25cd83c72e" class="" dir="auto">بعد از این تغییر، Django باید فایل‌ها را واقعاً در:</p><pre id="3bdda1eb-8b9d-80fe-98b5-eb0e96863817" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/media/</code></pre><p id="3bdda1eb-8b9d-8099-abd2-fdaa05b62f72" class="" dir="auto">داشته باشد.</p><p id="3bdda1eb-8b9d-80fe-a87d-e30f5a33fce7" class="" dir="auto">یعنی بررسی کن آیا این مسیر وجود دارد:</p><pre id="3bdda1eb-8b9d-8023-88b9-df24def9718a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+├── apps/
+├── config/
+├── manage.py
+├── media/
+│   └── products/
+│       └── main/
+│           └── 2026/
+│               └── 07/
+│                   ...</code></pre><h3 id="3bdda1eb-8b9d-803a-acdb-c8850840dbc1" class="" dir="auto">اگر <code>media/products/main/2026/07/</code> وجود ندارد</h3><p id="3bdda1eb-8b9d-80f2-870d-c6d06bf57cb1" class="" dir="auto">یعنی فایل‌هایی که در دیتابیس ثبت شده‌اند، احتمالاً روی Disk وجود ندارند.</p><p id="3bdda1eb-8b9d-80f4-bc99-d26e0bb710e6" class="" dir="auto">در این حالت فقط تنظیم URL مشکل نیست؛ <strong>خود فایل‌ها هم ممکن است گم شده باشند.</strong></p><blockquote id="3bdda1eb-8b9d-8080-a346-d2cd9c0b1476" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">224- سرور را Restart کن<p id="3bdda1eb-8b9d-80e6-a611-e97cb9b25017" class="" dir="auto">بعد از تغییرات:</p><pre id="3bdda1eb-8b9d-8032-aadd-ca84747ae5ec" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">CTRL + C</code></pre><p id="3bdda1eb-8b9d-80ff-a5d1-c0a77af31f80" class="" dir="auto">و دوباره:</p><pre id="3bdda1eb-8b9d-80f2-a3d4-ec3a25fb22d9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-8086-8e86-cb1044e84e99" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-8035-b1f5-df46146ed857" class="" dir="auto">تست مستقیم</h3></div></aside><blockquote id="3bdda1eb-8b9d-8056-b6e1-ff3a733d5f15" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">226- بعد از اجرای Django، این URL را مستقیماً در مرورگر باز کن:<pre id="3bdda1eb-8b9d-80b3-b3da-ce2682f1157c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/media/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-8060-b66e-c940ab26b4de" class="" dir="auto">اگر تصویر باز شد:</p><p id="3bdda1eb-8b9d-80bc-bcc3-cb6b588aa48f" class="" dir="auto"><strong>مشکل حل شده است.</strong> ✅</p></blockquote><p id="3bdda1eb-8b9d-808c-86a1-fbdfd4e92d4b" class="" dir="auto">اگر دوباره <code>404</code> گرفتی، آن موقع مشخص می‌شود که فایل واقعاً در <code>MEDIA_ROOT</code> وجود ندارد.</p><ol type="1" id="3bdda1eb-8b9d-80f5-b385-ffca4f941600" class="numbered-list" start="1" dir="auto"><li>اضافه کردن MEDIA_URL<br/>↓</li></ol><ol type="1" id="3bdda1eb-8b9d-8078-82f7-f73f60b0ccad" class="numbered-list" start="2" dir="auto"><li>اضافه کردن MEDIA_ROOT<br/>↓</li></ol><ol type="1" id="3bdda1eb-8b9d-80f8-8c5f-c01b43d941c0" class="numbered-list" start="3" dir="auto"><li>اضافه کردن static(...) به <a href="http://urls.py/">urls.py</a><br/>↓</li></ol><ol type="1" id="3bdda1eb-8b9d-802a-aca5-c5f6654e9ee3" class="numbered-list" start="4" dir="auto"><li>Restart Django<br/>↓</li></ol><ol type="1" id="3bdda1eb-8b9d-8006-97f8-d72666cec74f" class="numbered-list" start="5" dir="auto"><li>بررسی وجود فایل در backend/media/<br/>↓</li></ol><ol type="1" id="3bdda1eb-8b9d-800e-993c-c1ee2bea8b7a" class="numbered-list" start="6" dir="auto"><li>تست URL مستقیم تصویر<br/>↓</li></ol><ol type="1" id="3bdda1eb-8b9d-80ab-af2e-f1c7ff7a6168" class="numbered-list" start="7" dir="auto"><li>تست Products در React</li></ol><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80cd-8525-d2124311f119" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-809f-a344-e665029b0668" class="" dir="auto">چیزی که الان واقعاً داریم</h3></div></aside><p id="3bdda1eb-8b9d-807a-980d-e5a301fa6d0c" class="" dir="auto">طبق مدل شما:</p><pre id="3bdda1eb-8b9d-808a-bc31-da4183be9635" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all"># Category
+image = models.ImageField(
+    upload_to=&#x27;categories/%Y/%m/&#x27;,
+    blank=True,
+    null=True
+)
+
+# Brand
+image = models.ImageField(
+    upload_to=&#x27;brands/%Y/%m/&#x27;,
+    blank=True,
+    null=True
+)
+
+# Product
+main_image = models.ImageField(
+    upload_to=&#x27;products/main/%Y/%m/&#x27;
+)</code></pre><p id="3bdda1eb-8b9d-809e-af8b-d6240b642cf6" class="" dir="auto">بنابراین Django کاملاً درست است که فایل‌ها را به شکل زیر ذخیره کند:</p><pre id="3bdda1eb-8b9d-8066-8256-f1f6d7edebfb" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+├── brands/
+│   └── 2026/
+│       └── 07/
+│           ├── apple.png
+│           ├── MicroSoft.png
+│           └── Samsung.png
+│
+├── categories/
+│   └── 2026/
+│       └── 07/
+│           ├── Digital_Products.jpg
+│           └── surface.jpg
+│
+└── products/
+    └── main/
+        └── 2026/
+            ├── 07/
+            │   ├── apple-10-x-jpg.jpg
+            │   └── Samsung-S24_-2.jpg</code></pre><p id="3bdda1eb-8b9d-80fa-b10e-dbc17a33172e" class="" dir="auto">یعنی <strong>سه مسیر مجزا</strong> داریم و این کاملاً صحیح است:</p><pre id="3bdda1eb-8b9d-80e5-89d1-f65ff319da1f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">brands/
+categories/
+products/</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-80ed-9d22-f58029dc2737" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80c5-825a-cffe160fc937" class="" dir="auto">اما خطای اصلی اینجاست</h3></div></aside><p id="3bdda1eb-8b9d-80ee-b6be-c964eab0be4a" class="" dir="auto">لاگ Django می‌گوید:</p><pre id="3bdda1eb-8b9d-806b-9fe3-fc4213021a1b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Not Found: /products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-8080-900f-df7d8892a4fd" class="" dir="auto">و:</p><pre id="3bdda1eb-8b9d-80b8-9601-fa599f0a0c11" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Not Found: /products/main/2026/07/Samsung-S24_-2.jpg</code></pre><p id="3bdda1eb-8b9d-80d5-a7aa-f37556ad448f" class="" dir="auto">در حالی که <code>urls.py</code> فعلی شما فقط این مسیرها را دارد:</p><pre id="3bdda1eb-8b9d-80b3-b6a7-fef7f6c868df" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">urlpatterns = [
+    path(&quot;admin/&quot;, admin.site.urls),
+
+    path(&quot;api/carts/&quot;, ...),
+    path(&quot;api/customers/&quot;, ...),
+    path(&quot;api/products/&quot;, ...),
+    path(&quot;api/orders/&quot;, ...),
+    path(&quot;api/&quot;, ...),
+
+    path(&quot;api/schema/&quot;, ...),
+    path(&quot;api/docs/&quot;, ...),
+    path(&quot;api/redoc/&quot;, ...),
+]</code></pre><p id="3bdda1eb-8b9d-80d8-ac07-ddd40ba28dba" class="" dir="auto"><strong>هیچ URLای برای Media File تعریف نشده است.</strong></p><p id="3bdda1eb-8b9d-8019-ae07-ed405cf111e8" class="" dir="auto">پس Django وقتی مرورگر درخواست می‌کند:</p><pre id="3bdda1eb-8b9d-806c-bee1-e8abc5563c71" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-801a-92c0-ee42280eaceb" class="" dir="auto">می‌گوید:</p><blockquote id="3bdda1eb-8b9d-80ae-af26-f5d9d3816045" class="" dir="auto">من چنین URLای در <code>urlpatterns</code> ندارم.</blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-803d-b38b-fac0877a65e1" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80aa-93bc-f45dbc60e76e" class="" dir="auto">تنظیم MEDIA_ROOT و MEDIA_URL</h3></div></aside><blockquote id="3bdda1eb-8b9d-8075-b3c4-d28c3b3b3cfa" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">227- در:<pre id="3bdda1eb-8b9d-801d-b745-c293b035b64e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/config/settings/base.py</code></pre><p id="3bdda1eb-8b9d-8026-b503-d0711685e3d6" class="" dir="auto">بعد از:</p><pre id="3bdda1eb-8b9d-804e-9bc2-d753bca2d992" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">STATIC_URL = &#x27;static/&#x27;</code></pre><p id="3bdda1eb-8b9d-8087-90b7-e7ee9b42c3a1" class="" dir="auto">این را اضافه کن:</p><pre id="3bdda1eb-8b9d-8073-b757-c7f4ae5a65f3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all"># Media files
+MEDIA_URL = &#x27;/media/&#x27;
+MEDIA_ROOT = BASE_DIR</code></pre></blockquote><h3 id="3bdda1eb-8b9d-8034-b68d-dc39413a4263" class="" dir="auto">چرا <code>BASE_DIR</code>؟</h3><p id="3bdda1eb-8b9d-801f-a125-ed50f12ecaf6" class="" dir="auto">ساختار فعلی پروژه‌ی تو نشان می‌دهد که فایل‌های آپلودی مستقیماً داخل <code>backend</code> قرار گرفته‌اند:</p><pre id="3bdda1eb-8b9d-8083-87e6-c021040723c8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+├── brands/
+├── categories/
+├── products/
+├── apps/
+├── config/
+├── manage.py
+└── ...</code></pre><p id="3bdda1eb-8b9d-8095-a615-e96dd8052e57" class="" dir="auto">و:</p><pre id="3bdda1eb-8b9d-8018-95d7-f0cbfedfa7fc" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">BASE_DIR = Path(__file__).resolve().parent.parent.parent</code></pre><p id="3bdda1eb-8b9d-807c-b675-ff2c849bac13" class="" dir="auto">در این پروژه همان مسیر <code>backend</code> است.</p><p id="3bdda1eb-8b9d-80f2-879d-f36924c3ac97" class="" dir="auto">بنابراین:</p><pre id="3bdda1eb-8b9d-80de-9dee-e767583bcc8c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">MEDIA_ROOT = BASE_DIR</code></pre><p id="3bdda1eb-8b9d-8075-b8ad-d157ca7c1b68" class="" dir="auto">با ساختار فعلی تو سازگار است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bdda1eb-8b9d-801e-8c57-f119e268bbc5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bdda1eb-8b9d-80f7-a05b-c65be6196065" class="" dir="auto">قدم بعدی: بررسی خروجی API</h3></div></aside><p id="3bdda1eb-8b9d-80a3-8302-f53d49ff4099" class="" dir="auto">Backend را یک بار restart کن و این endpoint را باز کن:</p><pre id="3bdda1eb-8b9d-804e-977c-f7092e54e148" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/api/products/?page=1</code></pre><p id="3bdda1eb-8b9d-802a-92c3-c4c1d1268fed" class="" dir="auto">در JSON مربوط به یکی از محصولات دنبال این قسمت بگرد:</p><pre id="3bdda1eb-8b9d-80f1-96ad-f9381b3c846b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Apple ...&quot;,
+    &quot;main_image&quot;: &quot;...&quot;
+}</code></pre><h3 id="3bdda1eb-8b9d-807e-8890-d78e98fb04fb" class="" dir="auto">مقدار <code>main_image</code> باید چیزی شبیه این باشد:</h3><pre id="3bdda1eb-8b9d-8019-899f-f80dabebd888" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/media/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-80c9-a062-ff13480b88f3" class="" dir="auto">یا حداقل:</p><pre id="3bdda1eb-8b9d-80c1-ae09-edba569fb2c8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/media/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-80e8-b7e2-cfe916f35f5a" class="" dir="auto"><strong>نباید</strong> این باشد:</p><pre id="3bdda1eb-8b9d-806d-9eed-d06ec3f9c622" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><hr id="3bdda1eb-8b9d-8086-8211-e9ffce5943b3" dir="auto"/><h2 id="3bdda1eb-8b9d-80b3-afb4-fa73156d1339" class="" dir="auto">چرا این تست مهم است؟</h2><p id="3bdda1eb-8b9d-8021-b470-e3cbe325e5fd" class="" dir="auto">لاگ قبلی ما نشان می‌داد مرورگر درخواست می‌فرستاده:</p><pre id="3bdda1eb-8b9d-806f-938f-f99ed37d95fe" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-8057-bf65-d83b873f7929" class="" dir="auto">در حالی که مسیر درست اکنون:</p><pre id="3bdda1eb-8b9d-809c-ad30-f7e4c1e57322" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /media/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-80d4-8982-fdf56999083d" class="" dir="auto">است.</p><p id="3bdda1eb-8b9d-8094-9eed-fd51b396f167" class="" dir="auto">بنابراین الان باید ببینیم Backend بعد از اضافه کردن:</p><pre id="3bdda1eb-8b9d-80c8-9d9b-eabe72727b63" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">MEDIA_URL = &#x27;/media/&#x27;
+MEDIA_ROOT = BASE_DIR</code></pre><p id="3bdda1eb-8b9d-804b-9dc5-fba93aeff6fc" class="" dir="auto">چه URLای را داخل API تحویل React می‌دهد.</p><hr id="3bdda1eb-8b9d-80ff-9cc7-f796cc5907b0" dir="auto"/><h1 id="3bdda1eb-8b9d-804e-89cb-f2498c6cf05d" class="" dir="auto">اگر API مقدار درست را برگرداند</h1><p id="3bdda1eb-8b9d-8046-84a5-df8223ceeb0e" class="" dir="auto">مثلاً:</p><pre id="3bdda1eb-8b9d-804c-b9c9-fd785ebc7ecb" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">&quot;main_image&quot;: &quot;http://127.0.0.1:8000/media/products/main/2026/07/apple-10-x-jpg.jpg&quot;</code></pre><p id="3bdda1eb-8b9d-800a-b8b6-f39e87517996" class="" dir="auto">آن وقت <strong>هیچ تغییری در </strong><code><strong>ProductSerializer</strong></code><strong> لازم نیست.</strong></p><p id="3bdda1eb-8b9d-80f6-bc89-f7283c1d20a8" class="" dir="auto">کد فعلی:</p><pre id="3bdda1eb-8b9d-8087-80a8-fab0ec75b0d8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">class ProductSerializer(serializers.ModelSerializer):
+    ...
+    main_image = ...</code></pre><p id="3bdda1eb-8b9d-80f1-80e3-e7dc09ddad63" class="" dir="auto">در واقع Django REST Framework خودش URL صحیح را تولید می‌کند.</p><p id="3bdda1eb-8b9d-8042-9b12-f67d08f1900c" class="" dir="auto">و در React نیز:</p><pre id="3bdda1eb-8b9d-8073-9cb0-da441da81758" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">&lt;img
+    src={product.main_image}
+    alt={product.name}
+/&gt;</code></pre><p id="3bdda1eb-8b9d-8035-82d6-ec9d4aa7e05b" class="" dir="auto">باید کار کند.</p><p id="3bdda1eb-8b9d-80bd-bd1a-fe10953af32e" class="" dir="auto">در این حالت مشکل احتمالاً browser cache یا frontend dev server است؛ یک Hard Refresh انجام می‌دهیم.</p><hr id="3bdda1eb-8b9d-80bd-a2f5-eb44e20ccef1" dir="auto"/><h1 id="3bdda1eb-8b9d-806c-969e-f7b599250899" class="" dir="auto">اگر API هنوز این را برگرداند</h1><pre id="3bdda1eb-8b9d-8015-8294-d6c9459ace8d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/products/main/2026/07/apple-10-x-jpg.jpg</code></pre><p id="3bdda1eb-8b9d-803f-8a48-f7f66c52b13b" class="" dir="auto">آن وقت مشکل در <strong>Storage configuration</strong> یا تنظیمات دیگری است و قبل از دست زدن به React آن را اصلاح می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="5ecda1eb-8b9d-8226-ac81-8148fa1676de" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="ce1da1eb-8b9d-8281-9e58-81ae4c8cafe0" class="" dir="auto">پایان Part-21</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -19,6 +19,12 @@
 * [Part-16](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-16-3abda1eb8b9d80f38103c9ebe28af117)
 * [Part-17](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-17-3adda1eb8b9d80ce8f49f9001684483e)
 * [Part-18](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-18-3b3da1eb8b9d8006869def6a3006ec18)
+* [Part-19](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-19-3bbda1eb8b9d80f7bcb2c7a7e4d42276)
+* [Part-20](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-20-3bcda1eb8b9d80a0b800f07047d657d8)
+* [Part-21](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-21-3bdda1eb8b9d800fbf09c70988106ade)
+* [Part-22](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-22-3bdda1eb8b9d80e2b28fd6306da7bd8e)
+* [Part-23]()
+* [Part-24]()
 
 
 
