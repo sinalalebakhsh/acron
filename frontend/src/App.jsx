@@ -13,6 +13,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import Checkout from "./pages/Checkout";
+import AdvisorPage from "./domains/advisor/pages/AdvisorPage";
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
           element={<Home />}
         />
 
+        <Route
+          path="/advisor"
+          element={<AdvisorPage />}
+        />
+        
         <Route
           path="/login"
           element={<Login />}
