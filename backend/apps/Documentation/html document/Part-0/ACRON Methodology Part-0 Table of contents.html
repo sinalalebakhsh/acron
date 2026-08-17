@@ -1,0 +1,840 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-0 Table of contents</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="38fda1eb-8b9d-8073-a8cf-ebf21856e8f3" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-0 Table of contents</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><figure id="3b2da1eb-8b9d-80b8-816f-f88d8fe5e3c4" class="image" data-notion-image="https://www.hotspotshield.com/imgs/illustrations/small/shield.png" dir="ltr"><a href="https://www.hotspotshield.com/imgs/illustrations/small/shield.png"><img style="width:48px" src="https://www.hotspotshield.com/imgs/illustrations/small/shield.png"/></a></figure><h2 id="3b2da1eb-8b9d-8050-9f05-c9a2d33385e8" class="" dir="auto">Protecting your private data</h2><p id="3b2da1eb-8b9d-804d-b92b-c9134581b3de" class="" dir="auto">Protect<br/> your identity, integrity and family data while searching, browsing and <br/>shopping, in dating apps and communicating. We encrypt your data and do <br/>not make any records of your activities.</p><h1 id="3b0da1eb-8b9d-806d-9a91-cfbc83a9fe12" class="" dir="auto"><strong>The ACRON Vision</strong></h1><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="d74da1eb-8b9d-83e3-8a98-012314b90eb8" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">                         ACRON
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+       Social           Marketplace          AI
+          │                │                │
+      ┌───┴───┐        ┌───┴────┐       ┌───┴────┐
+      │       │        │        │       │        │
+   Dating   Chat      Employer Worker  Advisor Recommendation
+      │       │        │        │       │        │
+      └───────┴────────┴────────┴───────┴────────┘
+                           │
+                           ▼
+                    Explore Engine
+                           │
+                           ▼
+                  Personalization
+                           │
+                           ▼
+                   AI / ML Layer</code></pre><h3 id="3b0da1eb-8b9d-803a-bcf8-f65cb43315a8" class="" dir="auto">قانون ACRON × Sina</h3><p id="3b0da1eb-8b9d-8097-b8e9-ed6292ad1a9a" class="" dir="auto"><strong>هیچ کدی را صرفاً برای اینکه «کار کند» وارد پروژه نمی‌کنیم.</strong></p><p id="3b0da1eb-8b9d-80a8-873a-e2a6562ad090" class="" dir="auto">هر تغییر باید حداقل این چرخه را داشته باشد:</p><pre id="3b0da1eb-8b9d-80aa-836c-caf42617401a" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">1. مسئله چیست؟
+        ↓
+2. چرا باید حلش کنیم؟
+        ↓
+3. معماری فعلی چه می‌گوید؟
+        ↓
+4. چه راه‌حل‌هایی داریم؟
+        ↓
+5. چرا این راه‌حل را انتخاب کردیم؟
+        ↓
+6. چه فایل‌هایی باید تغییر کنند؟
+        ↓
+7. کد را خط‌به‌خط می‌نویسیم
+        ↓
+8. هر خط را توضیح می‌دهیم
+        ↓
+9. اجرا می‌کنیم
+        ↓
+10.ا Test می‌نویسیم
+        ↓
+11. نتیجه را بررسی می‌کنیم
+        ↓
+12. بعد می‌رویم مرحله بعد</code></pre><h1 id="70cda1eb-8b9d-822e-a6da-819fbb7b7c75" class="" dir="auto">فاز 1: Foundation</h1><p id="e13da1eb-8b9d-82a1-9369-019539a8bbcf" class="" dir="auto">هدف:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="799da1eb-8b9d-823a-82da-014178fa495f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><ul id="b93da1eb-8b9d-837c-88e9-019ee8286f54" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ساخت پروژه</li></ul><ul id="7f8da1eb-8b9d-822f-9728-013f043ef957" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ساختار settings</li></ul><ul id="e6dda1eb-8b9d-83dd-bc64-01152689a81b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">MySQL</li></ul><ul id="84cda1eb-8b9d-8289-84e7-81b711bab0e7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">apps</li></ul><ul id="b11da1eb-8b9d-82f7-925e-01cf5078e989" class="bulleted-list" dir="auto"><li style="list-style-type:disc">core</li></ul></div></aside><h1 id="308da1eb-8b9d-82ed-af96-013d49ae6365" class="" dir="auto">فاز 2: Infrastructure</h1><p id="e64da1eb-8b9d-8393-90fc-812b0177da0f" class="" dir="auto">هدف:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="0c8da1eb-8b9d-82b5-876e-81791ac548ed" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><ul id="068da1eb-8b9d-82a6-8847-01682f9fea0c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">CustomUser</li></ul><ul id="36cda1eb-8b9d-8217-8652-81c094f56813" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Admin</li></ul><ul id="63bda1eb-8b9d-828b-bdea-8119b7d5008b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">DRF</li></ul><ul id="8fcda1eb-8b9d-8246-849f-8180bd3ebf89" class="bulleted-list" dir="auto"><li style="list-style-type:disc">JWT</li></ul><ul id="155da1eb-8b9d-825c-804c-0142b4d1179b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Pagination</li></ul><ul id="5f0da1eb-8b9d-8310-b948-814a297f2ab6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Permissions</li></ul><ul id="089da1eb-8b9d-83ee-969b-01c13a752387" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Authentication</li></ul><ul id="6c3da1eb-8b9d-8398-b450-01c7d534dc13" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Base API Settings</li></ul></div></aside><p id="cb7da1eb-8b9d-820c-ad7c-014f408dd2dd" class="" dir="auto">
+</p><h1 id="2b8da1eb-8b9d-8307-a859-81fad49cb7f7" class="" dir="auto">فاز 3: Customer Domain</h1><p id="c96da1eb-8b9d-8385-8cee-81b097d62554" class="" dir="auto"><strong>هدف:</strong></p><p id="822da1eb-8b9d-82bb-bbff-81a19245b4b7" class="" dir="auto">ساخت اولین Domain واقعی پروژه.</p><p id="cf9da1eb-8b9d-826e-86ae-81ff434c1fe3" class="" dir="auto">تا الان همه چیز Infrastructure بود.</p><p id="dacda1eb-8b9d-83c6-ac1b-81bba5f34119" class="" dir="auto">از اینجا وارد Business Domain می‌شویم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="38fda1eb-8b9d-80f5-b89c-ef0927d1c682" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><ul id="2f4da1eb-8b9d-8326-9801-0176e0e93009" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> Customer Model</li></ul><ul id="38fda1eb-8b9d-8021-a889-d32bb22a95ba" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> Customer Signal</li></ul><ul id="38fda1eb-8b9d-80c4-8f6d-edc8b36ec13e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> Customer Admin</li></ul><ul id="38fda1eb-8b9d-80ea-bf5b-dd405dcd539d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> Customer Serializer</li></ul><ul id="38fda1eb-8b9d-804f-b197-f9eab71c30bf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> GET /api/customers/me/</li></ul><ul id="38fda1eb-8b9d-80cd-9be7-d4c46146c630" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> PATCH /api/customers/me/</li></ul><ul id="38fda1eb-8b9d-806a-b9cb-e9055902f0c7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> JWT Protection</li></ul></div></aside><h1 id="9dcda1eb-8b9d-838c-afeb-81b2aedf9fb3" class="" dir="auto">فاز 4: Product Domain</h1><p id="2e3da1eb-8b9d-8229-aef1-8139a971d42b" class="" dir="auto">نحوه آپلود ، تغییر(جابه جایی) ، حذف تصویر توسط ادمین برای محصولات سایت </p><p id="457da1eb-8b9d-839f-a6e9-017534732545" class="" dir="auto">نحوه آپلود ، تغییر(جابه جایی) ، حذف تصویر  توسط کاربران برای پروفایل ، محصولات شخصی ، ارسال تصویر در چت شخصی بین کاربران.</p><p id="636da1eb-8b9d-825c-b316-013f6570730c" class="" dir="auto"><a href="https://pillow.readthedocs.io/en/stable/handbook/tutorial.html#identify-image-files">https://pillow.readthedocs.io/en/stable/handbook/tutorial.html#identify-image-files</a></p><p id="468da1eb-8b9d-8223-b82e-8134cd38252c" class="" dir="auto"><a href="https://www.geeksforgeeks.org/python/imagefield-django-models/">https://www.geeksforgeeks.org/python/imagefield-django-models/</a></p><p id="4d9da1eb-8b9d-839f-8ae9-018fd5232a23" class="" dir="auto">مدل‌ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-80ea-ba8f-e3352ac9eb9d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="049da1eb-8b9d-82ee-ac4b-816b701b4387" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Category</li></ul><ul id="d95da1eb-8b9d-82c6-a9a3-01a1d8e542b3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Brand</li></ul><ul id="00ada1eb-8b9d-8251-9e8e-8118d76806a4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Product</li></ul><ul id="573da1eb-8b9d-83e3-81f2-019237d2bcd3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ProductImage</li></ul><ul id="ceeda1eb-8b9d-82f3-9bdb-01d5d1204527" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Comment</li></ul><ul id="469da1eb-8b9d-83c8-accd-8135240487e3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"></li></ul><ul id="908da1eb-8b9d-8256-bfae-015502199f40" class="bulleted-list" dir="auto"><li style="list-style-type:disc">UUID</li></ul><ul id="b0dda1eb-8b9d-82e7-bb4d-819fe1e64e66" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Slug</li></ul><ul id="44eda1eb-8b9d-8304-b2ac-01d681ee609f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Inventory</li></ul><ul id="bd7da1eb-8b9d-838e-b7eb-819f0fa9fba9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Optimization</li></ul><ul id="723da1eb-8b9d-821f-acf8-81eeba55bc78" class="bulleted-list" dir="auto"><li style="list-style-type:disc">select_related</li></ul><ul id="8c4da1eb-8b9d-8313-96d9-0173b043cc15" class="bulleted-list" dir="auto"><li style="list-style-type:disc">prefetch_related</li></ul><ul id="37eda1eb-8b9d-8228-aed8-0183b26d7df6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">N+1 Problem</li></ul></div></aside><h1 id="9d7da1eb-8b9d-8373-a013-01317780630a" class="" dir="auto">فاز 5: Cart Domain</h1><p id="843da1eb-8b9d-821d-ae7c-81597e0d6ff2" class="" dir="auto">مدل‌ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-800d-82f7-e66bc3e635ff" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="7c8da1eb-8b9d-8228-9704-0164be750280" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Cart</li></ul><ul id="7e9da1eb-8b9d-83d5-ba34-81a0221eefa1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">CartItem</li></ul></div></aside><h1 id="a02da1eb-8b9d-8280-93c9-01f3f3fae5f1" class="" dir="auto">فاز 6: Order Domain</h1><p id="fb9da1eb-8b9d-82ae-b848-810d1b0083f5" class="" dir="auto">مدل ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-8057-9b17-ee2b4139753f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="ae6da1eb-8b9d-8385-a22f-81c2d6e9e855" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Order</li></ul><ul id="aa3da1eb-8b9d-838a-aa91-810995563f2d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">OrderItem</li></ul><ul id="a2bda1eb-8b9d-836d-9930-815f7b3a0872" class="bulleted-list" dir="auto"><li style="list-style-type:disc">OrderStatus</li></ul></div></aside><h1 id="c50da1eb-8b9d-82ae-b529-8113199400d7" class="" dir="auto">فاز 7: Payment Domain</h1><p id="9d3da1eb-8b9d-83a6-94eb-812dc23620d5" class="" dir="auto">مدل ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-8002-b7de-f1c4d33d31f9" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="4c7da1eb-8b9d-8369-9384-81a145ac20dd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Payment</li></ul><ul id="e87da1eb-8b9d-8222-ade2-01e90d765dc0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Transaction</li></ul></div></aside><h1 id="39cda1eb-8b9d-8058-b47e-ed0a7714a6c0" class="" dir="auto">فاز 8: Shipment &amp; Fulfillment Domain</h1><p id="3a0da1eb-8b9d-8091-8f47-dd3ea3098717" class="" dir="auto">مدل ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a1da1eb-8b9d-809a-853f-cc4d2b997721" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="3a0da1eb-8b9d-80e6-9f18-c476327634b1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ShipmentStatus</li></ul><ul id="3a0da1eb-8b9d-8093-85bb-e810de1950dc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">CarrierChoices</li></ul><ul id="3a0da1eb-8b9d-8069-bfd6-e0e6114955f8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Shipment</li></ul></div></aside><h1 id="39cda1eb-8b9d-80ae-8e8a-c1bc7e9d06a5" class="" dir="auto">فاز 9:  MCP - Model Context Protocol</h1><p id="39fda1eb-8b9d-80ec-8b90-ed12035cbc6e" class="" dir="auto">اپلیکیشن ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-800e-a5f7-c3933ca1a175" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="39fda1eb-8b9d-8039-82a2-f48fad63863f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"> MCP Model Context Protocol</li></ul><ul id="39fda1eb-8b9d-80d5-88e9-ef32d06fc90d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">advisor</li></ul></div></aside><h1 id="332da1eb-8b9d-829a-8cf7-813c6f8e8855" class="" dir="auto">فاز 10: Service Layer</h1><p id="2b5da1eb-8b9d-83af-a70e-813a9e255148" class="" dir="auto">مدل ها:</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3a0da1eb-8b9d-80c9-98e2-f7f4dc1ea251" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="de4da1eb-8b9d-828e-a7c1-01db89a9defc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">OrderService</li></ul><ul id="a8dda1eb-8b9d-8372-90c8-818cd722fff4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">CartService</li></ul><ul id="9dbda1eb-8b9d-82ba-b69c-01937ce12989" class="bulleted-list" dir="auto"><li style="list-style-type:disc">PaymentService</li></ul></div></aside><p id="02ada1eb-8b9d-83ee-97b8-0146a50eb696" class="" dir="auto">اینجا پروژه از CRUD ساده خارج می‌شود. مثلاً:</p><pre id="a09da1eb-8b9d-8284-923f-81ab7707af54" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">OrderService.create_order()
+PaymentService.pay()
+CartService.add_item()</code></pre><h1 id="514da1eb-8b9d-8225-9c6c-010db916eeb5" class="" dir="auto">فاز 11: Frontend  - Presentation Layer</h1><p id="3a0da1eb-8b9d-805d-8f54-eabc3da46ece" class="" dir="auto">use react, axios, html, css, Auth Context, etc.</p><h1 id="3bdda1eb-8b9d-801c-90bd-d184e044d15b" class="" dir="auto">فاز 12: AI - Advisor</h1><p id="3bdda1eb-8b9d-80dc-9ec2-fc7680f94c6e" class="" dir="auto">
+</p><h1 id="3a0da1eb-8b9d-8015-bea6-d339f352aad2" class="" dir="auto">فاز 12: Event Bus</h1><p id="98dda1eb-8b9d-834b-a5c5-81bd9a4d7e7d" class="" dir="auto">مثلاً: </p><pre id="4b9da1eb-8b9d-82e7-8aa3-010267962b86" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">OrderCreatedEvent</code></pre><p id="5a7da1eb-8b9d-83a5-93ff-8158dbf574be" class="" dir="auto">باعث می شود:</p><pre id="e2bda1eb-8b9d-8285-9292-017601e0cdae" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">SendEmailHandler</code></pre><pre id="a25da1eb-8b9d-82cb-9f72-0175117a08aa" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">CreateInvoiceHandler</code></pre><p id="4cfda1eb-8b9d-8273-8d93-8163842f0343" class="" dir="auto">اجرا شوند.</p><h1 id="b7cda1eb-8b9d-82a8-aed0-019ab0743f5c" class="" dir="auto">فاز 13: PRT - Production Ready Testing </h1><ul id="4b9da1eb-8b9d-827c-9773-81600ba9bf28" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Testing</li></ul><h1 id="39cda1eb-8b9d-8097-8296-fe88784d2a67" class="" dir="auto">فاز 14: PRC - Production Ready Cashing</h1><ul id="daada1eb-8b9d-8371-8022-81006e72f089" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Redis</li></ul><ul id="18ada1eb-8b9d-82f9-a53d-01892d1bfcaf" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Celery</li></ul><h1 id="39cda1eb-8b9d-807e-b4aa-e6960f678097" class="" dir="auto">فاز 15: PRS - Production Ready Serving</h1><ul id="80ada1eb-8b9d-83a5-a138-01eec03ebdbc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Docker</li></ul><ul id="1fbda1eb-8b9d-83ab-b96d-01edc0b56a54" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Nginx</li></ul><h1 id="39cda1eb-8b9d-80d2-acce-ccbea9b32193" class="" dir="auto">فاز 16: PRD - <br/>Production Ready Advanced Data Base</h1><ul id="812da1eb-8b9d-8272-b6f8-812e9805c7de" class="bulleted-list" dir="auto"><li style="list-style-type:disc">PostgreSQL</li></ul><h1 id="39cda1eb-8b9d-80c1-a194-f8d18198877f" class="" dir="auto">فاز 17: PRM - Production Ready Monitoring</h1><ul id="939da1eb-8b9d-8272-a2f0-0173d90fb96a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Monitoring</li></ul><ul id="4ccda1eb-8b9d-822e-abb5-81c8b031587a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Logging</li></ul><h1 id="1a9da1eb-8b9d-83ac-823a-8133d73a6edd" class="" dir="auto">فاز 18: <strong>Microservices</strong></h1><p id="8fdda1eb-8b9d-831c-a1c2-81aba06af895" class="" dir="auto">هدف:</p><ul id="812da1eb-8b9d-83e1-9b3c-012af1fac6e5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">جداسازی Backend</li></ul><ul id="b47da1eb-8b9d-836d-978b-018dbde93c11" class="bulleted-list" dir="auto"><li style="list-style-type:disc">جداسازی Frontend</li></ul><ul id="33eda1eb-8b9d-82da-9487-01df5f512e6f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">جداسازی Database</li></ul><ul id="487da1eb-8b9d-83bb-a9dd-8137536db7b1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">جداسازی Presentation</li></ul><ul id="90dda1eb-8b9d-826c-9cc0-0106f1e285eb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">تعیین ساختار Business Logic Layer</li></ul><ul id="ccada1eb-8b9d-83ae-88a5-8101f3bd59ff" class="bulleted-list" dir="auto"><li style="list-style-type:disc">تعیین ساختار Data Access Layer</li></ul><hr id="d6cda1eb-8b9d-831f-ba5b-816abfa39f27" dir="auto"/><blockquote id="936da1eb-8b9d-834c-9b62-010a390d6392" class="quote-large" dir="auto">تبدیل پروژه به معماری 3 لایه <br/><p id="461da1eb-8b9d-82e5-958e-81a591017a17" class="" dir="auto">معماری سه‌لایه یعنی شما بدانید چگونه کدهای پردازشی (Logic) را از کدهای دیتابیس (ORM) و کدهای ارسال پاسخ (API Views) جدا کنید تا اگر فردا دیتابیس عوض شد یا طراحی API تغییر کرد، نیازی به دست زدن به منطق اصلی برنامه نداشته باشید.</p><p id="d58da1eb-8b9d-82eb-b2ba-010e1151d41a" class="" dir="auto">
+</p><p id="058da1eb-8b9d-82ae-be27-819d206d87cc" class="" dir="auto">منظور معماری سه‌لایه در سطح سمت سرور (Backend) است. این سه لایه عبارتند از:</p><p id="480da1eb-8b9d-834f-b545-019d47a5c3ee" class="" dir="auto">۱. لایه نمایش (Presentation Layer)</p><ul id="b4bda1eb-8b9d-834d-b938-8167cb2da3c1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>وظیفه:</strong> این لایه مستقیماً با کاربر یا کلاینت (مثل اپلیکیشن موبایل یا وب‌سایت) در ارتباط است. در واقع این لایه موظف است دریافت اطلاعات از کاربر را مدیریت کرده و نتایج را به شکلی زیبا و قابل فهم (مثل JSON در APIها) به او برگرداند.</li></ul><ul id="0a4da1eb-8b9d-83ad-aa9c-81830e9eea7d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>در چارچوب Django:</strong> اگر از Django REST Framework استفاده کنید، بخش‌هایی مثل <code>Serializers</code> و <code>Views</code> دقیقاً همین نقش را بازی می‌کنند (دریافت درخواست، اعتبارسنجی اولیه، و ارسال پاسخ).</li></ul><p id="c27da1eb-8b9d-83a3-baa4-81c0dde3ac88" class="" dir="auto">۲. لایه منطق تجاری (Business Logic Layer)</p><ul id="73cda1eb-8b9d-8389-b18f-01ed8a20cf6f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>وظیفه:</strong> این لایه «مغز متفکر» برنامه است. قوانین اصلی کسب‌وکار در اینجا قرار دارد. مثلاً اگر یک فروشگاه اینترنتی دارید، محاسبه‌ی تخفیف‌ها، بررسی موجودی کالا، و اینکه آیا کاربر اجازه‌ی خرید این محصول را دارد یا خیر، همگی در این لایه پردازش می‌شوند.</li></ul><ul id="feada1eb-8b9d-8384-be02-8119b015bb98" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>مهم‌ترین ویژگی:</strong> این لایه نباید بداند اطلاعات از کجا آمده‌اند (دیتابیس یا فایل) و قرار است کجا بروند (موبایل یا وب). فقط پردازش را انجام می‌دهد.</li></ul><p id="fccda1eb-8b9d-836a-a9ba-01d83fbbe9bb" class="" dir="auto">۳. لایه دسترسی به داده (Data Access Layer)</p><ul id="925da1eb-8b9d-83e6-be57-010cadfaa4ec" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>وظیفه:</strong> این لایه فقط و فقط با ذخیره‌سازی و بازیابی اطلاعات سر و کار دارد (مثل ارتباط با دیتابیس‌های PostgreSQL، MySQL و...). هیچ قانونی درباره‌ی کسب‌وکار در این لایه نیست.</li></ul><ul id="deeda1eb-8b9d-82df-967c-01cb781a6a34" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>در چارچوب Django:</strong> در Django، سیستم <strong>ORM</strong> (مدل‌ها یا Models) و نوشتن کوئری‌ها نقش این لایه را ایفا می‌کنند.</li></ul></blockquote></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
