@@ -1,0 +1,1482 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ACRON Methodology Part-23</title><meta name="data-notion-page-icon" content="📣"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%A3%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3bfda1eb-8b9d-80b4-871e-cf6e4d1b5f9c" class="page sans" data-notion-page-icon="📣"><header><img class="page-cover-image" src="https://app.notion.com/images/page-cover/hudsonRiverSchool_lakeGeorge.jpg" style="object-position:center 65%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="📣"></span></div><h1 class="page-title" dir="auto">ACRON Methodology Part-23</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="d37da1eb-8b9d-8237-b5aa-81134b5ecb94" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><p id="3ebda1eb-8b9d-82b0-b631-015a528871fe" class="" dir="auto">در Part-22 ، <strong>فاز 12:   </strong> AI - Advisor تا قدم 21  توسعه یافت</p></div></aside><h1 id="9fbda1eb-8b9d-8352-abe8-01fd0b575f3a" class="" dir="auto">فاز 12: AI - Advisor</h1><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="0feda1eb-8b9d-826e-934f-81381af3b750" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="00eda1eb-8b9d-835a-9055-81ce5ddc8df1" class="" dir="auto">قدم بعدی: ورود به Backend</h3></div></aside><p id="d92da1eb-8b9d-82c9-b138-01741d515aa3" class="" dir="auto">حالا دیگر Frontend پایه‌ی Advisor آماده است.</p><p id="85eda1eb-8b9d-8389-bf0c-0173325d7e06" class="" dir="auto">مرحله بعدی را می‌توانیم ببریم روی Django:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="170da1eb-8b9d-8260-a357-81b11b94d4ad" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend
+   │
+   │ POST
+   ↓
+/api/advisor/ask/
+   │
+   ↓
+Django Advisor API
+   │
+   ↓
+response
+   │
+   ↓
+React</code></pre><p id="dceda1eb-8b9d-83e5-99e7-813b14c7e4b4" class="" dir="auto">در Backend هم به‌جای اینکه همه‌چیز را داخل یک View بریزیم، Domain مربوط به Advisor را جدا می‌کنیم:</p><pre id="7d0da1eb-8b9d-82c1-8675-0151c0159501" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+└── apps/
+    └── advisor/
+        ├── models.py
+        ├── serializers.py
+        ├── views.py
+        ├── urls.py
+        └── ...</code></pre><p id="256da1eb-8b9d-82f9-993a-01b30bd5de09" class="" dir="auto"><strong>فعلاً AI را وصل نمی‌کنیم.</strong> اول یک API واقعی Django می‌سازیم که سؤال React را دریافت کند و یک پاسخ آزمایشی برگرداند. بعد از اینکه <code>React → Django → React</code> بدون مشکل کار کرد، لایه AI را روی آن سوار می‌کنیم.</p><p id="3bfda1eb-8b9d-806d-8f42-daec9201acbf" class="" dir="auto">حالا وارد <strong>Backend Advisor</strong> می‌شویم و اولین ارتباط واقعی بین React و Django را می‌سازیم.</p><p id="3bfda1eb-8b9d-80d2-a29e-c12cf8a38419" class="" dir="auto">هدف این مرحله فقط این است:</p><pre id="3bfda1eb-8b9d-8003-8d4a-e7bf8846c4de" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">React
+  │
+  │ POST /api/advisor/ask/
+  ↓
+Django
+  │
+  │ پردازش سؤال
+  ↓
+JSON Response
+  │
+  ↓
+React</code></pre><p id="3bfda1eb-8b9d-808f-b438-c2d5db236324" class="" dir="auto"><strong>هنوز AI، OpenAI، Celery و Redis را وارد نمی‌کنیم.</strong> اول API پایه را سالم می‌سازیم.</p><p id="3bfda1eb-8b9d-80b4-a129-d4f4fef7220c" class="" dir="auto">پیشنهاد من این است که App را داخل <code>apps</code> بسازی:</p><pre id="3bfda1eb-8b9d-8027-9cb7-ed16926def7e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">python manage.py startapp advisor apps/advisor</code></pre><p id="3bfda1eb-8b9d-80ad-9125-dfb2741db1c9" class="" dir="auto">در نتیجه:</p><pre id="3bfda1eb-8b9d-807e-a3c5-d10ea3d18625" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+└── apps/
+    ├── advisor/
+    ├── carts/
+    ├── customers/
+    ├── orders/
+    └── products/</code></pre><p id="3bfda1eb-8b9d-8024-b273-ca8fb07f866e" class="" dir="auto"><strong>اگر </strong><code><strong>apps</strong></code><strong> در پروژه‌ات همان ساختار قبلی است، همین روش دوم را استفاده کن.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-80a2-a4ea-ceae77c66d4b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h2 id="3bfda1eb-8b9d-8079-bb62-debd2902fd69" class="" dir="auto">در نظر داشته باشید که APP مورد نظر یعنی advisor قبلا ساخته شده بود و داخل آن تنظیماتی انجام شده بود. بنابراین اگر قبلا نساخته بودید از همین مرحله شروع کنید:</h2></div></aside><h3 id="3bfda1eb-8b9d-80ce-b6c9-db3a92a080be" class="" dir="auto">وضعیت واقعی Advisor فعلی</h3><p id="3bfda1eb-8b9d-805a-b998-c5022472429b" class="" dir="auto">بنابراین،  Backend الان تقریباً این ساختار را دارد:</p><pre id="3bfda1eb-8b9d-80db-bfb8-f2c409524918" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+└── apps/
+    └── advisor/
+        ├── migrations/
+        ├── __init__.py
+        ├── admin.py
+        ├── apps.py
+        ├── models.py
+        ├── serializers.py
+        ├── services.py
+        ├── tests.py
+        ├── urls.py
+        └── views.py</code></pre><p id="3bfda1eb-8b9d-8025-80c7-e5924622b437" class="" dir="auto">حتی <code>serializers.py</code> هم از قبل به شکل مناسبی طراحی شده:</p><ul id="3bfda1eb-8b9d-80b6-9f89-fa2b24fe83c4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>MessageSerializer</code></li></ul><ul id="3bfda1eb-8b9d-80a4-ad44-f130f3224e10" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>ConversationSerializer</code></li></ul><ul id="3bfda1eb-8b9d-80c2-bf9a-e5a6ce3a1da1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><code>AskAdvisorInputSerializer</code></li></ul><p id="3bfda1eb-8b9d-80d0-9fc0-da6a3970ad8d" class="" dir="auto">وجود دارند و <code>Conversation</code> نیز پیام‌ها را به‌صورت Nested نمایش می‌دهد.</p><p id="3bfda1eb-8b9d-8095-a3b6-db5a8bb154ab" class="" dir="auto">همچنین Serializer مخصوص سؤال، فیلد <code>question</code> را دریافت می‌کند و حداقل ۳ کاراکتر را الزام می‌کند.</p><p id="3bfda1eb-8b9d-8031-8030-f74933c1c596" class="" dir="auto">پس <strong>هیچ Serializer جدیدی نمی‌سازیم.</strong></p><h3 id="3bfda1eb-8b9d-8084-8351-ee1031cf49a0" class="" dir="auto">معماری واقعی فعلی تو</h3><p id="3bfda1eb-8b9d-802f-8299-cadb523e5799" class="" dir="auto">بنابراین، Backend الان این معماری را دارد:</p><pre id="3bfda1eb-8b9d-8034-bd26-d634e9921a6f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">                    React
+                      │
+                      │
+                      ▼
+              Advisor API
+                      │
+                      ▼
+             AdvisorViewSet
+                      │
+                      ▼
+          AdvisorAIService
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+       Conversation          Message
+             │                 │
+             └────────┬────────┘
+                      ▼
+                  Database</code></pre><p id="3bfda1eb-8b9d-80a1-8afb-cb05e4d6e73a" class="" dir="auto">و این بخش خیلی خوب طراحی شده است.</p><p id="3bfda1eb-8b9d-80d7-9a18-fc94df742fbf" class="" dir="auto">خصوصاً این قسمت:</p><pre id="3bfda1eb-8b9d-8050-aa08-d08ed99564c9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">ai_response_message = AdvisorAIService.generate_response(
+    conversation_id=conversation.id,
+    user_message_content=user_question
+)</code></pre><p id="3bfda1eb-8b9d-8053-b217-d88e9b34876d" class="" dir="auto">یعنی View مسئول منطق AI نیست.</p><p id="3bfda1eb-8b9d-8058-a523-d70d5fcf95e2" class="" dir="auto">View فقط:</p><pre id="3bfda1eb-8b9d-8083-b847-e880ddf52a4b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Request
+ ↓
+Validation
+ ↓
+Service
+ ↓
+Response</code></pre><p id="3bfda1eb-8b9d-80a0-b0d1-fa5dfb795107" class="" dir="auto">را انجام می‌دهد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-80ad-bf2b-ed61a55cdc67" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-80f7-94b6-e7b30362089f" class="" dir="auto">پس Endpoint واقعی تو چیست؟</h3></div></aside><p id="3bfda1eb-8b9d-809d-81d7-ccd43c423761" class="" dir="auto">این قسمت خیلی مهم است.</p><p id="3bfda1eb-8b9d-80e6-aafc-e67bc59354a9" class="" dir="auto">در <code>urls.py</code> تو داری:</p><pre id="3bfda1eb-8b9d-803c-a286-fd5459eca016" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">router = DefaultRouter()
+
+router.register(
+    r&#x27;advisor&#x27;,
+    AdvisorViewSet,
+    basename=&#x27;advisor&#x27;
+)</code></pre><p id="3bfda1eb-8b9d-80d0-83ed-e29c03270092" class="" dir="auto">و داخل ViewSet هم داری:</p><pre id="3bfda1eb-8b9d-80a6-9388-e8150ca84035" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">@action(
+    detail=True,
+    methods=[&#x27;post&#x27;],
+    url_path=&#x27;ask&#x27;
+)
+def ask(...)</code></pre><p id="3bfda1eb-8b9d-80d5-8088-c4e3e90d1ca0" class="" dir="auto">بنابراین Endpoint تولیدشده توسط DRF این است:</p><pre id="3bfda1eb-8b9d-807b-ac84-fd0a005d0d64" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/{conversation_id}/ask/</code></pre><p id="3bfda1eb-8b9d-80d4-932c-c155c2192dd9" class="" dir="auto">البته یک نکته وجود دارد:</p><p id="3bfda1eb-8b9d-8011-90f2-cacea8cb734c" class="" dir="auto"><strong>مسیر نهایی دقیقاً به نحوه Include کردن </strong><code><strong>apps.advisor.urls</strong></code><strong> در </strong><code><strong>config/urls.py</strong></code><strong> بستگی دارد.</strong></p><p id="3bfda1eb-8b9d-8035-a914-f8f532cfb16d" class="" dir="auto">پس فعلاً <strong>هیچ URL جدیدی نساز.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-804c-a432-e2fa52bd40b5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-80ac-8b51-cedba6e45605" class="" dir="auto">حتی Service هم از قبل آماده است</h3></div></aside><p id="3bfda1eb-8b9d-80bb-b48e-c8c924de3a38" class="" dir="auto">این قسمت در <code>services.py</code> بسیار مهم است:</p><pre id="3bfda1eb-8b9d-8057-94e7-cb2677153068" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">@classmethod
+def generate_response(
+    cls,
+    conversation_id: str,
+    user_message_content: str
+) -&gt; Message:</code></pre><p id="3bfda1eb-8b9d-80bd-89d6-f737b805c81f" class="" dir="auto">Service تو در حال حاضر این جریان را انجام می‌دهد:</p><pre id="3bfda1eb-8b9d-8056-9180-c943f9345e34" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Question
+   │
+   ▼
+Conversation.objects.get()
+   │
+   ▼
+Analyze Tone
+   │
+   ▼
+Create User Message
+   │
+   ▼
+Load Chat History
+   │
+   ▼
+Mock LLM
+   │
+   ▼
+Create Assistant Message
+   │
+   ▼
+Update Conversation
+   │
+   ▼
+Return Assistant Message</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-802b-82fd-d28b17994011" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-80f7-9438-d097d3a74682" class="" dir="auto">پس الان واقعاً کجای پروژه هستیم؟</h3></div></aside><p id="3bfda1eb-8b9d-8094-89c4-ec7d5941ce78" class="" dir="auto">ما در Frontend این ساختار را داریم:</p><pre id="3bfda1eb-8b9d-80f5-ac13-fab04e7727b7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/
+└── src/
+    └── domains/
+        └── advisor/
+            ├── components/
+            │   ├── AdvisorHero.jsx
+            │   ├── AdvisorInput.jsx
+            │   ├── AdvisorSuggestions.jsx
+            │   └── AdvisorResponse.jsx
+            │
+            ├── hooks/
+            │   └── useAdvisor.js
+            │
+            ├── pages/
+            │   └── AdvisorPage.jsx
+            │
+            └── services/
+                └── advisorService.js</code></pre><p id="3bfda1eb-8b9d-8018-aaa5-df07c0770701" class="" dir="auto">و Backend:</p><pre id="3bfda1eb-8b9d-80e5-b469-c97d0aa14f9a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/
+└── apps/
+    └── advisor/
+        ├── models.py
+        ├── serializers.py
+        ├── services.py
+        ├── views.py
+        └── urls.py</code></pre><p id="3bfda1eb-8b9d-80fb-a1a7-d765dc30f4e9" class="" dir="auto">بنابراین اکنون دقیقاً در این نقطه هستیم:</p><pre id="3bfda1eb-8b9d-80a1-bfda-fcb99f1ebc3d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">React
+  │
+  │
+  ▼
+useAdvisor
+  │
+  │
+  ▼
+advisorService.js
+  │
+  │
+  X
+  │
+  ▼
+Django Advisor API</code></pre><p id="3bfda1eb-8b9d-8041-a8f6-ee869c9f168d" class="" dir="auto"><strong>فقط اتصال این دو طرف باقی مانده است.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8056-a152-e997aa464652" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-8043-a712-c80b1d2ff13e" class="" dir="auto">قدم بعدی ما: اتصال Frontend به Backend</h3></div></aside><p id="3bfda1eb-8b9d-8070-8656-c9936d699f11" class="" dir="auto">حالا برمی‌گردیم به:</p><pre id="3bfda1eb-8b9d-8018-914c-cfcddfc44f42" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/domains/advisor/services/advisorService.js</code></pre><p id="3bfda1eb-8b9d-801a-962b-eeafbf5c98ec" class="" dir="auto">در حال حاضر احتمالاً چیزی شبیه Mock داریم:</p><pre id="3bfda1eb-8b9d-80dd-881b-ebbbf409540a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const askAdvisor = async (question) =&gt; {
+  console.log(&quot;Advisor service received:&quot;, question);
+
+  return {
+    role: &quot;assistant&quot;,
+    content: &quot;I&#x27;m processing your question...&quot;,
+  };
+};
+
+export default {
+  askAdvisor,
+};</code></pre><p id="3bfda1eb-8b9d-80bd-833c-daa74c23c082" class="" dir="auto">این قسمت باید در نهایت تبدیل شود به:</p><pre id="3bfda1eb-8b9d-80d5-80ed-ea3653b00552" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">advisorService
+      │
+      │ Axios POST
+      ▼
+/api/advisor/{conversation_id}/ask/
+      │
+      ▼
+AdvisorViewSet.ask()
+      │
+      ▼
+AdvisorAIService.generate_response()
+      │
+      ▼
+Message
+      │
+      ▼
+JSON
+      │
+      ▼
+React</code></pre><p id="3bfda1eb-8b9d-802f-8bc9-dd4a9a8b84da" class="" dir="auto">اما یک چیز مهم کم داریم:</p><h2 id="3bfda1eb-8b9d-802a-af4c-cf89048e37c6" class="" dir="auto"><code>conversation_id</code></h2><p id="3bfda1eb-8b9d-8044-b8d8-ff3eafde4b61" class="" dir="auto">چون Backend تو به‌صورت کاملاً درست Endpoint را به یک Conversation خاص وابسته کرده:</p><pre id="3bfda1eb-8b9d-8001-8196-c75f65180cf8" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/{conversation_id}/ask/</code></pre><p id="3bfda1eb-8b9d-8039-be2e-d1fbc615704b" class="" dir="auto">پس React باید ابتدا یک Conversation ایجاد کند.</p><hr id="3bfda1eb-8b9d-80bf-bad2-f7eea91d683c" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-805d-848b-df9162e9fdb5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-80bc-a535-f1a7ddfe8456" class="" dir="auto">این یعنی Conversation Flow</h3></div></aside><p id="3bfda1eb-8b9d-80bd-9a8e-ff7f7331cb35" class="" dir="auto">حالا معماری واقعی ACRON این می‌شود:</p><pre id="3bfda1eb-8b9d-80b8-891d-da7433ec6b5c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">User opens Advisor
+        │
+        ▼
+Create Conversation
+        │
+        ▼
+Django returns UUID
+        │
+        ▼
+React stores conversationId
+        │
+        ▼
+User asks question
+        │
+        ▼
+POST /api/advisor/{conversationId}/ask/
+        │
+        ▼
+Django
+        │
+        ▼
+AdvisorAIService
+        │
+        ▼
+User Message + Assistant Message
+        │
+        ▼
+React</code></pre><p id="3bfda1eb-8b9d-807c-b43d-fe1fbee5c1c5" class="" dir="auto">پس Backend فعلی تو از ابتدا برای Conversation و History طراحی شده است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8063-8e65-eb32d05a595f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-808b-9615-da0ffb85de91" class="" dir="auto">یک مشکل کوچک در <code>advisor/urls.py</code></h3></div></aside><p id="3bfda1eb-8b9d-8014-aca7-fb3983eef049" class="" dir="auto">الان داری:</p><pre id="3bfda1eb-8b9d-8094-90f1-ec1b5c74ea0f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">router = DefaultRouter()
+router.register(r&#x27;advisor&#x27;, AdvisorViewSet, basename=&#x27;advisor&#x27;)</code></pre><p id="3bfda1eb-8b9d-80bc-8ba3-f59869ff4385" class="" dir="auto">و بعد قرار است در <code>config/urls.py</code> بنویسیم:</p><pre id="3bfda1eb-8b9d-80db-aa68-ce68c3fae312" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">path(
+    &quot;api/advisor/&quot;,
+    include(&quot;apps.advisor.urls&quot;),
+),</code></pre><p id="3bfda1eb-8b9d-805b-a6fb-e186b8498805" class="" dir="auto">در این حالت مسیرها دو بار <code>advisor</code> خواهند داشت:</p><pre id="3bfda1eb-8b9d-80fe-9297-e1b61e881fe3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/advisor/</code></pre><p id="3bfda1eb-8b9d-80bb-8a92-c367afb50d2b" class="" dir="auto">مثلاً Endpoint مربوط به <code>ask</code> می‌شود:</p><pre id="3bfda1eb-8b9d-805e-9da7-fea466e322b7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/advisor/{conversation_id}/ask/</code></pre><p id="3bfda1eb-8b9d-8093-9b3f-eb6489ac1821" class="" dir="auto">این چیزی نیست که ما می‌خواهیم.</p><p id="3bfda1eb-8b9d-805a-88fe-d2f23d5e3879" class="" dir="auto">ما می‌خواهیم معماری URL این باشد:</p><pre id="3bfda1eb-8b9d-8002-ae57-e0a411742073" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/</code></pre><p id="3bfda1eb-8b9d-8048-9261-f7b35846c6b0" class="" dir="auto">و:</p><pre id="3bfda1eb-8b9d-8078-bc32-db6fce0284ef" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/{conversation_id}/</code></pre><p id="3bfda1eb-8b9d-804c-9963-d8468f753968" class="" dir="auto">و:</p><pre id="3bfda1eb-8b9d-807a-be56-f93b6c9891c3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/{conversation_id}/ask/</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="310da1eb-8b9d-8244-a5b6-0126efd40d4e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="a96da1eb-8b9d-828d-9464-014c7245dff0" class="" dir="auto">اصلاح <code>advisor/urls.py</code></h3></div></aside><blockquote id="e99da1eb-8b9d-834f-8294-01ff542fb10a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">22- پس فایل:<pre id="3bfda1eb-8b9d-8058-bca9-d5ceda0026c0" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/apps/advisor/urls.py</code></pre><p id="3bfda1eb-8b9d-80d7-860a-e219df86fc7b" class="" dir="auto">را باز کن.</p><p id="3bfda1eb-8b9d-802b-88ab-cb32a2e069e2" class="" dir="auto"><strong>کل محتویات فعلی را با این جایگزین کن:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="17dda1eb-8b9d-827b-b72c-019fe229f149" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
+from .views import AdvisorViewSet
+
+
+router = DefaultRouter()
+
+router.register(
+    r&quot;&quot;,
+    AdvisorViewSet,
+    basename=&quot;advisor&quot;,
+)
+
+
+urlpatterns = [
+    path(
+        &quot;&quot;,
+        include(router.urls),
+    ),
+]</code></pre></blockquote><p id="3bfda1eb-8b9d-802e-854d-f9980491d0f6" class="" dir="auto">تفاوت اصلی این خط است:</p><p id="3bfda1eb-8b9d-80b6-9a0d-f61cc6c6bc3a" class="" dir="auto">قبلاً:</p><pre id="3bfda1eb-8b9d-80b6-85de-c6d7207380d5" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">router.register(
+    r&quot;advisor&quot;,
+    AdvisorViewSet,
+    basename=&quot;advisor&quot;,
+)</code></pre><p id="3bfda1eb-8b9d-809a-98ef-dec294ad2885" class="" dir="auto">حالا:</p><pre id="3bfda1eb-8b9d-8059-ada0-d7e3c2ee91f4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">router.register(
+    r&quot;&quot;,
+    AdvisorViewSet,
+    basename=&quot;advisor&quot;,
+)</code></pre><p id="3bfda1eb-8b9d-8032-a038-c9cefe136743" class="" dir="auto">چون خود <code>config/urls.py</code> قبلاً <code>/api/advisor/</code> را اضافه می‌کند.</p><hr id="3bfda1eb-8b9d-809a-8ff5-c1f29cd61b9b" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="1b7da1eb-8b9d-82cf-bc36-81822b365ec5" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="5fdda1eb-8b9d-836f-be6c-81560a61c14c" class="" dir="auto">حالا <code>config/urls.py</code> را تغییر بده</h3></div></aside><blockquote id="879da1eb-8b9d-827e-bb8c-014d8744b2fe" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">23- در فایل:<pre id="3bfda1eb-8b9d-8038-8fbb-f7e6a67d5cce" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">backend/config/urls.py</code></pre><p id="3bfda1eb-8b9d-805d-b092-ea804be75477" class="" dir="auto">بعد از Orders این قسمت را اضافه کن:</p><pre id="3bfda1eb-8b9d-8076-9018-ef5e0be50caa" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">path(
+    &quot;api/advisor/&quot;,
+    include(&quot;apps.advisor.urls&quot;),
+),</code></pre><p id="3bfda1eb-8b9d-8075-8dc9-d3580725da6b" class="" dir="auto">یعنی این بخش:</p><pre id="3bfda1eb-8b9d-8057-aec7-c0c2706d2793" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">path(
+    &quot;api/orders/&quot;,
+    include(&quot;apps.orders.urls&quot;),
+),
+
+path(
+    &quot;api/advisor/&quot;,
+    include(&quot;apps.advisor.urls&quot;),
+),</code></pre></blockquote><p id="3bfda1eb-8b9d-80b4-b8be-ebb42caf7dfc" class="" dir="auto">در نتیجه قسمت Domain APIs تو می‌شود:</p><pre id="3bfda1eb-8b9d-80d3-9a98-c8716abcb77e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all"># -------------------------
+# Domain APIs
+# -------------------------
+
+path(
+    &quot;api/carts/&quot;,
+    include(&quot;apps.carts.urls&quot;),
+),
+
+path(
+    &quot;api/customers/&quot;,
+    include(&quot;apps.customers.urls&quot;),
+),
+
+path(
+    &quot;api/products/&quot;,
+    include(&quot;apps.products.urls&quot;),
+),
+
+path(
+    &quot;api/orders/&quot;,
+    include(&quot;apps.orders.urls&quot;),
+),
+
+path(
+    &quot;api/advisor/&quot;,
+    include(&quot;apps.advisor.urls&quot;),
+),</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8070-944e-ed1bf9d99c3f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-8036-9a43-f1ce7cb10fe1" class="" dir="auto">حالا URLهای Advisor چه می‌شوند؟</h3></div></aside><p id="3bfda1eb-8b9d-8070-97f9-e5683440179e" class="" dir="auto">با توجه به <code>AdvisorViewSet</code> فعلی تو:</p><pre id="3bfda1eb-8b9d-8065-a038-c0ad97153648" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">class AdvisorViewSet(viewsets.ModelViewSet):</code></pre><p id="3bfda1eb-8b9d-80b9-9c0a-f5c7827bd651" class="" dir="auto">و:</p><pre id="3bfda1eb-8b9d-80c9-9de0-ca2eab687de9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">@action(
+    detail=True,
+    methods=[&quot;post&quot;],
+    url_path=&quot;ask&quot;
+)
+def ask(...)</code></pre><p id="3bfda1eb-8b9d-8005-bf9d-eb73ea42983a" class="" dir="auto">بعد از اصلاح بالا، DRF این مسیرها را برایمان ایجاد می‌کند:</p><h3 id="3bfda1eb-8b9d-8047-819a-d8037aaa33e7" class="" dir="auto">ایجاد Conversation</h3><pre id="3bfda1eb-8b9d-80c7-928a-e82761132c30" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/</code></pre><h3 id="3bfda1eb-8b9d-803c-9547-ebdf68be0d1a" class="" dir="auto">دریافت Conversation</h3><pre id="3bfda1eb-8b9d-80e7-8555-e81020229eb9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">GET /api/advisor/{conversation_id}/</code></pre><h3 id="3bfda1eb-8b9d-80c5-92b4-cc371d5cc158" class="" dir="auto">حذف Conversation</h3><pre id="3bfda1eb-8b9d-80c6-8720-fe0bd5d6ed22" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">DELETE /api/advisor/{conversation_id}/</code></pre><h3 id="3bfda1eb-8b9d-80a6-a6e3-f5241ecf1ee4" class="" dir="auto">ارسال سؤال</h3><pre id="3bfda1eb-8b9d-800e-87a0-fe586a98fbf9" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/{conversation_id}/ask/</code></pre><p id="3bfda1eb-8b9d-8017-a8c8-fb4f952741ba" class="" dir="auto">این دقیقاً همان APIای است که برای معماری فعلی Advisor لازم داریم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8072-9de2-d2a642359834" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-8045-b5ce-e057813f954a" class="" dir="auto">حالا یک نکته بسیار مهم درباره جریان کار</h3></div></aside><p id="3bfda1eb-8b9d-8087-916e-df8f52858b74" class="" dir="auto">با این معماری، React نمی‌تواند از همان ابتدا این کار را بکند:</p><pre id="3bfda1eb-8b9d-80d9-a9ed-cb3441af19fe" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/{conversation_id}/ask/</code></pre><p id="3bfda1eb-8b9d-80f7-b6f9-c87bf518e2c8" class="" dir="auto">چون هنوز <code>conversation_id</code> نداریم.</p><p id="3bfda1eb-8b9d-8074-ae7e-e01cac30af33" class="" dir="auto">بنابراین جریان واقعی باید این باشد:</p><pre id="3bfda1eb-8b9d-809f-b6f2-ec56adac0910" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">User opens /advisor
+          │
+          ▼
+React
+          │
+          │ POST /api/advisor/
+          ▼
+Django
+          │
+          ▼
+Create Conversation
+          │
+          ▼
+UUID
+          │
+          ▼
+React stores conversationId</code></pre><p id="3bfda1eb-8b9d-8064-80e4-ec4dcdff5d4d" class="" dir="auto">بعد کاربر سؤال می‌پرسد:</p><pre id="3bfda1eb-8b9d-809d-951d-ca35b566e7f4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">User
+ │
+ │ &quot;I need a laptop&quot;
+ ▼
+React
+ │
+ │ POST /api/advisor/{conversationId}/ask/
+ ▼
+Django
+ │
+ ▼
+AdvisorViewSet.ask()
+ │
+ ▼
+AdvisorAIService.generate_response()
+ │
+ ├── Save User Message
+ │
+ ├── Load History
+ │
+ ├── Generate Mock AI Response
+ │
+ └── Save Assistant Message
+ │
+ ▼
+MessageSerializer
+ │
+ ▼
+React</code></pre><p id="3bfda1eb-8b9d-801d-955b-fce119735b31" class="" dir="auto">این <strong>کاملاً با Backend فعلی تو هماهنگ است</strong>.</p><hr id="3bfda1eb-8b9d-80dd-af2e-cda19b48b92f" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-801b-bf71-c3d355cda14d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-80d3-8565-c18de5aca4c4" class="" dir="auto">یک نکته مثبت درباره <code>AllowAny</code></h3></div></aside><p id="3bfda1eb-8b9d-806c-8d85-c36be873fc38" class="" dir="auto">در <code>AdvisorViewSet</code> داری:</p><pre id="3bfda1eb-8b9d-80fa-bb01-e90f9e0275ca" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">permission_classes = [AllowAny]</code></pre><p id="3bfda1eb-8b9d-8092-9bfb-db65ea0b6ca5" class="" dir="auto">پس Advisor فعلاً نیاز به Login ندارد.</p><p id="3bfda1eb-8b9d-80d9-a31a-d9e1c5b8f712" class="" dir="auto">این با توضیح خودت در View هم هماهنگ است:</p><blockquote id="3bfda1eb-8b9d-8096-a579-c425c7055ae2" class="" dir="auto">همه کارفرمایان بتوانند به راحتی با مشاور چت کنند.</blockquote><p id="3bfda1eb-8b9d-8009-9572-ff1bf710e1ee" class="" dir="auto">بنابراین برای Conversation اولیه:</p><pre id="3bfda1eb-8b9d-80ee-8b87-f2f668c4d9c1" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Anonymous User
+        ↓
+POST /api/advisor/
+        ↓
+Conversation</code></pre><p id="3bfda1eb-8b9d-80d1-a8f2-f7bcfd40772e" class="" dir="auto">امکان‌پذیر است.</p><p id="3bfda1eb-8b9d-8034-8fbe-c0b89a9a78d1" class="" dir="auto">و <code>perform_create()</code> هم در صورت Login بودن User را ذخیره می‌کند و در غیر این صورت <code>visitor_session_key</code> را نگه می‌دارد.</p><p id="3bfda1eb-8b9d-8002-8546-f3b1c978a44f" class="" dir="auto">پس فعلاً <strong>Permission را دست نمی‌زنیم.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8001-9716-ffc2a323d315" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-8096-b0e3-e21639864f84" class="" dir="auto">یک نکته مهم درباره <code>services.py</code></h3></div></aside><p id="3bfda1eb-8b9d-801a-9dbd-f9065dab1a32" class="" dir="auto">فعلی تو از قبل این قابلیت را دارد:</p><pre id="3bfda1eb-8b9d-8036-ac60-ebabcc286a4e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">conversation = Conversation.objects.get(
+    id=conversation_id
+)</code></pre><p id="3bfda1eb-8b9d-80c9-ab65-cc32f969888e" class="" dir="auto">بعد:</p><pre id="3bfda1eb-8b9d-8086-9464-f1ce62c342cc" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Message.objects.create(
+    conversation=conversation,
+    role=&quot;user&quot;,
+    ...
+)</code></pre><p id="3bfda1eb-8b9d-806d-8ad0-e5c812fcc58a" class="" dir="auto">و سپس:</p><pre id="3bfda1eb-8b9d-80c4-9427-ef910d27cb87" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">chat_history = Message.objects.filter(
+    conversation=conversation
+).order_by(&quot;created_at&quot;)</code></pre><p id="3bfda1eb-8b9d-80fb-b311-f2f27182bb41" class="" dir="auto">یعنی Backend تو از همین الان <strong>Conversation Memory</strong> دارد.</p><p id="3bfda1eb-8b9d-802d-b86c-c185235d7443" class="" dir="auto">این خیلی مهم است؛ چون وقتی کاربر می‌گوید:</p><pre id="3bfda1eb-8b9d-80ad-b1a8-df48d7cdcc04" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">What is ACRON?</code></pre><p id="3bfda1eb-8b9d-80bc-ade1-f652e338ae07" class="" dir="auto">و بعد:</p><pre id="3bfda1eb-8b9d-8092-8f3f-f2ca5dcbc93d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Who created it?</code></pre><p id="3bfda1eb-8b9d-8088-9f52-ee833fca64bd" class="" dir="auto">هر دو پیام در همان Conversation ذخیره می‌شوند و Service می‌تواند History را ببیند.</p><p id="3bfda1eb-8b9d-8070-8f84-fbba8d3d4946" class="" dir="auto">پس فعلاً نیازی نیست معماری جدیدی برای Chat History بسازیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8050-8be3-dcd32215020f" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-801e-9f69-eda7c4ddbb6f" class="" dir="auto">حالا Backend را تست کنیم</h3></div></aside><p id="3bfda1eb-8b9d-80fb-b084-d594611e0ef2" class="" dir="auto">قبل از اینکه React را به آن وصل کنیم، Backend را تست کن.</p><p id="3bfda1eb-8b9d-808a-a8c1-f87d04bda317" class="" dir="auto">اول Django را اجرا کن:</p><pre id="3bfda1eb-8b9d-80e7-886d-f1bb596facd4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><p id="3bfda1eb-8b9d-804b-ae4f-e22bc62dc2bd" class="" dir="auto">بعد مرورگر را باز کن:</p><pre id="3bfda1eb-8b9d-80f6-8021-ef400bfa8420" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/api/advisor/</code></pre><p id="3bfda1eb-8b9d-809e-8a67-fcc22f156266" class="" dir="auto">چون <code>GET</code> روی <code>ModelViewSet</code> فعال است، باید Endpoint مربوط به List را ببینی؛ بسته به تنظیمات Renderer ممکن است JSON یا صفحه DRF نمایش داده شود.</p><p id="3bfda1eb-8b9d-801c-bea5-dbaa2d8c1f62" class="" dir="auto">اما <strong>مهم‌تر از آن</strong> Swagger را هم داری:</p><pre id="3bfda1eb-8b9d-80d0-958e-d867b154beec" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/api/docs/</code></pre><p id="3bfda1eb-8b9d-8027-9f8b-f08c8694f031" class="" dir="auto">در Swagger باید دنبال بخش:</p><pre id="3bfda1eb-8b9d-803c-a9bb-c7c678c89ca4" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Advisor</code></pre><p id="3bfda1eb-8b9d-80cd-96ac-de55712b965c" class="" dir="auto">بگردی.</p><p id="3bfda1eb-8b9d-8024-9f61-cce129e6241c" class="" dir="auto">احتمالاً Endpointهایی مشابه این خواهی دید:</p><pre id="3bfda1eb-8b9d-8019-834d-e122943ad82d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST   /api/advisor/
+GET    /api/advisor/
+GET    /api/advisor/{id}/
+DELETE /api/advisor/{id}/
+POST   /api/advisor/{id}/ask/</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-806e-9ba5-d9c86a27e165" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-804a-89e7-e7c6d40ddcfe" class="" dir="auto">اولین تست واقعی</h3></div></aside><p id="3bfda1eb-8b9d-8060-9962-d2a228db52d3" class="" dir="auto">در Swagger:</p><h3 id="3bfda1eb-8b9d-80b6-8730-d8cc0f5b9d95" class="" dir="auto"><code>POST /api/advisor/</code></h3><p id="3bfda1eb-8b9d-8057-a8f1-f699439bc244" class="" dir="auto">را باز کن.</p><p id="3bfda1eb-8b9d-8082-be63-f844a6ceb697" class="" dir="auto">Request Body مربوط به <code>ConversationSerializer</code> را بررسی کن.</p><p id="3bfda1eb-8b9d-8092-b057-cfbe5d11b204" class="" dir="auto">نکته: چون <code>ConversationSerializer</code> فیلدهای <code>user</code> و <code>created_at</code> و <code>updated_at</code> را Read Only کرده، نباید آنها را دستی بفرستی. Serializer تو این فیلدها را Read Only تعریف کرده است.</p><p id="3bfda1eb-8b9d-8015-aa9a-e22be4ade657" class="" dir="auto">احتمالاً می‌توانی Body خالی بفرستی:</p><pre id="3bfda1eb-8b9d-80ce-a872-d45f22c97cec" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{}</code></pre><p id="3bfda1eb-8b9d-8025-835f-ea56c75decfa" class="" dir="auto">چون <code>perform_create()</code> خودش <code>user</code> و <code>visitor_session_key</code> را تعیین می‌کند.</p><p id="3bfda1eb-8b9d-8078-a614-d15bc60ed56a" class="" dir="auto">اگر موفق باشد باید چیزی شبیه این بگیری:</p><pre id="3bfda1eb-8b9d-80ad-8bb8-f70e5170640a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+    &quot;id&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;user&quot;: null,
+    &quot;user_username&quot;: null,
+    &quot;visitor_session_key&quot;: &quot;...&quot;,
+    &quot;messages&quot;: [],
+    &quot;created_at&quot;: &quot;...&quot;,
+    &quot;updated_at&quot;: &quot;...&quot;
+}</code></pre><p id="3bfda1eb-8b9d-8043-8229-df2483af1220" class="" dir="auto"><strong>آن UUID را نگه دار.</strong></p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8056-af04-d782c543cfba" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-8006-8dd5-c8bb83e2d90b" class="" dir="auto">مرحله بعد: اتصال React به Advisor API</h3></div></aside><p id="3c0da1eb-8b9d-80ba-a374-e4c8b4acabb6" class="" dir="auto">معماری نهایی این قسمت:</p><pre id="3c0da1eb-8b9d-803e-9493-f52033d244e5" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">                    AdvisorPage
+                         │
+                         ▼
+                    useAdvisor
+                         │
+             ┌───────────┴───────────┐
+             ▼                       ▼
+      createConversation()      askAdvisor()
+             │                       │
+             ▼                       ▼
+      POST /api/advisor/    POST /api/advisor/{id}/ask/
+             │                       │
+             └───────────┬───────────┘
+                         ▼
+                   Django Advisor
+                         │
+                         ▼
+                 AdvisorAIService
+                         │
+                         ▼
+                      MySQL</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-800b-a763-ff4563e97ce8" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-80e8-bed7-f03c8bc03f51" class="" dir="auto"> اول <code>advisorService.js</code></h3></div></aside><p id="3c0da1eb-8b9d-800e-9818-e6356b478ce8" class="" dir="auto">الان <code>advisorService.js</code> فقط Mock است:</p><pre id="3c0da1eb-8b9d-80a0-8851-cb15bfa316f3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const askAdvisor = async (question) =&gt; {
+  console.log(&quot;Advisor service received:&quot;, question);
+
+  return {
+    role: &quot;assistant&quot;,
+    content: &quot;I&#x27;m processing your question...&quot;,
+  };
+};
+
+export default {
+  askAdvisor,
+};</code></pre><p id="3c0da1eb-8b9d-80fe-818a-c747c56ed447" class="" dir="auto">این را الان به API واقعی Django وصل می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-8087-86a7-ce1843c71585" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8060-b41f-cfad84cf39c4" class="" dir="auto">مرحله ۱ — <code>advisorService.js</code></h3></div></aside><blockquote id="3bfda1eb-8b9d-8054-90f7-c69b38943588" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">24- فایل:<pre id="3c0da1eb-8b9d-80fe-8725-eaa819f4169a" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/domains/advisor/services/advisorService.js</code></pre><p id="3c0da1eb-8b9d-8033-b02a-e9629867b44b" class="" dir="auto">را <strong>کامل با این کد جایگزین کن:</strong></p><pre id="3bfda1eb-8b9d-806a-bb13-cfdcb05f4162" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import apiClient from &quot;../../../services/apiClient&quot;;
+
+
+const createConversation = async () =&gt; {
+  const response = await apiClient.post(&quot;/advisor/&quot;, {});
+
+  return response.data;
+};
+
+
+const askAdvisor = async (conversationId, question) =&gt; {
+  const response = await apiClient.post(
+    `/advisor/${conversationId}/ask/`,
+    {
+      question,
+    }
+  );
+
+  return response.data;
+};
+
+
+export default {
+  createConversation,
+  askAdvisor,
+};</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-8065-acac-e79387411ac3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-8089-9549-d06055f6d784" class="" dir="auto">مرحله ۲ — چرا این کد؟</h3></div></aside><p id="3c0da1eb-8b9d-802d-bd8a-de58e4bced18" class="" dir="auto">مسیر فایل ما:</p><pre id="3c0da1eb-8b9d-80b9-8821-fe6bc82a2998" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/
+└── src/
+    ├── services/
+    │   └── apiClient.js
+    │
+    └── domains/
+        └── advisor/
+            └── services/
+                └── advisorService.js</code></pre><p id="3c0da1eb-8b9d-806e-ab1d-f709a1616886" class="" dir="auto">از <code>advisorService.js</code> برای رسیدن به <code>src/services/apiClient.js</code> باید سه مرحله به عقب برویم:</p><pre id="3c0da1eb-8b9d-80b3-8a71-d1551028557e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">services
+   ↑
+advisor
+   ↑
+domains
+   ↑
+src</code></pre><p id="3c0da1eb-8b9d-80f8-bba5-d0607e3cf717" class="" dir="auto">بنابراین:</p><pre id="3c0da1eb-8b9d-8043-b166-db33d279c904" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">import apiClient from &quot;../../../services/apiClient&quot;;</code></pre><p id="3c0da1eb-8b9d-80b2-910e-fa59a6ff1813" class="" dir="auto">درست است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-80f4-8d01-fdc9610f8af1" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8035-804c-f367746ef750" class="" dir="auto">مرحله ۳ — <code>createConversation</code></h3></div></aside><p id="3c0da1eb-8b9d-8014-8653-e810c7627fd2" class="" dir="auto">این تابع:</p><pre id="3c0da1eb-8b9d-8006-95d3-ed65c0fee692" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const createConversation = async () =&gt; {
+  const response = await apiClient.post(&quot;/advisor/&quot;, {});
+
+  return response.data;
+};</code></pre><p id="3c0da1eb-8b9d-8068-b4a0-d9dd946a78c5" class="" dir="auto">در واقع این درخواست را می‌فرستد:</p><pre id="3c0da1eb-8b9d-80df-b424-df139fc56387" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST http://127.0.0.1:8000/api/advisor/</code></pre><p id="3c0da1eb-8b9d-800f-b650-eae7c2af5ef3" class="" dir="auto">چرا <code>/api</code> را ننوشته‌ایم؟</p><p id="3c0da1eb-8b9d-805c-9a03-d905562301c1" class="" dir="auto">چون <code>apiClient</code> قبلاً <code>baseURL</code> را دارد:</p><pre id="3c0da1eb-8b9d-80f8-ae81-c977699807bc" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/api</code></pre><p id="3c0da1eb-8b9d-8058-a1fe-fa51c5927662" class="" dir="auto">بنابراین:</p><pre id="3c0da1eb-8b9d-806f-b6d0-e61e258ad775" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">apiClient.post(&quot;/advisor/&quot;)</code></pre><p id="3c0da1eb-8b9d-80fa-af7e-defa0dd1d2d6" class="" dir="auto">تبدیل می‌شود به:</p><pre id="3c0da1eb-8b9d-8082-a08a-d84ec2f282d3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://127.0.0.1:8000/api/advisor/</code></pre><p id="3c0da1eb-8b9d-806b-8dab-cec6f323da00" class="" dir="auto">دقیقاً همان چیزی که در Swagger تست کردیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-8005-9fef-d4177b1d6f60" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-80e1-b71f-ed4d87011259" class="" dir="auto">مرحله ۴ — <code>askAdvisor</code></h3></div></aside><p id="3c0da1eb-8b9d-8054-9509-dbcad78ce097" class="" dir="auto">این تابع:</p><pre id="3c0da1eb-8b9d-8037-bb9f-d828bdbf8d93" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">const askAdvisor = async (conversationId, question) =&gt; {
+  const response = await apiClient.post(
+    `/advisor/${conversationId}/ask/`,
+    {
+      question,
+    }
+  );
+
+  return response.data;
+};</code></pre><p id="3c0da1eb-8b9d-805e-a390-d40c5872d923" class="" dir="auto">مثلاً اگر:</p><pre id="3c0da1eb-8b9d-80d9-96ba-c372486d8fda" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">conversationId =
+  &quot;2b594f77-153a-417d-bfb7-f3bb15aecd00&quot;;</code></pre><p id="3c0da1eb-8b9d-80c2-8e3b-e0cbb9c23108" class="" dir="auto">و:</p><pre id="3c0da1eb-8b9d-80d4-b7db-e7f0a15f773e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">question =
+  &quot;این پروژه با چه تکنولوژی‌ای ساخته شده؟&quot;;</code></pre><p id="3c0da1eb-8b9d-808a-8f5d-e5facf2f2822" class="" dir="auto">باشد، درخواست نهایی می‌شود:</p><pre id="3c0da1eb-8b9d-805a-a574-df46a0f02c23" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/2b594f77-153a-417d-bfb7-f3bb15aecd00/ask/</code></pre><p id="3c0da1eb-8b9d-807a-91fa-fbe8d28357f1" class="" dir="auto">با Body:</p><pre id="3c0da1eb-8b9d-80f3-b950-d2386e8edef1" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  &quot;question&quot;: &quot;این پروژه با چه تکنولوژی‌ای ساخته شده؟&quot;
+}</code></pre><p id="3c0da1eb-8b9d-80bb-9df3-ca0ebb804381" class="" dir="auto">دقیقاً همان چیزی که <strong>همین الان با Swagger با موفقیت تست کردی</strong>.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-808b-9d52-ea650696bcd7" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8062-b6e0-c11715a8c99c" class="" dir="auto">مرحله ۵ — حالا Hook</h3></div></aside><p id="3c0da1eb-8b9d-8071-9a53-c9ea065d98d6" class="" dir="auto">اما هنوز یک مشکل داریم.</p><p id="3c0da1eb-8b9d-803a-9888-e3c1099cbabf" class="" dir="auto">قبلاً <code>askAdvisor</code> فقط این را می‌گرفت:</p><pre id="3c0da1eb-8b9d-8067-b836-c4ea003e07b1" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">askAdvisor(question)</code></pre><p id="3c0da1eb-8b9d-809f-a99f-ce287e433edb" class="" dir="auto">ولی حالا Backend به این نیاز دارد:</p><pre id="3c0da1eb-8b9d-808e-a1d8-e90f3d06b8ab" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">askAdvisor(conversationId, question)</code></pre><p id="3c0da1eb-8b9d-809d-add4-f470ed869bd1" class="" dir="auto">پس باید <code>useAdvisor.js</code> را هم تغییر بدهیم.</p><p id="3c0da1eb-8b9d-8012-aa43-efff15ae9e55" class="" dir="auto">باید دقیقاً روی Hook فعلی خود ACRON کار کنیم و ساختار <code>AdvisorInput</code>، <code>AdvisorResponse</code> و <code>AdvisorPage</code> را خراب نکنیم.</p><hr id="3c0da1eb-8b9d-80a8-b3cc-d820ff7d60c0" dir="auto"/><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-8035-a8db-ef224e8782a3" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-80de-8d93-e44a7bf119ca" class="" dir="auto">معماری‌ای که الان داریم به آن می‌رسیم</h3></div></aside><pre id="3c0da1eb-8b9d-8002-ad06-eb3de3a14ae3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">┌──────────────────────┐
+│    AdvisorPage       │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│     useAdvisor       │
+│                      │
+│ conversationId       │
+│ messages             │
+│ loading              │
+│ submitQuestion()     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│  advisorService.js   │
+│                      │
+│ createConversation() │
+│ askAdvisor()         │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│     apiClient.js     │
+└──────────┬───────────┘
+           │
+           ▼
+       Django API
+           │
+     ┌─────┴─────┐
+     ▼           ▼
+/advisor/    /advisor/{id}/ask/
+     │           │
+     ▼           ▼
+Conversation AdvisorAIService
+                 │
+                 ▼
+              Message</code></pre><p id="3c0da1eb-8b9d-8061-9af6-fd8f7e1995a2" class="" dir="auto">باید <strong>یک تغییر معماری مهم ولی کنترل‌شده</strong> انجام دهیم: Hook باید ابتدا Conversation بسازد، UUID آن را نگه دارد، و بعد سؤال را به همان Conversation ارسال کند.</p><p id="3c0da1eb-8b9d-80f0-b182-c73ce172484c" class="" dir="auto">فعلاً AI واقعی را دست نمی‌زنیم؛ Backend Mock فعلی کاملاً کافی است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-80cf-a789-f09950ecffb0" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-80a0-bfc9-ee285a2e3bcc" class="" dir="auto"> <code>useAdvisor.js</code> را کامل جایگزین کن</h3></div></aside><blockquote id="3bfda1eb-8b9d-8009-a119-fac96cdac89a" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">25- فایل:<pre id="3c0da1eb-8b9d-80f3-abcb-c0b99e047d75" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/domains/advisor/hooks/useAdvisor.js</code></pre><p id="3c0da1eb-8b9d-80cb-9617-d86879ea59cb" class="" dir="auto">را با این کد جایگزین کن:</p><pre id="3bfda1eb-8b9d-8056-8757-e54757e93b4b" class="code code-wrap" data-notion-code-syntax="python"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import { useEffect, useState } from &quot;react&quot;;
+
+import advisorService from &quot;../services/advisorService&quot;;
+
+
+const useAdvisor = () =&gt; {
+  const [conversationId, setConversationId] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
+
+
+  useEffect(() =&gt; {
+    const initializeConversation = async () =&gt; {
+      try {
+        const conversation =
+          await advisorService.createConversation();
+
+        setConversationId(conversation.id);
+      } catch (error) {
+        console.error(
+          &quot;Failed to create advisor conversation:&quot;,
+          error
+        );
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+
+    initializeConversation();
+  }, []);
+
+
+  const submitQuestion = async (question) =&gt; {
+    if (!conversationId) {
+      console.error(
+        &quot;Cannot submit question: conversation is not ready.&quot;
+      );
+      return;
+    }
+
+    const userMessage = {
+      id: Date.now(),
+      role: &quot;user&quot;,
+      content: question,
+    };
+
+    setMessages((currentMessages) =&gt; [
+      ...currentMessages,
+      userMessage,
+    ]);
+
+    setIsLoading(true);
+
+    try {
+      const assistantMessage =
+        await advisorService.askAdvisor(
+          conversationId,
+          question
+        );
+
+      setMessages((currentMessages) =&gt; [
+        ...currentMessages,
+        {
+          id: assistantMessage.id,
+          role: assistantMessage.role,
+          content: assistantMessage.content,
+        },
+      ]);
+    } catch (error) {
+      console.error(&quot;Advisor error:&quot;, error);
+
+      setMessages((currentMessages) =&gt; [
+        ...currentMessages,
+        {
+          id: Date.now() + 1,
+          role: &quot;assistant&quot;,
+          content:
+            &quot;Something went wrong. Please try again.&quot;,
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
+  const selectSuggestion = (question) =&gt; {
+    submitQuestion(question);
+  };
+
+
+  return {
+    conversationId,
+    messages,
+    isLoading,
+    isInitializing,
+    submitQuestion,
+    selectSuggestion,
+  };
+};
+
+
+export default useAdvisor;</code></pre></blockquote><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3bfda1eb-8b9d-800b-b78e-f3dd0bb5cdb4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3bfda1eb-8b9d-80b3-a88d-d12a26227369" class="" dir="auto">چه چیزی تغییر کرد؟</h3></div></aside><p id="3c0da1eb-8b9d-80a1-acae-f7411a91265d" class="" dir="auto">قبلاً Hook این بود:</p><pre id="3c0da1eb-8b9d-8059-9597-c5f0eb647f25" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">submitQuestion
+      ↓
+advisorService.askAdvisor(question)</code></pre><p id="3c0da1eb-8b9d-8048-9d3f-c0087f01f878" class="" dir="auto">اما Backend ما به <code>conversationId</code> نیاز دارد.</p><p id="3c0da1eb-8b9d-8095-afb7-ce710423f91a" class="" dir="auto">حالا شده:</p><pre id="3c0da1eb-8b9d-804b-9622-c936fa6f000c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">submitQuestion
+      ↓
+conversationId
+      +
+question
+      ↓
+advisorService.askAdvisor(
+    conversationId,
+    question
+)</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-80b3-b277-fa5b6975324b" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-800a-bf03-e3a4a1e80d1f" class="" dir="auto">ایجاد Conversation هنگام باز شدن صفحه</h3></div></aside><p id="3c0da1eb-8b9d-8075-8050-c47aa321456b" class="" dir="auto">این قسمت مهم است:</p><pre id="3c0da1eb-8b9d-8050-853e-e5cd70eb6edd" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">useEffect(() =&gt; {
+  const initializeConversation = async () =&gt; {
+    try {
+      const conversation =
+        await advisorService.createConversation();
+
+      setConversationId(conversation.id);
+    } catch (error) {
+      console.error(
+        &quot;Failed to create advisor conversation:&quot;,
+        error
+      );
+    } finally {
+      setIsInitializing(false);
+    }
+  };
+
+  initializeConversation();
+}, []);</code></pre><p id="3c0da1eb-8b9d-802c-90c7-ff1d54383f4d" class="" dir="auto">وقتی کاربر وارد:</p><pre id="3c0da1eb-8b9d-80a1-897e-f019f821d000" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/advisor</code></pre><p id="3c0da1eb-8b9d-8058-9ae3-e963ab6c7936" class="" dir="auto">می‌شود، React یک بار این درخواست را ارسال می‌کند:</p><pre id="3c0da1eb-8b9d-8052-817b-f9a897e2137e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/</code></pre><p id="3c0da1eb-8b9d-8088-bff6-d74e19a27d09" class="" dir="auto">Django مثلاً برمی‌گرداند:</p><pre id="3c0da1eb-8b9d-80df-8efd-e206befc3174" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  &quot;id&quot;: &quot;2b594f77-153a-417d-bfb7-f3bb15aecd00&quot;,
+  &quot;user&quot;: null,
+  &quot;visitor_session_key&quot;: &quot;127.0.0.1&quot;,
+  &quot;messages&quot;: []
+}</code></pre><p id="3c0da1eb-8b9d-80df-8799-c5d8741ecbaa" class="" dir="auto">و React فقط این قسمت را نگه می‌دارد:</p><pre id="3c0da1eb-8b9d-8075-ad76-f7c33f0b7370" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">setConversationId(conversation.id);</code></pre><p id="3c0da1eb-8b9d-80b0-8132-ea93236aa7a3" class="" dir="auto">یعنی:</p><pre id="3c0da1eb-8b9d-8046-9d59-f3182d890838" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">conversationId
+      ↓
+2b594f77-153a-417d-bfb7-f3bb15aecd00</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-80bd-9943-e91039d9fdf4" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8032-8f61-dc837743da3d" class="" dir="auto">چرا <code>isInitializing</code> اضافه کردیم؟</h3></div></aside><p id="3c0da1eb-8b9d-80af-acbe-f06bb3327a73" class="" dir="auto">ما دو حالت Loading داریم که نباید آنها را با هم قاطی کنیم.</p><h3 id="3c0da1eb-8b9d-8072-abab-c13fa34a3345" class="" dir="auto">حالت اول</h3><p id="3c0da1eb-8b9d-80f9-a1b5-e9082362a1e5" class="" dir="auto">هنوز Conversation ساخته نشده:</p><pre id="3c0da1eb-8b9d-8056-af44-d27f14eced09" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">isInitializing = true</code></pre><p id="3c0da1eb-8b9d-8068-86e6-f010e33a1acc" class="" dir="auto">یعنی:</p><pre id="3c0da1eb-8b9d-80ce-ad89-c9fb1f4858fc" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">React
+ ↓
+POST /api/advisor/
+ ↓
+Waiting...</code></pre><h3 id="3c0da1eb-8b9d-8018-8182-fb2f4278b7a5" class="" dir="auto">حالت دوم</h3><p id="3c0da1eb-8b9d-8036-9d9e-cc89f8843e16" class="" dir="auto">Conversation وجود دارد و سؤال در حال پردازش است:</p><pre id="3c0da1eb-8b9d-807d-b3c7-f339ee1c6e58" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">isLoading = true</code></pre><p id="3c0da1eb-8b9d-8028-bc94-d9bee77f9bd1" class="" dir="auto">یعنی:</p><pre id="3c0da1eb-8b9d-8008-9427-c47deb7e8853" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Question
+ ↓
+POST /api/advisor/{id}/ask/
+ ↓
+Waiting...</code></pre><p id="3c0da1eb-8b9d-80ec-8f73-e565eab64cfb" class="" dir="auto">بنابراین:</p><pre id="3c0da1eb-8b9d-80b8-9442-f927eb01be5f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">isInitializing
+    ↓
+ساخت Conversation
+
+isLoading
+    ↓
+پردازش سؤال</code></pre><p id="3c0da1eb-8b9d-80ff-b9aa-eb81002edbf6" class="" dir="auto">این تفکیک بعداً برای UX خیلی مهم خواهد بود.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-802c-ab56-c00324bfdb1a" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8088-8439-e151a232f30d" class="" dir="auto">یک تغییر مهم دیگر در Response</h3></div></aside><p id="3c0da1eb-8b9d-80b8-90bb-d7a788dceb5c" class="" dir="auto">بنابراین Backend ما این را برمی‌گرداند:</p><pre id="3c0da1eb-8b9d-80a5-9ce1-d4159a034a7c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  &quot;id&quot;: &quot;...&quot;,
+  &quot;role&quot;: &quot;assistant&quot;,
+  &quot;role_display&quot;: &quot;دستیار هوش مصنوعی&quot;,
+  &quot;content&quot;: &quot;...&quot;,
+  &quot;detected_tone&quot;: &quot;General (عمومی)&quot;,
+  &quot;created_at&quot;: &quot;...&quot;
+}</code></pre><p id="3c0da1eb-8b9d-8030-983e-e0ed9a8afc22" class="" dir="auto">ما فقط چیزهایی را که UI فعلاً لازم دارد وارد <code>messages</code> می‌کنیم:</p><pre id="3c0da1eb-8b9d-80de-bc5a-e389e3559813" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  id: assistantMessage.id,
+  role: assistantMessage.role,
+  content: assistantMessage.content,
+}</code></pre><p id="3c0da1eb-8b9d-80e9-b115-c017a530ac89" class="" dir="auto">پس فعلاً:</p><pre id="3c0da1eb-8b9d-8065-98f2-db3494fe2dfd" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Backend
+├── id
+├── role
+├── role_display
+├── content
+├── detected_tone
+└── created_at</code></pre><p id="3c0da1eb-8b9d-8080-bc8d-c02263833a12" class="" dir="auto">ولی Frontend:</p><pre id="3c0da1eb-8b9d-804c-92ee-d6dc8f657f8c" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Message
+├── id
+├── role
+└── content</code></pre><p id="3c0da1eb-8b9d-80d2-9898-e44879e3f3fe" class="" dir="auto">بعداً می‌توانیم <code>detected_tone</code> و <code>created_at</code> را هم استفاده کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-8035-b3c6-e43d92a03265" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-80ce-b380-c02cecb04242" class="" dir="auto">یک تغییر کوچک در <code>AdvisorPage.jsx</code></h3></div></aside><p id="3c0da1eb-8b9d-8096-bfb4-c5e16c58943f" class="" dir="auto">الان Hook مقدار جدیدی به نام:</p><pre id="3c0da1eb-8b9d-804c-af01-e495d7aa4507" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">isInitializing</code></pre><p id="3c0da1eb-8b9d-80bc-97aa-da821b1d7e0f" class="" dir="auto">برمی‌گرداند.</p><p id="3c0da1eb-8b9d-8061-8110-c082873be882" class="" dir="auto">پس فایل:</p><pre id="3c0da1eb-8b9d-8041-8823-ec8346575855" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">frontend/src/domains/advisor/pages/AdvisorPage.jsx</code></pre><p id="3c0da1eb-8b9d-80e4-8ab8-d4ac9f402cd8" class="" dir="auto">احتمالاً الان چیزی شبیه این دارد:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="3c0da1eb-8b9d-80ad-8803-d712f1eb0e4a" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">const {
+  messages,
+  isLoading,
+  submitQuestion,
+  selectSuggestion,
+} = useAdvisor();</code></pre><blockquote id="3bfda1eb-8b9d-803e-9c9d-dd18ebf984aa" class="block-color-blue quote-large" data-notion-highlight="blue" dir="auto">26- آن را تبدیل کن به:<pre id="3c0da1eb-8b9d-8087-a0e4-d9e05b3cbdb7" class="code code-wrap" data-notion-code-syntax="jsx"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">const {
+  messages,
+  isLoading,
+  isInitializing,
+  submitQuestion,
+  selectSuggestion,
+} = useAdvisor();</code></pre></blockquote><p id="3c0da1eb-8b9d-808e-9478-cd45dc5ef51a" class="" dir="auto">اما یک نکته: <strong>هنوز لازم نیست UI جدیدی برای </strong><code><strong>isInitializing</strong></code><strong> بسازیم.</strong></p><p id="3c0da1eb-8b9d-8007-807b-ea782d6d0bc1" class="" dir="auto">فعلاً فقط آن را دریافت می‌کنیم.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-8068-ab9b-cfa75c749612" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8099-af90-d18fb6650d96" class="" dir="auto">حالا تست واقعی</h3></div></aside><p id="3c0da1eb-8b9d-80b1-b879-e89bb4adac52" class="" dir="auto">حالا هر دو سرور باید روشن باشند:</p><h3 id="3c0da1eb-8b9d-807f-af08-d3ea0c4b4725" class="" dir="auto">Django</h3><pre id="3c0da1eb-8b9d-8042-b83b-d68acf9db6eb" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">python manage.py runserver</code></pre><h3 id="3c0da1eb-8b9d-805f-9964-fe1b95ee254d" class="" dir="auto">React</h3><pre id="3c0da1eb-8b9d-809d-80ea-f24bb7666657" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">npm run dev</code></pre><p id="3c0da1eb-8b9d-806a-b63a-dbe8a316660e" class="" dir="auto">بعد برو به:</p><pre id="3c0da1eb-8b9d-8094-92cd-e09ef5c79ba7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">http://localhost:5173/advisor</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-809c-b4a6-dac8bb46fbf6" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-806e-b20b-d01c30173136" class="" dir="auto">مهم‌ترین چیزی که باید در Network ببینی</h3></div></aside><p id="3c0da1eb-8b9d-8042-a295-d3f18c3a5d4d" class="" dir="auto">حالا DevTools مرورگر را باز کن:</p><pre id="3c0da1eb-8b9d-8037-88ef-f8f6f0cea6ee" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">F12</code></pre><p id="3c0da1eb-8b9d-8048-89e0-f492d89284ab" class="" dir="auto">بعد:</p><pre id="3c0da1eb-8b9d-80ec-b7a9-e07b15921ea3" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Network</code></pre><p id="3c0da1eb-8b9d-8033-a001-fb46cda462ae" class="" dir="auto">و صفحه <code>/advisor</code> را Refresh کن.</p><p id="3c0da1eb-8b9d-807b-ac44-c4772781ecc2" class="" dir="auto">باید اولین Request مربوط به Advisor را ببینی:</p><pre id="3c0da1eb-8b9d-80bc-9b4d-d9b00269ef92" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST
+/api/advisor/</code></pre><p id="3c0da1eb-8b9d-80dc-ad13-e61fdc7cfca5" class="" dir="auto">و Response باید:</p><pre id="3c0da1eb-8b9d-80b7-b918-d99466db701f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">201 Created</code></pre><p id="3c0da1eb-8b9d-800c-b39d-d4e530d783ff" class="" dir="auto">باشد.</p><p id="3c0da1eb-8b9d-80c4-82f7-ce3007ad1bc3" class="" dir="auto">در Response باید یک UUID داشته باشی.</p><p id="3c0da1eb-8b9d-801f-883f-f3fef36a485c" class="" dir="auto">مثلاً:</p><pre id="3c0da1eb-8b9d-8037-9898-f51185bbcb66" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  &quot;id&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;
+}</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-80ef-a1a5-c34889064698" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-80b9-a826-c546e243b023" class="" dir="auto">سپس سؤال بپرس</h3></div></aside><p id="3c0da1eb-8b9d-8076-9423-e473c797794e" class="" dir="auto">مثلاً:</p><pre id="3c0da1eb-8b9d-80d1-ae13-cfcd3ea28a7f" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">ACRON چیست؟</code></pre><p id="3c0da1eb-8b9d-8086-8dfa-d27dd0f3349b" class="" dir="auto">در Network باید Request دوم را ببینی:</p><pre id="3c0da1eb-8b9d-8092-805f-f66f4f9d5453" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST
+/api/advisor/{UUID}/ask/</code></pre><p id="3c0da1eb-8b9d-80bb-aba3-df223835894c" class="" dir="auto">مثلاً:</p><pre id="3c0da1eb-8b9d-804a-be3d-d136f9bdf8a7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST
+/api/advisor/2b594f77-153a-417d-bfb7-f3bb15aecd00/ask/</code></pre><p id="3c0da1eb-8b9d-8071-98fb-fdda144ccd55" class="" dir="auto">و Request Body:</p><pre id="3c0da1eb-8b9d-804f-9753-e7721a3dbe22" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">{
+  &quot;question&quot;: &quot;ACRON چیست؟&quot;
+}</code></pre><p id="3c0da1eb-8b9d-8087-98ce-e371590ba9db" class="" dir="auto">و Response:</p><pre id="3c0da1eb-8b9d-8057-9646-f84c99e3a511" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">200 OK</code></pre><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-80c3-bae5-cbd51d698f06" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8082-9824-c39f000cf2bd" class="" dir="auto">نتیجه نهایی که باید روی صفحه ببینی</h3></div></aside><p id="3c0da1eb-8b9d-8033-b0bf-e5fe4734b2b1" class="" dir="auto">اگر <code>AdvisorResponse</code> فعلی درست کار کند، باید چیزی شبیه این داشته باشی:</p><pre id="3c0da1eb-8b9d-801d-ac2f-f5a806bc1eb7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">You
+ACRON چیست؟
+
+Advisor
+پروژه ACRON یک شاهکار معماری Modular Monolith ...</code></pre><p id="3c0da1eb-8b9d-806b-ae3d-d3565983c027" class="" dir="auto">یعنی دیگر این پاسخ Mock فرانت‌اند:</p><pre id="3c0da1eb-8b9d-8079-841b-c183a7e7375e" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">I&#x27;m processing your question...</code></pre><p id="3c0da1eb-8b9d-80c5-92eb-cdb45cdae938" class="" dir="auto">را نباید ببینی.</p><p id="3c0da1eb-8b9d-80c1-a457-d8ac589bfe8d" class="" dir="auto">پاسخ باید از <strong>Django</strong> آمده باشد.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-805d-b651-f3bf3b5c4797" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8027-a8ed-c41f0bee81d4" class="" dir="auto">یک تست بسیار مهم دیگر</h3></div></aside><p id="3c0da1eb-8b9d-806c-8262-d1662a855d12" class="" dir="auto">بعد از سؤال اول، سؤال دوم را بپرس:</p><pre id="3c0da1eb-8b9d-802a-894b-f4f73adf8eac" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">سینا لاله بخش کیست؟</code></pre><p id="3c0da1eb-8b9d-808b-adb8-dbb93da03387" class="" dir="auto">باید Request دوم با همان Conversation ID ارسال شود:</p><pre id="3c0da1eb-8b9d-80dd-bdd3-fd15e09c0ec7" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/api/advisor/{SAME_CONVERSATION_ID}/ask/</code></pre><p id="3c0da1eb-8b9d-8078-ac1e-e36af4488fe3" class="" dir="auto">یعنی نباید برای هر سؤال Conversation جدید ساخته شود.</p><p id="3c0da1eb-8b9d-8054-aebf-cbd057334023" class="" dir="auto">ساختار باید این باشد:</p><pre id="3c0da1eb-8b9d-8048-af85-dc70d722a251" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Conversation A
+│
+├── User: ACRON چیست؟
+│
+├── Assistant: ...
+│
+├── User: سینا لاله بخش کیست؟
+│
+└── Assistant: ...</code></pre><p id="3c0da1eb-8b9d-8064-9385-c52f5e72da46" class="" dir="auto">نه این:</p><pre id="3c0da1eb-8b9d-8008-aaec-cd273bf07697" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">Conversation A
+└── User: ACRON چیست؟
+
+Conversation B
+└── User: سینا لاله بخش کیست؟</code></pre><p id="3c0da1eb-8b9d-8052-a508-fc183f6a64ad" class="" dir="auto">این موضوع برای Memory سیستم Advisor بسیار مهم است.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="3c0da1eb-8b9d-803c-85ac-e97124f11f62" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><h3 id="3c0da1eb-8b9d-8006-ad89-eee131234e7d" class="" dir="auto">فعلاً فقط همین را تست کن</h3></div></aside><p id="3c0da1eb-8b9d-8023-9159-fa10af1e9133" class="" dir="auto">بعد از Refresh صفحه <code>/advisor</code>، در <strong>Network</strong> باید دو چیز را بتوانیم بررسی کنیم:</p><p id="3c0da1eb-8b9d-80a9-9355-ea830457e24e" class="" dir="auto"><strong>هنگام باز شدن صفحه:</strong></p><pre id="3c0da1eb-8b9d-807c-91fd-f357fef8da6b" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/
+→ 201</code></pre><p id="3c0da1eb-8b9d-8028-adc7-c6cf1f4da31a" class="" dir="auto"><strong>هنگام ارسال سؤال:</strong></p><pre id="3c0da1eb-8b9d-8080-ba07-faf2e4223129" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">POST /api/advisor/{conversationId}/ask/
+→ 200</code></pre><p id="3c0da1eb-8b9d-8071-a45c-cdb33d21f588" class="" dir="auto">اگر این دو Request درست باشند، مرحله بعدی دیگر تست API نیست؛ می‌رویم سراغ <strong>بهبود UX خود Advisor</strong>: نمایش وضعیت <code>Initializing</code>, <code>Thinking</code>, مدیریت خطا، جلوگیری از ارسال سؤال خالی/دوباره‌فرستادن هنگام Loading، و سپس اتصال History واقعی Conversation به UI.</p><aside class="block-color-red callout" data-notion-callout="" data-notion-callout-icon="📢" data-notion-callout-background="red" style="white-space:pre-wrap;display:flex" id="7e3da1eb-8b9d-8293-9b92-010539a8fc2e" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📢"></span></div><div style="width:100%"><h1 id="0f6da1eb-8b9d-8362-9ffb-81db4845ffb7" class="" dir="auto">پایان Part-23</h1></div></aside></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
