@@ -24,9 +24,13 @@
 * [Part-21](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-21-3bdda1eb8b9d800fbf09c70988106ade)
 * [Part-22](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-22-3bdda1eb8b9d80e2b28fd6306da7bd8e)
 * [Part-23](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-23-3bfda1eb8b9d80b4871ecf6e4d1b5f9c)
-* [Part-24]()
+* [Part-24](https://sinalalenakhsh.notion.site/ACRON-Methodology-Part-24-3c0da1eb8b9d80aabef7f6c7ff9374e6)
 * [Part-25]()
 * [Part-26]()
+* [Part-27]()
+* [Part-28]()
+* [Part-29]()
+* [Part-30]()
 
 
 
