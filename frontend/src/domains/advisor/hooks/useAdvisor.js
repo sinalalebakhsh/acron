@@ -1,12 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import advisorService from "../services/advisorService";
 
+
 const useAdvisor = () => {
+  const [conversationId, setConversationId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
+
+
+  useEffect(() => {
+    const initializeConversation = async () => {
+      try {
+        const conversation =
+          await advisorService.createConversation();
+
+        setConversationId(conversation.id);
+      } catch (error) {
+        console.error(
+          "Failed to create advisor conversation:",
+          error
+        );
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+
+    initializeConversation();
+  }, []);
+
 
   const submitQuestion = async (question) => {
+    if (!conversationId) {
+      console.error(
+        "Cannot submit question: conversation is not ready."
+      );
+      return;
+    }
+
     const userMessage = {
       id: Date.now(),
       role: "user",
@@ -22,13 +54,17 @@ const useAdvisor = () => {
 
     try {
       const assistantMessage =
-        await advisorService.askAdvisor(question);
+        await advisorService.askAdvisor(
+          conversationId,
+          question
+        );
 
       setMessages((currentMessages) => [
         ...currentMessages,
         {
-          id: Date.now() + 1,
-          ...assistantMessage,
+          id: assistantMessage.id,
+          role: assistantMessage.role,
+          content: assistantMessage.content,
         },
       ]);
     } catch (error) {
@@ -48,16 +84,21 @@ const useAdvisor = () => {
     }
   };
 
+
   const selectSuggestion = (question) => {
     submitQuestion(question);
   };
 
+
   return {
+    conversationId,
     messages,
     isLoading,
+    isInitializing,
     submitQuestion,
     selectSuggestion,
   };
 };
+
 
 export default useAdvisor;

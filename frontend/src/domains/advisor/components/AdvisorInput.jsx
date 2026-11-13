@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AdvisorInput = ({ onSubmit }) => {
+const AdvisorInput = ({ onSubmit, disabled = false }) => {
   const [question, setQuestion] = useState("");
 
   const handleSubmit = (event) => {
@@ -8,7 +8,7 @@ const AdvisorInput = ({ onSubmit }) => {
 
     const trimmedQuestion = question.trim();
 
-    if (!trimmedQuestion) {
+    if (!trimmedQuestion || disabled) {
       return;
     }
 
@@ -24,9 +24,13 @@ const AdvisorInput = ({ onSubmit }) => {
         value={question}
         onChange={(event) => setQuestion(event.target.value)}
         placeholder="Ask ACRON Advisor..."
+        disabled={disabled}
       />
 
-      <button type="submit">
+      <button
+        type="submit"
+        disabled={disabled}
+      >
         Ask
       </button>
     </form>

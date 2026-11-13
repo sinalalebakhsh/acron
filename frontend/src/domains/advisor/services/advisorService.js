@@ -1,12 +1,26 @@
-const askAdvisor = async (question) => {
-  console.log("Advisor service received:", question);
+import apiClient from "../../../services/apiClient";
 
-  return {
-    role: "assistant",
-    content: "I'm processing your question...",
-  };
+
+const createConversation = async () => {
+  const response = await apiClient.post("/advisor/", {});
+
+  return response.data;
 };
 
+
+const askAdvisor = async (conversationId, question) => {
+  const response = await apiClient.post(
+    `/advisor/${conversationId}/ask/`,
+    {
+      question,
+    }
+  );
+
+  return response.data;
+};
+
+
 export default {
+  createConversation,
   askAdvisor,
 };

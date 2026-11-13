@@ -9,23 +9,39 @@ const AdvisorPage = () => {
   const {
     messages,
     isLoading,
+    isInitializing,
     submitQuestion,
     selectSuggestion,
   } = useAdvisor();
+
+  const isBusy = isInitializing || isLoading;
 
   return (
     <main>
       <AdvisorHero />
 
+      {isInitializing && (
+        <p className="advisor-status">
+          Initializing Advisor...
+        </p>
+      )}
+
       <AdvisorResponse messages={messages} />
+
+      {isLoading && (
+        <p className="advisor-status">
+          Thinking...
+        </p>
+      )}
 
       <AdvisorInput
         onSubmit={submitQuestion}
-        disabled={isLoading}
+        disabled={isBusy}
       />
 
       <AdvisorSuggestions
         onSelect={selectSuggestion}
+        disabled={isBusy}
       />
     </main>
   );

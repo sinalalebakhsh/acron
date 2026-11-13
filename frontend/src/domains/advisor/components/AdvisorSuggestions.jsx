@@ -5,7 +5,7 @@ const suggestions = [
   "What can ACRON Advisor do?",
 ];
 
-const AdvisorSuggestions = ({ onSelect }) => {
+const AdvisorSuggestions = ({ onSelect, disabled = false }) => {
   return (
     <section className="advisor-suggestions">
       <h2>Suggested questions</h2>
@@ -16,6 +16,7 @@ const AdvisorSuggestions = ({ onSelect }) => {
             key={suggestion}
             type="button"
             onClick={() => onSelect(suggestion)}
+            disabled={disabled}
           >
             {suggestion}
           </button>

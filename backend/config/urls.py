@@ -39,6 +39,11 @@ urlpatterns = [
         include("apps.orders.urls"),
     ),
 
+    path(
+        "api/advisor/",
+        include("apps.advisor.urls"),
+    ),
+
     # -------------------------
     # General API
     # -------------------------
