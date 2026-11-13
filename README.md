@@ -1,4 +1,4 @@
-<img src="https://github.com/sinalalebakhsh/acron/blob/main/backend/products/gallery/2026/11/acron__Gemini_Generated_Image_.jpg" alt="isolated" width="400"/>
+<img src="https://github.com/sinalalebakhsh/acron/blob/main/backend/products/gallery/2026/11/acron__Gemini_Generated_Image_.jpg" alt="acron" width="400"/>
 
 
 # 🌱 ACRON
